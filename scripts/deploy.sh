@@ -1,66 +1,68 @@
 #!/bin/bash
+set -e
+set -u
 
-HOME=`pwd`
+cd "${0%/*}"
 
-C="\033[1;35m"
-D=`date +%Y-%m-%d-%H:%M:%S`
-NC='\033[0m'
+
+D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+
 
 if [ "$#" -eq 6 ]; then
 	servicePrincipalAppId="$1"
-	echo "$C$D Service Principal App Id: $servicePrincipalAppId$NC"
+	D "Service Principal App Id: $servicePrincipalAppId"
 	servicePrincipalPassword="$2"
-	echo "$C$D Service Principal Password: ********$NC"
+	D "Service Principal Password: ********"
 	servicePrincipalTenantId="$3"
-	echo "$C$D Service Principal Tenant Id: $servicePrincipalTenantId$NC"
+	D "Service Principal Tenant Id: $servicePrincipalTenantId"
 	subscriptionId="$4"
-	echo "$C$D Subscription Id: $subscriptionId$NC"
+	D "Subscription Id: $subscriptionId"
 	uniquePrefixString="$5"
-	echo "$C$D Unique Prefix String: $uniquePrefixString$NC"
+	D "Unique Prefix String: $uniquePrefixString"
 	bigHugeThesaurusApiKey="$6"
 else
-	echo "$C$D Provide Service Principal App ID: $NC"
+	D "Provide Service Principal App ID: "
 	read servicePrincipalAppId
-	echo "$C$D Provide Service Principal Password: $NC"
+	D "Provide Service Principal Password: "
 	read servicePrincipalPassword
-	echo "$C$D Provide Service Principal Tenant ID: $NC"
+	D "Provide Service Principal Tenant ID: "
 	read servicePrincipalTenantId
-	echo "$C$D Provide subscription ID: $NC"
+	D "Provide subscription ID: "
 	read subscriptionId
-	echo "$C$D Provide any unique Prefix string (max length 15 characters, recommended to autogenerate a string): $NC"
+	D "Provide any unique Prefix string (max length 15 characters, recommended to autogenerate a string): "
 	read uniquePrefixString
-	echo "$C$D Provide Big Huge Thesaurus API Key: $NC"
+	D "Provide Big Huge Thesaurus API Key: "
 	read bigHugeThesaurusApiKey
 fi
 
 
-echo "$C$D Logging in.$NC"
+D "Logging in."
 time az login --service-principal --username $servicePrincipalAppId --password $servicePrincipalPassword --tenant $servicePrincipalTenantId
-echo "$C$D Setting subscription.$NC"
+D "Setting subscription."
 time az account set --subscription $subscriptionId 
 
 # Creating Event Grid Topic
-time ./scripts/deploy-events.sh $uniquePrefixString
+time ../events/deploy/deploySteps.sh $uniquePrefixString
 
 # Categories Microservice Deploy
-time ./scripts/deploy-categories.sh $uniquePrefixString $bigHugeThesaurusApiKey
+time ../categories/deploy/deploySteps.sh $uniquePrefixString $bigHugeThesaurusApiKey
 
 # Images Microservice Deploy
 
-time ./scripts/deploy-images.sh $uniquePrefixString
+time ../images/deploy/deploySteps.sh $uniquePrefixString
 
 # Audio Microservice Deploy
 
-time ./scripts/deploy-audio.sh $uniquePrefixString
+time ../audio/deploy/deploySteps.sh $uniquePrefixString
 
 # Text Microservice Deploy
 
-time ./scripts/deploy-text.sh $uniquePrefixString
+time ../text/deploy/deploySteps.sh $uniquePrefixString
 
 # Deploy Proxy
-time ./scripts/deploy-proxy.sh $uniquePrefixString
+time ../proxy/deploy/deploySteps.sh $uniquePrefixString
 
 # Deploy Web
-time ./scripts/deploy-web.sh $uniquePrefixString
+time ../web/deploy/deploySteps.sh $uniquePrefixString
 
-echo "$C$D Deployment complete for $uniquePrefixString!$NC"
+D "Deployment complete for $uniquePrefixString!"

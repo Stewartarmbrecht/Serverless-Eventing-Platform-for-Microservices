@@ -42,31 +42,6 @@ D "Setting subscription."
 time az account set --subscription $subscriptionId 
 
 # Creating Event Grid Topic
-time ../events/deploy/deploySteps.sh $uniquePrefixString
+time ./deploySteps.sh $uniquePrefixString
 
-# Categories Microservice Deploy
-time ../categories/deploy/deploySteps.sh $uniquePrefixString $bigHugeThesaurusApiKey &
-
-# Images Microservice Deploy
-
-time ../images/deploy/deploySteps.sh $uniquePrefixString &
-
-# Audio Microservice Deploy
-
-time ../audio/deploy/deploySteps.sh $uniquePrefixString &
-
-# Text Microservice Deploy
-
-time ../text/deploy/deploySteps.sh $uniquePrefixString &
-
-wait
-
-# Deploy Proxy
-time ../proxy/deploy/deploySteps.sh $uniquePrefixString &
-
-# Deploy Web
-time ../web/deploy/deploySteps.sh $uniquePrefixString &
-
-wait 
-
-D "Deployment complete for $uniquePrefixString!"
+D "Events deployment complete for $uniquePrefixString!"
