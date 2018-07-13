@@ -8,6 +8,8 @@ HOME=`pwd`
 
 D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
+../../scripts/prerequisites.sh
+
 D "Checking for prerequisites..."
 if ! type npm > /dev/null; then
     D "Prerequisite Check 1: Install Node.js and NPM"
