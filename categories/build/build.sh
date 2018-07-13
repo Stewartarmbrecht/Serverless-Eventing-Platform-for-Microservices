@@ -7,7 +7,7 @@ cd ../
 
 HOME=`pwd`
 
-$HOME/../scripts/prerequisites.sh
+../scripts/prerequisites.sh
 
 D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
