@@ -5,9 +5,9 @@ set -u
 cd "${0%/*}"
 cd ../
 
-../scripts/prerequisites.sh
-
 HOME=`pwd`
+
+$HOME/../scripts/prerequisites.sh
 
 D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
