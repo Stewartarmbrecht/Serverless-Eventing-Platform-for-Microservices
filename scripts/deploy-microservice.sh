@@ -1,15 +1,5 @@
 #!/bin/bash
 
-#
-# a simple way to parse shell script arguments
-# 
-# please edit and use to your hearts content
-# 
-
-
-ENVIRONMENT="dev"
-DB_PATH="/data/db"
-
 usage()
 {
     echo "This script creats a generic function based microservice.  It responds to the following parameters."

@@ -1,82 +1,32 @@
- #!/bin/bash
+#!/bin/bash
 
-echo "Checking for prerequisites..."
-if ! type npm > /dev/null; then
-    echo "Prerequisite Check 1: Install Node.js and NPM"
-    exit 1
-fi
+set -e
+set -u
 
-if ! type dotnet > /dev/null; then
-    echo "Prerequisite Check 2: Install .NET Core 2.1 SDK or Runtime"
-    exit 1
-fi
+D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+E() { echo -e '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
-if ! type zip > /dev/null; then
-    echo "Prerequisite Check 3: Install zip"
-    exit 1
-fi
+cd "${0%/*}"
 
-echo "Prerequisites satisfied"
-echo "******* BUILDING ARTIFACTS *******"
+D "Categories Microservice Build"
+time ../categories/build/build.sh
 
-shift $((OPTIND - 1))
-echo "Building Categories Microservice..."
-HOME=`pwd`
-cd $HOME/categories/src/ContentReactor.Categories
-dotnet build
-cd $HOME/categories/src/ContentReactor.Categories/ContentReactor.Categories.Services.Tests
-dotnet test
-cd $HOME/categories/src/ContentReactor.Categories
-dotnet publish -c Release
-cd $HOME/categories/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0
-zip -r ContentReactor.Categories.Api.zip .
-cd $HOME/categories/src/ContentReactor.Categories/ContentReactor.Categories.WorkerApi/bin/Release/netstandard2.0
-zip -r ContentReactor.Categories.WorkerApi.zip .
+D "Images Microservice Build"
 
+time ../images/build/build.sh
 
-echo "Building Images Microservice..."
-cd $HOME/images/src/ContentReactor.Images
-dotnet build
-cd $HOME/images/src/ContentReactor.Images/ContentReactor.Images.Services.Tests
-dotnet test
-cd $HOME/images/src/ContentReactor.Images
-dotnet publish -c Release
-cd $HOME/images/src/ContentReactor.Images/ContentReactor.Images.Api/bin/Release/netstandard2.0
-zip -r ContentReactor.Images.Api.zip .
-cd $HOME/images/src/ContentReactor.Images/ContentReactor.Images.WorkerApi/bin/Release/netstandard2.0
-zip -r ContentReactor.Images.WorkerApi.zip .
+D "Audio Microservice Build"
 
-echo "Building Audio Microservice..."
-cd $HOME/audio/src/ContentReactor.Audio
-dotnet build
-cd $HOME/audio/src/ContentReactor.Audio/ContentReactor.Audio.Services.Tests
-dotnet test
-cd $HOME/audio/src/ContentReactor.Audio
-dotnet publish -c Release
-cd $HOME/audio/src/ContentReactor.Audio/ContentReactor.Audio.Api/bin/Release/netstandard2.0
-zip -r ContentReactor.Audio.Api.zip .
-cd $HOME/audio/src/ContentReactor.Audio/ContentReactor.Audio.WorkerApi/bin/Release/netstandard2.0
-zip -r ContentReactor.Audio.WorkerApi.zip .
+time ../audio/build/build.sh
 
-echo "Building Text Microservice..."
-cd $HOME/text/src/ContentReactor.Text
-dotnet build
-cd $HOME/text/src/ContentReactor.Text/ContentReactor.Text.Services.Tests
-dotnet test
-cd $HOME/text/src/ContentReactor.Text
-dotnet publish -c Release
-cd $HOME/text/src/ContentReactor.Text/ContentReactor.Text.Api/bin/Release/netstandard2.0
-zip -r ContentReactor.Text.Api.zip .
+D "Text Microservice Build"
 
-echo "Building proxy artifact..."
-cd $HOME/proxy/proxies
-zip -r proxies.zip .
+time ../text/build/build.sh
 
-echo "Building Web..."
-mkdir $HOME/web/src/signalr-web/SignalRMiddleware/SignalRMiddleware/wwwroot
-cd $HOME/web/src/signalr-web/SignalRMiddleware/
-dotnet build
-cd $HOME/web/src/signalr-web/SignalRMiddleware/SignalRMiddlewareTests/
-dotnet test
+D "Build Proxy"
+time ../proxy/build/build.sh
 
-echo "Build successfully completed!"
+D "Build Web"
+time ../web/build/build.sh
+
+D "Buildment complete for $uniquePrefixString!"

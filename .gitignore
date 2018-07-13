@@ -4,26 +4,26 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
-src/Categories/CategoriesFunctions/CategoriesFunctions
+**/[Dd]ebug/
+**/[Dd]ebugPublic/
+**/[Rr]elease/
+**/[Rr]eleases/
+**/x64/
+**/x86/
+**/bld/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+**/*.zip
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -50,32 +50,32 @@ artifacts/
 **/Properties/launchSettings.json
 
 # Azure Functions
-local.settings.json
+**/local.settings.json
 
-*_i.c
-*_p.c
-*_i.h
-*.ilk
-*.meta
-*.obj
-*.pch
-*.pdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
-*.tmp
-*.tmp_proj
-*.log
-*.vspscc
-*.vssscc
-.builds
-*.pidb
-*.svclog
-*.scc
+**/*_i.c
+**/*_p.c
+**/*_i.h
+**/*.ilk
+**/*.meta
+**/*.obj
+**/*.pch
+**/*.pdb
+**/*.pgc
+**/*.pgd
+**/*.rsp
+**/*.sbr
+**/*.tlb
+**/*.tli
+**/*.tlh
+**/*.tmp
+**/*.tmp_proj
+**/*.log
+**/*.vspscc
+**/*.vssscc
+**/.builds
+**/*.pidb
+**/*.svclog
+**/*.scc
 
 # Chutzpah Test files
 _Chutzpah*
@@ -147,13 +147,13 @@ DocProject/Help/Html2
 DocProject/Help/html
 
 # Click-Once directory
-publish/
+**/publish/
 
 # Publish Web Output
-*.[Pp]ublish.xml
-*.azurePubxml
-*.pubxml
-*.publishproj
+**/*.[Pp]ublish.xml
+**/*.azurePubxml
+**/*.pubxml
+**/*.publishproj
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
@@ -188,7 +188,7 @@ _pkginfo.txt
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
-*.[Cc]ache
+**/*.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
 
@@ -288,15 +288,14 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-src/Web/content-reactor/wwwroot/dist/bundle.js
-/web/src/signalr-web/SignalRMiddleware/EventApp/.vscode/launch.json
-/.azure
-/.config/configstore
-/.dotnet
-/.node-gyp/8.11.3
-/.npm
-/.nuget/NuGet
+**/.vscode
+**/.azure
+**/.config
+**/.dotnet
+**/.node-gyp
+**/.npm
+**/.nuget
+**/.local
 /proxy/proxies/proxies.zip
 /web/src/signalr-web/SignalRMiddleware/SignalRMiddleware/wwwroot
-/scripts/delete.sh
-/scripts/.azure
+/audio/deploy/test.sh
