@@ -12,7 +12,7 @@ D "Checking for prerequisites..."
 
 if ! type zip > /dev/null; then
     D "Prerequisite Check 3: Install zip"
-	sudo apt install zip
+	apt install zip
     exit 1
 fi
 
