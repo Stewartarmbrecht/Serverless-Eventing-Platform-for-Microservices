@@ -4,19 +4,19 @@ set -u
 
 D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
-D $(pwd)
+D "Start $(pwd)"
 
-cd "${0%/*}"
+#cd "${0%/*}"
 
-D $(pwd)
+#D $(pwd)
 
 cd ../
 
-D $(pwd)
+D "AFter moving: $(pwd)"
 
 HOME=`pwd`
 
-D $(pwd)
+D "After setting home: $(pwd)"
 
 ../scripts/prerequisites.sh
 
