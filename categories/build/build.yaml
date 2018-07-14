@@ -21,17 +21,17 @@ steps:
   - task: PublishBuildArtifacts@1
     displayName: Publish Deployment Scripts
     inputs:
-      pathToPublish: 'categories/deploy'
-      artifactName: 'deploy'
-      publishLocation: 'filepath'
-	  targetPath: 'categories/deploy'
+      pathToPublish: categories/deploy
+      artifactName: deploy
+      publishLocation: filepath
+      targetPath: categories/deploy
 	  
   # Publish the `scripts` folder as an artifact
   - task: PublishBuildArtifacts@1
     displayName: Publish Shared Scripts
     inputs:
-      pathToPublish: 'scripts'
-      artifactName: 'scripts'
-      publishLocation: 'filepath'
-	  targetPath: 'scripts'
+      pathToPublish: scripts
+      artifactName: scripts
+      publishLocation: filepath
+      targetPath: scripts
 	 
