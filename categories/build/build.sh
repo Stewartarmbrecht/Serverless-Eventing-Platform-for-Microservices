@@ -2,14 +2,24 @@
 set -e
 set -u
 
+D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+
+D $(pwd)
+
 cd "${0%/*}"
+
+D $(pwd)
+
 cd ../
+
+D $(pwd)
 
 HOME=`pwd`
 
+D $(pwd)
+
 ../scripts/prerequisites.sh
 
-D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
 
 D "Checking for prerequisites..."
