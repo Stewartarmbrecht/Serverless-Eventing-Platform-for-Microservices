@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 usage()
 {
     echo "This script creats a generic function based microservice.  It responds to the following parameters."

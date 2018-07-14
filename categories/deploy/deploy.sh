@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 usage()
 {
     echo "This script deploys the categories microservice.  It responds to the following parameters."
