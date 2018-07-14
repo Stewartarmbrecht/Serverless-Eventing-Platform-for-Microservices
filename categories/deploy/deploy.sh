@@ -64,6 +64,6 @@ D "Setting subscription."
 time az account set --subscription $subscriptionId 
 
 # Categories Microservice Deploy
-time ./deploySteps.sh $uniquePrefixString $bigHugeThesaurusApiKey
+time sh ./deploySteps.sh $uniquePrefixString $bigHugeThesaurusApiKey
 
 D "Categories deployment complete for $uniquePrefixString!"

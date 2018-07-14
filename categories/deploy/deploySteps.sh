@@ -7,7 +7,7 @@ cd "${0%/*}"
 
 # Categories Microservice Deploy
 
-./deploy-microservice.sh \
+sh ./deploy-microservice.sh \
 --resourceGroupName=$1"-categories" \
 --region="westus2" \
 --deploymentFile="./microservice.json" \
