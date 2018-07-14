@@ -25,7 +25,7 @@ steps:
       artifactName: deploy
       publishLocation: filepath
       targetPath: 'categories/deploy'
-	  
+
   # Publish the `scripts` folder as an artifact
   - task: PublishBuildArtifacts@1
     displayName: Publish Shared Scripts
@@ -34,4 +34,3 @@ steps:
       artifactName: scripts
       publishLocation: filepath
       targetPath: 'scripts'
-	 
