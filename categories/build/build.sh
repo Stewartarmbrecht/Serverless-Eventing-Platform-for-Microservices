@@ -5,6 +5,7 @@ set -u
 D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
 D "Location: $(pwd)"
+D "Location: ${0%/*}"
 
 cd "${0%/*}"
 
