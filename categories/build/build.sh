@@ -4,23 +4,19 @@ set -u
 
 D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
-D "Start $(pwd)"
+D "Location: $(pwd)"
 
-#cd "${0%/*}"
+cd "${0%/*}"
 
-#D $(pwd)
+D "After setting directory to scripts directory: $(pwd)"
 
 cd ../
 
-D "AFter moving: $(pwd)"
+D "After moving up a level: $(pwd)"
 
 HOME=`pwd`
 
 D "After setting home: $(pwd)"
-
-../scripts/prerequisites.sh
-
-
 
 D "Checking for prerequisites..."
 if ! type npm > /dev/null; then
@@ -33,15 +29,15 @@ if ! type dotnet > /dev/null; then
     exit 1
 fi
 
-if ! type zip > /dev/null; then
-    D "Prerequisite Check 3: Install zip"
-    exit 1
-fi
+#if ! type zip > /dev/null; then
+#    D "Prerequisite Check 3: Install zip"
+#    exit 1
+#fi
 
 D "Prerequisites satisfied"
 D "******* BUILDING ARTIFACTS *******"
 
-shift $((OPTIND - 1))
+#shift $((OPTIND - 1))
 D "Categories Build: Building Categories Microservice in `pwd`"
 
 cd $HOME/src/ContentReactor.Categories
@@ -59,14 +55,26 @@ D "Categories Build: Running dotnet test in `pwd`"
 dotnet publish -c Release
 D "Categories Build: Ran dotnet test in `pwd`"
 
-cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0
+cd $HOME/build
+D "Running npm install."
+npm install
+D "Ran npm install."
+
+cd $HOME/build
+#cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0
 D "Categories Build: Zipping the API in `pwd`"
-zip -r ContentReactor.Categories.Api.zip .
+#zip -r ContentReactor.Categories.Api.zip .
+node zip.js \
+$HOME/deploy/ContentReactor.Categories.Api.zip \
+$HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0/
 D "Categories Build: Zipped the API in `pwd`"
 
-cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.WorkerApi/bin/Release/netstandard2.0
+#cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.WorkerApi/bin/Release/netstandard2.0
 D "Categories Build: Zipping the Worker in `pwd`"
-zip -r ContentReactor.Categories.WorkerApi.zip .
+#zip -r ContentReactor.Categories.WorkerApi.zip .
+node zip.js \
+$HOME/deploy/ContentReactor.Categories.WorkerApi.zip \
+$HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0/
 D "Categories Build: Zipped the Worker in `pwd`"
 
 cd $HOME
