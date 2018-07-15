@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 usage()
 {
     echo "This script creats a generic function based microservice.  It responds to the following parameters."
@@ -92,9 +94,6 @@ while [ "$1" != "" ]; do
     esac
     shift
 done
-
-set -e
-set -u
 
 D() { echo '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 E() { echo '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }

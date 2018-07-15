@@ -1,7 +1,8 @@
 #!/bin/sh
 
-set -e
-set -u
+set -x
+#set -e
+#set -u
 
 cd "${0%/*}"
 
