@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 
 usage()
@@ -7,12 +7,12 @@ usage()
     echo ""
     echo "./deploy.sh"
     echo "    -h --help"
-    echo "    --servicePrincipalAppId: The id of the service principal app to use to connect to Azure."
-    echo "    --servicePrincipalPassword: The services principal's password."
-    echo "    --servicePrincipalTenantId: The tenant Id to use."
-    echo "    --subscriptionId: The subscription id to deploy to."
-    echo "    --bigHugeThesaurusApiKey: Get this key from 'https://words.bighugelabs.com/api.php'"
-    echo -e "    --uniquePrefixString: A string that will be prepended to every resource.  \033[1;31mMUST BE GLOBALLY UNIQUE and SHOULD ONLY CONTAIN LETTERS AND NUMBERS!\033[0m"
+    echo "    --servicePrincipalAppId='Guid': The id of the service principal app to use to connect to Azure."
+    echo "    --servicePrincipalPassword='Passwprd': The services principal's password."
+    echo "    --servicePrincipalTenantId='Guid': The tenant Id to use."
+    echo "    --subscriptionId='Guid': The subscription id to deploy to."
+    echo "    --bigHugeThesaurusApiKey='Guid': Get this key from 'https://words.bighugelabs.com/api.php'"
+    echo "    --uniquePrefixString='String': A string that will be prepended to every resource.  \033[1;31mMUST BE GLOBALLY UNIQUE and SHOULD ONLY CONTAIN LETTERS AND NUMBERS!\033[0m"
 }
 
 while [ "$1" != "" ]; do
@@ -53,8 +53,8 @@ done
 set -e
 set -u
 
-D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
-E() { echo -e '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+D() { echo '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+E() { echo '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
 cd "${0%/*}"
 

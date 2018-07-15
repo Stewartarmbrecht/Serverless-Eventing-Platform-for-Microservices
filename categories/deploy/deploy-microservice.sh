@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 
 usage()
 {
@@ -97,8 +96,8 @@ done
 set -e
 set -u
 
-D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
-E() { echo -e '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+D() { echo '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+E() { echo '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
 # Categories Microservice Deploy
 
