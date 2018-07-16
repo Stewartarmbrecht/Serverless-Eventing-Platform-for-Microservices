@@ -6,7 +6,9 @@ cd "${0%/*}"
 
 # Text Microservice Deploy
 
-../../scripts/deploy-microservice.sh \
+chmod u+x ./deploy-microservice.sh
+
+./deploy-microservice.sh \
 --resourceGroupName=$1"-text" \
 --region="westus2" \
 --deploymentFile="./microservice.json" \

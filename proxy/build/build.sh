@@ -19,21 +19,22 @@ if ! type dotnet > /dev/null; then
     exit 1
 fi
 
-if ! type zip > /dev/null; then
-    D "Prerequisite Check 3: Install zip"
-    exit 1
-fi
-
 D "Prerequisites satisfied"
 D "******* BUILDING ARTIFACTS *******"
 
 shift $((OPTIND - 1))
 D "Proxy Build: Building Proxy Microservice in `pwd`"
 
-cd $HOME/proxies
-D "Proxy Build: Zipping the API in `pwd`"
-zip -r ContentReactor.Proxy.Api.zip .
-D "Proxy Build: Zipped the API in `pwd`"
+cd $HOME/build
+D "Running npm install."
+npm install
+D "Ran npm install."
+
+D "Proxies Build: Zipping the API in `pwd`"
+node zip.js \
+$HOME/deploy/ContentReactor.Proxy.Api.zip \
+$HOME/proxies
+D "Proxies Build: Zipped the API in `pwd`"
 
 cd $HOME
 D "Proxy Build: Built Proxy Microservice in `pwd`"

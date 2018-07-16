@@ -7,7 +7,7 @@ D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 D "Location: $(pwd)"
 D "Location: ${0%/*}"
 
-# cd "${0%/*}"
+cd "${0%/*}"
 
 # D "After setting directory to scripts directory: $(pwd)"
 
@@ -61,25 +61,19 @@ D "Running npm install."
 npm install
 D "Ran npm install."
 
-cd $HOME/build
-#cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0
 D "Categories Build: Zipping the API in `pwd`"
-#zip -r ContentReactor.Categories.Api.zip .
 node zip.js \
 $HOME/deploy/ContentReactor.Categories.Api.zip \
 $HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0/publish
 D "Categories Build: Zipped the API in `pwd`"
 
-#cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.WorkerApi/bin/Release/netstandard2.0
 D "Categories Build: Zipping the Worker in `pwd`"
-#zip -r ContentReactor.Categories.WorkerApi.zip .
 node zip.js \
 $HOME/deploy/ContentReactor.Categories.WorkerApi.zip \
 $HOME/src/ContentReactor.Categories/ContentReactor.Categories.WorkerApi/bin/Release/netstandard2.0/publish
 D "Categories Build: Zipped the Worker in `pwd`"
 
 D "Categories Build: Copy over the latest version of the deploy-microservice.sh script."
-#zip -r ContentReactor.Categories.WorkerApi.zip .
 node copy-deploy-microservice.js 
 D "Categories Build: Copied over the latest version of the deploy-microservice.sh script."
 

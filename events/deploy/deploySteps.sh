@@ -5,9 +5,10 @@ set -u
 cd "${0%/*}"
 
 # Creating Event Grid Topic
+chmod u+x ./deploy-microservice.sh
 
-../../scripts/deploy-microservice.sh \
---resourceGroupName=$1"-events" \
+./deploy-microservice.sh \
+--resourceGroupName="$1-events" \
 --region="westus2" \
 --deploymentFile="./template.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1" \

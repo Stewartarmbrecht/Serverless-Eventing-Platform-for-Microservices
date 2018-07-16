@@ -19,15 +19,10 @@ if ! type dotnet > /dev/null; then
     exit 1
 fi
 
-if ! type zip > /dev/null; then
-    D "Prerequisite Check 3: Install zip"
-    exit 1
-fi
-
 D "Prerequisites satisfied"
 D "******* BUILDING ARTIFACTS *******"
 
-shift $((OPTIND - 1))
+#shift $((OPTIND - 1))
 D "Images Build: Building Images Microservice in `pwd`"
 
 cd $HOME/src/ContentReactor.Images
@@ -45,15 +40,26 @@ D "Images Build: Running dotnet test in `pwd`"
 dotnet publish -c Release
 D "Images Build: Ran dotnet test in `pwd`"
 
-cd $HOME/src/ContentReactor.Images/ContentReactor.Images.Api/bin/Release/netstandard2.0
+cd $HOME/build
+D "Running npm install."
+npm install
+D "Ran npm install."
+
 D "Images Build: Zipping the API in `pwd`"
-zip -r ContentReactor.Images.Api.zip .
+node zip.js \
+$HOME/deploy/ContentReactor.Images.Api.zip \
+$HOME/src/ContentReactor.Images/ContentReactor.Images.Api/bin/Release/netstandard2.0/publish
 D "Images Build: Zipped the API in `pwd`"
 
-cd $HOME/src/ContentReactor.Images/ContentReactor.Images.WorkerApi/bin/Release/netstandard2.0
 D "Images Build: Zipping the Worker in `pwd`"
-zip -r ContentReactor.Images.WorkerApi.zip .
+node zip.js \
+$HOME/deploy/ContentReactor.Images.WorkerApi.zip \
+$HOME/src/ContentReactor.Images/ContentReactor.Images.WorkerApi/bin/Release/netstandard2.0/publish
 D "Images Build: Zipped the Worker in `pwd`"
+
+D "Images Build: Copy over the latest version of the deploy-microservice.sh script."
+node copy-deploy-microservice.js 
+D "Images Build: Copied over the latest version of the deploy-microservice.sh script."
 
 cd $HOME
 D "Images Build: Built Images Microservice in `pwd`"

@@ -1,18 +1,19 @@
-# Builds the ContentReactor event system resources
+
+# Builds the ContentReactor categories microservice resources
 
 name: $(BuildID)
-phases:
+steps:
 
-- phase: Build
-  displayName: Build
-  queue:
-    name: Hosted VS2017
-  steps:
-  
-    # Publish the `deploy` folder as an artifact
-    - task: PublishBuildArtifacts@1
-      displayName: Publish Deployment Scripts
-      inputs:
-        pathToPublish: events/deploy
-        artifactName: deploy
-        artifactType: container
+  # Build the APIs
+  - task: ShellScript@2
+    displayName: Run bash build script
+    inputs:
+      scriptPath: "events/build/build.sh"
+
+  # Publish the `deploy` folder as an artifact
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Deployment Scripts
+    inputs:
+      pathToPublish: events/deploy
+      artifactName: deploy
+      artifactType: container

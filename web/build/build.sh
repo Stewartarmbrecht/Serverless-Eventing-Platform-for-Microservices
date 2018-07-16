@@ -53,9 +53,19 @@ D "Web Build: Running dotnet publish in `pwd`."
 time dotnet publish -c Release
 D "Web Build: Ran dotnet publish in `pwd`."
 
-cd $HOME/src/signalr-web/SignalRMiddleware/SignalRMiddleware/bin/Release/netcoreapp2.1/publish/
-D "Web Build: Zipping the solution in `pwd`."
-time zip -r SignalRMiddleware.zip .
-D "Web Build: Zipped the solution in `pwd`."
+cd $HOME/build
+D "Web Build: Running npm install in bulid folder."
+npm install
+D "Web Build: Ran npm install in build folder."
+
+D "Web Build: Zipping the web app in `pwd`"
+node zip.js \
+$HOME/deploy/SignalRMiddleware.zip \
+$HOME/src/signalr-web/SignalRMiddleware/SignalRMiddleware/bin/Release/netcoreapp2.1/publish/
+D "Web Build: Zipped the web app in `pwd`"
+
+D "Web Build: Copy over the latest version of the deploy-microservice.sh script."
+node copy-deploy-microservice.js 
+D "Web Build: Copied over the latest version of the deploy-microservice.sh script."
 
 D "Build successfully completed!"
