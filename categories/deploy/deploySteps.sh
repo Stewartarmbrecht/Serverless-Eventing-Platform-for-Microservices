@@ -13,7 +13,7 @@ sh ./deploy-microservice.sh \
 --region="westus2" \
 --deploymentFile="./microservice.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1|bigHugeThesaurusApiKey,$2" \
---apiName=≈"$1-categories-api" \
+--apiName="$1-categories-api" \
 --apiFilePath="./ContentReactor.Categories.Api.zip" \
 --workerName="$1-categories-worker" \
 --workerFilePath="./ContentReactor.Categories.WorkerApi.zip" \
