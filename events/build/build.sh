@@ -75,13 +75,8 @@ D "Categories Build: Zipping the Worker in `pwd`"
 #zip -r ContentReactor.Categories.WorkerApi.zip .
 node zip.js \
 $HOME/deploy/ContentReactor.Categories.WorkerApi.zip \
-$HOME/src/ContentReactor.Categories/ContentReactor.Categories.WorkerApi/bin/Release/netstandard2.0/publish
+$HOME/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0/publish
 D "Categories Build: Zipped the Worker in `pwd`"
-
-D "Categories Build: Copy over the latest version of the deploy-microservice.sh script."
-#zip -r ContentReactor.Categories.WorkerApi.zip .
-node copy-deploy-microservice.js 
-D "Categories Build: Copied over the latest version of the deploy-microservice.sh script."
 
 cd $HOME
 D "Categories Build: Built Categories Microservice in `pwd`"

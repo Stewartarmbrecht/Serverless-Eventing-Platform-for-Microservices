@@ -1,28 +1,34 @@
 #!/bin/bash
 
+set -e
+set -u
+
+D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+E() { echo -e '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
+
 usage()
 {
-    echo "This script creats a generic function based microservice.  It responds to the following parameters."
-    echo ""
-    echo "./deploy-microservice.sh"
-    echo "\t-h --help"
-    echo "\t--resourceGroupName: Resource group name for the microservice."
-    echo "\t--region: Region for the microservice."
-    echo "\t--deploymentFile: The deployment file for the resource group."
-    echo "\t--deploymentParameters: Pipe and Comma separated list of parameters: ParameterName,Value|Parameter2Name,Value"
-    echo "\t--apiName: The name of the api function app."
-    echo "\t--apiFilePath: The path to the zip package to deploy for the function app."
-    echo "\t--workerName: The name of the worker function app."
-    echo "\t--workerFilePath: The path to the zip package to deploy for the function app."
-    echo "\t--dbAccountName: Set to string value if you want to create a Cosmos DB database account, db, and collection with the name you provide."
-    echo "\t--dbName: Set to string value if you want to create a Cosmos DB database account, db, and collection with the name you provide."
-    echo "\t--dbCollectionName: Set to comma separated string if you want to create a Cosmos DB database account, db, and collection(s) with the name you provide."
-    echo "\t--dbPartitionKey: Set to comma separated string if you want to create a Cosmos DB database account, db, and collection(s) with the name you provide."
-    echo "\t--storageAccountName: Set to string value if you want to create a blob storage account with one or more containers."
-    echo "\t--storageContainerNames: Set to comma separated string if you want to create a blob storage account with one or more containers."
-    echo "\t--eventResourceGroup: Set to string value if you want to create a worker function app that subscribes to an event grid topic."
-    echo "\t--eventSubscriptionDeploymentFile: Set to path to the ARM deployment file to create the event grid subscription."
-    echo "\t--eventSubscriptionParameters: Pipe and Comma separated list of parameters: ParameterName,Value|Parameter2Name,Value"
+    D "This script creats a generic function based microservice.  It responds to the following parameters."
+    D ""
+    D "./deploy-microservice.sh"
+    D "\t-h --help"
+    D "\t--resourceGroupName: Resource group name for the microservice."
+    D "\t--region: Region for the microservice."
+    D "\t--deploymentFile: The deployment file for the resource group."
+    D "\t--deploymentParameters: Pipe and Comma separated list of parameters: ParameterName,Value|Parameter2Name,Value"
+    D "\t--apiName: The name of the api function app."
+    D "\t--apiFilePath: The path to the zip package to deploy for the function app."
+    D "\t--workerName: The name of the worker function app."
+    D "\t--workerFilePath: The path to the zip package to deploy for the function app."
+    D "\t--dbAccountName: Set to string value if you want to create a Cosmos DB database account, db, and collection with the name you provide."
+    D "\t--dbName: Set to string value if you want to create a Cosmos DB database account, db, and collection with the name you provide."
+    D "\t--dbCollectionName: Set to comma separated string if you want to create a Cosmos DB database account, db, and collection(s) with the name you provide."
+    D "\t--dbPartitionKey: Set to comma separated string if you want to create a Cosmos DB database account, db, and collection(s) with the name you provide."
+    D "\t--storageAccountName: Set to string value if you want to create a blob storage account with one or more containers."
+    D "\t--storageContainerNames: Set to comma separated string if you want to create a blob storage account with one or more containers."
+    D "\t--eventResourceGroup: Set to string value if you want to create a worker function app that subscribes to an event grid topic."
+    D "\t--eventSubscriptionDeploymentFile: Set to path to the ARM deployment file to create the event grid subscription."
+    D "\t--eventSubscriptionParameters: Pipe and Comma separated list of parameters: ParameterName,Value|Parameter2Name,Value"
 }
 
 while [ "$1" != "" ]; do
@@ -92,12 +98,6 @@ while [ "$1" != "" ]; do
     esac
     shift
 done
-
-set -e
-set -u
-
-D() { echo -e '\033[1;35m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
-E() { echo -e '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
 # Categories Microservice Deploy
 

@@ -298,5 +298,11 @@ __pycache__/
 **/.local
 /proxy/proxies/proxies.zip
 /web/src/signalr-web/SignalRMiddleware/SignalRMiddleware/wwwroot
-/audio/deploy/test.sh
-/scripts/test.sh
+audio/deploy/test.sh
+events/deploy/deploy-microservice.sh
+categories/deploy/deploy-microservice.sh
+audio/deploy/deploy-microservice.sh
+text/deploy/deploy-microservice.sh
+images/deploy/deploy-microservice.sh
+proxy/deploy/deploy-microservice.sh
+web/deploy/deploy-microservice.sh
