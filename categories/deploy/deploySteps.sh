@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -x
+#set -x
 #set -e
 #set -u
 
