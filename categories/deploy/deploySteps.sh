@@ -8,6 +8,8 @@ cd "${0%/*}"
 
 # Categories Microservice Deploy
 
+chmod u+x ./deploy-microservice.sh
+
 ./deploy-microservice.sh \
 --resourceGroupName="$1-categories" \
 --region="westus2" \
