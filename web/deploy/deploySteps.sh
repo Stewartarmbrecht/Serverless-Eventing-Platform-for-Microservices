@@ -33,7 +33,7 @@ time sed -i -e 's/\"%INSTRUMENTATION_KEY%\"/'"$webInstrumentationKey"'/g' ./.dis
 D "Web Deploy: Updated web environment.js %INSTRUMENTATION_KEY% with value: $webInstrumentationKey"
 
 D "Web Deploy: Zipping the web app"
-node zip.js ./SignalRMiddleware.zip ./SignalRMiddleware
+node zip.js ./SignalRMiddleware.zip ./.dist
 D "Web Deploy: Zipped the web app"
 
 time sleep 5
