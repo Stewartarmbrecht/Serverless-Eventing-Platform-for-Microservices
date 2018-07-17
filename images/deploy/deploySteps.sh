@@ -8,7 +8,7 @@ chmod u+x ./deploy-microservice.sh
 
 # Images Microservice Deploy
 
-./scripts/deploy-microservice.sh \
+./deploy-microservice.sh \
 --resourceGroupName="$1-images" \
 --region="westus2" \
 --deploymentFile="./microservice.json" \

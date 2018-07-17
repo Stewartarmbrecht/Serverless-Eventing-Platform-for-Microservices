@@ -8,7 +8,7 @@ cd "${0%/*}"
 
 chmod u+x ./deploy-microservice.sh
 
-./scripts/deploy-microservice.sh \
+./deploy-microservice.sh \
 --resourceGroupName=$1"-proxy" \
 --region="westus2" \
 --deploymentFile="./template.json" \
