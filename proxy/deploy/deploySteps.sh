@@ -6,7 +6,9 @@ cd "${0%/*}"
 
 # Deploy Proxy
 
-../../scripts/deploy-microservice.sh \
+chmod u+x ./deploy-microservice.sh
+
+./scripts/deploy-microservice.sh \
 --resourceGroupName=$1"-proxy" \
 --region="westus2" \
 --deploymentFile="./template.json" \

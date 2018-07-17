@@ -58,11 +58,11 @@ D "Web Build: Running npm install in bulid folder."
 npm install
 D "Web Build: Ran npm install in build folder."
 
-D "Web Build: Zipping the web app in `pwd`"
-node zip.js \
-$HOME/deploy/SignalRMiddleware.zip \
-$HOME/src/signalr-web/SignalRMiddleware/SignalRMiddleware/bin/Release/netcoreapp2.1/publish/
-D "Web Build: Zipped the web app in `pwd`"
+D "Web Build: Copying the web app in `pwd`"
+node copy-directory.js \
+$HOME/deploy/.dist \
+$HOME/src/signalr-web/SignalRMiddleware/SignalRMiddleware/bin/Release/netcoreapp2.1/publish
+D "Web Build: Copied the web app in `pwd`"
 
 D "Web Build: Copy over the latest version of the deploy-microservice.sh script."
 node copy-deploy-microservice.js 

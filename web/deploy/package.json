@@ -5,8 +5,7 @@
     "scripts": {},
     "private": true,
     "dependencies": {
-        "archiver": "*",
-        "ncp": "*"
+        "archiver": "*"
     },
     "devDependencies": {}
 }
