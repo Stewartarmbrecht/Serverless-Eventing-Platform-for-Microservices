@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 set -u
 
@@ -18,6 +19,7 @@ if ! type dotnet > /dev/null; then
     D "Prerequisite Check 2: Install .NET Core 2.1 SDK or Runtime"
     exit 1
 fi
+
 
 D "Prerequisites satisfied"
 D "******* BUILDING ARTIFACTS *******"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 usage()
 {
     echo "This script deploys the images microservice.  It responds to the following parameters."

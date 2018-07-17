@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 set -u
 
@@ -8,9 +9,6 @@ D "Location: $(pwd)"
 D "Location: ${0%/*}"
 
 cd "${0%/*}"
-
-# D "After setting directory to scripts directory: $(pwd)"
-
 cd ../
 
 D "After moving up a level: $(pwd)"
