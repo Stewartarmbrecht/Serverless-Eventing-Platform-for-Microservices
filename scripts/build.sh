@@ -8,6 +8,10 @@ E() { echo -e '\033[1;31m'`date +%Y-%m-%d-%H:%M:%S` $1'\033[0m'; }
 
 cd "${0%/*}"
 
+D "Events Microservice Build"
+chmod u+x ../events/build/build.sh
+time ../events/build/build.sh
+
 D "Categories Microservice Build"
 chmod u+x ../categories/build/build.sh
 time ../categories/build/build.sh
@@ -32,4 +36,4 @@ D "Build Web"
 chmod u+x ../web/build/build.sh
 time ../web/build/build.sh
 
-D "Buildment complete for $uniquePrefixString!"
+D "Build complete!"

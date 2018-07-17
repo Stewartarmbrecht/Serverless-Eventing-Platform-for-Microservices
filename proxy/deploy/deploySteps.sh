@@ -10,12 +10,12 @@ cd "${0%/*}"
 chmod u+x ./deploy-microservice.sh
 
 ./deploy-microservice.sh \
---resourceGroupName=$1"-proxy" \
+--resourceGroupName="$1-proxy" \
 --region="westus2" \
 --deploymentFile="./template.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1" \
---apiName=$1"-proxy-api" \
---apiFilePath="./proxies.zip" \
+--apiName="$1-proxy-api" \
+--apiFilePath="./ContentReactor.Proxy.Api.zip" \
 --workerName="" \
 --workerFilePath="" \
 --dbAccountName="" \

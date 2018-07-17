@@ -20,11 +20,6 @@ if ! type dotnet > /dev/null; then
     exit 1
 fi
 
-if ! type zip > /dev/null; then
-    D "Prerequisite Check 3: Install zip"
-    exit 1
-fi
-
 D "Prerequisites satisfied"
 D "******* BUILDING ARTIFACTS *******"
 

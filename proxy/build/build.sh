@@ -37,5 +37,9 @@ $HOME/deploy/ContentReactor.Proxy.Api.zip \
 $HOME/proxies
 D "Proxies Build: Zipped the API in `pwd`"
 
+D "Proxy Build: Copy over the latest version of the deploy-microservice.sh script."
+node copy-deploy-microservice.js 
+D "Proxy Build: Copied over the latest version of the deploy-microservice.sh script."
+
 cd $HOME
 D "Proxy Build: Built Proxy Microservice in `pwd`"

@@ -1,4 +1,10 @@
-# Content Reactor: Build and Deployment Scripts
+# Content Reactor: Manual Build 
+
+Content Reactor can be built manually (without using VSTS) by using the same
+bash scripts used in the VSTS build process.  Given you are not using the Azure CLI 
+VSTS task to execute the `deploySteps.sh` script, you will need to log into  
+
+# Content Reactor: Manual Deployment
 
 The build.sh, deploy.sh, and deploy-parallel.sh scripts are meant to be run in Ubuntu WSL. 
 Here are the pre-requisite installations before these scripts can be run:
@@ -29,7 +35,7 @@ Note: Before creating a service principal, make sure you set your preferred subs
 From the root folder of the repository execute the following commands on the Ubuntu WSL:
 
         az login
-        az account set --subscription $subscriptionId
+        az account set --subscription {your-subscription-id}
         chmod u+x ./scripts/build.sh
         ./scripts/build.sh
         chmod u+x ./scripts/deploy.sh
@@ -52,6 +58,8 @@ If you would like to build a single resource group run one of the following comm
 
 If you would like to deploy a single resource group run one of the following scripts in bash:
 
+        az login
+        az account set --subscription {your-subscription-id}
         ./events/deploy/deploy.sh
         ./categories/deploy/deploy.sh
         ./audio/deploy/deploy.sh
