@@ -24,10 +24,3 @@ steps:
       pathToPublish: web/deploy
       artifactName: deploy
       artifactType: container
-
-      # Drop build artifact into staging directory for release
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
-      artifactName: webapp
-      artifactType: container
