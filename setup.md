@@ -10,7 +10,7 @@ This guide explains the steps to build and deploy Content Reactor,
 both using VSTS and manually. 
 
 For instructions on building and deploying the Content Reactor manually see the
-setup instructions [here](scripts/setup.md).
+setup instructions [here](scripts/readme.md).
 
 For instructions on building and deploying the Content Reactor with VSTS see the
 setup instructions [here](vstssetup.md).
