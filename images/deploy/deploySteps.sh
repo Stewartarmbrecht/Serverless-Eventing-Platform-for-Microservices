@@ -14,9 +14,9 @@ chmod u+x ./deploy-microservice.sh
 --deploymentFile="./microservice.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1" \
 --apiName="$1-images-api" \
---apiFilePath="../src/ContentReactor.Images/ContentReactor.Images.Api/bin/Release/netstandard2.0/ContentReactor.Images.Api.zip" \
+--apiFilePath="./ContentReactor.Images.Api.zip" \
 --workerName="$1-images-worker" \
---workerFilePath="../src/ContentReactor.Images/ContentReactor.Images.WorkerApi/bin/Release/netstandard2.0/ContentReactor.Images.WorkerApi.zip" \
+--workerFilePath="./ContentReactor.Images.WorkerApi.zip" \
 --dbAccountName="" \
 --dbName="" \
 --dbCollectionNames="" \

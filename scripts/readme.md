@@ -4,17 +4,12 @@ The build.sh, deploy.sh, and deploy-parallel.sh scripts are meant to be run in U
 Here are the pre-requisite installations before these scripts can be run:
 
 1. Install Ubuntu WSL or you can use a Ubuntu bash shell
-2. Install Zip
-        
-        sudo apt-get update
-        sudo apt-get install zip        
-
 2. Run fromdos command on both these scripts to convert them from dos to unix.
     
         sudo apt-get update
         sudo apt-get install tofrodos
 
-3. The command 'which node' should point to a node installation in ubuntu (eg: /usr/bin/node)
+3. The command `which node` should point to a node installation in ubuntu (eg: /usr/bin/node)
 
         curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash
         sudo apt-get install -y nodejs
@@ -33,11 +28,16 @@ Note: Before creating a service principal, make sure you set your preferred subs
 
 From the root folder of the repository execute the following commands on the Ubuntu WSL:
 
+        az login
+        az account set --subscription $subscriptionId
+        chmod u+x ./scripts/build.sh
         ./scripts/build.sh
+        chmod u+x ./scripts/deploy.sh
         ./scripts/deploy.sh
 
 To run scripts in parallel for a faster deploy time run the following in bash:
 
+        chmod u+x ./scripts/deploy-parallel.sh
         ./scripts/deploy-parallel.sh
 
 If you would like to build a single resource group run one of the following commands in bash:

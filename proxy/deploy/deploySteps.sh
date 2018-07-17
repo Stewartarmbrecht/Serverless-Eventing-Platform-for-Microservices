@@ -14,7 +14,7 @@ chmod u+x ./deploy-microservice.sh
 --deploymentFile="./template.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1" \
 --apiName=$1"-proxy-api" \
---apiFilePath="../proxies/proxies.zip" \
+--apiFilePath="./proxies.zip" \
 --workerName="" \
 --workerFilePath="" \
 --dbAccountName="" \

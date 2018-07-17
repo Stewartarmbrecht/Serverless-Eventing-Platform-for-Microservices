@@ -14,9 +14,9 @@ chmod u+x ./deploy-microservice.sh
 --deploymentFile="./microservice.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1" \
 --apiName="$1-audio-api" \
---apiFilePath="../src/ContentReactor.Audio/ContentReactor.Audio.Api/bin/Release/netstandard2.0/ContentReactor.Audio.Api.zip" \
+--apiFilePath="./ContentReactor.Audio.Api.zip" \
 --workerName="$1-audio-worker" \
---workerFilePath="../src/ContentReactor.Audio/ContentReactor.Audio.WorkerApi/bin/Release/netstandard2.0/ContentReactor.Audio.WorkerApi.zip" \
+--workerFilePath="./ContentReactor.Audio.WorkerApi.zip" \
 --dbAccountName="" \
 --dbName="" \
 --dbCollectionNames="" \

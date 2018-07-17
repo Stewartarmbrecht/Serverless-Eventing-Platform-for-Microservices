@@ -14,7 +14,7 @@ chmod u+x ./deploy-microservice.sh
 --deploymentFile="./microservice.json" \
 --deploymentParameters="uniqueResourceNamePrefix,$1" \
 --apiName=$1"-text-api" \
---apiFilePath="../src/ContentReactor.Text/ContentReactor.Text.Api/bin/Release/netstandard2.0/ContentReactor.Text.Api.zip" \
+--apiFilePath="./ContentReactor.Text.Api.zip" \
 --workerName="" \
 --workerFilePath="" \
 --dbAccountName=$1"-text-db" \
