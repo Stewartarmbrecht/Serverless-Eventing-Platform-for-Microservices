@@ -288,6 +288,7 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
 **/.vscode
 **/.azure
 **/.config
@@ -307,3 +308,4 @@ text/deploy/deploy-microservice.sh
 images/deploy/deploy-microservice.sh
 proxy/deploy/deploy-microservice.sh
 web/deploy/deploy-microservice.sh
+
