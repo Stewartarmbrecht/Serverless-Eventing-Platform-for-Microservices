@@ -15,6 +15,7 @@ steps:
     inputs:
       testRunner: 'VSTest'
       testResultsFiles: '**/*.trx'
+      testRunTitle: "Categories Tests"
     condition: always()
 
   # Publish the `deploy` folder as an artifact
