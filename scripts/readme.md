@@ -1,52 +1,41 @@
-# Content Reactor: Manual Build 
+# Content Reactor: Manual Build and Deployment
+
+## System Prep
 
 Content Reactor can be built manually (without using VSTS) by using the same
-bash scripts used in the VSTS build process.  Given you are not using the Azure CLI 
-VSTS task to execute the `deploySteps.sh` script, you will need to log into  
+bash scripts used in the VSTS build process.  To run the scripts, your machine 
+will need the following:
 
-# Content Reactor: Manual Deployment
-
-The build.sh, deploy.sh, and deploy-parallel.sh scripts are meant to be run in Ubuntu WSL. 
-Here are the pre-requisite installations before these scripts can be run:
-
-1. Install Ubuntu WSL or you can use a Ubuntu bash shell
-2. Run fromdos command on both these scripts to convert them from dos to unix.
+1. Bash Shell (for Windows, [install WSL with Ubuntu](https://docs.microsoft.com/en-us/windows/wsl/install-win10))
+        2. For windows you might need to run `fromdos` command on the bash scripts to convert them from dos to unix.  
+        To install from dos, do the following:
     
+    Install
         sudo apt-get update
         sudo apt-get install tofrodos
 
-3. The command `which node` should point to a node installation in ubuntu (eg: /usr/bin/node)
+    Execute
+        fromdos ./build.sh # (or other script name)
+
+2. node Version > 8
 
         curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash
         sudo apt-get install -y nodejs
-    
-4. The command `which npm` should point to an npm installation in ubuntu (eg: /usr/bin/npm)
-5. Make sure `node --version` returns a Node.js version > 8 (eg: v8.11.3)
-6. Make sure dotnet cli is installed and points to version 2.1.x. See install instructions [here](https://www.microsoft.com/net/learn/get-started/linux/ubuntu16-04)
-7. Install latest [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest)
-8. [Create an Azure Service Principal](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest) with password for your subscription id and note down the following
-Note: Before creating a service principal, make sure you set your preferred subscription id through Azure CLI
-    1. Service Principal App Id
-    2. Service Principal App Password
-    3. Tenant ID
-    4. Your azure subscription id (you can do `az account list` command to get the id of the subscription you need)
-9. Big Huge Thesaurus is an external API used by one of the microservices in this sample. Make sure you get a thesaurus key [here](https://words.bighugelabs.com/api.php) 
+
+3. [dotnet CLI version 2.1.x](https://www.microsoft.com/net/learn/get-started/linux/ubuntu16-04)
+4. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest)
+5. Big Huge API Key
+
+## Build
 
 From the root folder of the repository execute the following commands on the Ubuntu WSL:
 
-        az login
-        az account set --subscription {your-subscription-id}
-        chmod u+x ./scripts/build.sh
+        chmod u+x ./scripts/build.sh # if you get a permission denied error.
         ./scripts/build.sh
-        chmod u+x ./scripts/deploy.sh
-        ./scripts/deploy.sh
 
-To run scripts in parallel for a faster deploy time run the following in bash:
+If you would like to build a single resource group (microservice) run one of the following commands in bash:
 
-        chmod u+x ./scripts/deploy-parallel.sh
-        ./scripts/deploy-parallel.sh
-
-If you would like to build a single resource group run one of the following commands in bash:
+        # Run `chmod u+x {path to script}` if you are denied permission to execute any of these scripts.
 
          ./events/build/build.sh
          ./categories/build/build.sh
@@ -56,10 +45,27 @@ If you would like to build a single resource group run one of the following comm
          ./proxy/build/build.sh
          ./web/build/build.sh
 
+## Deploy
+
+From the root folder of the repository (after you have run the build scripts at least once) 
+execute the following commands on the Ubuntu WSL:
+
+        chmod u+x ./scripts/deploy.sh # if you get a permission denied error.
+        ./scripts/deploy.sh
+
+To run deployments in parallel (where possible) for a 4x faster deploy time, 
+run the following in bash:
+
+        chmod u+x ./scripts/deploy-parallel.sh
+        ./scripts/deploy-parallel.sh
+
 If you would like to deploy a single resource group run one of the following scripts in bash:
 
+        # Run this before any script:
         az login
-        az account set --subscription {your-subscription-id}
+        az account set --subscription {your-subscription-id-if-not-the-default}
+
+        # Run one of these for a deployment (after you have run the build for the component at least once)
         ./events/deploy/deploy.sh
         ./categories/deploy/deploy.sh
         ./audio/deploy/deploy.sh
@@ -67,6 +73,3 @@ If you would like to deploy a single resource group run one of the following scr
         ./images/deploy/deploy.sh
         ./proxy/deploy/deploy.sh
         ./web/deploy/deploy.sh
-
-
-
