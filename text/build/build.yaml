@@ -14,7 +14,7 @@ steps:
     displayName: Publish Test Results
     inputs:
       testRunner: 'VSTest'
-      testResultsFiles: '**/testresults.xml'
+      testResultsFiles: '**/*.trx'
     condition: always()
 
   # Publish the `deploy` folder as an artifact

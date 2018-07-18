@@ -33,7 +33,7 @@ D "Text Build: Ran dotnet build in `pwd`"
 
 cd $HOME/src/ContentReactor.Text/ContentReactor.Text.Services.Tests
 D "Text Build: Running dotnet test in `pwd`"
-dotnet test
+dotnet test --logger trx;logFileName=testResults.trx
 D "Text Build: Ran dotnet test in `pwd`"
 
 cd $HOME/src/ContentReactor.Text

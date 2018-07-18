@@ -41,7 +41,7 @@ D "Web Build: Running dotnet build in `pwd`"
 
 cd $HOME/src/signalr-web/SignalRMiddleware/SignalRMiddlewareTests/
 D "Web Build: Running dotnet test in `pwd`"
-dotnet test
+dotnet test --logger trx;logFileName=testResults.trx
 D "Web Build: Ran dotnet test in `pwd`"
 
 cd $HOME/src/signalr-web/SignalRMiddleware/SignalRMiddleware

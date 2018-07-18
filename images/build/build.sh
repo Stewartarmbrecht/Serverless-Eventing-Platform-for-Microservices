@@ -34,7 +34,7 @@ D "Images Build: Ran dotnet build in `pwd`"
 
 cd $HOME/src/ContentReactor.Images/ContentReactor.Images.Services.Tests
 D "Images Build: Running dotnet test in `pwd`"
-dotnet test
+dotnet test --logger trx;logFileName=testResults.trx
 D "Images Build: Ran dotnet test in `pwd`"
 
 cd $HOME/src/ContentReactor.Images

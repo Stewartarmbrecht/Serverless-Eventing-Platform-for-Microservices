@@ -41,18 +41,18 @@ D "******* BUILDING ARTIFACTS *******"
 
 #shift $((OPTIND - 1))
 D "Categories Build: Building Categories Microservice in `pwd`"
-: '
+
 cd $HOME/src/ContentReactor.Categories
 D "Categories Build: Running dotnet build in `pwd`"
 dotnet build
 D "Categories Build: Ran dotnet build in `pwd`"
-'
+
 cd $HOME/src/ContentReactor.Categories/ContentReactor.Categories.Services.Tests
 D "Categories Build: Running dotnet test in `pwd`"
 D "\tPublish Results to: $HOME/deploy"
 dotnet test --logger trx;logFileName=testResults.trx
 D "Categories Build: Ran dotnet test in `pwd`"
-: '
+
 cd $HOME/src/ContentReactor.Categories
 D "Categories Build: Running dotnet publish in `pwd`"
 dotnet publish -c Release
@@ -78,6 +78,6 @@ D "Categories Build: Zipped the Worker in `pwd`"
 D "Categories Build: Copy over the latest version of the deploy-microservice.sh script."
 node copy-deploy-microservice.js 
 D "Categories Build: Copied over the latest version of the deploy-microservice.sh script."
-'
+
 cd $HOME
 D "Categories Build: Built Categories Microservice in `pwd`"

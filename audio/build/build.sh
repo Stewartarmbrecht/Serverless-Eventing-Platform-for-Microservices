@@ -46,7 +46,7 @@ D "Audio Build: Ran dotnet build in `pwd`"
 
 cd $HOME/src/ContentReactor.Audio/ContentReactor.Audio.Services.Tests
 D "Audio Build: Running dotnet test in `pwd`"
-dotnet test
+dotnet test --logger trx;logFileName=testResults.trx
 D "Audio Build: Ran dotnet test in `pwd`"
 
 cd $HOME/src/ContentReactor.Audio
