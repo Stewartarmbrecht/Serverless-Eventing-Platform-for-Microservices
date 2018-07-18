@@ -8,7 +8,7 @@ steps:
   - task: ShellScript@2
     displayName: Run bash build script
     inputs:
-      scriptPath: "text/build/build.sh"
+      scriptPath: "web/build/build.sh"
 
   - task: PublishTestResults@2
     displayName: Publish Test Results
