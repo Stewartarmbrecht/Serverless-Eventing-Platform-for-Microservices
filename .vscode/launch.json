@@ -5,10 +5,10 @@
    "version": "0.2.0",
    "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "launch-audio",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-audio",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/audio/src/ContentReactor.Audio/ContentReactor.Audio.Services.Tests/bin/Debug/netcoreapp2.0/ContentReactor.Audio.Services.Tests.dll",
             "args": [],

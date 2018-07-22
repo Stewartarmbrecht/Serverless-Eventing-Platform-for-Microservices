@@ -1,4 +1,6 @@
-# Serverless Eventing Platform for Microservices
+# Continuous Deployment
+
+## Naming Convention
 
 **NOTE:** All deployment templates and steps are designed to find other resources using
 a specific naming convention that relies on you providing a **single globally unique
@@ -8,27 +10,7 @@ This includes the resource groups.
 Pick a value now (e.g. 'cr2018') and substitue it where ever you see 
 `{your-globally-unique-prefix}`
 
-The overall sequence involved in building and deploying Content Reactor 
-with VSTS includes:
-
- 1. **Creating the Build Definitions.**
- 2. **Creating the Release Definitions.**
- 
-### Creating the Build Definitions
-
-Each of the subfolders in this repository (`audio`, `categories`, `events`, 
-`images`, `proxy`, `text`, and `web`) 
-contains a `build` subfolder with a `build.yaml` file. The `build.yaml` 
-files contain the list of VSTS build steps that are required for that component.
-
-To use VSTS to build the Content Reactor system, you will need to set up multiple 
-build configurations - one for each component with a `build.yaml` file. 
-[Follow the instructions here](https://docs.microsoft.com/en-us/vsts/build-release/actions/build-yaml?view=vsts#manually-create-a-yaml-build-definition) 
-to create each build definition and select the appropriate `build.yaml` file.
-
-After all the build definitions have been created, queue builds using those definitions
-
-### Creating the Release Definitions
+## VSTS Release Definitions
 
 Each of the subfolders in this repository (`audio`, `categories`, `events`, 
 `images`, `proxy`, `text`, and `web`) 
@@ -54,7 +36,8 @@ Use the following steps:
         1. **The prefix should match across all releases.**
         2. **It should be globally unique and it should only contain letters and numbers (no spaces, dashes, underscores, etc.).  The Prefix is used in storage account names as well.**
 
-After all the release definitions have been created, queue releases using those definitions in the following order:
+After all the release definitions have been created, you need to run the releases for the first time in a specific order. 
+To do this, queue releases using those definitions in the following order:
 
 1. Events
 2. Categories

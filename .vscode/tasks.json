@@ -2,14 +2,44 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build-audio",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/audio/src/ContentReactor.Audio/ContentReactor.Audio.Services.Tests/ContentReactor.Audio.Services.Tests.csproj"
+                "${workspaceFolder}/audio/src/ContentReactor.Audio/ContentReactor.Audio.sln"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+            "label": "build-categories",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/categories/src/ContentReactor.Categories/ContentReactor.Categories.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-text",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/text/src/ContentReactor.text/ContentReactor.text.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-images",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/images/src/ContentReactor.images/ContentReactor.images.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
     ]
 }
