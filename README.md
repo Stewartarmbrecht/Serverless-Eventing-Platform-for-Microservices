@@ -13,13 +13,18 @@ all aspects of the system architecture as well as the processes you should use t
 
 * **Overview**
     * [Functionality](/_docs/overview/functionality.md)
-    * [Architecture Overview](/_docs/overview/functionality.md)
+    * [Architecture](/_docs/overview/architecture.md)
 
 * **Developing**
     * [Setup](/_docs/developing/setup.md)
     * [Building](/_docs/developing/building.md)
+    * [Testing](/_docs/developing/testing.md)
     * [Debugging](/_docs/developing/debugging.md)
     * [Deploying](/_docs/developing/deploying.md)
+    * [Coding](/_docs/developing/coding.md)
+    * [Documenting](/_docs/developing/documenting.md)
+    * [Troubleshooting](/_docs/monitoring/troubleshooting.md)
+    * [Contributing](/_docs/monitoring/contributing.md)
 
 * **Releasing**
     * [Continuous Integration](/_docs/releasing/continuous-integration.md)
@@ -32,3 +37,13 @@ all aspects of the system architecture as well as the processes you should use t
     * [Alerting](/_docs/monitoring/alerting.md)
     * [Troubleshooting](/_docs/monitoring/troubleshooting.md)
 
+* **Governing**
+    * [Product Management](/_docs/governing/product-management.md)
+    * [Design](/_docs/governing/design.md)
+    * [Architecture](/_docs/governing/architecture.md)
+    * [Infrastructure](/_docs/governing/infrastructure.md)
+    * [Release Management](/_docs/governing/pipeline.md)
+    * [Compliance](/_docs/governing/compliance.md)
+    * [Legal](/_docs/governing/legal.md)
+    * [Risk](/_docs/governing/risk.md)
+    * [Internal Audit](/_docs/governing/internal-audit.md)
