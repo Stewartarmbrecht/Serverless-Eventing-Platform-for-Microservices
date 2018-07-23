@@ -1,50 +1,53 @@
+function D([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($value)" -ForegroundColor DarkCyan }
+function E([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($value)" -ForegroundColor DarkRed }
 
-Write-Host "Location: $(Get-Location)" -ForegroundColor DarkCyan
-Write-Host "Script Location: $($PSSCriptRoot)"
+
+D("Location: $(Get-Location)")
+D("Script Location: $($PSSCriptRoot)")
 
 Set-Location $PSSCriptRoot
 
 Set-Location "..\"
 
-Write-Host "Location: $(Get-Location)"
+D("Location: $(Get-Location)")
 
 $DirectoryStart = Get-Location
 
-Write-Host "Audio Build: DirectoryStart: $DirectoryStart" -ForegroundColor DarkCyan
+D("Audio Build: DirectoryStart: $DirectoryStart")
 
-Write-Host "Audio Build: Building Audio Microservice in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Building Audio Microservice in $(Get-Location)")
 
 Set-Location "$DirectoryStart\src\ContentReactor.Audio"
-Write-Host "Audio Build: Running dotnet build in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Running dotnet build in $(Get-Location)")
 dotnet build
-Write-Host "Audio Build: Ran dotnet build in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Ran dotnet build in $(Get-Location)")
 
 Set-Location "$DirectoryStart\src\ContentReactor.Audio\ContentReactor.Audio.Services.Tests"
-Write-Host "Audio Build: Running dotnet test in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Running dotnet test in $(Get-Location)")
 dotnet test --logger "trx;logFileName=testResults.trx"
-Write-Host "Audio Build: Ran dotnet test in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Ran dotnet test in $(Get-Location)")
 
 Set-Location "$DirectoryStart\src\ContentReactor.Audio"
-Write-Host "Audio Build: Running dotnet test in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Running dotnet test in $(Get-Location)")
 dotnet publish -c Release
-Write-Host "Audio Build: Ran dotnet test in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Ran dotnet test in $(Get-Location)")
 
 Set-Location "$DirectoryStart\build"
-Write-Host "Audio Build: Running npm install." -ForegroundColor DarkCyan
+D("Audio Build: Running npm install.")
 npm install
-Write-Host "Audio Build: Ran npm install." -ForegroundColor DarkCyan
+D("Audio Build: Ran npm install.")
 
-Write-Host "Audio Build: Zipping the API in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Zipping the API in $(Get-Location)")
 node zip.js "$DirectoryStart\deploy\ContentReactor.Audio.Api.zip" "$DirectoryStart\src\ContentReactor.Audio\ContentReactor.Audio.Api\bin\Release\netstandard2.0\publish"
-Write-Host "Audio Build: Zipped the API in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Zipped the API in $(Get-Location)")
 
-Write-Host "Audio Build: Zipping the Worker in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Zipping the Worker in $(Get-Location)")
 node zip.js "$DirectoryStart\deploy\ContentReactor.Audio.WorkerApi.zip" "$DirectoryStart\src\ContentReactor.Audio\ContentReactor.Audio.WorkerApi\bin\Release\netstandard2.0\publish"
-Write-Host "Audio Build: Zipped the Worker in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Zipped the Worker in $(Get-Location)")
 
-Write-Host "Audio Build: Copy over the latest version of the deploy-microservice.sh script." -ForegroundColor DarkCyan
+D("Audio Build: Copy over the latest version of the deploy-microservice.sh script.")
 node copy-deploy-microservice.js
-Write-Host "Audio Build: Copied over the latest version of the deploy-microservice.sh script." -ForegroundColor DarkCyan
+D("Audio Build: Copied over the latest version of the deploy-microservice.sh script.")
 
 Set-Location "$DirectoryStart\build"
-Write-Host "Audio Build: Built Audio Microservice in $(Get-Location)" -ForegroundColor DarkCyan
+D("Audio Build: Built Audio Microservice in $(Get-Location)")
