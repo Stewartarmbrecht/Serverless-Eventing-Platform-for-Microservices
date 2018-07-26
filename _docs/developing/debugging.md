@@ -8,7 +8,8 @@
 
         npm install -g azure-functions-core-tools@core
 
-4. Add `local.settings.json` file with the following content:
+4. [Install Angular CLI](https://cli.angular.io/)
+5. Add `local.settings.json` file with the following content:
 
         {
             "IsEncrypted": false,
@@ -25,7 +26,7 @@
                 "SQLConnectionString": "<sqlclient-connection-string>"
             }
         }
-5. Install the [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
+6. Install the [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
 
 ## Resouces
 * [Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)

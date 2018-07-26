@@ -1,4 +1,4 @@
-$microserviceName = "Audio"
+$microserviceName = "Images"
 
 function D([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkCyan }
 function E([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkRed }

@@ -1,4 +1,4 @@
-$microserviceName = "Audio"
+$microserviceName = "Text"
 
 function D([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkCyan }
 function E([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkRed }
@@ -42,10 +42,6 @@ D("Ran npm install.")
 D("Zipping the API in $(Get-Location)")
 node zip.js "$DirectoryStart\deploy\ContentReactor.$microserviceName.Api.zip" "$DirectoryStart\src\ContentReactor.$microserviceName\ContentReactor.$microserviceName.Api\bin\Release\netstandard2.0\publish"
 D("Zipped the API in $(Get-Location)")
-
-D("Zipping the Worker in $(Get-Location)")
-node zip.js "$DirectoryStart\deploy\ContentReactor.$microserviceName.WorkerApi.zip" "$DirectoryStart\src\ContentReactor.$microserviceName\ContentReactor.$microserviceName.WorkerApi\bin\Release\netstandard2.0\publish"
-D("Zipped the Worker in $(Get-Location)")
 
 Set-Location "$DirectoryStart\build"
 D("Built $microserviceName Microservice in $(Get-Location)")

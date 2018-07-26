@@ -1,21 +1,24 @@
-param([String]$namePrefix,[String]$region)
-$resourceGroupName = "$namePrefix-audio"
+param([String]$namePrefix,[String]$region,[String]$bigHugeThesaurusApiKey)
+$resourceGroupName = "$namePrefix-categories"
 $deploymentFile = ".\microservice.json"
-$deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
-$storageAccountName = "$($namePrefix)audioblob"
-$storageContainerName = "audio"
-$apiName = "$namePrefix-audio-api"
-$apiFilePath = "./ContentReactor.Audio.Api.zip"
-$workerName = "$namePrefix-audio-worker"
-$workerFilePath = "./ContentReactor.Audio.WorkerApi.zip"
+$deploymentParameters = "'uniqueResourceNamePrefix=$namePrefix' 'bigHugeThesaurusApiKey=$bigHugeThesaurusApiKey'"
+$dbAccountName="$namePrefix-categories-db"
+$dbName="Categories"
+$dbCollectionName="Categories"
+$dbPartitionKey="/userId"
+$dbThroughput = 400
+$apiName = "$namePrefix-categories-api"
+$apiFilePath = "./ContentReactor.Categories.Api.zip"
+$workerName = "$namePrefix-categories-worker"
+$workerFilePath = "./ContentReactor.Categories.WorkerApi.zip"
 $eventsResourceGroupName = "$namePrefix-events"
-$eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-audio.json"
+$eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-categories.json"
 $eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
 
 function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
 function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
 
-# Audio Microservice Deploy
+# Categories Microservice Deploy
 
 D("Setting location to the scripts folder")
 Set-Location $PSSCriptRoot
@@ -24,22 +27,23 @@ D("Creating the $resourceGroupName resource group in the $region region.")
 az group create -n $resourceGroupName -l $region
 D("Created the $resourceGroupName resource group in the $region region.")
 
-D("Parameters: $deploymentParameters")
-
 D("Executing the $resourceGroupName deployment.")
 D("`tUsing file: $deploymentFile")
 D("`tUsing parameters: $deploymentParameters")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --parameters $deploymentParameters --mode Complete
+D("az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters $deploymentParameters")
+az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix bigHugeThesaurusApiKey=$bigHugeThesaurusApiKey
 D("Executed the $resourceGroupName deployment.")
 
-D("Creating $resourceGroupName storage account container $storageContainerName for $storageAccountName.")
-az storage container create --account-name $storageAccountName --name $storageContainerName
-D("Created $resourceGroupName storage account container $storageContainerName for $storageAccountName.")
+D("Creating $resourceGroupName cosmos db.")
+D("`tUsing DB account name: $dbAccountName")
+D("`tUsing DB name: $dbName")
+az cosmosdb database create --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName
+D("Created $resourceGroupName cosmos db.")
 
-D("Creating $resourceGroupName CORS policy for storage account $storageAccountName.")
-az storage cors clear --account-name $storageAccountName --services b
-az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins "*" --allowed-headers "*" --exposed-headers "*"
-D("Created $resourceGroupName CORS policy for storage account $storageAccountName.")
+D("Creating $resourceGroupName cosmos db collection $dbCollectionName for $dbAccountName in $dbName.")
+az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName `
+    --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput
+D("Created $resourceGroupName cosmos db collection $dbCollectionName for $dbAccountName in $dbName.")
 
 D("Deploying $resourceGroupName api function:")
 D("`tUsing name: $apiName")
@@ -60,7 +64,7 @@ D("`tUsing file path: $workerFilePath")
 D("Deploying $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
 D("`tUsing file path: $eventsSubscriptionDeploymentFile")
 D("`tUsing parameters: $eventsSubscriptionParameters")
-az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters
+az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters "$eventsSubscriptionParameters"
 D("Deployed $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
 D("`tUsing file path: $eventsSubscriptionDeploymentFile")
 D("`tUsing parameters: $eventsSubscriptionParameters")

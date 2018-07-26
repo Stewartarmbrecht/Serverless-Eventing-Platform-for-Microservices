@@ -1,21 +1,20 @@
 param([String]$namePrefix,[String]$region)
-$resourceGroupName = "$namePrefix-audio"
+$resourceGroupName = "$namePrefix-images"
 $deploymentFile = ".\microservice.json"
-$deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
-$storageAccountName = "$($namePrefix)audioblob"
-$storageContainerName = "audio"
-$apiName = "$namePrefix-audio-api"
-$apiFilePath = "./ContentReactor.Audio.Api.zip"
-$workerName = "$namePrefix-audio-worker"
-$workerFilePath = "./ContentReactor.Audio.WorkerApi.zip"
+$storageAccountName = "$($namePrefix)imagesblob"
+$storageContainerFullImagesName = "fullimages"
+$storageContainerPreviewImagesName = "previewimages"
+$apiName = "$namePrefix-images-api"
+$apiFilePath = "./ContentReactor.Images.Api.zip"
+$workerName = "$namePrefix-images-worker"
+$workerFilePath = "./ContentReactor.Images.WorkerApi.zip"
 $eventsResourceGroupName = "$namePrefix-events"
-$eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-audio.json"
-$eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
+$eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-images.json"
 
 function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
 function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
 
-# Audio Microservice Deploy
+# Images Microservice Deploy
 
 D("Setting location to the scripts folder")
 Set-Location $PSSCriptRoot
@@ -28,13 +27,19 @@ D("Parameters: $deploymentParameters")
 
 D("Executing the $resourceGroupName deployment.")
 D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: $deploymentParameters")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --parameters $deploymentParameters --mode Complete
+D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
+az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix
 D("Executed the $resourceGroupName deployment.")
+D("`tUsing file: $deploymentFile")
+D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
 
-D("Creating $resourceGroupName storage account container $storageContainerName for $storageAccountName.")
-az storage container create --account-name $storageAccountName --name $storageContainerName
-D("Created $resourceGroupName storage account container $storageContainerName for $storageAccountName.")
+D("Creating $resourceGroupName storage account container $storageContainerFullImagesName for $storageAccountName.")
+az storage container create --account-name $storageAccountName --name $storageContainerFullImagesName
+D("Created $resourceGroupName storage account container $storageContainerFullImagesName for $storageAccountName.")
+
+D("Creating $resourceGroupName storage account container $storageContainerPreviewImagesName for $storageAccountName.")
+az storage container create --account-name $storageAccountName --name $storageContainerPreviewImagesName
+D("Created $resourceGroupName storage account container $storageContainerPreviewImagesName for $storageAccountName.")
 
 D("Creating $resourceGroupName CORS policy for storage account $storageAccountName.")
 az storage cors clear --account-name $storageAccountName --services b
@@ -59,10 +64,10 @@ D("`tUsing file path: $workerFilePath")
 
 D("Deploying $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
 D("`tUsing file path: $eventsSubscriptionDeploymentFile")
-D("`tUsing parameters: $eventsSubscriptionParameters")
-az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters
+D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
+az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters uniqueResourceNamePrefix=$namePrefix
 D("Deployed $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
 D("`tUsing file path: $eventsSubscriptionDeploymentFile")
-D("`tUsing parameters: $eventsSubscriptionParameters")
+D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
 
 D("Completed $resourceGroupName deployment..")
