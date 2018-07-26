@@ -15,13 +15,16 @@ all aspects of the system architecture as well as the processes you should use t
     * [Functionality](/_docs/overview/functionality.md)
     * [Architecture](/_docs/overview/architecture.md)
 
-* **Developing**
+* **Getting Started**
     * [Setup](/_docs/developing/setup.md)
     * [Building](/_docs/developing/building.md)
+    * [Deploying](/_docs/developing/deploying.md)
+
+
+* **Developing**
+    * [Coding](/_docs/developing/coding.md)
     * [Testing](/_docs/developing/testing.md)
     * [Debugging](/_docs/developing/debugging.md)
-    * [Deploying](/_docs/developing/deploying.md)
-    * [Coding](/_docs/developing/coding.md)
     * [Documenting](/_docs/developing/documenting.md)
     * [Troubleshooting](/_docs/monitoring/troubleshooting.md)
     * [Contributing](/_docs/monitoring/contributing.md)

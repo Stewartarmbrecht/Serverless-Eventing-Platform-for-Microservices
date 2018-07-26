@@ -1,16 +1,18 @@
-## Deploying Content Reactor
+# Setting Up a Local Development Environment
 
-Content Reactor can be built and deployed into your own Azure subscription. 
-You can use VSTS to run builds and releases, or if you prefer, 
-you can run the build and deployment steps manually. 
-We assume that you have an Azure subscription available to run the sample; 
-[you can get a free trial Azure subscription here](https://azure.microsoft.com/en-us/free/).
+Install the following on your development machine.
 
-This guide explains the steps to build and deploy Content Reactor, 
-both using VSTS and manually. 
+1. [Install Visual Studio Code](https://code.visualstudio.com/download)
+2. Install PowerShell
+    * [Windows](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-windows?view=powershell-6)
+    * [Linux](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
+    * [Mac](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-macos?view=powershell-6)
+    * [ARM](https://docs.microsoft.com/en-us/powershell/scripting/setup/powershell-core-on-arm?view=powershell-6)
+3. [Install .Net Core SDK](https://www.microsoft.com/net/download)
+4. [Install Node](https://nodejs.org/en/download/)
+5. [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+6. [Install Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools)
+7. [Install Angular CLI](https://cli.angular.io/)
+8. [Create Azure Account](https://azure.microsoft.com/en-us/free/)
+9. [Get a Big Huge Thesaurus API Key](https://words.bighugelabs.com/)
 
-For instructions on building and deploying the Content Reactor manually see the
-setup instructions [here](scripts/readme.md).
-
-For instructions on building and deploying the Content Reactor with VSTS see the
-setup instructions [here](vstssetup.md).
