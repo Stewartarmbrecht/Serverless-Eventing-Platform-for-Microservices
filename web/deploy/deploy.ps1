@@ -30,7 +30,7 @@ $webInstrumentationKey="$(az resource show --namespace microsoft.insights --reso
 D("Found InstrumentationKey $webInstrumentationKey")
 
 D("Updating web environment.js %INSTRUMENTATION_KEY% with value: $webInstrumentationKey")
-dir ./.dist/wwwroot/main.*.bundle.js | ForEach {(Get-Content $_).replace('%INSTRUMENTATION_KEY%', $webInstrumentationKey) | Set-Content $_}
+dir ./.dist/wwwroot/main.*.bundle.js | ForEach {(Get-Content $_).replace('"%INSTRUMENTATION_KEY%"', $webInstrumentationKey) | Set-Content $_}
 D("Updated web environment.js %INSTRUMENTATION_KEY% with value: $webInstrumentationKey")
 
 D("Zipping the web app")

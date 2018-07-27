@@ -1,6 +1,6 @@
 # Deploying
 
-_Execute [the setup instructions](setup.md) and [the build instructions](building.md) prior to 
+_Execute [the build instructions](building.md) prior to 
 deploying the solution._
 
 ## Deploying Manually
