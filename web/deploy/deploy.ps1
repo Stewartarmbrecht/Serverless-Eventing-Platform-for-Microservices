@@ -1,4 +1,10 @@
 param([String]$namePrefix,[String]$region)
+if (!$namePrefix) {
+    $namePrefix = $Env:namePrefix
+}
+if (!$region) {
+    $region = $Env:region
+}
 $resourceGroupName = "$namePrefix-web"
 $webAIName = "$namePrefix-web-ai"
 $webAppName = "$namePrefix-web-app"
@@ -21,10 +27,6 @@ D("Executing web deployment for $resourceGroupName.")
 az group deployment create -g "$resourceGroupName" --template-file ./template.json --parameters uniqueResourceNamePrefix=$namePrefix
 D("Executed web deployment for $resourceGroupName.")
 
-D("Running npm install in bulid folder.")
-npm install
-D("Ran npm install in build folder.")
-
 D("Finding InstrumentationKey")
 $webInstrumentationKey="$(az resource show --namespace microsoft.insights --resource-type components --name $webAIName -g $resourceGroupName --query properties.InstrumentationKey)"
 D("Found InstrumentationKey $webInstrumentationKey")
@@ -33,12 +35,19 @@ D("Updating web environment.js %INSTRUMENTATION_KEY% with value: $webInstrumenta
 dir ./.dist/wwwroot/main.*.bundle.js | ForEach {(Get-Content $_).replace('"%INSTRUMENTATION_KEY%"', $webInstrumentationKey) | Set-Content $_}
 D("Updated web environment.js %INSTRUMENTATION_KEY% with value: $webInstrumentationKey")
 
-D("Zipping the web app")
-node zip.js ./SignalRMiddleware.zip ./.dist
-D("Zipped the web app")
+$path = "./.dist/**"
+$destination = "./ContentReactor.Web.zip"
+
+D("Delete the the web app zip: $destination")
+Remove-Item -Path $destination -ErrorAction Ignore
+D("Deleted the the web app zip: $destination")
+
+D("Zipping the web app in $path to $destination")
+Compress-Archive -Path $path -Destination $destination
+D("Zipped the web app in $path to $destination")
 
 D("Deploying the web app for $resourceGroupName.")
-az webapp deployment source config-zip --resource-group "$resourceGroupName" --name "$webAppName" --src ./SignalRMiddleware.zip
+az webapp deployment source config-zip --resource-group "$resourceGroupName" --name "$webAppName" --src ./ContentReactor.Web.zip
 D("Deployed the web app for $resourceGroupName.")
 
 D("Creating the web app event grid subscription for $resourceGroupName.")

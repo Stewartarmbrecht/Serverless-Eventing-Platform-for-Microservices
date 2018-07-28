@@ -1,4 +1,10 @@
 param([String]$namePrefix,[String]$region)
+if (!$namePrefix) {
+    $namePrefix = $Env:namePrefix
+}
+if (!$region) {
+    $region = $Env:region
+}
 $resourceGroupName = "$namePrefix-events"
 $deploymentFile = ".\template.json"
 $deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"

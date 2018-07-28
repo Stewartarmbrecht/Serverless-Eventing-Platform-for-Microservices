@@ -1,4 +1,14 @@
 param([String]$namePrefix,[String]$region,[String]$bigHugeThesaurusApiKey)
+if (!$namePrefix) {
+    $namePrefix = $Env:namePrefix
+}
+if (!$region) {
+    $region = $Env:region
+}
+if (!$bigHugeThesaurusApiKey) {
+    $bigHugeThesaurusApiKey = $Env:bigHugeThesaurusApiKey
+}
+
 $resourceGroupName = "$namePrefix-categories"
 $deploymentFile = ".\microservice.json"
 $deploymentParameters = "'uniqueResourceNamePrefix=$namePrefix' 'bigHugeThesaurusApiKey=$bigHugeThesaurusApiKey'"

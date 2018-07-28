@@ -1,13 +1,60 @@
-{
+ {
     "version": "2.0.0",
     "tasks": [
+        {
+            "label": "deploy-events",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/events/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
         {
             "label": "build-audio",
             "command": "dotnet",
             "type": "process",
+            "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/audio/src/ContentReactor.Audio/ContentReactor.Audio.sln"
+                "${workspaceFolder}/audio/src/ContentReactor.audio/ContentReactor.audio.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test-audio",
+            "command": "dotnet",
+            "type": "process",
+            "group":"test",
+            "args": [
+                "test",
+                "${workspaceFolder}/audio/src/ContentReactor.audio/ContentReactor.audio.Services.Tests/ContentReactor.audio.Services.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "package-audio",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/audio/build/build.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-audio",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/audio/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pipeline-audio",
+            "dependsOn":[
+                "package-audio",
+                "deploy-audio"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -15,19 +62,47 @@
             "label": "build-categories",
             "command": "dotnet",
             "type": "process",
+            "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/categories/src/ContentReactor.Categories/ContentReactor.Categories.sln"
+                "${workspaceFolder}/categories/src/ContentReactor.categories/ContentReactor.categories.sln"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "build-text",
+            "label": "test-categories",
             "command": "dotnet",
             "type": "process",
+            "group":"test",
             "args": [
-                "build",
-                "${workspaceFolder}/text/src/ContentReactor.text/ContentReactor.text.sln"
+                "test",
+                "${workspaceFolder}/categories/src/ContentReactor.categories/ContentReactor.categories.Services.Tests/ContentReactor.categories.Services.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "package-categories",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/categories/build/build.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-categories",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/categories/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pipeline-categories",
+            "dependsOn":[
+                "package-categories",
+                "deploy-categories"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -35,9 +110,190 @@
             "label": "build-images",
             "command": "dotnet",
             "type": "process",
+            "group":"build",
             "args": [
                 "build",
                 "${workspaceFolder}/images/src/ContentReactor.images/ContentReactor.images.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test-images",
+            "command": "dotnet",
+            "type": "process",
+            "group":"test",
+            "args": [
+                "test",
+                "${workspaceFolder}/images/src/ContentReactor.images/ContentReactor.images.Services.Tests/ContentReactor.images.Services.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "package-images",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/images/build/build.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-images",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/images/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pipeline-images",
+            "dependsOn":[
+                "package-images",
+                "deploy-images"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-text",
+            "command": "dotnet",
+            "type": "process",
+            "group":"build",
+            "args": [
+                "build",
+                "${workspaceFolder}/text/src/ContentReactor.text/ContentReactor.text.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test-text",
+            "command": "dotnet",
+            "type": "process",
+            "group":"test",
+            "args": [
+                "test",
+                "${workspaceFolder}/text/src/ContentReactor.text/ContentReactor.text.Services.Tests/ContentReactor.text.Services.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "package-text",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/text/build/build.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-text",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/text/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pipeline-text",
+            "dependsOn":[
+                "package-text",
+                "deploy-text"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "package-proxy",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/proxy/build/build.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-proxy",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/proxy/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pipeline-proxy",
+            "dependsOn":[
+                "package-proxy",
+                "deploy-proxy"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-web-server",
+            "command": "dotnet",
+            "type": "process",
+            "group":"build",
+            "args": [
+                "build",
+                "${workspaceFolder}/web/src/ContentReactor.web/ContentReactor.web.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-web-app",
+            "command": "npm",
+            "type": "process",
+            "group":"build",
+            "args": [
+                "run",
+                "dev"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/web/src/contentReactor.web.app/"
+            }
+        },
+        {
+            "label": "test-web-server",
+            "command": "dotnet",
+            "type": "process",
+            "group":"test",
+            "args": [
+                "test",
+                "${workspaceFolder}/web/src/ContentReactor.web/ContentReactor.web.Services.Tests/ContentReactor.web.Services.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "package-web",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/build/build.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-web",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/deploy/deploy.ps1"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pipeline-web",
+            "dependsOn":[
+                "package-web",
+                "deploy-web"
             ],
             "problemMatcher": "$msCompile"
         },

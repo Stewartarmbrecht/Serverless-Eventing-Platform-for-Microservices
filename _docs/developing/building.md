@@ -7,10 +7,13 @@ building the solution._
 
 ### Building The Entire Solution Manually
 
-1. Open PowerShell and navigate to the root of the repo.
-2. Execute the primary build script:
+#### PowerShell
 
         ./scripts/build.ps1
+
+#### VS Code
+
+        In         
 
 ### Building A Single Microservice Manually
 

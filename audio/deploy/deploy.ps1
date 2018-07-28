@@ -1,4 +1,10 @@
 param([String]$namePrefix,[String]$region)
+if (!$namePrefix) {
+    $namePrefix = $Env:namePrefix
+}
+if (!$region) {
+    $region = $Env:region
+}
 $resourceGroupName = "$namePrefix-audio"
 $deploymentFile = ".\microservice.json"
 $deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
@@ -66,3 +72,4 @@ D("`tUsing file path: $eventsSubscriptionDeploymentFile")
 D("`tUsing parameters: $eventsSubscriptionParameters")
 
 D("Completed $resourceGroupName deployment..")
+#>
