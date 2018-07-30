@@ -252,6 +252,74 @@
                 "cwd": "${workspaceFolder}/"
             },
             "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "text-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/text/scripts/deploy.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "text-apps-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/text/scripts/deploy-apps.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "text-test",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/text/scripts/test.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "text-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/text/scripts/build.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }
