@@ -5,8 +5,9 @@ if (!$namePrefix) {
 if (!$region) {
     $region = $Env:region
 }
+$loggingPrefix = "Images Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-images"
-$deploymentFile = ".\microservice.json"
+$deploymentFile = "./microservice.json"
 $storageAccountName = "$($namePrefix)imagesblob"
 $storageContainerFullImagesName = "fullimages"
 $storageContainerPreviewImagesName = "previewimages"
@@ -16,64 +17,53 @@ $workerName = "$namePrefix-images-worker"
 $workerFilePath = "./ContentReactor.Images.WorkerApi.zip"
 $eventsResourceGroupName = "$namePrefix-events"
 $eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-images.json"
+$eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
 
-function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
-function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
+Set-Location "$PSSCriptRoot"
 
-# Images Microservice Deploy
+. ./../../scripts/functions.ps1
 
-D("Setting location to the scripts folder")
-Set-Location $PSSCriptRoot
+$directoryStart = Get-Location
 
-D("Creating the $resourceGroupName resource group in the $region region.")
-az group create -n $resourceGroupName -l $region
-D("Created the $resourceGroupName resource group in the $region region.")
+if (!$namePrefix) {
+    D "Either pass in the '-namePrefix' parameter when calling this script or 
+    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+}
+if (!$region) {
+    D "Either pass in the '-region' parameter when calling this script or 
+    set and environment variable with the name: 'region'." $loggingPrefix
+}
+# Audio Microservice Deploy
 
-D("Parameters: $deploymentParameters")
+D "Deploying the microservice." $loggingPrefix
 
-D("Executing the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix
-D("Executed the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
+$command = "az group create -n $resourceGroupName -l $region"
+ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
-D("Creating $resourceGroupName storage account container $storageContainerFullImagesName for $storageAccountName.")
-az storage container create --account-name $storageAccountName --name $storageContainerFullImagesName
-D("Created $resourceGroupName storage account container $storageContainerFullImagesName for $storageAccountName.")
+$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix"
+ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
 
-D("Creating $resourceGroupName storage account container $storageContainerPreviewImagesName for $storageAccountName.")
-az storage container create --account-name $storageAccountName --name $storageContainerPreviewImagesName
-D("Created $resourceGroupName storage account container $storageContainerPreviewImagesName for $storageAccountName.")
+$command = "az storage container create --account-name $storageAccountName --name $storageContainerFullImagesName"
+ExecuteCommand $command $loggingPrefix "Creating the full image stoarge container."
 
-D("Creating $resourceGroupName CORS policy for storage account $storageAccountName.")
-az storage cors clear --account-name $storageAccountName --services b
-az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins "*" --allowed-headers "*" --exposed-headers "*"
-D("Created $resourceGroupName CORS policy for storage account $storageAccountName.")
+$command = "az storage container create --account-name $storageAccountName --name $storageContainerPreviewImagesName"
+ExecuteCommand $command $loggingPrefix "Creating the preview image stoarge container."
 
-D("Deploying $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
-az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath
-D("Deployed $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
+$command = "az storage cors clear --account-name $storageAccountName --services b"
+ExecuteCommand $command $loggingPrefix "Clearing the storage account CORS policy."
 
-D("Deploying $resourceGroupName worker function:")
-D("`tUsing name: $workerName")
-D("`tUsing file path: $workerFilePath")
-az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath
-D("Deployed $resourceGroupName worker function:")
-D("`tUsing name: $workerName")
-D("`tUsing file path: $workerFilePath")
+$command = "az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins ""*"" --allowed-headers ""*"" --exposed-headers ""*"""
+ExecuteCommand $command $loggingPrefix "Creating the storage account CORS policy."
 
-D("Deploying $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
-D("`tUsing file path: $eventsSubscriptionDeploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
-az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters uniqueResourceNamePrefix=$namePrefix
-D("Deployed $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
-D("`tUsing file path: $eventsSubscriptionDeploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
+ExecuteCommand $command $loggingPrefix "Deploying the API application."
 
-D("Completed $resourceGroupName deployment..")
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath"
+ExecuteCommand $command $loggingPrefix "Deploying the worker application."
+
+$command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
+ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
+
+D "Completed $resourceGroupName deployment." $loggingPrefix
+
+

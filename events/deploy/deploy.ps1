@@ -5,30 +5,32 @@ if (!$namePrefix) {
 if (!$region) {
     $region = $Env:region
 }
-$resourceGroupName = "$namePrefix-events"
-$deploymentFile = "./template.json"
+$loggingPrefix = "Events Deployment ($namePrefix)"
+$resourceGroupName = "$namePrefix-audio"
+$deploymentFile = "./microservice.json"
 $deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
 
-function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
-function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
+Set-Location "$PSSCriptRoot"
 
-# Categories Microservice Deploy
+. ./../../scripts/functions.ps1
 
-D("Setting location to the scripts folder")
-Set-Location $PSSCriptRoot
+$directoryStart = Get-Location
 
-D("Working in $(Get-Location)")
-D("Name Prefix: $namePrefix")
-D("Region: $region")
+if (!$namePrefix) {
+    D "Either pass in the '-namePrefix' parameter when calling this script or 
+    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+}
+if (!$region) {
+    D "Either pass in the '-region' parameter when calling this script or 
+    set and environment variable with the name: 'region'." $loggingPrefix
+}
 
-D("Creating the $resourceGroupName resource group in the $region region.")
-az group create -n $resourceGroupName -l $region
-D("Created the $resourceGroupName resource group in the $region region.")
+D "Deploying the event grid." $loggingPrefix
 
-D("Executing the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: $deploymentParameters")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --parameters $deploymentParameters --mode Complete
-D("Executed the $resourceGroupName deployment.")
+$command = "az group create -n $resourceGroupName -l $region"
+ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
-D("Completed $resourceGroupName deployment.")
+$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --parameters $deploymentParameters --mode Complete"
+ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
+
+D "Completed the event grid deployment." $loggingPrefix

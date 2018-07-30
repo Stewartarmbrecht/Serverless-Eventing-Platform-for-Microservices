@@ -5,8 +5,9 @@ if (!$namePrefix) {
 if (!$region) {
     $region = $Env:region
 }
+$loggingPrefix = "Text Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-text"
-$deploymentFile = ".\microservice.json"
+$deploymentFile = "./microservice.json"
 $dbAccountName="$namePrefix-text-db"
 $dbName="Text"
 $dbCollectionName="Text"
@@ -15,43 +16,37 @@ $dbThroughput = 400
 $apiName = "$namePrefix-text-api"
 $apiFilePath = "./ContentReactor.Text.Api.zip"
 
-function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
-function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
+Set-Location "$PSSCriptRoot"
 
-# Text Microservice Deploy
+. ./../../scripts/functions.ps1
 
-D("Setting location to the scripts folder")
-Set-Location $PSSCriptRoot
+$directoryStart = Get-Location
 
-D("Creating the $resourceGroupName resource group in the $region region.")
-az group create -n $resourceGroupName -l $region
-D("Created the $resourceGroupName resource group in the $region region.")
+if (!$namePrefix) {
+    D "Either pass in the '-namePrefix' parameter when calling this script or 
+    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+}
+if (!$region) {
+    D "Either pass in the '-region' parameter when calling this script or 
+    set and environment variable with the name: 'region'." $loggingPrefix
+}
+# Audio Microservice Deploy
 
-D("Executing the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix
-D("Executed the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
+D "Deploying the microservice." $loggingPrefix
 
-D("Creating $resourceGroupName cosmos db.")
-D("`tUsing DB account name: $dbAccountName")
-D("`tUsing DB name: $dbName")
-az cosmosdb database create --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName
-D("Created $resourceGroupName cosmos db.")
+$command = "az group create -n $resourceGroupName -l $region"
+ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
-D("Creating $resourceGroupName cosmos db collection $dbCollectionName for $dbAccountName in $dbName.")
-az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName `
-    --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput
-D("Created $resourceGroupName cosmos db collection $dbCollectionName for $dbAccountName in $dbName.")
+$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix"
+ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
 
-D("Deploying $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
-az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath
-D("Deployed $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
+$command = "az cosmosdb database create --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName"
+ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB database."
 
-D("Completed $resourceGroupName deployment..")
+$command = "az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput"
+ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB collection."
+
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
+ExecuteCommand $command $loggingPrefix "Deploying the API application."
+
+D "Completed $resourceGroupName deployment." $loggingPrefix

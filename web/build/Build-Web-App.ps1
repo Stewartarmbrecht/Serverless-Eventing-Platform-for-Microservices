@@ -1,13 +1,14 @@
-. ./Logging.ps1
+$microserviceName = "Web App"
+$loggingPrefix = "$microserviceName Build"
 
-Set-Location "$PSSCriptRoot/../src/ContentReactor.Web/ContentReactor.Web.App"
-D("Location: $(Get-Location)")
+Set-Location "$PSSCriptRoot/../"
 
-D("Running npm install in $(Get-Location)")
-npm install
-D("Ran npm install in $(Get-Location)")
+. ./../scripts/functions.ps1
 
-D("Running npm dist in $(Get-Location)")
-npm run dist
-D("Ran npm dist in $(Get-Location)")
+$directoryStart = Get-Location
 
+Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.App"
+
+ExecuteCommand "npm install" $loggingPrefix "Installing web app dependencies."
+
+ExecuteCommand "npm run dist" $loggingPrefix "Building web app distribution package."

@@ -299,7 +299,7 @@
             "command": "pwsh",
             "type": "process",
             "args": [
-                "${workspaceFolder}/web/build/build.ps1"
+                "${workspaceFolder}/web/build/build-all.ps1"
             ],
             "problemMatcher": "$msCompile"
         },

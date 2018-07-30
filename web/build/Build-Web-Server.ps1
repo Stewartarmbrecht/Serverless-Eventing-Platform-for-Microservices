@@ -1,30 +1,30 @@
-. ./Logging.ps1
+$microserviceName = "Web Server"
+$loggingPrefix = "$microserviceName Build"
 
 Set-Location "$PSSCriptRoot/../"
+
+. ./../scripts/functions.ps1
+
 $directoryStart = Get-Location
-D("Location: $(Get-Location)")
 
-Set-Location "$directoryStart\src\ContentReactor.Web\ContentReactor.Web.Server"
-D("Running dotnet build in $(Get-Location)")
-dotnet build
-D("Ran dotnet build in $(Get-Location)")
+Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Server"
 
-Set-Location "$directoryStart\src\ContentReactor.Web\ContentReactor.Web.Tests"
-D("Running dotnet test in $(Get-Location)")
-dotnet test --logger "trx;logFileName=testResults.trx"
-D("Ran dotnet test in $(Get-Location)")
+ExecuteCommand "dotnet build" $loggingPrefix "Building the web server."
 
-Set-Location "$directoryStart\src\ContentReactor.Web\ContentReactor.Web.Server"
-D("Running dotnet test in $(Get-Location)")
-dotnet publish -c Release
-D("Ran dotnet test in $(Get-Location)")
+Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Tests"
 
-$path = "$directoryStart\src\ContentReactor.Web\ContentReactor.Web.Server\bin\Release\netcoreapp2.1\publish\"
-$destination = "$directoryStart\deploy\.dist\"
-D("Deleting the web app folder in $destination")
-Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore
-D("Deleted the web app folder in $destination")
+ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the web server."
 
-D("Copying the web app in $path to $destination")
-Copy-Item -Path $path -Destination $destination -Recurse -Force
-D("Copyied the web app in $path to $destination")
+Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Server"
+
+ExecuteCommand "dotnet publish -c Release" $loggingPrefix "Publishing the web server."
+
+$path = "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Server/bin/Release/netcoreapp2.1/publish/**"
+$destination = "$directoryStart/deploy/.dist/"
+
+ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removeing the web server from the deployment folder."
+
+ExecuteCommand "Copy-Item -Path $path -Destination $destination -Recurse -Force" $loggingPrefix "Copying the new web server files to the deployment folder."
+
+Set-Location "$directoryStart/build"
+D "Built the $microserviceName Microservice" $loggingPrefix

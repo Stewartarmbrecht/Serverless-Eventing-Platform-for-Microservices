@@ -5,37 +5,36 @@ if (!$namePrefix) {
 if (!$region) {
     $region = $Env:region
 }
+$loggingPrefix = "Proxies Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-proxy"
-$deploymentFile = ".\template.json"
+$deploymentFile = "./template.json"
 $apiName = "$namePrefix-proxy-api"
 $apiFilePath = "./ContentReactor.Proxy.Api.zip"
 
-function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
-function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
+Set-Location "$PSSCriptRoot"
 
-# Proxy Microservice Deploy
+. ./../../scripts/functions.ps1
 
-D("Setting location to the scripts folder")
-Set-Location $PSSCriptRoot
+$directoryStart = Get-Location
 
-D("Creating the $resourceGroupName resource group in the $region region.")
-az group create -n $resourceGroupName -l $region
-D("Created the $resourceGroupName resource group in the $region region.")
+if (!$namePrefix) {
+    D "Either pass in the '-namePrefix' parameter when calling this script or 
+    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+}
+if (!$region) {
+    D "Either pass in the '-region' parameter when calling this script or 
+    set and environment variable with the name: 'region'." $loggingPrefix
+}
 
-D("Executing the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix
-D("Executed the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: uniqueResourceNamePrefix=$namePrefix")
+D "Deploying the microservice." $loggingPrefix
 
-D("Deploying $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
-az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath
-D("Deployed $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
+$command = "az group create -n $resourceGroupName -l $region"
+ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
-D("Completed $resourceGroupName deployment..")
+$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix"
+ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
+
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
+ExecuteCommand $command $loggingPrefix "Deploying the API application."
+
+D "Completed $resourceGroupName deployment." $loggingPrefix

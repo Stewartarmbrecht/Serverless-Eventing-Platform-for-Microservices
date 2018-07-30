@@ -8,9 +8,9 @@ if (!$region) {
 if (!$bigHugeThesaurusApiKey) {
     $bigHugeThesaurusApiKey = $Env:bigHugeThesaurusApiKey
 }
-
+$loggingPrefix = "Categories Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-categories"
-$deploymentFile = ".\microservice.json"
+$deploymentFile = "./microservice.json"
 $deploymentParameters = "'uniqueResourceNamePrefix=$namePrefix' 'bigHugeThesaurusApiKey=$bigHugeThesaurusApiKey'"
 $dbAccountName="$namePrefix-categories-db"
 $dbName="Categories"
@@ -25,58 +25,43 @@ $eventsResourceGroupName = "$namePrefix-events"
 $eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-categories.json"
 $eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
 
-function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }
-function E([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkRed }
+Set-Location "$PSSCriptRoot"
 
-# Categories Microservice Deploy
+. ./../../scripts/functions.ps1
 
-D("Setting location to the scripts folder")
-Set-Location $PSSCriptRoot
+$directoryStart = Get-Location
 
-D("Creating the $resourceGroupName resource group in the $region region.")
-az group create -n $resourceGroupName -l $region
-D("Created the $resourceGroupName resource group in the $region region.")
+if (!$namePrefix) {
+    D "Either pass in the '-namePrefix' parameter when calling this script or 
+    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+}
+if (!$region) {
+    D "Either pass in the '-region' parameter when calling this script or 
+    set and environment variable with the name: 'region'." $loggingPrefix
+}
+# Audio Microservice Deploy
 
-D("Executing the $resourceGroupName deployment.")
-D("`tUsing file: $deploymentFile")
-D("`tUsing parameters: $deploymentParameters")
-D("az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters $deploymentParameters")
-az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix bigHugeThesaurusApiKey=$bigHugeThesaurusApiKey
-D("Executed the $resourceGroupName deployment.")
+D "Deploying the microservice." $loggingPrefix
 
-D("Creating $resourceGroupName cosmos db.")
-D("`tUsing DB account name: $dbAccountName")
-D("`tUsing DB name: $dbName")
-az cosmosdb database create --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName
-D("Created $resourceGroupName cosmos db.")
+$command = "az group create -n $resourceGroupName -l $region"
+ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
-D("Creating $resourceGroupName cosmos db collection $dbCollectionName for $dbAccountName in $dbName.")
-az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName `
-    --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput
-D("Created $resourceGroupName cosmos db collection $dbCollectionName for $dbAccountName in $dbName.")
+$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix bigHugeThesaurusApiKey=$bigHugeThesaurusApiKey"
+ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
 
-D("Deploying $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
-az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath
-D("Deployed $resourceGroupName api function:")
-D("`tUsing name: $apiName")
-D("`tUsing file path: $apiFilePath")
+$command = "az cosmosdb database create --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName"
+ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB database."
 
-D("Deploying $resourceGroupName worker function:")
-D("`tUsing name: $workerName")
-D("`tUsing file path: $workerFilePath")
-az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath
-D("Deployed $resourceGroupName worker function:")
-D("`tUsing name: $workerName")
-D("`tUsing file path: $workerFilePath")
+$command = "az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput"
+ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB collection."
 
-D("Deploying $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
-D("`tUsing file path: $eventsSubscriptionDeploymentFile")
-D("`tUsing parameters: $eventsSubscriptionParameters")
-az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters "$eventsSubscriptionParameters"
-D("Deployed $resourceGroupName event grid subscription to event grid in $eventsResourceGroupName.")
-D("`tUsing file path: $eventsSubscriptionDeploymentFile")
-D("`tUsing parameters: $eventsSubscriptionParameters")
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
+ExecuteCommand $command $loggingPrefix "Deploying the API application."
 
-D("Completed $resourceGroupName deployment..")
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath"
+ExecuteCommand $command $loggingPrefix "Deploying the worker application."
+
+$command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
+ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
+
+D "Completed $resourceGroupName deployment." $loggingPrefix

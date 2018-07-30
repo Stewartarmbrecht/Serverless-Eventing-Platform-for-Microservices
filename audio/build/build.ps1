@@ -3,30 +3,30 @@ $loggingPrefix = "Audio Build"
 
 Set-Location "$PSSCriptRoot/../"
 
-. ./../scripts/ContentReactor-Functions.ps1
+. ./../scripts/functions.ps1
 
 $directoryStart = Get-Location
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName"
-ExecuteCommand "dotnet build" $loggingPrefix
+ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName\contentreactor.$microserviceName.services.tests"
-ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix
+ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution"
 
 Set-Location "$directoryStart\src\ContentReactor.$microserviceName"
-ExecuteCommand "dotnet publish -c Release" $loggingPrefix
+ExecuteCommand "dotnet publish -c Release" $loggingPrefix "Publishing the solution."
 
 $path =  "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Api/bin/Release/netstandard2.0/publish/**"
 $destination = "$directoryStart/deploy/ContentReactor.$microserviceName.Api.zip"
-ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix
+ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the API package."
 
-ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix
+ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix "Creating the API package."
 
 $path =  "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.WorkerApi/bin/Release/netstandard2.0/publish/**"
 $destination = "$directoryStart/deploy/ContentReactor.$microserviceName.WorkerApi.zip"
-ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix
+ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removeing the worker package."
 
-ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix
+ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix "Creating the worker package."
 
 Set-Location "$directoryStart\build"
-D "Built $microserviceName Microservice in $(Get-Location)" $loggingPrefix
+D "Built the $microserviceName Microservice" $loggingPrefix

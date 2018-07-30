@@ -1,30 +1,18 @@
 $microserviceName = "Proxy"
+$loggingPrefix = "$microserviceName Build"
 
-function D([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkCyan }
-function E([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkRed }
+Set-Location "$PSSCriptRoot/../"
 
-
-D("Location: $(Get-Location)")
-D("Script Location: $($PSSCriptRoot)")
-
-Set-Location $PSSCriptRoot
-
-Set-Location "..\"
-
-D("Location: $(Get-Location)")
+. ./../scripts/functions.ps1
 
 $directoryStart = Get-Location
 
-D("DirectoryStart: $directoryStart")
+$path =  "$directoryStart/src/proxies/**"
+$destination = "$directoryStart/deploy/ContentReactor.$microserviceName.Api.zip"
+
+ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the API package."
+
+ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix "Creating the API package."
 
 Set-Location "$directoryStart\build"
-D("Running npm install.")
-npm install
-D("Ran npm install.")
-
-D("Zipping the API in $(Get-Location)")
-node zip.js "$directoryStart\deploy\ContentReactor.$microserviceName.Api.zip" "$directoryStart\proxies"
-D("Zipped the API in $(Get-Location)")
-
-Set-Location "$directoryStart\build"
-D("Built $microserviceName Microservice in $(Get-Location)")
+D "Built the $microserviceName Microservice" $loggingPrefix

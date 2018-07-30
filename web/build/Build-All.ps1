@@ -1,21 +1,22 @@
-. .\Logging.ps1
-
 $microserviceName = "Web"
+$loggingPrefix = "$microserviceName Build"
 
-Set-Location $PSSCriptRoot
+Set-Location "$PSSCriptRoot"
 
-D("Building $microserviceName Microservice in $(Get-Location)")
+. ./../../scripts/functions.ps1
 
-D("Building the Web Application.")
+$directoryStart = Get-Location
+
+D "Building $microserviceName microservice" $loggingPrefix
+
+D "Building the Web Application." $loggingPrefix
 ./Build-Web-App.ps1
-D("Built the Web Application.")
 
 Set-Location $PSSCriptRoot
 
-D("Building the Web Server.")
+D "Building the Web Server." $loggingPrefix
 ./Build-Web-Server.ps1
-D("Built the Web Server.")
 
 Set-Location $PSSCriptRoot
 
-D("Built $microserviceName Microservice in $(Get-Location)")
+D "Built $microserviceName Microservice" $loggingPrefix
