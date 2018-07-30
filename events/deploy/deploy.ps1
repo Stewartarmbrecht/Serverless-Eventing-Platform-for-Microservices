@@ -6,7 +6,7 @@ if (!$region) {
     $region = $Env:region
 }
 $resourceGroupName = "$namePrefix-events"
-$deploymentFile = ".\template.json"
+$deploymentFile = "./template.json"
 $deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
 
 function D([String]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $resourceGroupName Deployment: $value"  -ForegroundColor DarkCyan }

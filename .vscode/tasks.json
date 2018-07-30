@@ -3,7 +3,7 @@
     "tasks": [
         {
             "label": "deploy-events",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/events/deploy/deploy.ps1"
@@ -17,7 +17,7 @@
             "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/audio/src/ContentReactor.audio/ContentReactor.audio.sln"
+                "${workspaceFolder}/audio/src/contentreactor.audio/contentreactor.audio.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -28,26 +28,49 @@
             "group":"test",
             "args": [
                 "test",
-                "${workspaceFolder}/audio/src/ContentReactor.audio/ContentReactor.audio.Services.Tests/ContentReactor.audio.Services.Tests.csproj"
+                "${workspaceFolder}/audio/src/contentreactor.audio/contentreactor.audio.Services.Tests/contentreactor.audio.Services.Tests.csproj"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "problemMatcher": "$msCompile"
         },
         {
             "label": "package-audio",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
-                "${workspaceFolder}/audio/build/build.ps1"
+                "${workspaceFolder}/audio/build/contentreactor-build-audio.ps1"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
             "problemMatcher": "$msCompile"
         },
         {
             "label": "deploy-audio",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
-                "${workspaceFolder}/audio/deploy/deploy.ps1"
+                "${workspaceFolder}/audio/deploy/contentreactor-deploy-audio.ps1"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
             "problemMatcher": "$msCompile"
         },
         {
@@ -65,7 +88,7 @@
             "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/categories/src/ContentReactor.categories/ContentReactor.categories.sln"
+                "${workspaceFolder}/categories/src/contentreactor.categories/contentreactor.categories.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -76,13 +99,13 @@
             "group":"test",
             "args": [
                 "test",
-                "${workspaceFolder}/categories/src/ContentReactor.categories/ContentReactor.categories.Services.Tests/ContentReactor.categories.Services.Tests.csproj"
+                "${workspaceFolder}/categories/src/contentreactor.categories/contentreactor.categories.Services.Tests/contentreactor.categories.Services.Tests.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
         {
             "label": "package-categories",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/categories/build/build.ps1"
@@ -91,7 +114,7 @@
         },
         {
             "label": "deploy-categories",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/categories/deploy/deploy.ps1"
@@ -113,7 +136,7 @@
             "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/images/src/ContentReactor.images/ContentReactor.images.sln"
+                "${workspaceFolder}/images/src/contentreactor.images/contentreactor.images.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -124,13 +147,13 @@
             "group":"test",
             "args": [
                 "test",
-                "${workspaceFolder}/images/src/ContentReactor.images/ContentReactor.images.Services.Tests/ContentReactor.images.Services.Tests.csproj"
+                "${workspaceFolder}/images/src/contentreactor.images/contentreactor.images.Services.Tests/contentreactor.images.Services.Tests.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
         {
             "label": "package-images",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/images/build/build.ps1"
@@ -139,7 +162,7 @@
         },
         {
             "label": "deploy-images",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/images/deploy/deploy.ps1"
@@ -161,7 +184,7 @@
             "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/text/src/ContentReactor.text/ContentReactor.text.sln"
+                "${workspaceFolder}/text/src/contentreactor.text/contentreactor.text.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -172,13 +195,13 @@
             "group":"test",
             "args": [
                 "test",
-                "${workspaceFolder}/text/src/ContentReactor.text/ContentReactor.text.Services.Tests/ContentReactor.text.Services.Tests.csproj"
+                "${workspaceFolder}/text/src/contentreactor.text/contentreactor.text.Services.Tests/contentreactor.text.Services.Tests.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
         {
             "label": "package-text",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/text/build/build.ps1"
@@ -187,7 +210,7 @@
         },
         {
             "label": "deploy-text",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/text/deploy/deploy.ps1"
@@ -204,7 +227,7 @@
         },
         {
             "label": "package-proxy",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/proxy/build/build.ps1"
@@ -213,7 +236,7 @@
         },
         {
             "label": "deploy-proxy",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/proxy/deploy/deploy.ps1"
@@ -235,7 +258,7 @@
             "group":"build",
             "args": [
                 "build",
-                "${workspaceFolder}/web/src/ContentReactor.web/ContentReactor.web.sln"
+                "${workspaceFolder}/web/src/contentreactor.web/contentreactor.web.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -257,7 +280,7 @@
             },
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/web/src/contentReactor.web.app/"
+                "cwd": "${workspaceFolder}/web/src/contentreactor.web.app/"
             }
         },
         {
@@ -267,13 +290,13 @@
             "group":"test",
             "args": [
                 "test",
-                "${workspaceFolder}/web/src/ContentReactor.web/ContentReactor.web.Services.Tests/ContentReactor.web.Services.Tests.csproj"
+                "${workspaceFolder}/web/src/contentreactor.web/contentreactor.web.Services.Tests/contentreactor.web.Services.Tests.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
         {
             "label": "package-web",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/web/build/build.ps1"
@@ -282,7 +305,7 @@
         },
         {
             "label": "deploy-web",
-            "command": "powershell",
+            "command": "pwsh",
             "type": "process",
             "args": [
                 "${workspaceFolder}/web/deploy/deploy.ps1"
