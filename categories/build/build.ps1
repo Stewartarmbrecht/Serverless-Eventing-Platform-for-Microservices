@@ -11,7 +11,7 @@ Set-Location "$directoryStart\src\contentreactor.$microserviceName"
 $result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName\contentreactor.$microserviceName.services.tests"
-$result = ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution"
+$result = ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution."
 
 Set-Location "$directoryStart\src\ContentReactor.$microserviceName\ContentReactor.$microserviceName.Api"
 $result = ExecuteCommand "dotnet publish -c Release -o $directoryStart\.dist\api" $loggingPrefix "Publishing the api application."
@@ -27,7 +27,7 @@ $result = ExecuteCommand "Compress-Archive -Path $apiPath -DestinationPath $apiD
 
 $workerPath =  "$directoryStart/.dist/worker/**"
 $workerDestination = "$directoryStart/deploy/ContentReactor.$microserviceName.WorkerApi.zip"
-$result = ExecuteCommand "Remove-Item -Path $workerDestination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removeing the worker package."
+$result = ExecuteCommand "Remove-Item -Path $workerDestination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the worker package."
 
 $result = ExecuteCommand "Compress-Archive -Path $workerPath -DestinationPath $workerDestination" $loggingPrefix "Creating the worker package."
 

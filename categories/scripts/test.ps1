@@ -8,8 +8,8 @@ Set-Location "$PSSCriptRoot/../"
 $directoryStart = Get-Location
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName"
-ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
+$result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName\contentreactor.$microserviceName.services.tests"
-ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution"
+$result = ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution."
 
