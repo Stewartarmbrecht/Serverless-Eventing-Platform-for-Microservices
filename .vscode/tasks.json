@@ -320,6 +320,57 @@
                 "cwd": "${workspaceFolder}/"
             },
             "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "proxy-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/proxy/scripts/deploy.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "proxy-apps-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/proxy/scripts/deploy-apps.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "proxy-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/proxy/build/build.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }

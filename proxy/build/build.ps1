@@ -7,12 +7,12 @@ Set-Location "$PSSCriptRoot/../"
 
 $directoryStart = Get-Location
 
-$path =  "$directoryStart/src/proxies/**"
+$path =  "$directoryStart/src/**"
 $destination = "$directoryStart/deploy/ContentReactor.$microserviceName.Api.zip"
 
-ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the API package."
+$result = ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the API package."
 
-ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix "Creating the API package."
+$result = ExecuteCommand "Compress-Archive -Path $path -DestinationPath $destination" $loggingPrefix "Creating the API package."
 
 Set-Location "$directoryStart\build"
 D "Built the $microserviceName Microservice" $loggingPrefix

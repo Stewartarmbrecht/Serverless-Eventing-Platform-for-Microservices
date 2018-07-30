@@ -7,7 +7,8 @@ if (!$region) {
 }
 $loggingPrefix = "Proxy Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-proxy"
-$deploymentFile = "./template.json"
+$apiName = "$namePrefix-proxy-api"
+$apiFilePath = "./ContentReactor.Proxy.Api.zip"
 
 Set-Location "$PSSCriptRoot"
 
@@ -22,14 +23,6 @@ if (!$region) {
     set and environment variable with the name: 'region'." $loggingPrefix
 }
 
-D "Deploying the microservice." $loggingPrefix
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
+$result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
 
-$command = "az group create -n $resourceGroupName -l $region"
-$result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
-
-$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
-
-./deploy-apps.ps1 -namePrefix $namePrefix -region $region
-
-D "Deployed the microservice." $loggingPrefix
