@@ -3,22 +3,14 @@
 _Execute [the setup instructions](setup.md) prior to 
 building the solution._
 
-## Building Manually
+The following commands can be used to build different aspects of the system.
 
-### Building The Entire Solution Manually
-
-#### PowerShell
-
-        ./scripts/build.ps1
-
-#### VS Code
-
-        In         
-
-### Building A Single Microservice Manually
-
-1. Open PowerShell and navigate to the build folder in the microservice you want to build (ex. `./audio/build`).
-2. Execute the build.ps1 powershell script.
-
-        ./build.ps1
+| Action | Script | VS Code Task |
+| ------ | ------ | ------------ |
+| Build, test, package and deploy the entire system | `./scripts/buildanddeploy.ps1 `<br>` -namePrefix {your-globally-unique-name-prefix} `<br>`-region westus2 `<br>`-bigHugeThesaurusApiKey {your-api-key}` | `system-pipeline` |
+| Build, test, package and deploy a microservice's applications and infrastructure | `./{microservice}/scripts/deploy.ps1 `<br>`-namePrefix {your-globally-unique-name-prefix} `<br>`-region westus2 `<br>`-bigHugeThesaurusApiKey {your-api-key}` | `{microservice}-pipeline` |
+| Build, test, package and deploy a microservice's applications | `./{microservice}/scripts/deploy-apps.ps1 `<br>`-namePrefix {your-globally-unique-name-prefix} `<br>`-region westus2 `<br>`-bigHugeThesaurusApiKey {your-api-key}` | `{microservice}-apps-pipeline` |
+| Build and test a microservice's applications | `./{microservice}/scripts/test.ps1` | `{microservice}-test` |
+| Build, test, and debug a microservice's applications | NA | `{microservice}-debug` |
+| Build a microservice's applications | `./{microservice}/scripts/build.ps1` | `{microservice}-build` |
 

@@ -2,45 +2,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "deploy-events",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/events/deploy/deploy.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-audio",
-            "command": "dotnet",
-            "type": "process",
-            "group":"build",
-            "args": [
-                "build",
-                "${workspaceFolder}/audio/src/contentreactor.audio/contentreactor.audio.sln"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "test-audio",
-            "command": "dotnet",
-            "type": "process",
-            "group":"test",
-            "args": [
-                "test",
-                "${workspaceFolder}/audio/src/contentreactor.audio/contentreactor.audio.Services.Tests/contentreactor.audio.Services.Tests.csproj"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
+            "label": "system-pipeline",
+            "windows": {
+                "command": "powershell"
             },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "package-audio",
-            "command": "pwsh",
+            "osx": {
+                "command": "pwsh"
+            },
             "type": "process",
             "args": [
-                "${workspaceFolder}/audio/build/contentreactor-build-audio.ps1"
+                "${workspaceFolder}/scripts/buildanddeploy.ps1"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/"
@@ -53,272 +24,142 @@
                 "showReuseMessage": true
             },
             "problemMatcher": "$msCompile"
-        },
+        },        
         {
-            "label": "deploy-audio",
-            "command": "pwsh",
+            "label": "audio-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
             "type": "process",
             "args": [
-                "${workspaceFolder}/audio/deploy/contentreactor-deploy-audio.ps1"
+                "${workspaceFolder}/audio/scripts/deploy.ps1"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/"
             },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "audio-apps-pipeline",
+            "windows": {
+                "command": "powershell"
             },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "pipeline-audio",
-            "dependsOn":[
-                "package-audio",
-                "deploy-audio"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-categories",
-            "command": "dotnet",
-            "type": "process",
-            "group":"build",
-            "args": [
-                "build",
-                "${workspaceFolder}/categories/src/contentreactor.categories/contentreactor.categories.sln"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "test-categories",
-            "command": "dotnet",
-            "type": "process",
-            "group":"test",
-            "args": [
-                "test",
-                "${workspaceFolder}/categories/src/contentreactor.categories/contentreactor.categories.Services.Tests/contentreactor.categories.Services.Tests.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "package-categories",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/categories/build/build.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "deploy-categories",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/categories/deploy/deploy.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "pipeline-categories",
-            "dependsOn":[
-                "package-categories",
-                "deploy-categories"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-images",
-            "command": "dotnet",
-            "type": "process",
-            "group":"build",
-            "args": [
-                "build",
-                "${workspaceFolder}/images/src/contentreactor.images/contentreactor.images.sln"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "test-images",
-            "command": "dotnet",
-            "type": "process",
-            "group":"test",
-            "args": [
-                "test",
-                "${workspaceFolder}/images/src/contentreactor.images/contentreactor.images.Services.Tests/contentreactor.images.Services.Tests.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "package-images",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/images/build/build.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "deploy-images",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/images/deploy/deploy.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "pipeline-images",
-            "dependsOn":[
-                "package-images",
-                "deploy-images"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-text",
-            "command": "dotnet",
-            "type": "process",
-            "group":"build",
-            "args": [
-                "build",
-                "${workspaceFolder}/text/src/contentreactor.text/contentreactor.text.sln"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "test-text",
-            "command": "dotnet",
-            "type": "process",
-            "group":"test",
-            "args": [
-                "test",
-                "${workspaceFolder}/text/src/contentreactor.text/contentreactor.text.Services.Tests/contentreactor.text.Services.Tests.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "package-text",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/text/build/build.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "deploy-text",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/text/deploy/deploy.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "pipeline-text",
-            "dependsOn":[
-                "package-text",
-                "deploy-text"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "package-proxy",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/proxy/build/build.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "deploy-proxy",
-            "command": "pwsh",
-            "type": "process",
-            "args": [
-                "${workspaceFolder}/proxy/deploy/deploy.ps1"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "pipeline-proxy",
-            "dependsOn":[
-                "package-proxy",
-                "deploy-proxy"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-web-server",
-            "command": "dotnet",
-            "type": "process",
-            "group":"build",
-            "args": [
-                "build",
-                "${workspaceFolder}/web/src/contentreactor.web/contentreactor.web.sln"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "build-web-app",
-            "command": "npm",
-            "type": "process",
-            "group":"build",
-            "args": [
-                "run",
-                "dev"
-            ],
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true
+            "osx": {
+                "command": "pwsh"
             },
-            "problemMatcher": "$msCompile",
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/audio/scripts/deploy-apps.ps1"
+            ],
             "options": {
-                "cwd": "${workspaceFolder}/web/src/contentreactor.web.app/"
-            }
-        },
-        {
-            "label": "test-web-server",
-            "command": "dotnet",
-            "type": "process",
-            "group":"test",
-            "args": [
-                "test",
-                "${workspaceFolder}/web/src/contentreactor.web/contentreactor.web.Services.Tests/contentreactor.web.Services.Tests.csproj"
-            ],
+                "cwd": "${workspaceFolder}/"
+            },
             "problemMatcher": "$msCompile"
-        },
+        },        
         {
-            "label": "package-web",
-            "command": "pwsh",
+            "label": "audio-test",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
             "type": "process",
             "args": [
-                "${workspaceFolder}/web/build/build-all.ps1"
+                "${workspaceFolder}/audio/scripts/test.ps1"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
             "problemMatcher": "$msCompile"
-        },
+        },        
         {
-            "label": "deploy-web",
-            "command": "pwsh",
+            "label": "audio-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
             "type": "process",
             "args": [
-                "${workspaceFolder}/web/deploy/deploy.ps1"
+                "${workspaceFolder}/audio/scripts/build.ps1"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
             "problemMatcher": "$msCompile"
-        },
+        },        
         {
-            "label": "pipeline-web",
-            "dependsOn":[
-                "package-web",
-                "deploy-web"
+            "label": "categories-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/categories/scripts/deploy.ps1"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
             "problemMatcher": "$msCompile"
-        },
+        },        
+        {
+            "label": "categories-apps-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/categories/scripts/deploy-apps.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "categories-test",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/categories/scripts/test.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "categories-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/categories/scripts/build.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        }
     ]
 }
