@@ -354,7 +354,7 @@
                 "cwd": "${workspaceFolder}/"
             },
             "problemMatcher": "$msCompile"
-        },        
+        },
         {
             "label": "proxy-build",
             "windows": {
@@ -366,6 +366,91 @@
             "type": "process",
             "args": [
                 "${workspaceFolder}/proxy/build/build.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "web-app-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/build/build-web-app.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "web-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/scripts/build.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "web-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/scripts/deploy.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "web-apps-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/scripts/deploy-apps.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "web-test",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/web/scripts/test.ps1"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/"
