@@ -184,6 +184,74 @@
                 "cwd": "${workspaceFolder}/"
             },
             "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "images-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/images/scripts/deploy.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "images-apps-pipeline",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/images/scripts/deploy-apps.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "images-test",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/images/scripts/test.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
+        },        
+        {
+            "label": "images-build",
+            "windows": {
+                "command": "powershell"
+            },
+            "osx": {
+                "command": "pwsh"
+            },
+            "type": "process",
+            "args": [
+                "${workspaceFolder}/images/scripts/build.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }

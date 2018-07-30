@@ -8,25 +8,28 @@ Set-Location "$PSSCriptRoot/../"
 $directoryStart = Get-Location
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName"
-ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
+$results = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 
 Set-Location "$directoryStart\src\contentreactor.$microserviceName\contentreactor.$microserviceName.services.tests"
-ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution"
+$results = ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution."
 
-Set-Location "$directoryStart\src\ContentReactor.$microserviceName"
-ExecuteCommand "dotnet publish -c Release" $loggingPrefix "Publishing the solution."
+Set-Location "$directoryStart\src\ContentReactor.$microserviceName\ContentReactor.$microserviceName.Api"
+$results = ExecuteCommand "dotnet publish -c Release -o $directoryStart\.dist\api" $loggingPrefix "Publishing the api application."
 
-$path =  "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Api/bin/Release/netstandard2.0/publish/**"
-$destination = "$directoryStart/deploy/ContentReactor.$microserviceName.Api.zip"
-ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the API package."
+Set-Location "$directoryStart\src\ContentReactor.$microserviceName\ContentReactor.$microserviceName.WorkerApi"
+$results = ExecuteCommand "dotnet publish -c Release -o $directoryStart\.dist\worker" $loggingPrefix "Publishing the worker application."
 
-ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix "Creating the API package."
+$apiPath =  "$directoryStart/.dist/api/**"
+$apiDestination = "$directoryStart/deploy/ContentReactor.$microserviceName.Api.zip"
+$results = ExecuteCommand "Remove-Item -Path $apiDestination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the API package."
 
-$path =  "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.WorkerApi/bin/Release/netstandard2.0/publish/**"
-$destination = "$directoryStart/deploy/ContentReactor.$microserviceName.WorkerApi.zip"
-ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removeing the worker package."
+$results = ExecuteCommand "Compress-Archive -Path $apiPath -DestinationPath $apiDestination" $loggingPrefix "Creating the API package."
 
-ExecuteCommand "Compress-Archive -Path $path -Destination $destination" $loggingPrefix "Creating the worker package."
+$workerPath =  "$directoryStart/.dist/worker/**"
+$workerDestination = "$directoryStart/deploy/ContentReactor.$microserviceName.WorkerApi.zip"
+$results = ExecuteCommand "Remove-Item -Path $workerDestination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the worker package."
+
+$results = ExecuteCommand "Compress-Archive -Path $workerPath -DestinationPath $workerDestination" $loggingPrefix "Creating the worker package."
 
 Set-Location "$directoryStart\build"
 D "Built the $microserviceName Microservice" $loggingPrefix
