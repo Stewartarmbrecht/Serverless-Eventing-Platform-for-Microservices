@@ -1,39 +1,37 @@
-function D([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkCyan }
-function E([string]$value) { Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $microserviceName Build: $($value)" -ForegroundColor DarkRed }
-
-D("Location: $(Get-Location)")
-D("Script Location: $($PSSCriptRoot)")
+$loggingPrefix = "System Build"
 
 Set-Location $PSSCriptRoot
 
-D("Categories Microservice Build")
-../categories/build/build.ps1
+. ./functions.ps1
 
-Set-Location $PSSCriptRoot
-
-D("Images Microservice Build")
-../images/build/build.ps1
-
-Set-Location $PSSCriptRoot
-
-D("Audio Microservice Build")
+D "Audio Microservice Build" $loggingPrefix
 ../audio/build/build.ps1
 
 Set-Location $PSSCriptRoot
 
-D("Text Microservice Build")
+D "Categories Microservice Build" $loggingPrefix
+../categories/build/build.ps1
+
+Set-Location $PSSCriptRoot
+
+D "Images Microservice Build" $loggingPrefix
+../images/build/build.ps1
+
+Set-Location $PSSCriptRoot
+
+D "Text Microservice Build" $loggingPrefix
 ../text/build/build.ps1
 
 Set-Location $PSSCriptRoot
 
-D("Proxy Build")
+D "Proxy Build" $loggingPrefix
 ../proxy/build/build.ps1
 
 Set-Location $PSSCriptRoot
 
-D("Web Build")
+D "Web Build" $loggingPrefix
 ../web/build/build.ps1
 
 Set-Location $PSSCriptRoot
 
-D("Build complete!")
+D "Build complete!" $loggingPrefix

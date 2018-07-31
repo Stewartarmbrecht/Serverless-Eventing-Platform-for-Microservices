@@ -8,10 +8,15 @@ function ExecuteCommand([String]$command, [String]$loggingPrefix, [String]$logEn
     D $logEntry $loggingPrefix
     # D "    In Direcotory: $(Get-Location)" $loggingPrefix
     $result = (iex $command) 2>&1
-    if($lastExitCode -eq 2) {
+    $code = $lastExitCode
+    if(($code -And $code -ne 0) -Or (!$code -And $code -ne 0 -And $error[0] -ne $null)) {
         E "Failed to execute command: $command" $loggingPrefix
+        E "Command exited with a code of $code" $loggingPrefix
+        E "Command exited with error: $($error[0])" $loggingPrefix
         $result
         E "Exiting due to error!" $loggingPrefix
         Exit
+    } else {
+        return $result
     }
 }
