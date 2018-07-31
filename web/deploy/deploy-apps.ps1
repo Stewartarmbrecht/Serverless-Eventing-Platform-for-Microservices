@@ -34,7 +34,7 @@ $destination = "./ContentReactor.Web.zip"
 $command = "Remove-Item -Path $destination -ErrorAction Ignore"
 $result = ExecuteCommand $command $loggingPrefix "Removing the web server zip package."
 
-$command = "Compress-Archive -Path $path -Destination $destination"
+$command = "Compress-Archive -Path $path -DestinationPath $destination"
 $result = ExecuteCommand $command $loggingPrefix "Creating the new zip package."
 
 $command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $webAppName --src ./ContentReactor.Web.zip"

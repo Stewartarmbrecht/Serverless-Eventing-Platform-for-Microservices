@@ -20,10 +20,10 @@ $result = ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx
 
 Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Server"
 
-Set-Location "$directoryStart\src\ContentReactor.$microserviceName\ContentReactor.$microserviceName.Server"
-$result = ExecuteCommand "dotnet publish -c Release -o $directoryStart\.dist\web" $loggingPrefix "Publishing the web server."
+Set-Location "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Server"
+$result = ExecuteCommand "dotnet publish -c Release -o $directoryStart/.dist/web" $loggingPrefix "Publishing the web server."
 
-$path =  "$directoryStart/.dist/web/**"
+$path =  "$directoryStart/.dist/web/"
 $destination = "$directoryStart/deploy/.dist/"
 
 $result = ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the web server from the deployment folder."
