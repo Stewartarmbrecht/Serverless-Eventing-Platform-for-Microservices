@@ -4,7 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <CodeAnalysisRuleSet>ca.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
