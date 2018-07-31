@@ -36,6 +36,7 @@ _The last `buildanddeploy.ps1` script will take a long time to run for the first
 
 * **Developing**
     * [Setup](/_docs/developing/setup.md)
+    * [Development Flow](/_docs/developing/development-flow.md)
     * [Building](/_docs/developing/building.md)
     * [Coding](/_docs/developing/coding.md)
     * [Testing](/_docs/developing/testing.md)
