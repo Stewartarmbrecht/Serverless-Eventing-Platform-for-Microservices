@@ -11,4 +11,12 @@ Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.App"
 
 $result = ExecuteCommand "npm install" $loggingPrefix "Installing web app dependencies."
 
-$result = ExecuteCommand "npm run dist" $loggingPrefix "Building web app distribution package."
+$result = ExecuteCommand "npm run build" $loggingPrefix "Building web app distribution package."
+
+$path =  "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.App/dist/"
+$destination = "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Server/wwwroot/"
+
+$result = ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorAction Ignore" $loggingPrefix "Removing the web app from the wwwroot folder."
+
+$result = ExecuteCommand "Copy-Item -Path $path -Destination $destination -Recurse -Force" $loggingPrefix "Copying the the web app files to the wwwroot folder."
+
