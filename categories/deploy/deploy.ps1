@@ -43,14 +43,14 @@ $result = ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
 
 $command = "az cosmosdb database exists --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName"
 $result = ExecuteCommand $command $loggingPrefix "Checking if CosmosDB exists."
-if(!$result) {
+if($result -eq $false) {
     $command = "az cosmosdb database create --name $dbAccountName --db-name $dbName --resource-group $resourceGroupName"
     $result = ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB database."
 }
 
 $command = "az cosmosdb collection exists --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName --resource-group $resourceGroupName"
 $result = ExecuteCommand $command $loggingPrefix "Checking if CosmosDB collection exists."
-if(!$result) {
+if($result -eq $false) {
     $command = "az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput"
     $result = ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB collection."
 }
