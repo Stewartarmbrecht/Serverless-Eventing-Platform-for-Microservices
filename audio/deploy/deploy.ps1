@@ -34,6 +34,9 @@ if (!$region) {
 
 D "Deploying the microservice." $loggingPrefix
 
+$command = "az login"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
+
 $command = "az group create -n $resourceGroupName -l $region"
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
