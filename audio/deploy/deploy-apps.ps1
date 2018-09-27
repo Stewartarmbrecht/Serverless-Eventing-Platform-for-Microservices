@@ -25,8 +25,12 @@ if (!$region) {
     set and environment variable with the name: 'region'." $loggingPrefix
 }
 
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath --debug"
+$result = ExecuteCommand $command $loggingPrefix "Deploying the API application." "True"
 
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the worker application."
+$result
+
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath --debug"
+$result = ExecuteCommand $command $loggingPrefix "Deploying the worker application." "True"
+
+$result
