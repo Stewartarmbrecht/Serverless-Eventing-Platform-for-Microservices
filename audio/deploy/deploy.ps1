@@ -40,6 +40,8 @@ if (!$region) {
 
 D "Deploying the microservice." $loggingPrefix
 
+Write-Output $PSVersionTable.PSVersion
+
 $command = "az login -u $userName -p $password"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
