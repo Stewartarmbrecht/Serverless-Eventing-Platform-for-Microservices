@@ -26,11 +26,11 @@ if (!$region) {
 }
 
 $command = "az webapp deployment source config-zip --debug --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the API application." "True"
+$result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
 
 $result
 
 $command = "az webapp deployment source config-zip --debug --resource-group $resourceGroupName --name $workerName --src $workerFilePath"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the worker application." "True"
+$result = ExecuteCommand $command $loggingPrefix "Deploying the worker application."
 
 $result

@@ -1,4 +1,4 @@
-function D([String]$value,[String]$loggingPrefix,[String]$debug) { 
+function D([String]$value,[String]$loggingPrefix) { 
     Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($loggingPrefix): $value"  -ForegroundColor DarkCyan 
 }
 function E([String]$value,[String]$loggingPrefix) { 
@@ -17,9 +17,6 @@ function ExecuteCommand([String]$command, [String]$loggingPrefix, [String]$logEn
         E "Exiting due to error!" $loggingPrefix
         Exit
     } else {
-        if($debug -eq "True") {
-            $result
-        }
         return $result
     }
 }
