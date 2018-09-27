@@ -35,7 +35,7 @@ Additionally, there is a single [Azure Functions Proxies](https://docs.microsoft
 
 The sample also contains an Angular.js application that is bundled within an ASP.NET WebApp which serves as a middleware to enable bi-directional communication between the front end browser and the Azure functions backend.
 
-![Architecture Diagram](/_docs/architecture.png)
+![Architecture Diagram](/_docs/_images/architecture.png)
 
 Each microservice and other components within the sample are designed to be built and deployed in a fully automated manner. We used VSTS, although any other build and release management systems could also be used. We used [VSTS's Build YAML](https://docs.microsoft.com/en-us/vsts/build-release/actions/build-yaml?view=vsts) feature to declaratively specify our build process and used [VSTS Release Management](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/what-is-release-management?view=vsts) to define our release process and publish the built components to Azure. Please see the `setup.md` file for more information on how to build and release the sample components for yourself.
 
