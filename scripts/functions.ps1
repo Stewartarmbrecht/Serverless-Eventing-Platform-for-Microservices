@@ -7,7 +7,7 @@ function E([String]$value,[String]$loggingPrefix) {
 function ExecuteCommand([String]$command, [String]$loggingPrefix, [String]$logEntry) {
     D $logEntry $loggingPrefix
     # D "    In Direcotory: $(Get-Location)" $loggingPrefix
-    $result = (iex $command) 2>&1
+    $result = (Invoke-Expression $command) 2>&1
     $code = $lastExitCode
     if(($code -And $code -ne 0) -Or (!$code -And $code -ne 0 -And $error[0] -ne $null)) {
         E "Failed to execute command: $command" $loggingPrefix

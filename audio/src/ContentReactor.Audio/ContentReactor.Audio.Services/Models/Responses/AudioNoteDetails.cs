@@ -1,15 +1,29 @@
-﻿using Newtonsoft.Json;
-
-namespace ContentReactor.Audio.Services.Models.Responses
+﻿namespace ContentReactor.Audio.Services.Models.Responses
 {
+    using System;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Provides meta data and access url to download an audio file.
+    /// </summary>
     public class AudioNoteDetails
     {
+
+        /// <summary>
+        /// Gets or sets id of the audio file.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets url to download audio file.
+        /// </summary>
         [JsonProperty("audioUrl")]
-        public string AudioUrl { get; set; }
+        public Uri AudioUrl { get; set; }
 
+        /// <summary>
+        /// Gets or sets transcript of the audio file.
+        /// </summary>
         [JsonProperty("transcript")]
         public string Transcript { get; set; }
     }

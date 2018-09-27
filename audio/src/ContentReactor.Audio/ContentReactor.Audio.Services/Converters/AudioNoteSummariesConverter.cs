@@ -8,13 +8,13 @@ namespace ContentReactor.Audio.Services.Converters
     {
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(AudioNoteSummaries));
+            return (objectType == typeof(AudioNoteSummaryCollection));
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.WriteStartObject();
-            foreach (var summary in (AudioNoteSummaries)value)
+            foreach (var summary in (AudioNoteSummaryCollection)value)
             {
                 writer.WritePropertyName(summary.Id);
                 summary.Id = null;

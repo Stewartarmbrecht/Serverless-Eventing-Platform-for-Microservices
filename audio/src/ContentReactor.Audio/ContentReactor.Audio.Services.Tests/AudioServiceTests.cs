@@ -145,7 +145,7 @@ namespace ContentReactor.Audio.Services.Tests
             var result = await service.GetAudioNoteAsync("fakeid", "fakeuserid");
 
             // assert
-            Assert.Equal("https://fakeblobrepository/audio/fakeuserid/fakeid?sasToken=Read", result.AudioUrl);
+            Assert.Equal("https://fakeblobrepository/audio/fakeuserid/fakeid?sasToken=Read", result.AudioUrl.OriginalString);
             Assert.Equal("faketranscript", result.Transcript);
         }
 
@@ -161,7 +161,7 @@ namespace ContentReactor.Audio.Services.Tests
             var result = await service.GetAudioNoteAsync("fakeid", "fakeuserid");
 
             // assert
-            Assert.Equal("https://fakeblobrepository/audio/fakeuserid/fakeid?sasToken=Read", result.AudioUrl);
+            Assert.Equal("https://fakeblobrepository/audio/fakeuserid/fakeid?sasToken=Read", result.AudioUrl.OriginalString);
             Assert.Null(result.Transcript);
         }
 

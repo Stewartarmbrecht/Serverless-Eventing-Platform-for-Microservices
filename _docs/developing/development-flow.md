@@ -6,11 +6,19 @@ have listed the issues that are checked and the technologies used to perform the
 with links to resourcs to learn more about the technology.
 
 * Coding Loop
-    * C# Compilation Issues - [VS Code](https://code.visualstudio.com) - [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode)
-    * C# Code Formatting Issues - [StyleCop](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
-    * C# Code Structure Issues - [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
-    * C# Code Commenting Issues - [Code Commenting](https://docs.microsoft.com/en-us/dotnet/csharp/codedoc) & [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
+    * [VS Code](https://code.visualstudio.com)
+        * C# Compilation Issues - [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode)
+        * C# Code Commenting Issues - [Code Commenting](https://docs.microsoft.com/en-us/dotnet/csharp/codedoc) & [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
+    * [Visual Studio 2017](https://www.microsoft.com/en-us/store/b/visualstudio)
+        * C# Compilation Issues - [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode)
+        * C# Code Commenting Issues - [Code Commenting](https://docs.microsoft.com/en-us/dotnet/csharp/codedoc) & [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
+        * C# Code Formatting Issues - [StyleCop](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
+        * C# Code Structure Issues - [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
 * Build Loop
+    * [VS Code](https://code.visualstudio.com)
+        * C# Code Formatting Issues - [StyleCop](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
+        * C# Code Structure Issues - [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
+        * C# Code Security Issues - [FxCop](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers/)
 * Unit Testing Loop
 * Isolated Run Loop
 * Continuous Integration Loop

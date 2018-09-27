@@ -1,36 +1,55 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Web.Http;
-using ContentReactor.Audio.Services;
-using ContentReactor.Audio.Services.Converters;
-using ContentReactor.Audio.Services.Models.Requests;
-using ContentReactor.Audio.Services.Models.Results;
-using ContentReactor.Shared;
-using ContentReactor.Shared.BlobRepository;
-using ContentReactor.Shared.UserAuthentication;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json;
-
 namespace ContentReactor.Audio.Api
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using ContentReactor.Audio.Services;
+    using ContentReactor.Audio.Services.Converters;
+    using ContentReactor.Audio.Services.Models.Requests;
+    using ContentReactor.Audio.Services.Models.Results;
+    using ContentReactor.Shared;
+    using ContentReactor.Shared.BlobRepository;
+    using ContentReactor.Shared.UserAuthentication;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Http;
+    using Microsoft.Azure.WebJobs.Host;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Functions for Audio API.
+    /// </summary>
     public static class ApiFunctions
     {
         private const string JsonContentType = "application/json";
-        public static IAudioService AudioService = new AudioService(new BlobRepository(), new AudioTranscriptionService(), new EventGridPublisherService());
-        public static IUserAuthenticationService UserAuthenticationService = new QueryStringUserAuthenticationService();
 
+        /// <summary>
+        /// Service for audio files.
+        /// </summary>
+        /// <returns>Audio service interface.</returns>
+        private static IAudioService audioService = new AudioService(new BlobRepository(), new AudioTranscriptionService(), new EventGridPublisherService());
+
+        /// <summary>
+        /// Authentication Service
+        /// </summary>
+        /// <returns>IUserAuthenticationService</returns>
+        private static IUserAuthenticationService userAuthenticationService = new QueryStringUserAuthenticationService();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
         [FunctionName("BeginCreateAudio")]
         public static async Task<IActionResult> BeginCreateAudio
             ([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "audio")]HttpRequest req,
             TraceWriter log)
         {
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (! await userAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
             {
                 return responseResult;
             }
@@ -38,7 +57,7 @@ namespace ContentReactor.Audio.Api
             // create the audio note
             try
             {
-                var (id, url) = AudioService.BeginAddAudioNote(userId);
+                var (id, url) = audioService.BeginAddAudioNote(userId);
                 return new OkObjectResult(new
                 {
                     id = id,
@@ -77,7 +96,7 @@ namespace ContentReactor.Audio.Api
             }
 
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (! await userAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
             {
                 return responseResult;
             }
@@ -85,7 +104,7 @@ namespace ContentReactor.Audio.Api
             // finish creating the audio note
             try
             {
-                var result = await AudioService.CompleteAddAudioNoteAsync(id, userId, data.CategoryId);
+                var result = await audioService.CompleteAddAudioNoteAsync(id, userId, data.CategoryId);
 
                 switch (result)
                 {
@@ -96,7 +115,7 @@ namespace ContentReactor.Audio.Api
                     case CompleteAddAudioNoteResult.AudioAlreadyCreated:
                         return new BadRequestObjectResult(new { error = "Image has already been created." });
                     default:
-                        throw new InvalidOperationException($"Unexpected result '{result}' from {nameof(AudioService)}.{nameof(AudioService.CompleteAddAudioNoteAsync)}");
+                        throw new InvalidOperationException($"Unexpected result '{result}' from {nameof(audioService)}.{nameof(audioService.CompleteAddAudioNoteAsync)}");
                 }
             }
             catch (Exception ex)
@@ -113,7 +132,7 @@ namespace ContentReactor.Audio.Api
             string id)
         {
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (! await userAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
             {
                 return responseResult;
             }
@@ -121,7 +140,7 @@ namespace ContentReactor.Audio.Api
             // get the audio note
             try
             {
-                var audioNoteDetails = await AudioService.GetAudioNoteAsync(id, userId);
+                var audioNoteDetails = await audioService.GetAudioNoteAsync(id, userId);
                 if (audioNoteDetails == null)
                 {
                     return new NotFoundResult();
@@ -142,7 +161,7 @@ namespace ContentReactor.Audio.Api
             TraceWriter log)
         {
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (! await userAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
             {
                 return responseResult;
             }
@@ -150,7 +169,7 @@ namespace ContentReactor.Audio.Api
             // lilst the audio notes
             try
             {
-                var summaries = await AudioService.ListAudioNotesAsync(userId);
+                var summaries = await audioService.ListAudioNotesAsync(userId);
                 if (summaries == null)
                 {
                     return new NotFoundResult();
@@ -186,7 +205,7 @@ namespace ContentReactor.Audio.Api
             string id)
         {
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (! await userAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
             {
                 return responseResult;
             }
@@ -194,7 +213,7 @@ namespace ContentReactor.Audio.Api
             // delete the audio note
             try
             {
-                await AudioService.DeleteAudioNoteAsync(id, userId);
+                await audioService.DeleteAudioNoteAsync(id, userId);
                 return new NoContentResult();
             }
             catch (Exception ex)

@@ -1,16 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
-
-namespace ContentReactor.Shared.BlobRepository
+﻿namespace ContentReactor.Shared.BlobRepository
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
+
+    /// <summary>
+    /// Interface interacting with blobs.
+    /// </summary>
     public interface IBlobRepository
     {
+        /// <summary>
+        /// Creates a placeholder for a blob that will be uploaded.
+        /// </summary>
+        /// <param name="containerName">Name of the container.</param>
+        /// <param name="folderName">Name of the folder.</param>
+        /// <param name="blobId">Unique id for the blob.</param>
+        /// <returns>CloudBlockBlob</returns>
         CloudBlockBlob CreatePlaceholderBlob(string containerName, string folderName, string blobId);
+
+        /// <summary>
+        /// Downloads a blob.
+        /// </summary>
+        /// <param name="blob"></param>
+        /// <param name="stream"></param>
+        /// <returns></returns>
         Task DownloadBlobAsync(CloudBlockBlob blob, Stream stream);
         Task<CloudBlockBlob> UploadBlobAsync(string containerName, string folderName, string blobId, Stream stream, string contentType);
         Task<CloudBlockBlob> GetBlobAsync(string containerName, string folderName, string blobId, bool includeAttributes = false);
