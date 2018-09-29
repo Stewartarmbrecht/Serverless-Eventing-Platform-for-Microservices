@@ -24,4 +24,4 @@ steps:
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional
     pwsh: true # Optional
-    workingDirectory: ./deploy # Optional
+    workingDirectory: ./events/deploy # Optional
