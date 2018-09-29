@@ -25,6 +25,9 @@ if (!$region) {
     set and environment variable with the name: 'region'." $loggingPrefix
 }
 
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
 $command = "az webapp deployment source config-zip --debug --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
 
@@ -34,3 +37,5 @@ $command = "az webapp deployment source config-zip --debug --resource-group $res
 $result = ExecuteCommand $command $loggingPrefix "Deploying the worker application."
 
 $result
+
+$ErrorActionPreference = $old_ErrorActionPreference 
