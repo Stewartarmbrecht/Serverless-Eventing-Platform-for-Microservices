@@ -9,7 +9,12 @@ $directoryStart = Get-Location
 
 Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.App"
 
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
 $result = ExecuteCommand "npm install" $loggingPrefix "Installing web app dependencies."
+
+$ErrorActionPreference = $old_ErrorActionPreference 
 
 $result = ExecuteCommand "npm run build" $loggingPrefix "Building web app distribution package."
 
