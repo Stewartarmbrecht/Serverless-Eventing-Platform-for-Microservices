@@ -1,4 +1,4 @@
-param([String]$namePrefix,[String]$region,[String]$userName,[SecureString]$password)
+param([String]$namePrefix,[String]$region,[String]$userName,[String]$password)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
