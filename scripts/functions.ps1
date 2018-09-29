@@ -9,7 +9,7 @@ function ExecuteCommand([String]$command, [String]$loggingPrefix, [String]$logEn
     # D "    In Direcotory: $(Get-Location)" $loggingPrefix
     $result = (Invoke-Expression $command) 2>&1
     $code = $lastExitCode
-    if(($code -And $code -ne 0) -Or (!$code -And $code -ne 0 -And $null -ne $error[0]))) {
+    if(($code -And $code -ne 0) -Or (!$code -And $code -ne 0 -And $null -ne $error[0])) {
         E "Failed to execute command: $command" $loggingPrefix
         E "Command exited with a code of $code" $loggingPrefix
         E "Command exited with error: $($error[0])" $loggingPrefix
