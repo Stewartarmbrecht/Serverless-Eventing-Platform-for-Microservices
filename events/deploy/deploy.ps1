@@ -1,9 +1,15 @@
-param([String]$namePrefix,[String]$region)
+param([String] $namePrefix, [String] $region, [String]$userName, [String] $password)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
 if (!$region) {
     $region = $Env:region
+}
+if (!$userName) {
+    $userName = $Env:userName
+}
+if (!$password) {
+    $password = $Env:password
 }
 $loggingPrefix = "Events Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-events"
@@ -24,6 +30,9 @@ if (!$region) {
 }
 
 D "Deploying the event grid." $loggingPrefix
+
+$command = "az login -u $userName -p $password"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az group create -n $resourceGroupName -l $region"
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
