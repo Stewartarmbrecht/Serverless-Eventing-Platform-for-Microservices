@@ -24,5 +24,10 @@ if (!$region) {
 }
 # Audio Microservice Deploy
 
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
 $command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
+
+$ErrorActionPreference = $old_ErrorActionPreference 

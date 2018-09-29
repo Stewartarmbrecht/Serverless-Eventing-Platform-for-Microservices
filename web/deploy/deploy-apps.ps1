@@ -37,5 +37,10 @@ $result = ExecuteCommand $command $loggingPrefix "Removing the web server zip pa
 $command = "Compress-Archive -Path $path -DestinationPath $destination"
 $result = ExecuteCommand $command $loggingPrefix "Creating the new zip package."
 
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
 $command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $webAppName --src ./ContentReactor.Web.zip"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the new web server."
+
+$ErrorActionPreference = $old_ErrorActionPreference 
