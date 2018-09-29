@@ -1,4 +1,4 @@
-param([String]$namePrefix,[String]$region,[String]$bigHugeThesaurusApiKey,[String]$userName,[String]$password)
+param([String]$namePrefix,[String]$region,[String]$userName,[SecureString]$password)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -20,4 +20,4 @@ Set-Location $PSSCriptRoot
 
 ./../build/build.ps1
 
-./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -bigHugeThesaurusApiKey $bigHugeThesaurusApiKey -userName $userName -password $password
+./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password

@@ -19,7 +19,7 @@ steps:
   inputs:
     targetType: filePath # Optional. Options: filePath, inline
     filePath: ./audio/scripts/deploy.ps1 # Required when targetType == FilePath
-    arguments:  -namePrefix stewless4 -region westus2 -bigHugeThesaurusApiKey 31f29e4beadfed5b6067f22a7caa9e02 -userName $(userName) -password $(password)
+    arguments:  -namePrefix stewless4 -region westus2 -userName $(userName) -password $(password)
     errorActionPreference: stop # Optional. Options: stop, continue, silentlyContinue
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional
