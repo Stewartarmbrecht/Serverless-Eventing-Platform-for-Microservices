@@ -1,4 +1,4 @@
-param([String]$namePrefix,[String]$region,[String]$bigHugeThesaurusApiKey)
+param([String] $namePrefix, [String] $region, [String] $bigHugeThesaurusApiKey, [String]$userName, [String] $password)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -7,6 +7,12 @@ if (!$region) {
 }
 if (!$bigHugeThesaurusApiKey) {
     $bigHugeThesaurusApiKey = $Env:bigHugeThesaurusApiKey
+}
+if (!$userName) {
+    $userName = $Env:userName
+}
+if (!$password) {
+    $password = $Env:password
 }
 $loggingPrefix = "Categories Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-categories"
@@ -34,6 +40,9 @@ if (!$region) {
 }
 
 D "Deploying the microservice." $loggingPrefix
+
+$command = "az login -u $userName -p $password"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az group create -n $resourceGroupName -l $region"
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
