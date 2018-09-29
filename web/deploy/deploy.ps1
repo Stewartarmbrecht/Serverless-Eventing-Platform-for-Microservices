@@ -1,9 +1,15 @@
-param([String]$namePrefix,[String]$region)
+param([String] $namePrefix, [String] $region, [String]$userName, [String] $password)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
 if (!$region) {
     $region = $Env:region
+}
+if (!$userName) {
+    $userName = $Env:userName
+}
+if (!$password) {
+    $password = $Env:password
 }
 $loggingPrefix = "Web Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-web"
@@ -28,6 +34,9 @@ if (!$region) {
 }
 
 D "Deploying the web server infrasructure." $loggingPrefix
+
+$command = "az login -u $userName -p $password"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az group create -n $resourceGroupName -l $region" 
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
