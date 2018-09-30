@@ -40,8 +40,13 @@ if (!$region) {
 
 D "Deploying the microservice." $loggingPrefix
 
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
 $command = "az login -u $userName -p $password"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
+
+$ErrorActionPreference = $old_ErrorActionPreference 
 
 $command = "az group create -n $resourceGroupName -l $region"
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
