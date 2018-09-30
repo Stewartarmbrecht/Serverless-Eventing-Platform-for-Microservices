@@ -49,6 +49,11 @@ D "Deploying the microservice." $loggingPrefix
 $old_ErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
 
+$userName
+$password
+$tenantId
+$subscriptionId
+
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId --subscription $subscriptionId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
