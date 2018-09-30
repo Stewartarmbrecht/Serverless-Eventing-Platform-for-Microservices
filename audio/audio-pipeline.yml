@@ -3,7 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pool: Default
+pool: 
+  vmImage: 'ubuntu-16.04'
 
 trigger:
   batch: true
