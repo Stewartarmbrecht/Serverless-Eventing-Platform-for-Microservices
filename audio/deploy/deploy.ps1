@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -10,6 +10,9 @@ if (!$userName) {
 }
 if (!$password) {
     $password = $Env:password
+}
+if (!$tenantId) {
+    $tenantId = $Env:tenantId
 }
 $loggingPrefix = "Audio Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-audio"
@@ -43,7 +46,7 @@ D "Deploying the microservice." $loggingPrefix
 $old_ErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
 
-$command = "az login -u $userName -p $password"
+$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $ErrorActionPreference = $old_ErrorActionPreference 
