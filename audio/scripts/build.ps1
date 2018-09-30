@@ -7,5 +7,5 @@ Set-Location "$PSSCriptRoot/../"
 
 $directoryStart = Get-Location
 
-Set-Location "$directoryStart/src/contentreactor.$microserviceName"
+Set-Location "$directoryStart/src/ContentReactor.$microserviceName"
 $result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
