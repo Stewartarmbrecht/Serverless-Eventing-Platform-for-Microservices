@@ -5,9 +5,6 @@ if (!$namePrefix) {
 if (!$region) {
     $region = $Env:region
 }
-if (!$bigHugeThesaurusApiKey) {
-    $bigHugeThesaurusApiKey = $Env:bigHugeThesaurusApiKey
-}
 if (!$userName) {
     $userName = $Env:userName
 }
