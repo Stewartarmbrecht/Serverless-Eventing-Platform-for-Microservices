@@ -35,6 +35,15 @@ if (!$region) {
     set and environment variable with the name: 'region'." $loggingPrefix
 }
 
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
+# https://github.com/Microsoft/azure-pipelines-agent/issues/1816
+$command = "az"
+$result = ExecuteCommand $command $loggingPrefix "Executing first AZ call to get around Task bug."
+
+$ErrorActionPreference = $old_ErrorActionPreference 
+
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
