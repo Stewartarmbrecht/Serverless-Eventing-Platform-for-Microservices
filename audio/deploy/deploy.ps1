@@ -71,7 +71,7 @@ $result = ExecuteCommand $command $loggingPrefix "Clearing the storage account C
 $command = "az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins ""*"" --allowed-headers ""*"" --exposed-headers ""*"""
 $result = ExecuteCommand $command $loggingPrefix "Creating the storage account CORS policy."
 
-./deploy-apps.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password
+./deploy-apps.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
 
 $command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
