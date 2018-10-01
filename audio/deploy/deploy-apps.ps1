@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId, [String] $subscriptionId)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -13,9 +13,6 @@ if (!$password) {
 }
 if (!$tenantId) {
     $tenantId = $Env:tenantId
-}
-if (!$subscriptionId) {
-    $subscriptionId = $Env:subscriptionId
 }
 
 $loggingPrefix = "Audio Deployment ($namePrefix)"
@@ -38,11 +35,11 @@ if (!$region) {
     set and environment variable with the name: 'region'." $loggingPrefix
 }
 
+$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
+
 $old_ErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
-
-$command = "az login --service-principal --username $userName --password $password --tenant $tenantId --subscription $subscriptionId"
-$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
