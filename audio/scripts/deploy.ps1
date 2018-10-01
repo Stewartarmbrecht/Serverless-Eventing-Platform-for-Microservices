@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId, [String] $subscriptionId)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -23,4 +23,4 @@ Set-Location $PSSCriptRoot
 
 ./../build/build.ps1
 
-./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId -subscriptionId $subscriptionId
+./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId

@@ -11,7 +11,7 @@ trigger:
   branches:
     include: [ master ] # branch names which will trigger a build
   paths:
-    include:  [ audio/src/*, audio/audio-app-pipeline.yml ] # file paths which must match to trigger a build
+    include:  [ audio/src/*, audio/audio-app-pipeline.yml, audio/scripts/deploy-apps.ps1, audio/build/*, audio/deploy/deploy-apps.ps1 ] # file paths which must match to trigger a build
 
 steps:
 # PowerShell

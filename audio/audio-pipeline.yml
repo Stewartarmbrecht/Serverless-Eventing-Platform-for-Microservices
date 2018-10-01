@@ -3,7 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pool: Default
+pool: 
+  vmImage: 'ubuntu-16.04'
 
 trigger:
   batch: true
@@ -11,7 +12,7 @@ trigger:
     include: [ master ] # branch names which will trigger a build
   paths:
     include:  [ audio/* ] # file paths which must match to trigger a build
-    exclude:  [ audio/src/*, audio/audio-app-pipeline.yml ] # file paths which must match to trigger a build
+    exclude:  [ audio/src/*, audio/audio-app-pipeline.yml, audio/scripts/deploy-apps.ps1, audio/build/*, audio/deploy/deploy-apps.ps1  ] # file paths which must match to trigger a build
 
 steps:
 # PowerShell

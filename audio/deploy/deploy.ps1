@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId, [String] $subscriptionId)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -14,9 +14,7 @@ if (!$password) {
 if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
-if (!$subscriptionId) {
-    $subscriptionId = $Env:subscriptionId
-}
+
 $loggingPrefix = "Audio Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-audio"
 $deploymentFile = "./microservice.json"
@@ -49,15 +47,14 @@ D "Deploying the microservice." $loggingPrefix
 $old_ErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
 
-$userName
-$password
-$tenantId
-$subscriptionId
-
-$command = "az login --service-principal --username $userName --password $password --tenant $tenantId --subscription $subscriptionId"
-$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
+# https://github.com/Microsoft/azure-pipelines-agent/issues/1816
+$command = "az"
+$result = ExecuteCommand $command $loggingPrefix "Executing first AZ call to get around Task bug."
 
 $ErrorActionPreference = $old_ErrorActionPreference 
+
+$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az group create -n $resourceGroupName -l $region"
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
