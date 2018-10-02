@@ -14,5 +14,5 @@ $result = ExecuteCommand "Remove-Item -Path $destination -Recurse -Force -ErrorA
 
 $result = ExecuteCommand "Compress-Archive -Path $path -DestinationPath $destination" $loggingPrefix "Creating the API package."
 
-Set-Location "$directoryStart\build"
+Set-Location "$directoryStart/build"
 D "Built the $microserviceName Microservice" $loggingPrefix
