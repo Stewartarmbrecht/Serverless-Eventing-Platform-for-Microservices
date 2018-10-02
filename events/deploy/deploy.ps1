@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String]$userName, [String] $password)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -11,6 +11,10 @@ if (!$userName) {
 if (!$password) {
     $password = $Env:password
 }
+if (!$tenantId) {
+    $tenantId = $Env:tenantId
+}
+
 $loggingPrefix = "Events Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-events"
 $deploymentFile = "./template.json"
@@ -31,7 +35,16 @@ if (!$region) {
 
 D "Deploying the event grid." $loggingPrefix
 
-$command = "az login -u $userName -p $password"
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
+# https://github.com/Microsoft/azure-pipelines-agent/issues/1816
+$command = "az"
+$result = ExecuteCommand $command $loggingPrefix "Executing first AZ call to get around Task bug."
+
+$ErrorActionPreference = $old_ErrorActionPreference 
+
+$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az group create -n $resourceGroupName -l $region"

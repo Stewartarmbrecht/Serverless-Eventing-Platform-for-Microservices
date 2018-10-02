@@ -21,7 +21,7 @@ steps:
   inputs:
     targetType: filePath # Optional. Options: filePath, inline
     filePath: ./categories/scripts/deploy.ps1 # Required when targetType == FilePath
-    arguments:  -namePrefix stewless4 -region westus2 -userName $(userName) -password $(password) -tenantId $(tenantId) -bigHugeThesaurusApiKey $(bigHugeThesaurusApiKey)
+    arguments:  -namePrefix $(namePrefix) -region $(region) -userName $(userName) -password $(password) -tenantId $(tenantId) -bigHugeThesaurusApiKey $(bigHugeThesaurusApiKey)
     errorActionPreference: stop # Optional. Options: stop, continue, silentlyContinue
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional
