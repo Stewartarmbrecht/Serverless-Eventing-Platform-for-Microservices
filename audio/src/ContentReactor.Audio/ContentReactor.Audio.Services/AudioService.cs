@@ -201,6 +201,7 @@
 
                 // send to Cognitive Services and get back a transcript
                 transcript = await audioTranscriptionService.GetAudioTranscriptFromCognitiveServicesAsync(audioBlobStream);
+                transcript = $"{transcript} with a suffix";
             }
             
             // update the blob's metadata
