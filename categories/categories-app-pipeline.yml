@@ -3,14 +3,15 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pool: Default
+pool: 
+  vmImage: 'ubuntu-16.04'
 
 trigger:
   batch: true
   branches:
     include: [ master ] # branch names which will trigger a build
   paths:
-    include:  [ categories/* ] # file paths which must match to trigger a build
+    include:  [ categories/src/*, categories/categories-app-pipeline.yml, categories/scripts/deploy-apps.ps1, categories/build/*, categories/deploy/deploy-apps.ps1 ] # file paths which must match to trigger a build
 
 steps:
 # PowerShell
@@ -18,8 +19,8 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: filePath # Optional. Options: filePath, inline
-    filePath: ./categories/scripts/deploy.ps1 # Required when targetType == FilePath
-    arguments:  -namePrefix stewless4 -region westus2 -bigHugeThesaurusApiKey $(thesaurusApiKey) -userName $(userName) -password $(password)
+    filePath: ./categories/scripts/deploy-apps.ps1 # Required when targetType == FilePath
+    arguments:  -namePrefix stewless4 -region westus2 -userName $(userName) -password $(password) -tenantId $(tenantId) -bigHugeThesaurusApiKey $(bigHugeThesaurusApiKey)
     errorActionPreference: stop # Optional. Options: stop, continue, silentlyContinue
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional

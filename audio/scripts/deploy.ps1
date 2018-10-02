@@ -14,9 +14,7 @@ if (!$password) {
 if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
-if (!$subscriptionId) {
-    $subscriptionId = $Env:subscriptionId
-}
+
 Set-Location $PSSCriptRoot
 
 . ./../../scripts/functions.ps1
