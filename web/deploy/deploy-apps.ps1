@@ -1,10 +1,20 @@
-param([String]$namePrefix,[String]$region)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
 if (!$region) {
     $region = $Env:region
 }
+if (!$userName) {
+    $userName = $Env:userName
+}
+if (!$password) {
+    $password = $Env:password
+}
+if (!$tenantId) {
+    $tenantId = $Env:tenantId
+}
+
 $loggingPrefix = "Web Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-web"
 $webAIName = "$namePrefix-web-ai"
@@ -24,6 +34,18 @@ if (!$region) {
 }
 
 D "Deploying the web server." $loggingPrefix
+
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
+# https://github.com/Microsoft/azure-pipelines-agent/issues/1816
+$command = "az"
+$result = ExecuteCommand $command $loggingPrefix "Executing first AZ call to get around Task bug."
+
+$ErrorActionPreference = $old_ErrorActionPreference 
+
+$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "`$webInstrumentationKey=`$`(az resource show --namespace microsoft.insights --resource-type components --name $webAIName -g $resourceGroupName --query properties.InstrumentationKey`)
 dir ./.dist/wwwroot/main.*.bundle.js | ForEach {(Get-Content `$_).replace('""%INSTRUMENTATION_KEY%""', ""`$webInstrumentationKey"") | Set-Content `$_}" 
