@@ -8,7 +8,7 @@ Set-Location "$PSSCriptRoot/../"
 $directoryStart = Get-Location
 
 D "Building the Web Application." $loggingPrefix
-./build/build-web-app.ps1
+./build/Build-Web-App.ps1
 
 Set-Location "$directoryStart/src/ContentReactor.Web/ContentReactor.Web.Server"
 
