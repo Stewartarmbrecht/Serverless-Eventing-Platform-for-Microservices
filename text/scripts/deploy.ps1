@@ -1,12 +1,9 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
 if (!$region) {
     $region = $Env:region
-}
-if (!$bigHugeThesaurusApiKey) {
-    $bigHugeThesaurusApiKey = $Env:bigHugeThesaurusApiKey
 }
 if (!$userName) {
     $userName = $Env:userName
@@ -14,10 +11,14 @@ if (!$userName) {
 if (!$password) {
     $password = $Env:password
 }
+if (!$tenantId) {
+    $tenantId = $Env:tenantId
+}
+
 Set-Location $PSSCriptRoot
 
 . ./../../scripts/functions.ps1
 
 ./../build/build.ps1
 
-./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password
+./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
