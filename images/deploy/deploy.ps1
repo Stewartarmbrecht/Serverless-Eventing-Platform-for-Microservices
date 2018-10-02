@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String]$userName, [String] $password)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -11,6 +11,10 @@ if (!$userName) {
 if (!$password) {
     $password = $Env:password
 }
+if (!$tenantId) {
+    $tenantId = $Env:tenantId
+}
+
 $loggingPrefix = "Images Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-images"
 $deploymentFile = "./microservice.json"
@@ -36,7 +40,16 @@ if (!$region) {
 
 D "Deploying the microservice." $loggingPrefix
 
-$command = "az login -u $userName -p $password"
+$old_ErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = 'SilentlyContinue'
+
+# https://github.com/Microsoft/azure-pipelines-agent/issues/1816
+$command = "az"
+$result = ExecuteCommand $command $loggingPrefix "Executing first AZ call to get around Task bug."
+
+$ErrorActionPreference = $old_ErrorActionPreference 
+
+$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
 $command = "az group create -n $resourceGroupName -l $region"
@@ -57,7 +70,7 @@ $result = ExecuteCommand $command $loggingPrefix "Clearing the storage account C
 $command = "az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins ""*"" --allowed-headers ""*"" --exposed-headers ""*"""
 $result = ExecuteCommand $command $loggingPrefix "Creating the storage account CORS policy."
 
-./deploy-apps.ps1 -namePrefix $namePrefix -region $region
+./deploy-apps.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
 
 $command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
