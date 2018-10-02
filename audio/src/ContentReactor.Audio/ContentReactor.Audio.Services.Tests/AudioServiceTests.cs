@@ -324,7 +324,7 @@ namespace ContentReactor.Audio.Services.Tests
             var result = await service.UpdateAudioTranscriptAsync("fakeid", "fakeuserid");
 
             // assert
-            Assert.Equal("transcript", result);
+            Assert.Equal("transcript", result.Replace(" with a suffix", ""));
         }
 
         [Fact]
@@ -344,7 +344,7 @@ namespace ContentReactor.Audio.Services.Tests
 
             // assert
             Assert.True(fakeBlobRepository.Blobs.Single().Blob.Metadata.ContainsKey(AudioService.TranscriptMetadataName));
-            Assert.Equal("transcript",fakeBlobRepository.Blobs.Single().Blob.Metadata[AudioService.TranscriptMetadataName.Replace(" with a suffix","")]);
+            Assert.Equal("transcript",fakeBlobRepository.Blobs.Single().Blob.Metadata[AudioService.TranscriptMetadataName].Replace(" with a suffix",""));
         }
 
         [Fact]
@@ -367,7 +367,7 @@ namespace ContentReactor.Audio.Services.Tests
             mockEventGridPublisherService.Verify(m => 
                 m.PostEventGridEventAsync(EventTypes.Audio.AudioTranscriptUpdated,
                     "fakeuserid/fakeid", 
-                    It.Is<AudioTranscriptUpdatedEventData>(d => d.TranscriptPreview == "transcript")),
+                    It.Is<AudioTranscriptUpdatedEventData>(d => d.TranscriptPreview.Replace(" with a suffix", "") == "transcript")),
                 Times.Once);
         }
 
