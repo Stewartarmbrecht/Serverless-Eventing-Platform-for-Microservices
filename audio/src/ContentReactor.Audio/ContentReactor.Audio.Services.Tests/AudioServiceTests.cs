@@ -344,7 +344,7 @@ namespace ContentReactor.Audio.Services.Tests
 
             // assert
             Assert.True(fakeBlobRepository.Blobs.Single().Blob.Metadata.ContainsKey(AudioService.TranscriptMetadataName));
-            Assert.Equal("transcript",fakeBlobRepository.Blobs.Single().Blob.Metadata[AudioService.TranscriptMetadataName]);
+            Assert.Equal("transcript",fakeBlobRepository.Blobs.Single().Blob.Metadata[AudioService.TranscriptMetadataName.Replace(" with a suffix","")]);
         }
 
         [Fact]
