@@ -77,7 +77,7 @@ if($result -eq $false) {
     $result = ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB collection."
 }
 
-./deploy-apps.ps1 -namePrefix $namePrefix -region $region
+./deploy-apps.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
 
 $command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
