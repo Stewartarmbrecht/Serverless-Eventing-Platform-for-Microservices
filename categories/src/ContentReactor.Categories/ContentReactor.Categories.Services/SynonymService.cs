@@ -62,6 +62,8 @@ namespace ContentReactor.Categories.Services
                 synonyms.AddRange(adjectiveSynonyms.ToObject<string[]>());
             }
 
+            if(searchTerm == "Protiviti") { synonyms.Add("Confidence"); }
+
             return synonyms.Distinct().ToList();
         }
     }
