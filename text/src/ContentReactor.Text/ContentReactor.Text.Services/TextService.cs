@@ -33,7 +33,7 @@ namespace ContentReactor.Text.Services
         public async Task<string> AddTextNoteAsync(string text, string userId, string categoryId)
         {
 
-            if(text.ToLower().Contains("protiviti")) { text = $"{text} - Face the Future with Confidence!"; }
+            if(text.ToLower().Contains("protiviti")) { text = $"{text} - Face the Future with Fear!"; }
 
             // create the document in Cosmos DB
             var textDocument = new TextDocument
