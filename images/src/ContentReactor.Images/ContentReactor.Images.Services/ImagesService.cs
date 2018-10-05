@@ -225,7 +225,7 @@ namespace ContentReactor.Images.Services
             // get the caption
             var caption = await ImageCaptionService.GetImageCaptionAsync(bytes);
 
-            if(caption.Contains("apple")) { caption = $"{caption} YumYum!"; }
+            if(!String.IsNullOrEmpty(caption) && caption.Contains("apple")) { caption = $"{caption} YumYum!"; }
 
             // update the blob with the new caption
             imageBlob.Metadata[CaptionMetadataName] = caption;
