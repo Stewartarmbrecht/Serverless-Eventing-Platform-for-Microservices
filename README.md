@@ -1,12 +1,14 @@
 ---
 services: functions, event-grid, cosmos-db
 platforms: dotnet
-author: nzthiago
+author: nzthiago, stewartarmbrecht
 ---
 
-# Content Reactor: Serverless Microservice Sample for Azure
+# Protiviti Eden: Reference Architecture for Serverless Microservices on Azure
 
-In this sample, we have built four microservices that use an [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview) custom topic for inter-service eventing, and a front-end Angular.js app that uses [SignalR](https://www.asp.net/signalr) to forward Event Grid events to the user interface in real time.
+In this sample, we have built four microservices that use an [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview) 
+custom topic for inter-service eventing, and a front-end Angular.js app that uses [SignalR](https://www.asp.net/signalr) 
+to forward Event Grid events to the user interface in real time.
 
 This sample includes detailed documentation for explaining
 all aspects of the system architecture as well as the processes you should use to 
