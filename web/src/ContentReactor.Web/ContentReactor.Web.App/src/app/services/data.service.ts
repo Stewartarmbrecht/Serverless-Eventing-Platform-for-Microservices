@@ -6,102 +6,102 @@ import { AudioItem } from '../components/items/audio.item';
 
 @Injectable()
 export class DataService {
-    private userId = new BehaviorSubject<string>("default");
+    private userId = new BehaviorSubject<string>('default');
     currentUser = this.userId.asObservable();
 
-    private categoryId = new BehaviorSubject<string>("defaultCategoryId")
+    private categoryId = new BehaviorSubject<string>('defaultCategoryId');
     currentCategory = this.categoryId.asObservable();
 
-    private categoryName = new BehaviorSubject<string>("defaultCategoryName")
+    private categoryName = new BehaviorSubject<string>('defaultCategoryName');
     currentCategoryName = this.categoryName.asObservable();
 
-    private images = new BehaviorSubject<Array<ImageItem>>([])
-    images_list = this.images.asObservable()
+    private images = new BehaviorSubject<Array<ImageItem>>([]);
+    images_list = this.images.asObservable();
 
-    private text = new BehaviorSubject<Array<TextItem>>([])
-    text_list = this.text.asObservable()
+    private text = new BehaviorSubject<Array<TextItem>>([]);
+    text_list = this.text.asObservable();
 
-    private audio = new BehaviorSubject<Array<AudioItem>>([])
-    audio_list = this.audio.asObservable()
+    private audio = new BehaviorSubject<Array<AudioItem>>([]);
+    audio_list = this.audio.asObservable();
 
-    constructor(){ }
+    constructor() { }
 
-    getCurrentUser(){
+    getCurrentUser() {
         return this.currentUser;
     }
-    
-    setCurrentUser(userid: string){
-        this.userId.next(userid)
+
+    setCurrentUser(userid: string) {
+        this.userId.next(userid);
     }
 
-    getCurrentCategory(){
-        return this.currentCategory
+    getCurrentCategory() {
+        return this.currentCategory;
     }
 
-    setCurrentCategory(categoryId: string){
-        this.categoryId.next(categoryId)
+    setCurrentCategory(categoryId: string) {
+        this.categoryId.next(categoryId);
     }
 
-    getCurrentCategoryName(){
+    getCurrentCategoryName() {
         return this.currentCategoryName;
     }
 
-    setCurrentCategoryName(categoryName: string){
-        this.categoryName.next(categoryName)
+    setCurrentCategoryName(categoryName: string) {
+        this.categoryName.next(categoryName);
     }
 
-    getImages(){
-        return this.images_list
+    getImages() {
+        return this.images_list;
     }
 
-    setImages(i_arr:Array<ImageItem>){
-        for(let item of i_arr){
-            this.images.next(this.images.getValue().concat(item))
+    setImages(i_arr: Array<ImageItem>) {
+        for (const item of i_arr) {
+            this.images.next(this.images.getValue().concat(item));
         }
     }
 
-    addImage(image:ImageItem){
-        this.images.next(this.images.getValue().concat(image))
+    addImage(image: ImageItem) {
+        this.images.next(this.images.getValue().concat(image));
     }
 
-    clearImages(){
-        this.images.next([])
+    clearImages() {
+        this.images.next([]);
     }
 
-    getText(){
-        return this.text_list
+    getText() {
+        return this.text_list;
     }
 
-    setText(i_txt:Array<TextItem>){
-        for(let item of i_txt){
-            this.text.next(this.text.getValue().concat(item))
+    setText(i_txt: Array<TextItem>) {
+        for (const item of i_txt) {
+            this.text.next(this.text.getValue().concat(item));
         }
     }
 
-    addText(text:TextItem){
-        this.text.next(this.text.getValue().concat(text))
+    addText(text: TextItem) {
+        this.text.next(this.text.getValue().concat(text));
     }
 
-    clearText(){
-        this.text.next([])
+    clearText() {
+        this.text.next([]);
     }
 
 
-    getAudio(){
-        return this.audio_list
+    getAudio() {
+        return this.audio_list;
     }
 
-    setAudio(i_audio:Array<AudioItem>){
-        for(let item of i_audio){
-            this.audio.next(this.audio.getValue().concat(item))
+    setAudio(i_audio: Array<AudioItem>) {
+        for (const item of i_audio) {
+            this.audio.next(this.audio.getValue().concat(item));
         }
     }
 
-    addAudio(audio:AudioItem){
-        this.audio.next(this.audio.getValue().concat(audio))
+    addAudio(audio: AudioItem) {
+        this.audio.next(this.audio.getValue().concat(audio));
     }
 
-    clearAudio(){
-        this.audio.next([])
+    clearAudio() {
+        this.audio.next([]);
     }
 }

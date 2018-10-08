@@ -1,37 +1,37 @@
-export class AudioItem{
-    id: string
-    categoryId: string
-    audioUrl: string
-    transcript : string
-    isActive: boolean = true;
-    showNotification: boolean = false;
+export class AudioItem {
+    id: string;
+    categoryId: string;
+    audioUrl: string;
+    transcript: string;
+    isActive = true;
+    showNotification = false;
 
-    constructor(e_id){
-        this.id = e_id
-    }
-
-    getId(){
-        return this.id
+    constructor(e_id) {
+        this.id = e_id;
     }
 
-    getCategoryId(){
-        return this.categoryId
-    }
-    getAudioUrl(){
-        return this.audioUrl
+    getId() {
+        return this.id;
     }
 
-    setCategoryId(id: string){
-        this.id = id
+    getCategoryId() {
+        return this.categoryId;
     }
-    setAudioUrl(url:string){
-        this.audioUrl = url
+    getAudioUrl() {
+        return this.audioUrl;
     }
 
-    getTranscript(){
-        return this.transcript
+    setCategoryId(id: string) {
+        this.id = id;
     }
-    setTranscript(e_transcript:string){
-        this.transcript = e_transcript
+    setAudioUrl(url: string) {
+        this.audioUrl = url;
+    }
+
+    getTranscript() {
+        return this.transcript;
+    }
+    setTranscript(e_transcript: string) {
+        this.transcript = e_transcript;
     }
 }

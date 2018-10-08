@@ -1,39 +1,39 @@
-export class ImageItem{
-    id: string
-    categoryId: string
-    previewUrl: string
-    caption : string
-    isActive: boolean = true;
-    showImage: boolean = false;
-    showNotification: boolean = false;
+export class ImageItem {
+    id: string;
+    categoryId: string;
+    previewUrl: string;
+    caption: string;
+    isActive = true;
+    showImage = false;
+    showNotification = false;
 
-    constructor(e_id){
-        this.id = e_id
-    }
-
-    getId(){
-        return this.id
+    constructor(e_id) {
+        this.id = e_id;
     }
 
-    getCategoryId(){
-        return this.categoryId
-    }
-    getPreviewUrl(){
-        return this.previewUrl
+    getId() {
+        return this.id;
     }
 
-    setCategoryId(id: string){
-        this.id = id
+    getCategoryId() {
+        return this.categoryId;
     }
-    setPreviewUrl(url:string){
-        this.previewUrl = url
-        this.showImage = true
+    getPreviewUrl() {
+        return this.previewUrl;
     }
 
-    getCaption(){
-        return this.caption
+    setCategoryId(id: string) {
+        this.id = id;
     }
-    setCaption(e_caption:string){
-        this.caption = e_caption
+    setPreviewUrl(url: string) {
+        this.previewUrl = url;
+        this.showImage = true;
+    }
+
+    getCaption() {
+        return this.caption;
+    }
+    setCaption(e_caption: string) {
+        this.caption = e_caption;
     }
 }
