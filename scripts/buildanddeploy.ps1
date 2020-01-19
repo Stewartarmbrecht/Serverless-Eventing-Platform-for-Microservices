@@ -18,6 +18,8 @@ if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
 
+Set-Location $PSSCriptRoot
+
 . ./functions.ps1
 
 
@@ -31,13 +33,13 @@ if(!$bigHugeThesaurusApiKey) {
     $bigHugeThesaurusApiKey = Read-Host -Prompt 'Please provide an API key for the Big Huge Thesaurus API. You can get a key here: https://words.bighugelabs.com/api.php'
 }
 if(!$userName) {
-    $userName = Read-Host -Prompt 'Please provide the object Id for a service principle to use for the deployment.'
+    $userName = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
 }
 if(!$password) {
     $password = Read-Host -Prompt 'Please provide the service principal secret (password) to use for the deployment.'
 }
 if(!$tenantId) {
-    $tenantId = Read-Host -Prompt 'Please provide the tenant Id for the service principal.'
+    $tenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }
 
 $loggingPrefix = "System Build"

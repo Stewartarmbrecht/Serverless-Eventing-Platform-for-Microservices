@@ -164,12 +164,12 @@
         {
             "name": "[variables('cognitiveServicesAccountName')]",
             "type": "Microsoft.CognitiveServices/accounts",
-            "location": "global",
-            "apiVersion": "2016-02-01-preview",
+            "apiVersion": "2017-04-18",
+            "location": "[resourceGroup().location]",
             "sku": {
-                "name": "S0"
+                "name": "F0"
             },
-            "kind": "Bing.Speech",
+            "kind": "SpeechServices",
             "properties": {}
         }
     ]
