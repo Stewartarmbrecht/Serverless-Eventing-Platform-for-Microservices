@@ -144,8 +144,8 @@
                         "EventGridTopicEndpoint": "[reference(variables('eventGridTopicResourceId'), '2018-01-01').endpoint]",
                         "EventGridTopicKey": "[listKeys(variables('eventGridTopicResourceId'), '2018-01-01').key1]",
                         "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountName'), ';AccountKey=', listKeys(variables('blobAccountName'),'2015-05-01-preview').key1)]",
-                        "CognitiveServicesVisionApiEndpoint": "[reference(variables('cognitiveServicesAccountName'),'2016-02-01-preview').endpoint]",
-                        "CognitiveServicesVisionApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2016-02-01-preview').key1]"
+                        "CognitiveServicesVisionApiEndpoint": "[reference(variables('cognitiveServicesAccountName'),'2017-04-18').endpoint]",
+                        "CognitiveServicesVisionApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2017-04-18').key1]"
                     },
                     "dependsOn": [
                         "[resourceId('Microsoft.Web/sites', variables('functionsWorkerApiAppName'))]",
@@ -162,7 +162,7 @@
             "name": "[variables('cognitiveServicesAccountName')]",
             "type": "Microsoft.CognitiveServices/accounts",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2016-02-01-preview",
+            "apiVersion": "2017-04-18",
             "sku": {
                 "name": "S1"
             },

@@ -406,8 +406,8 @@ export class ItemComponent implements OnInit, AfterContentInit {
                 const createImageUrl = location.origin + '/api/Image/' + id + '/?userId=' + this.injectedUserId;
                 const imageReq = this.http.post (createImageUrl, { categoryId: this.injectedCategoryId });
                 imageReq.subscribe(
-                    () => {
-                        const r_json = JSON.parse((res));
+                    (res2: any) => {
+                        const r_json = JSON.parse((res2));
                         const previewUrl: string = r_json.previewUrl;
                         const imageObj: ImageItem = this.fetchImageObject(id);
                         imageObj.setPreviewUrl(previewUrl);

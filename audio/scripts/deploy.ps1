@@ -21,9 +21,6 @@ if(!$namePrefix) {
 if(!$region) {
     $region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
 }
-if(!$bigHugeThesaurusApiKey) {
-    $bigHugeThesaurusApiKey = Read-Host -Prompt 'Please provide an API key for the Big Huge Thesaurus API. You can get a key here: https://words.bighugelabs.com/api.php'
-}
 if(!$userName) {
     $userName = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
 }

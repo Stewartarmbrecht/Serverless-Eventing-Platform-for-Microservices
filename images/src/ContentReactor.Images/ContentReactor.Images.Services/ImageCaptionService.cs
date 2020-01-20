@@ -25,9 +25,9 @@ namespace ContentReactor.Images.Services
 
         public async Task<string> GetImageCaptionAsync(byte[] imageBytes)
         {
-            HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", CognitiveServicesVisionApiKey);
+            HttpClient.DefaultRequestHeaders.Add("ocp-apim-subscription-key", CognitiveServicesVisionApiKey);
             
-            var uri = CognitiveServicesVisionApiEndpoint + "/analyze?visualFeatures=Description&language=en";
+            var uri = CognitiveServicesVisionApiEndpoint + "vision/v2.1/analyze?visualFeatures=Description&language=en";
             
             using (var content = new ByteArrayContent(imageBytes))
             {
