@@ -19,7 +19,7 @@
         "blobAccountName": "[concat(parameters('uniqueResourceNamePrefix'),'audioblob')]",
 
         "cognitiveServicesAccountName": "[concat(variables('resourceNamePrefix'), '-cs')]",
-        "cognitiveServicesApiUrl": "https://speech.platform.bing.com/speech/recognition/interactive/cognitiveservices/v1?language=en-us&format=detailed",
+        "cognitiveServicesApiUrl": "https://westus2.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-us&format=detailed",
 
         "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourceNamePrefix'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourceNamePrefix'),'-events-topic'))]"
     },
@@ -104,7 +104,7 @@
                         "AzureWebJobsSecretStorageType": "Files",
                         "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('applicationInsightsName')), '2014-04-01').InstrumentationKey]",
                         "CognitiveServicesSpeechApiEndpoint": "[variables('cognitiveServicesApiUrl')]",
-                        "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2016-02-01-preview').key1]",
+                        "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2017-04-18').key1]",
                         "EventGridTopicEndpoint": "[reference(variables('eventGridTopicResourceId'), '2018-01-01').endpoint]",
                         "EventGridTopicKey": "[listKeys(variables('eventGridTopicResourceId'), '2018-01-01').key1]",
                         "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountName'), ';AccountKey=', listKeys(variables('blobAccountName'),'2015-05-01-preview').key1)]"
@@ -144,7 +144,7 @@
                         "AzureWebJobsSecretStorageType": "Files",
                         "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('applicationInsightsName')), '2014-04-01').InstrumentationKey]",
                         "CognitiveServicesSpeechApiEndpoint": "[variables('cognitiveServicesApiUrl')]",
-                        "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2016-02-01-preview').key1]",
+                        "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2017-04-18').key1]",
                         "EventGridTopicEndpoint": "[reference(variables('eventGridTopicResourceId'), '2018-01-01').endpoint]",
                         "EventGridTopicKey": "[listKeys(variables('eventGridTopicResourceId'), '2018-01-01').key1]",
                         "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountName'), ';AccountKey=', listKeys(variables('blobAccountName'),'2015-05-01-preview').key1)]"
