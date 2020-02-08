@@ -5,7 +5,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "dev": "npm run dev-build && npm run copy",
+        "dev": "npm run dev-build && npm run copy-osx",
         "dev-build": "ng build",
         "build": "ng build --prod",
         "test": "ng test",
