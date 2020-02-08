@@ -4,7 +4,7 @@ platforms: dotnet
 author: nzthiago, stewartarmbrecht
 ---
 
-# Protiviti Eden: Reference Architecture for Serverless Microservices on Azure
+# Eden: Reference Architecture for Serverless Microservices on Azure
 
 In this sample, we have built four microservices that use an [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview) 
 custom topic for inter-service eventing, and a front-end Angular.js app that uses [SignalR](https://www.asp.net/signalr) 
