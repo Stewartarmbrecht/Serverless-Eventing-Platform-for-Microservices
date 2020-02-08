@@ -1,0 +1,84 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "uniqueResourceNamePrefix": {
+            "type": "string"
+        },
+        "publicUrlToLocalWebServer": {
+            "type": "string"
+        },
+        "uniqueDeveloperId": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "appServiceName": "[concat(parameters('uniqueResourceNamePrefix'),'-web-app')]",
+        "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
+        "eventGridFunctionSubscriptions": [
+            {
+                "resourceName": "[concat(parameters('uniqueDeveloperId'),'SignalRCategoryNotifications')]",
+                "webHookUrl": "[concat(parameters('publicUrlToLocalWebServer'),'/api/CategoryNotification')]",
+                "eventTypes": [
+                    "CategorySynonymsUpdated",
+                    "CategoryImageUpdated",
+                    "CategoryItemsUpdated",
+                    "CategoryNameUpdated",
+                    "CategoryCreated",
+                    "CategoryDeleted"
+                ]
+            },
+            {
+                "resourceName": "[concat(parameters('uniqueDeveloperId'),'SignalRImageNotifications')]",
+                "webHookUrl": "[concat(parameters('publicUrlToLocalWebServer'),'/api/ImageNotification')]",
+                "eventTypes": [
+                    "ImageCaptionUpdated",
+                    "ImageCreated",
+                    "ImageDeleted"
+                ]
+            },
+            {
+                "resourceName": "[concat(parameters('uniqueDeveloperId'),'SignalRAudioNotifications')]",
+                "webHookUrl": "[concat(parameters('publicUrlToLocalWebServer'),'/api/AudioNotification')]",
+                "eventTypes": [
+                    "AudioTranscriptUpdated",
+                    "AudioCreated",
+                    "AudioDeleted"
+                ]
+            },
+            {
+                "resourceName": "[concat(parameters('uniqueDeveloperId'),'SignalRTextNotifications')]",
+                "webHookUrl": "[concat(parameters('publicUrlToLocalWebServer'),'/api/TextNotification')]",
+                "eventTypes": [
+                    "TextCreated",
+                    "TextDeleted",
+                    "TextUpdated"
+                ]
+            }
+        ]
+    },
+    "resources": [
+        {
+            "name": "[concat(variables('eventGridTopicName'), '/Microsoft.EventGrid/', variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].resourceName)]",
+            "copy": {
+                "name": "eventGridFunctionSubscriptions",
+                "count": "[length(variables('eventGridFunctionSubscriptions'))]",
+                "mode": "Parallel"
+            },
+            "type": "Microsoft.EventGrid/topics/providers/eventSubscriptions",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2018-01-01",
+            "properties": {
+                "destination": {
+                    "endpointType": "WebHook",
+                    "properties": {
+                        "endpointUrl": "[variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].webHookUrl]"
+                    }
+                },
+                "filter": {
+                    "includedEventTypes": "[variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].eventTypes]"
+                }
+            }
+        }
+    ]
+}
