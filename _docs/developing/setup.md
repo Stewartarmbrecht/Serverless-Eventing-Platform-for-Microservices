@@ -16,4 +16,5 @@ Install the following on your development machine.
 8. [Create Azure Account](https://azure.microsoft.com/en-us/free/)
 9. [Create an Azure Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
 10. [Get a Big Huge Thesaurus API Key](https://words.bighugelabs.com/)
+11. [Install ngrok](https://ngrok.com/)
 
