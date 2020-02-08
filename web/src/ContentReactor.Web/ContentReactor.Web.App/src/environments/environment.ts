@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  appInsights: { 
-    instrumentationKey: "%INSTRUMENTATION_KEY%" 
+  apiUrl: 'https://localhost:5001',
+  appInsights: {
+    instrumentationKey: '%INSTRUMENTATION_KEY%'
   }
 };

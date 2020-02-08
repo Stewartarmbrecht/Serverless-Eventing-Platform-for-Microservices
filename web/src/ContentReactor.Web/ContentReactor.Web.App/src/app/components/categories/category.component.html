@@ -39,10 +39,22 @@
           <h1 class="jumbotron-heading">Categories</h1>
           <p class="lead text-muted">Start your Content journey!</p>
           <p>
-            <input type="text" id="categoryName" name="categoryName" 
-            [(ngModel)]="categoryName" class="form-control" placeholder="Category Name" required autofocus>
+            <input 
+              type="text" 
+              id="categoryName" 
+              name="categoryName" 
+              [(ngModel)]="categoryName" 
+              class="form-control" 
+              placeholder="Category Name"
+              data-cy="new-category-name-input"
+              required autofocus>
             <br>
-            <button [disabled]="categoryName == ''" type="button" class="btn btn-primary my-2" (click)="onClickAddCategory()">
+            <button 
+              [disabled]="categoryName == ''" 
+              type="button" 
+              class="btn btn-primary my-2" 
+              data-cy="add-category-button"
+              (click)="onClickAddCategory()">
                     Add a Category
             </button>
           </p>
@@ -63,17 +75,23 @@
       </section>
 
       <!-- CATEGORIES LIST -->
-      <div *ngIf="loaded" class="album py-5 bg-light">
+      <div *ngIf="loaded" class="album py-5 bg-light" data-cy="category-list">
         <div class="container">
           <div class="row">
             <div *ngFor="let item of categoriesList" [ngClass]="{'is-active': item.isActive}" class="col-md-4 notification-item">
-              <div class="card mb-4 box-shadow">
-                <span data-toggle="tooltip" title="{{item.notifications}} item(s) is updated!" *ngIf="item.showNotification" (click)="onClickClearNotifications(item.id)" class="notify-badge">{{item.notifications}}</span>
+              <div class="card mb-4 box-shadow" data-cy="category">
+                <span 
+                  data-toggle="tooltip" 
+                  title="{{item.notifications}} item(s) is updated!" 
+                  *ngIf="item.showNotification" 
+                  (click)="onClickClearNotifications(item.id)" 
+                  class="notify-badge">{{item.notifications}}</span>
                   
                <div class="view">
                 <img class="card-img-top circle-img" src={{item.imageUrl}} alt={{item.name}} @fadeshow>
-                <div *ngIf="!item.editMode && item.showCategory" class="middle badge badge-primary">
-                    <h4>{{item.name}}</h4>
+                <div *ngIf="!item.editMode && item.showCategory" 
+                  class="middle badge badge-primary">
+                    <h4 data-cy="category-name">{{item.name}}</h4>
                 </div>
                 <div *ngIf="!item.editMode && !item.showCategory" class="middle">
                     <p><i class="fa fa-spinner fa-spin" style="font-size:70px;color:grey"></i></p>

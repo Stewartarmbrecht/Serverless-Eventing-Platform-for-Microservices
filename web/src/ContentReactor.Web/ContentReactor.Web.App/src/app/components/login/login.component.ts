@@ -1,10 +1,10 @@
 import { OnInit, Component, Input } from '@angular/core';
-import { Location } from '@angular/common';
 import { HubConnection } from '@aspnet/signalr';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { HubService } from '../../services/hub.service';
 import { AppInsightsService } from '../../services/app-insights.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   title = 'app';
   name = '';
   userid = '';
-  location: Location;
   reconnect: Function;
 
   ngOnInit() {}
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   public connectToHub(): void {
-    this.hub.createConnection(location.origin, this.userid);
+    this.hub.createConnection(environment.apiUrl, this.userid);
 
     this.hub
       .getHubConnection()

@@ -12,14 +12,30 @@
       <img class="mb-4" src="assets/images/azure-event-grid.png" alt="" width="100" height="50">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="user" class="sr-only">Email address</label>
-      <input type="text" #email="ngModel" id="user" name="userid" [(ngModel)]="userid" class="form-control" placeholder="Email address" 
-           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required autofocus>
+      <input 
+        type="text" 
+        #email="ngModel" 
+        id="user" 
+        name="userid" 
+        [(ngModel)]="userid" 
+        class="form-control" 
+        placeholder="Email address" 
+        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+        required 
+        autofocus
+        data-cy="email-address-input">
        <br>
-       <div  *ngIf="email.errors && email.errors.pattern">
+       <div *ngIf="email.errors && email.errors.pattern">
          Provide a valid email id
        </div>
       <br>
-      <button [disabled]="email.errors && email.errors.pattern" class="btn btn-lg btn-primary btn-block" type="submit" (click)="connectToHub()" id="login">Sign in</button>
+      <button 
+        [disabled]="email.errors && email.errors.pattern" 
+        class="btn btn-lg btn-primary btn-block" 
+        type="submit" 
+        (click)="connectToHub()" 
+        id="login"
+        data-cy="sign-in-button">Sign in</button>
       <p class="mt-5 mb-3 text-muted">Microsoft&reg; 2018-2019</p>  
     </form>
   </div>

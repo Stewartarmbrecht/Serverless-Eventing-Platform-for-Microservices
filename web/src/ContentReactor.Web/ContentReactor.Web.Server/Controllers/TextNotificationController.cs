@@ -5,6 +5,10 @@ using ContentReactor.Web.Server.Services;
 
 namespace ContentReactor.Web.Server.Controllers
 {
+    /// <summary>
+    /// Notification service called by the event grid for subscribed events.  
+    /// See the ./deploy/eventGridSubscriptions-web.json for the event subscriptions.
+    /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class TextNotificationController : Controller

@@ -1,7 +1,7 @@
 import {OnInit, Component, Input, AfterContentInit} from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import {trigger, animate, style, group, animateChild, query, stagger, transition, state} from '@angular/animations';
-import { Location } from '@angular/common';
+import { environment } from '../../../environments/environment';
 import { DataService } from '../../services/data.service';
 import { HubService } from '../../services/hub.service';
 import { Router } from '@angular/router';
@@ -150,7 +150,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
 
     getAllImages() {
            for (const image of this.image_items) {
-                const image_get_url = location.origin + '/api/Image/' + image.id + '/?userId=' + this.injectedUserId;
+                const image_get_url = environment.apiUrl + '/api/Image/' + image.id + '/?userId=' + this.injectedUserId;
                 const imageReq = this.http.get (image_get_url);
 
                 imageReq.subscribe((data: any) => {
@@ -165,7 +165,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
 
     getAllText() {
         for (const text of this.text_items) {
-            const text_get_url = location.origin + '/api/Text/' + text.id + '/?userId=' + this.injectedUserId;
+            const text_get_url = environment.apiUrl + '/api/Text/' + text.id + '/?userId=' + this.injectedUserId;
             const textReq = this.http.get (text_get_url);
 
             textReq.subscribe((data: any) => {
@@ -177,7 +177,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     }
 
     getAudio (audio: AudioItem, audioId) {
-        const audio_get_url = location.origin + '/api/Audio/' + audioId + '/?userId=' + this.injectedUserId;
+        const audio_get_url = environment.apiUrl + '/api/Audio/' + audioId + '/?userId=' + this.injectedUserId;
         const audioReq = this.http.get (audio_get_url);
 
         audioReq.subscribe((data: any) => {
@@ -190,7 +190,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     getAllAudio() {
         for (const audio of this.audio_items) {
 
-             const audio_get_url = location.origin + '/api/Audio/' + audio.id + '/?userId=' + this.injectedUserId;
+             const audio_get_url = environment.apiUrl + '/api/Audio/' + audio.id + '/?userId=' + this.injectedUserId;
              const audioReq = this.http.get (audio_get_url);
 
              audioReq.subscribe((data: any) => {
@@ -325,7 +325,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     }
 
     onImageFileSubmit() {
-        const url = location.origin + '/api/Image?userId=' + this.injectedUserId;
+        const url = environment.apiUrl + '/api/Image?userId=' + this.injectedUserId;
         this.spinnerMessage = 'Your image is being processed...';
         const req = this.http.post (url, { });
         req.subscribe(
@@ -343,7 +343,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     }
 
     onAudioFileSubmit() {
-        const url = location.origin + '/api/Audio?userId=' + this.injectedUserId;
+        const url = environment.apiUrl + '/api/Audio?userId=' + this.injectedUserId;
         this.spinnerMessage = 'Your audio is being processed...';
         const req = this.http.post (url, {});
         req.subscribe(
@@ -371,7 +371,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
         req.subscribe(
             (res: any) => {
                 console.log('Successfully uploaded to Blob Service!');
-                const createAudioUrl = location.origin + '/api/Audio/' + id + '/?userId=' + this.injectedUserId;
+                const createAudioUrl = environment.apiUrl + '/api/Audio/' + id + '/?userId=' + this.injectedUserId;
                 const audioReq = this.http.post (createAudioUrl, { categoryId: this.injectedCategoryId });
                 audioReq.subscribe(
                     /// TODO: Make sure this didn't create a bug.
@@ -403,7 +403,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
         req.subscribe(
             (res: any) => {
                 console.log('Successfully uploaded to Blob Service!');
-                const createImageUrl = location.origin + '/api/Image/' + id + '/?userId=' + this.injectedUserId;
+                const createImageUrl = environment.apiUrl + '/api/Image/' + id + '/?userId=' + this.injectedUserId;
                 const imageReq = this.http.post (createImageUrl, { categoryId: this.injectedCategoryId });
                 imageReq.subscribe(
                     (res2: any) => {
@@ -426,7 +426,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
 
     onClickDeleteImage (imageId: string) {
         this.spinnerMessage = 'Your image is being deleted...';
-        const image_delete_url = location.origin + '/api/Image/' + imageId + '/?userId=' + this.injectedUserId;
+        const image_delete_url = environment.apiUrl + '/api/Image/' + imageId + '/?userId=' + this.injectedUserId;
         const req = this.http.delete(image_delete_url);
         req.subscribe(
             (res: any) => {
@@ -444,7 +444,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
 
     onClickDeleteAudio (audioId: string) {
         this.spinnerMessage = 'Your audio is being deleted...';
-        const audio_delete_url = location.origin + '/api/Audio/' + audioId + '/?userId=' + this.injectedUserId;
+        const audio_delete_url = environment.apiUrl + '/api/Audio/' + audioId + '/?userId=' + this.injectedUserId;
         const req = this.http.delete (audio_delete_url);
         req.subscribe(
             (res: any) => {
@@ -471,7 +471,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     /** Text API's */
     onClickSubmitText() {
         this.spinnerMessage = 'Your note is being created...';
-        const url = location.origin + '/api/Text' + '?userId=' + this.injectedUserId;
+        const url = environment.apiUrl + '/api/Text' + '?userId=' + this.injectedUserId;
         const req = this.http.post (url, { text: this.inputText, categoryId: this.injectedCategoryId} );
         req.subscribe(
             (res: any) => {
@@ -491,7 +491,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     onClickDeleteText (textId: string) {
 
         this.spinnerMessage = 'Your note is being deleted...';
-        const text_delete_url = location.origin + '/api/Text/' + textId + '/?userId=' + this.injectedUserId;
+        const text_delete_url = environment.apiUrl + '/api/Text/' + textId + '/?userId=' + this.injectedUserId;
         const req = this.http.delete (text_delete_url);
         req.subscribe(
             (res: any) => {
@@ -508,7 +508,7 @@ export class ItemComponent implements OnInit, AfterContentInit {
     }
 
     onClickUpdateText (textId: string) {
-        const text_update_url = location.origin + '/api/Text/' + textId + '/?userId=' + this.injectedUserId;
+        const text_update_url = environment.apiUrl + '/api/Text/' + textId + '/?userId=' + this.injectedUserId;
         const req = this.http.patch (text_update_url, { text: this.currentText });
         req.subscribe(
             (res: any) => {

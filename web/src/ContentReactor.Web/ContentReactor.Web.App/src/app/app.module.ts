@@ -26,9 +26,11 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  
   declarations: [
-    AppComponent, LoginComponent, CategoryComponent, ItemComponent
+    AppComponent,
+    LoginComponent,
+    CategoryComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +38,13 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(appRoutes, {enableTracing: true})
+    RouterModule.forRoot(appRoutes, {enableTracing: false})
   ],
-  providers: [DataService, HubService, AppInsightsService],
+  providers: [
+    DataService,
+    HubService,
+    AppInsightsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
