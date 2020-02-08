@@ -9,10 +9,22 @@
     "variables": {
         "resourceNamePrefix": "[concat(parameters('uniqueResourceNamePrefix'),'-proxy')]",
 
+        "applicationInsightsName": "[concat(variables('resourceNamePrefix'), '-ai')]",
+
         "functionsAppServicePlanName": "[concat(variables('resourceNamePrefix'),'-asp')]",
         "functionsApiProxyAppName": "[concat(variables('resourceNamePrefix'),'-api')]"
     },
     "resources": [
+        {
+            "name": "[variables('applicationInsightsName')]",
+            "type": "Microsoft.Insights/components",
+            "apiVersion": "2014-04-01",
+            "location": "[resourceGroup().location]",
+            "kind": "other",
+            "properties": {
+                "applicationId": "[variables('applicationInsightsName')]"
+            }
+        },
         {
             "name": "[variables('functionsAppServicePlanName')]",
             "type": "Microsoft.Web/serverfarms",
