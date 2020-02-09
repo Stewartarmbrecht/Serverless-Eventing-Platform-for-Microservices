@@ -25,6 +25,57 @@ namespace ContentReactor.Categories.Api
         private static readonly ICategoriesService CategoriesService = new CategoriesService(new CategoriesRepository(), new ImageSearchService(new Random(), new HttpClient()), new SynonymService(new HttpClient()), new EventGridPublisherService());
         public static IUserAuthenticationService UserAuthenticationService = new QueryStringUserAuthenticationService();
 
+        /// <summary>
+        /// Performs a health check for the function.
+        /// While empty now can be used to perform checks against
+        /// predefined thresholds to help alert against cost overruns
+        /// or certain types of client behavior that was blocked.
+        /// </summary>
+        /// <param name="req"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        [FunctionName("HealthCheck")]
+        public static async Task<IActionResult> HealthCheck(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "healthcheck")]HttpRequest req,
+            TraceWriter log)
+        {
+            // get the user ID
+            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            {
+                return responseResult;
+            }
+
+            // list the categories
+            try
+            {
+                var healthCheckResult = await CategoriesService.HealthCheckApi(userId);
+                if (healthCheckResult == null)
+                {
+                    return new NotFoundResult();
+                }
+
+                // serialise the summaries using a custom converter
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Formatting = Formatting.Indented
+                };
+                var json = JsonConvert.SerializeObject(healthCheckResult, settings);
+
+                return new ContentResult
+                {
+                    Content = json,
+                    ContentType = JsonContentType,
+                    StatusCode = StatusCodes.Status200OK
+                };
+            }
+            catch (Exception ex)
+            {
+                log.Error("Unhandled exception", ex);
+                return new ExceptionResult(ex, false);
+            }
+        }
+
         [FunctionName("AddCategory")]
         public static async Task<IActionResult> AddCategory(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "categories")]HttpRequest req,

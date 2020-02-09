@@ -16,6 +16,8 @@ namespace ContentReactor.Categories.Services
 {
     public interface ICategoriesService
     {
+        Task<HealthCheckResults> HealthCheckApi(string userId);
+        Task<HealthCheckResults> HealthCheckWorker(string userId);
         Task<string> AddCategoryAsync(string name, string userId);
         Task<DeleteCategoryResult> DeleteCategoryAsync(string categoryId, string userId);
         Task<UpdateCategoryResult> UpdateCategoryAsync(string categoryId, string userId, string name);
@@ -41,6 +43,23 @@ namespace ContentReactor.Categories.Services
             ImageSearchService = imageSearchService;
             SynonymService = synonymService;
             EventGridPublisher = eventGridPublisher;
+        }
+
+        public Task<HealthCheckResults> HealthCheckApi(string userId)
+        {
+            var healthCheckResults = new HealthCheckResults() {
+                    Status = HealthCheckStatus.OK
+                };
+            return Task.FromResult<HealthCheckResults>(healthCheckResults);
+        }
+
+        public Task<HealthCheckResults> HealthCheckWorker(string userId)
+        {
+            return new Task<HealthCheckResults>(() => {
+                return new HealthCheckResults() {
+                    Status = HealthCheckStatus.OK
+                };
+            });
         }
 
         public async Task<string> AddCategoryAsync(string name, string userId)
