@@ -35,6 +35,7 @@ _The last `buildanddeploy.ps1` script will take a long time to run for the first
 * **Overview**
     * [Functionality](/_docs/overview/functionality.md)
     * [Architecture](/_docs/overview/architecture.md)
+    * [Roadmap](/_docs/overview/roadmap.md)
 
 * **Developing**
     * [Setup](/_docs/developing/setup.md)
