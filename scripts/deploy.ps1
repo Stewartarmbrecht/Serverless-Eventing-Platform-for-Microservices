@@ -86,6 +86,12 @@ Start-Job -Name "DeployText" -ScriptBlock {
     ../text/deploy/deploy.ps1 -namePrefix $args[1] -region $args[2] -userName $args[3] -password $args[4] -tenantId $args[5]
 } -ArgumentList @($location,$namePrefix,$region,$userName,$password,$tenantId)
 
+D "Deploying Health" $loggingPrefix
+Start-Job -Name "DeployHealth" -ScriptBlock {
+    Set-Location $args[0]
+    ../health/deploy/deploy.ps1 -namePrefix $args[1] -region $args[2] -userName $args[3] -password $args[4] -tenantId $args[5]
+} -ArgumentList @($location,$namePrefix,$region,$userName,$password,$tenantId)
+
 While(Get-Job -State "Running")
 {
     D "Running the following jobs:" $loggingPrefix

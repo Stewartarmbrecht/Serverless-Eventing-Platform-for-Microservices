@@ -24,6 +24,11 @@ D "Text Microservice Build" $loggingPrefix
 
 Set-Location $PSSCriptRoot
 
+D "Health Build" $loggingPrefix
+../health/build/build.ps1
+
+Set-Location $PSSCriptRoot
+
 D "Proxy Build" $loggingPrefix
 ../proxy/build/build.ps1
 
