@@ -48,7 +48,7 @@ namespace ContentReactor.Categories.Api
             // list the categories
             try
             {
-                var healthCheckResult = await CategoriesService.HealthCheckApi(userId);
+                var healthCheckResult = await CategoriesService.HealthCheckApi(userId, req.Host.Host);
                 if (healthCheckResult == null)
                 {
                     return new NotFoundResult();

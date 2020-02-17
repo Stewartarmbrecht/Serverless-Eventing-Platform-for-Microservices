@@ -6,7 +6,7 @@ using ContentReactor.Categories.Services.Models;
 using ContentReactor.Categories.Services.Models.Data;
 using ContentReactor.Categories.Services.Models.Response;
 using ContentReactor.Categories.Services.Models.Results;
-using ContentReactor.Categories.Services.Repositories;
+using ContentReactor.Categories.Services.Repositories;          
 
 namespace ContentReactor.Categories.Services.Tests
 {

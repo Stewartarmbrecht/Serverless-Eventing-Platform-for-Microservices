@@ -24,8 +24,8 @@ namespace ContentReactor.Categories.Services.Repositories
 
     public class CategoriesRepository : ICategoriesRepository
     {
-        private static readonly string EndpointUrl = Environment.GetEnvironmentVariable("CosmosDBAccountEndpointUrl");
-        private static readonly string AccountKey = Environment.GetEnvironmentVariable("CosmosDBAccountKey");
+        private static readonly string EndpointUrl = Environment.GetEnvironmentVariable("CosmosDbAccountEndpointUrl");
+        private static readonly string AccountKey = Environment.GetEnvironmentVariable("CosmosDbAccountKey");
         private static readonly string DatabaseName = Environment.GetEnvironmentVariable("DatabaseName");
         private static readonly string CollectionName = Environment.GetEnvironmentVariable("CollectionName");
         private static readonly DocumentClient DocumentClient = new DocumentClient(new Uri(EndpointUrl), AccountKey);

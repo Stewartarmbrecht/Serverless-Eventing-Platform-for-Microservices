@@ -6,6 +6,7 @@ using ContentReactor.Categories.Services.Models;
 using ContentReactor.Categories.Services.Models.Data;
 using ContentReactor.Categories.Services.Models.Response;
 using ContentReactor.Categories.Services.Models.Results;
+using ContentReactor.Categories.Services.Repositories;
 using ContentReactor.Shared;
 using ContentReactor.Shared.EventSchemas.Audio;
 using ContentReactor.Shared.EventSchemas.Categories;
@@ -18,6 +19,37 @@ namespace ContentReactor.Categories.Services.Tests
 {
     public class CategoriesServiceTests
     {
+        #region HealthCheck Tests
+        [Fact]
+        public async Task HealthCheckApi_Success()
+        {
+            // arrange
+            var service = new CategoriesService(new Mock<ICategoriesRepository>().Object, new Mock<IImageSearchService>().Object, new Mock<ISynonymService>().Object, new Mock<IEventGridPublisherService>().Object);
+
+            // act
+            var result = await service.HealthCheckApi("mytest@test.com","my-app-test");
+
+            // assert
+            Assert.NotNull(result);
+            Assert.Equal(HealthCheckStatus.OK, result.Status);
+            Assert.Equal("my-app-test", result.Application);
+        }
+        [Fact]
+        public async Task HealthCheckWorker_Success()
+        {
+            // arrange
+            var service = new CategoriesService(new Mock<ICategoriesRepository>().Object, new Mock<IImageSearchService>().Object, new Mock<ISynonymService>().Object, new Mock<IEventGridPublisherService>().Object);
+
+            // act
+            var result = await service.HealthCheckWorker("mytest@test.com","my-app-test");
+
+            // assert
+            Assert.NotNull(result);
+            Assert.Equal(HealthCheckStatus.OK, result.Status);
+            Assert.Equal("my-app-test", result.Application);
+        }
+        #endregion
+
         #region AddCategory Tests
         [Fact]
         public async Task AddCategory_ReturnsDocumentId()

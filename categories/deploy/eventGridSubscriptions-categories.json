@@ -8,8 +8,6 @@
 
     },
     "variables": {
-        "resourceNamePrefix": "[concat(parameters('uniqueResourceNamePrefix'),'-proxy')]",
-        "appServiceName": "[concat(variables('resourceNamePrefix'), '-app')]",
         "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {

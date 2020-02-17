@@ -16,8 +16,8 @@ namespace ContentReactor.Categories.Services
 {
     public interface ICategoriesService
     {
-        Task<HealthCheckResults> HealthCheckApi(string userId);
-        Task<HealthCheckResults> HealthCheckWorker(string userId);
+        Task<HealthCheckResults> HealthCheckApi(string userId, string app);
+        Task<HealthCheckResults> HealthCheckWorker(string userId, string app);
         Task<string> AddCategoryAsync(string name, string userId);
         Task<DeleteCategoryResult> DeleteCategoryAsync(string categoryId, string userId);
         Task<UpdateCategoryResult> UpdateCategoryAsync(string categoryId, string userId, string name);
@@ -45,21 +45,22 @@ namespace ContentReactor.Categories.Services
             EventGridPublisher = eventGridPublisher;
         }
 
-        public Task<HealthCheckResults> HealthCheckApi(string userId)
+        public Task<HealthCheckResults> HealthCheckApi(string userId, string app)
         {
             var healthCheckResults = new HealthCheckResults() {
-                    Status = HealthCheckStatus.OK
+                    Status = HealthCheckStatus.OK,
+                    Application = app
                 };
             return Task.FromResult<HealthCheckResults>(healthCheckResults);
         }
 
-        public Task<HealthCheckResults> HealthCheckWorker(string userId)
+        public Task<HealthCheckResults> HealthCheckWorker(string userId, string app)
         {
-            return new Task<HealthCheckResults>(() => {
-                return new HealthCheckResults() {
-                    Status = HealthCheckStatus.OK
+            var healthCheckResults = new HealthCheckResults() {
+                    Status = HealthCheckStatus.OK,
+                    Application = app
                 };
-            });
+            return Task.FromResult<HealthCheckResults>(healthCheckResults);
         }
 
         public async Task<string> AddCategoryAsync(string name, string userId)
