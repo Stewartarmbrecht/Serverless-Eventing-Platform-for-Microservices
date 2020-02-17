@@ -65,7 +65,7 @@ $ErrorActionPreference = $old_ErrorActionPreference
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
-$command = "az group deployment create -g $eventsResourceGroupName --template-file ./eventGridSubscriptions-local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId"
+$command = "az group deployment create -g $eventsResourceGroupName --template-file ./eventGridSubscriptions-web.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
 
 D "Deployed the subscriptions." $loggingPrefix
