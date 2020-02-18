@@ -10,6 +10,9 @@ $directoryStart = Get-Location
 Set-Location "$directoryStart/src/ContentReactor.$microserviceName"
 $result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 
+Set-Location "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Tests.E2E"
+$result = ExecuteCommand "npm install" $loggingPrefix "Installing E2E Project."
+
 Set-Location "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Services.Tests"
 $result = ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution."
 

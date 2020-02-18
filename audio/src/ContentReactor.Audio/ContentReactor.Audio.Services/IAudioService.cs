@@ -2,6 +2,7 @@
 {
     using ContentReactor.Audio.Services.Models.Responses;
     using ContentReactor.Audio.Services.Models.Results;
+    using ContentReactor.Shared;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -12,6 +13,18 @@
     /// </summary>
     public interface IAudioService
     {
+        /// <summary>
+        /// Performas a health check of all depdendencies of the API service.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        Task<HealthCheckResults> HealthCheckApi(string userId, string app);
+        /// <summary>
+        /// Performs a health check of all dependencies of the worker service.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        Task<HealthCheckResults> HealthCheckWorker(string userId, string app);
         /// <summary>
         /// Creates a placeholder blob and returns the id and URL to upload the actual audio file.
         /// </summary>

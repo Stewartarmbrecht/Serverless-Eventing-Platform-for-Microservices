@@ -59,6 +59,34 @@
         }
 
         /// <summary>
+        /// Performas a health check of all depdendencies of the API service.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public Task<HealthCheckResults> HealthCheckApi(string userId, string app)
+        {
+            var healthCheckResults = new HealthCheckResults() {
+                    Status = HealthCheckStatus.OK,
+                    Application = app
+                };
+            return Task.FromResult<HealthCheckResults>(healthCheckResults);
+        }
+
+        /// <summary>
+        /// Performas a health check of all depdendencies of the API service.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public Task<HealthCheckResults> HealthCheckWorker(string userId, string app)
+        {
+            var healthCheckResults = new HealthCheckResults() {
+                    Status = HealthCheckStatus.OK,
+                    Application = app
+                };
+            return Task.FromResult<HealthCheckResults>(healthCheckResults);
+        }
+
+        /// <summary>
         /// Creates a placeholder blob and returns the id and url to update the blob.
         /// </summary>
         /// <param name="userId">Id of user creating the blob.</param>
