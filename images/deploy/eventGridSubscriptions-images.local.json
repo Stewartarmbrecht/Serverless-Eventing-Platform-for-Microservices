@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "uniqueResourceNamePrefix": {
+            "type": "string"
+        },
+        "publicUrlToLocalWebServer": {
+            "type": "string"
+        },
+        "uniqueDeveloperId": {
+            "type": "string"
+        },
+        "utcDateDays": {
+            "type": "string",
+            "defaultValue": "[utcNow('dd')]"
+        },
+        "utcDateMonths": {
+            "type": "string",
+            "defaultValue": "[utcNow('MM')]"
+        },
+        "utcDateYear": {
+            "type": "string",
+            "defaultValue": "[utcNow('yyyy')]"
+        },
+        "utcDateHours": {
+            "type": "string",
+            "defaultValue": "[utcNow('HH')]"
+        },
+        "utcDateMinutes": {
+            "type": "string",
+            "defaultValue": "[utcNow('mm')]"
+        },
+        "utcDateSeconds": {
+            "type": "string",
+            "defaultValue": "[utcNow('ss')]"
+        }
+    },
+    "variables": {
+        "start-date": "[concat(parameters('utcDateYear'),'-',parameters('utcDateMonths'),'-',parameters('utcDateDays'),'T',add(int(parameters('utcDateHours')), 1),':',parameters('utcDateMinutes'),':',parameters('utcDateSeconds'),'Z')]",
+        "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
+        "eventGridFunctionSubscriptions": [
+            {
+                "resourceName": "[concat(parameters('uniqueDeveloperId'),'ImageUpdateImageCaption')]",
+                "webHookUrl": "[concat(parameters('publicUrlToLocalWebServer'),'/api/UpdateImageCaption')]",
+                "eventTypes": [
+                    "ImageCreated"
+                ]
+            }
+        ]
+    },
+    "resources": [
+        {
+            "name": "[concat(variables('eventGridTopicName'), '/Microsoft.EventGrid/', variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].resourceName)]",
+            "copy": {
+                "name": "eventGridFunctionSubscriptions",
+                "count": "[length(variables('eventGridFunctionSubscriptions'))]",
+                "mode": "Parallel"
+            },
+            "type": "Microsoft.EventGrid/topics/providers/eventSubscriptions",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2018-01-01",
+            "properties": {
+                "destination": {
+                    "endpointType": "WebHook",
+                    "properties": {
+                        "endpointUrl": "[variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].webHookUrl]"
+                    }
+                },
+                "filter": {
+                    "includedEventTypes": "[variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].eventTypes]"
+                },
+                "expirationTimeUtc": "[variables('start-date')]"
+            }
+        }
+    ]
+}
