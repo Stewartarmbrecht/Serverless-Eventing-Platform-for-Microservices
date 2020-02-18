@@ -15,7 +15,7 @@ describe('Health Check', function() {
             url:`https://localhost:7001/api/healthcheck?userId=${$userId}`,
             method: 'GET'
         }).then(($res) => {
-            expect($res.body.length).to.eq(4);
+            expect($res.body.length).to.eq(6);
             expect($res.body[0].status).to.eq(0);
             expect($res.body[0].application).to.eq('toco-audio-api.azurewebsites.net');
             expect($res.body[1].status).to.eq(0);
@@ -24,6 +24,10 @@ describe('Health Check', function() {
             expect($res.body[2].application).to.eq('toco-categories-api.azurewebsites.net');
             expect($res.body[3].status).to.eq(0);
             expect($res.body[3].application).to.eq('toco-categories-worker.azurewebsites.net');
+            expect($res.body[4].status).to.eq(0);
+            expect($res.body[4].application).to.eq('toco-images-api.azurewebsites.net');
+            expect($res.body[5].status).to.eq(0);
+            expect($res.body[5].application).to.eq('toco-images-worker.azurewebsites.net');
         });
     });
   });
