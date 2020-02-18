@@ -19,7 +19,7 @@ $webApiJob = Start-Job -Name "rt-HealthApi" -ScriptBlock {
     
     D "Running Health API" $loggingPrefix
     
-    func host start --useHttps
+    func host start --useHttps -p 7001
 } -ArgumentList @($location)
 
 $apiTestJob = Start-Job -Name "rt-HealthTestE2E" -ScriptBlock {

@@ -33,15 +33,15 @@ namespace ContentReactor.Health.Services
             List<HealthCheckResults> results = new List<HealthCheckResults>();
 
             List<string> urls = new List<string>();
-            //urls.Add($"http://{systemNamePrefix}-audio-api.azurewebsites.net/api/healthcheck");
-            //urls.Add($"http://{systemNamePrefix}-audio-worker.azurewebsites.net/api/healthcheck");
+            urls.Add($"http://{systemNamePrefix}-audio-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            urls.Add($"http://{systemNamePrefix}-audio-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-categories-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-categories-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            //urls.Add($"http://{systemNamePrefix}-images-api.azurewebsites.net/api/healthcheck");
-            //urls.Add($"http://{systemNamePrefix}-images-worker.azurewebsites.net/api/healthcheck");
-            //urls.Add($"http://{systemNamePrefix}-proxy-api.azurewebsites.net/api/healthcheck");
-            //urls.Add($"http://{systemNamePrefix}-text-api.azurewebsites.net/api/healthcheck");
-            //urls.Add($"http://{systemNamePrefix}-web-app.azurewebsites.net/api/healthcheck");
+            //urls.Add($"http://{systemNamePrefix}-images-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            //urls.Add($"http://{systemNamePrefix}-images-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            //urls.Add($"http://{systemNamePrefix}-proxy-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            //urls.Add($"http://{systemNamePrefix}-text-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            //urls.Add($"http://{systemNamePrefix}-web-app.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
 
             List<Task<HttpResponseMessage>> tasks = new List<Task<HttpResponseMessage>>();
 
