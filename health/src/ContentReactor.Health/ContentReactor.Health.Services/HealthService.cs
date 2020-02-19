@@ -41,7 +41,7 @@ namespace ContentReactor.Health.Services
             urls.Add($"https://{systemNamePrefix}-images-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             //urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             //urls.Add($"https://{systemNamePrefix}-text-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            //urls.Add($"https://{systemNamePrefix}-web-app.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            urls.Add($"https://{systemNamePrefix}-web-app.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
 
             List<Task<HttpResponseMessage>> tasks = new List<Task<HttpResponseMessage>>();
 
