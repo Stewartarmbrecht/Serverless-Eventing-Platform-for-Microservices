@@ -33,11 +33,11 @@ namespace ContentReactor.Health.Services
             List<HealthCheckResults> results = new List<HealthCheckResults>();
 
             List<string> urls = new List<string>();
-            urls.Add($"https://{systemNamePrefix}-audio-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/audiohealthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-audio-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-categories-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/categorieshealthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-categories-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-images-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/imageshealthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-images-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             //urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             //urls.Add($"https://{systemNamePrefix}-text-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");

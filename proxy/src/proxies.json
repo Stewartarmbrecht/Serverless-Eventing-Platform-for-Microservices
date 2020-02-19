@@ -1,6 +1,13 @@
 {
     "$schema": "http://json.schemastore.org/proxies",
     "proxies": {
+        "categoriesHealthCheck": {
+            "matchCondition": {
+                "methods": [ "GET" ],
+                "route": "/categoriesHealthCheck"
+            },
+            "backendUri": "https://%CategoriesMicroserviceApiAppName%.azurewebsites.net/api/healthcheck"
+        },
         "categories": {
             "matchCondition": {
                 "methods": [ "GET", "POST" ],
@@ -14,6 +21,13 @@
                 "route": "/categories/{categoryId}"
             },
             "backendUri": "https://%CategoriesMicroserviceApiAppName%.azurewebsites.net/api/categories/{categoryId}"
+        },
+        "audioHealthCheck": {
+            "matchCondition": {
+                "methods": [ "GET" ],
+                "route": "/audioHealthCheck"
+            },
+            "backendUri": "https://%AudioMicroserviceApiAppName%.azurewebsites.net/api/healthcheck"
         },
         "audio": {
             "matchCondition": {
@@ -29,6 +43,13 @@
             },
             "backendUri": "https://%AudioMicroserviceApiAppName%.azurewebsites.net/api/audio/{audioId}"
         },
+        "imagesHealthCheck": {
+            "matchCondition": {
+                "methods": [ "GET" ],
+                "route": "/imagesHealthCheck"
+            },
+            "backendUri": "https://%ImagesMicroserviceApiAppName%.azurewebsites.net/api/healthcheck"
+        },
         "images": {
             "matchCondition": {
                 "methods": [ "GET", "POST" ],
@@ -42,6 +63,13 @@
                 "route": "/images/{imageId}"
             },
             "backendUri": "https://%ImagesMicroserviceApiAppName%.azurewebsites.net/api/images/{imageId}"
+        },
+        "textHealthCheck": {
+            "matchCondition": {
+                "methods": [ "GET" ],
+                "route": "/textHealthCheck"
+            },
+            "backendUri": "https://%TextMicroserviceApiAppName%.azurewebsites.net/api/healthcheck"
         },
         "text": {
             "matchCondition": {
