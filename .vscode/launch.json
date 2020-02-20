@@ -4,6 +4,36 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
+       {
+           "name": ".NET Core Attach",
+           "type": "coreclr",
+           "request": "attach",
+           "processId": "${command:pickProcess}"
+       },
+       {
+           "name": "web-server",
+           "type": "coreclr",
+           "request": "launch",
+           "program": "${workspaceFolder}/web/src/ContentReactor.Web/ContentReactor.Web.Server/bin/Debug/netcoreapp2.1/ContentReactor.Web.Server.dll",
+           "args": [],
+           "cwd": "${workspaceFolder}/web/src/ContentReactor.Web/ContentReactor.Web.Server",
+           "stopAtEntry": false,
+           "serverReadyAction": {
+               "action": "openExternally",
+               "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+           },
+           "env": {
+               "ASPNETCORE_ENVIRONMENT": "Development",
+               "FUNCTION_API_PROXY_ROOT": "https://toco-proxy-api.azurewebsites.net/"
+           }
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "web-app",
+            "url": "https://localhost:5001",
+            "webRoot": "${workspaceFolder}/web/src/ContentReactor.Web/ContentReactor.Web.App"
+        },
         {
             "name": "launch-categories",
             "type": "coreclr",
@@ -17,12 +47,12 @@
             "console": "internalConsole",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
         }
-    ,]
+    ],
+    "compounds": [
+        {
+          "name": "web-run",
+          "configurations": ["web-server", "web-app"]
+        }
+    ]
 }
