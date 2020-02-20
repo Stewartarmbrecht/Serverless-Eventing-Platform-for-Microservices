@@ -18,12 +18,14 @@ namespace ContentReactor.Images.Services
         /// Performas a health check of all depdendencies of the API service.
         /// </summary>
         /// <param name="app"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
         Task<HealthCheckResults> HealthCheckApi(string userId, string app);
         /// <summary>
         /// Performs a health check of all dependencies of the worker service.
         /// </summary>
         /// <param name="app"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
         Task<HealthCheckResults> HealthCheckWorker(string userId, string app);
         (string id, string url) BeginAddImageNote(string userId);
