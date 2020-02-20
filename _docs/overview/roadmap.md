@@ -24,6 +24,7 @@ Below is a list of features that are targeted for inclusion in the architecture:
 1. **Circuit Breakers** - Enable the detection and graceful handling of partial system outages.
 1. **Authentication** - Implement a real user authentication system that maintains the simplified deployment model for new deployments.
 1. **Authorization** - Define pattern for authorizing operations.
+1. **Key Vault** - Modify so that microservices use a common key vault to store all secrets.
 1. **Monitoring Alerts** - Modify application insights deployment to include defining thresholds and alerts.
 1. **Exception Alerts** - Define alerts and notifications for application exceptions.
 1. **Cost Alerts** - Define alerts and notifications based on cost thresholds.
