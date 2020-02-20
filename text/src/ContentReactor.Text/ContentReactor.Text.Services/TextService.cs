@@ -10,6 +10,13 @@ namespace ContentReactor.Text.Services
 {
     public interface ITextService
     {
+        /// <summary>
+        /// Performas a health check of all depdendencies of the API service.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<HealthCheckResults> HealthCheckApi(string userId, string app);
         Task<string> AddTextNoteAsync(string text, string userId, string categoryId);
         Task<DeleteTextNoteResult> DeleteTextNoteAsync(string textId, string userId);
         Task<UpdateTextNoteResult> UpdateTextNoteAsync(string textId, string userId, string text);
@@ -28,6 +35,20 @@ namespace ContentReactor.Text.Services
         {
             TextRepository = textRepository;
             EventGridPublisher = eventGridPublisher;
+        }
+
+        /// <summary>
+        /// Performas a health check of all depdendencies of the API service.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public Task<HealthCheckResults> HealthCheckApi(string userId, string app)
+        {
+            var healthCheckResults = new HealthCheckResults() {
+                    Status = HealthCheckStatus.OK,
+                    Application = app
+                };
+            return Task.FromResult<HealthCheckResults>(healthCheckResults);
         }
 
         public async Task<string> AddTextNoteAsync(string text, string userId, string categoryId)
