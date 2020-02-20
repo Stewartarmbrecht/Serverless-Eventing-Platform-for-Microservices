@@ -39,9 +39,8 @@ namespace ContentReactor.Health.Services
             urls.Add($"https://{systemNamePrefix}-categories-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/imageshealthcheck?userId={systemNamePrefix}");
             urls.Add($"https://{systemNamePrefix}-images-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            //urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            //urls.Add($"https://{systemNamePrefix}-text-api.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-web-app.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
+            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/texthealthcheck?userId={systemNamePrefix}");
+            urls.Add($"https://{systemNamePrefix}-web-app.azurewebsites.net/api/health?userId={systemNamePrefix}");
 
             List<Task<HttpResponseMessage>> tasks = new List<Task<HttpResponseMessage>>();
 
@@ -52,7 +51,7 @@ namespace ContentReactor.Health.Services
             Task.WaitAll(tasks.ToArray());
 
             List<Task<HealthCheckResults>> healthChechResultsTasks = new List<Task<HealthCheckResults>>();
-
+    
             tasks.ForEach(task => {
                 healthChechResultsTasks.Add(task.Result.Content.ReadAsAsync<HealthCheckResults>());
             });
