@@ -1,4 +1,5 @@
 # Eden Roadmap
+
 Below is the list of features currently packed into the solution.
 
 1. **Single Command, Full System Deployment** - You can deploy the entire solution to the cloud with a single command.
@@ -20,7 +21,17 @@ Below is the list of features currently packed into the solution.
 
 Below is a list of features that are targeted for inclusion in the architecture:
 
+1. **Safe, Continuous Upgrades** - Defined pattern for upgrading projects independently.  Specifically enables upgrading shared components without requiring upgrades to all dependent projects leveraging private nuget feeds. Possible answer [here](https://newsignature.com/articles/want-to-host-your-private-nuget-feed-use-azure-devops/).
 1. **Fully Commented Code** - All code is fully commented.
+1. **Fully Compliant Code** - All analyzer warnings are handled.
+1. **Dependency Injection** - Demonstrates how to use dependency injection in Azure Functions.  Reading [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection).
+1. **Exception Handling** - Demonstrates best practices for handling exceptions.  Reading [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages).
+1. **Validation Pattern** - Demonstrates best practices for handling function input validation.
+1. **Retry Pattern** - Demonstrates how to leverage Poly for implementing retry policies for service calls. Reading [here[](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages).
+1. **Circuit Breaker Pattern** - Demonstrates how to implement circuit breakers with Event Grid and Azure functions.
+1. **Idempotent Operations** - Demonstrates how to implement idemptoment Azure Fuction operations.
+1. **Blob Handling Pattern** - Demonstrates how to handle blob storage using shared access storage tokens.
+1. **Multi-linqual Support** - All static strings are stored in resource files and translated.  All culture specific operations are handled in the users culture.
 1. **File Watching Restarts** - Change the build and run scripts to watch for file changes and relaunch the application.
 1. **Local Debugging** - Create VS Code task that launches and attaches to each microservice for debugging. Includes modifying the powershell launch script to return process ids so VS code can use the script to launch and then attach to the correct process for debugging.
 1. **Single Command Setup** - Create a powershell script that installs all prerequisites for downloading, building, testing, and deploying the solution.
