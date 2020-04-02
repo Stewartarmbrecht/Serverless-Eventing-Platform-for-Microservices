@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using ContentReactor.Shared;
+using ContentReactor.Common;
 using Moq;
 using Xunit;
 

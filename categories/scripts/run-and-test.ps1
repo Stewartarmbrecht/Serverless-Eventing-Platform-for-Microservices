@@ -19,7 +19,7 @@ $webApiJob = Start-Job -Name "rt-CategoriesApi" -ScriptBlock {
     
     D "Running Categories API" $loggingPrefix
     
-    func host start --useHttps
+    func host start --useHttps --language-worker csharp
 } -ArgumentList @($location)
 
 $webWorkerJob = Start-Job -Name "rt-CategoriesWorker" -ScriptBlock {
@@ -37,7 +37,7 @@ $webWorkerJob = Start-Job -Name "rt-CategoriesWorker" -ScriptBlock {
     
     D "Running Categories Worker" $loggingPrefix
     
-    func host start --useHttps
+    func host start --useHttps --language-worker csharp
 } -ArgumentList @($location)
 
 $setupLocalTunnel = Start-Job -Name "rt-CategoriesWorkerTunnel" -ScriptBlock {

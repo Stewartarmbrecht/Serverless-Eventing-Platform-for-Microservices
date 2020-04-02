@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using ContentReactor.Shared;
+using ContentReactor.Common;
 using ContentReactor.Text.Services.Models.Data;
 using ContentReactor.Text.Services.Models.Responses;
 using ContentReactor.Text.Services.Models.Results;

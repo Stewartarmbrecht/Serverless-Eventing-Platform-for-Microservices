@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ContentReactor.Shared;
+using ContentReactor.Common;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "uniqueResourceNamePrefix": {
@@ -11,33 +11,11 @@
         "uniqueDeveloperId": {
             "type": "string"
         },
-        "utcDateDays": {
-            "type": "string",
-            "defaultValue": "[utcNow('dd')]"
-        },
-        "utcDateMonths": {
-            "type": "string",
-            "defaultValue": "[utcNow('MM')]"
-        },
-        "utcDateYear": {
-            "type": "string",
-            "defaultValue": "[utcNow('yyyy')]"
-        },
-        "utcDateHours": {
-            "type": "string",
-            "defaultValue": "[utcNow('HH')]"
-        },
-        "utcDateMinutes": {
-            "type": "string",
-            "defaultValue": "[utcNow('mm')]"
-        },
-        "utcDateSeconds": {
-            "type": "string",
-            "defaultValue": "[utcNow('ss')]"
+        "expireTimeUtc": {
+            "type": "string"
         }
     },
     "variables": {
-        "start-date": "[concat(parameters('utcDateYear'),'-',parameters('utcDateMonths'),'-',parameters('utcDateDays'),'T',add(int(parameters('utcDateHours')), 1),':',parameters('utcDateMinutes'),':',parameters('utcDateSeconds'),'Z')]",
         "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
@@ -70,7 +48,7 @@
                 "filter": {
                     "includedEventTypes": "[variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].eventTypes]"
                 },
-                "expirationTimeUtc": "[variables('start-date')]"
+                "expirationTimeUtc": "[parameters('expireTimeUtc')]"
             }
         }
     ]

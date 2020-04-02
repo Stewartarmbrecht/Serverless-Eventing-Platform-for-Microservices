@@ -18,6 +18,6 @@
         /// <summary>
         /// The audio file was found to already exist.
         /// </summary>
-        AudioAlreadyCreated
+        AudioAlreadyCreated,
     }
 }

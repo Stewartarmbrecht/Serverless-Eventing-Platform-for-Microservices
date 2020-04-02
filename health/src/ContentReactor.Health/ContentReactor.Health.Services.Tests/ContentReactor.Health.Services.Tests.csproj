@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\shared\src\ContentReactor.Shared\ContentReactor.Shared.csproj" />
-    <ProjectReference Include="..\ContentReactor.Text.Services\ContentReactor.Text.Services.csproj" />
+    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\ContentReactor.Health.Services\ContentReactor.Health.Services.csproj" />
   </ItemGroup>
 
 </Project>

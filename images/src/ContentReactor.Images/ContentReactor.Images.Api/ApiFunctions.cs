@@ -3,18 +3,18 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using ContentReactor.Images.Services;
 using ContentReactor.Images.Services.Models.Results;
-using ContentReactor.Shared;
+using ContentReactor.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs.Host;
-using ContentReactor.Shared.BlobRepository;
+using ContentReactor.Common.BlobRepository;
 using System.IO;
 using System.Net.Http;
 using ContentReactor.Images.Services.Converters;
 using ContentReactor.Images.Services.Models.Requests;
-using ContentReactor.Shared.UserAuthentication;
+using ContentReactor.Common.UserAuthentication;
 using Newtonsoft.Json;
 
 namespace ContentReactor.Images.Api

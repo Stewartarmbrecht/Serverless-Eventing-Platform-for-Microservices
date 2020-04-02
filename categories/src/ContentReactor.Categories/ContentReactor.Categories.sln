@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Shared", "..\..\..\shared\src\ContentReactor.Shared\ContentReactor.Shared.csproj", "{D35121CF-1081-468E-A447-4626219DF9D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common", "..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj", "{D35121CF-1081-468E-A447-4626219DF9D1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Services", "ContentReactor.Categories.Services\ContentReactor.Categories.Services.csproj", "{965F48C5-CB0E-4223-8B49-DD49AAD16158}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Services.Tests", "ContentReactor.Categories.Services.Tests\ContentReactor.Categories.Services.Tests.csproj", "{1B547AE5-A40B-4938-B0EC-DA6D1E0C198E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Shared.Tests", "..\..\..\shared\src\ContentReactor.Shared.Tests\ContentReactor.Shared.Tests.csproj", "{391DF820-F71B-423E-8C7D-92EE2399454A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\..\..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{391DF820-F71B-423E-8C7D-92EE2399454A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,8 +8,8 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
-using ContentReactor.Shared;
-using ContentReactor.Shared.UserAuthentication;
+using ContentReactor.Common;
+using ContentReactor.Common.UserAuthentication;
 using ContentReactor.Health.Services;
 
 namespace ContentReactor.Health.Api

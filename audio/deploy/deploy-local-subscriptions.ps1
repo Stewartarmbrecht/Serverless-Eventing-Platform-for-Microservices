@@ -65,7 +65,10 @@ $ErrorActionPreference = $old_ErrorActionPreference
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
-$command = "az group deployment create -g $eventsResourceGroupName --template-file ./eventGridSubscriptions-audio.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId"
+$expireTime = Get-Date
+$expireTimeUtc = $expireTime.AddHours(1).ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ")
+
+$command = "az group deployment create -g $eventsResourceGroupName --template-file ./eventGridSubscriptions-audio.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId expireTimeUtc=$expireTimeUtc"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
 
 D "Deployed the subscriptions." $loggingPrefix

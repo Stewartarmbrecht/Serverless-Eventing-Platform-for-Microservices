@@ -1,5 +1,5 @@
 {
-    // "azureFunctions.deploySubpath": "src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.0/publish",
+    // "azureFunctions.deploySubpath": "src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Release/netstandard2.1/publish",
     // "azureFunctions.projectLanguage": "C#",
     // "azureFunctions.projectRuntime": "~2",
     // "debug.internalConsoleOptions": "neverOpen",

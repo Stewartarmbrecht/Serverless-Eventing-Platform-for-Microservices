@@ -31,6 +31,8 @@ if(!$tenantId) {
     $tenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }
 
+$location = Get-Location
+
 Set-Location $PSSCriptRoot
 
 . ./../../scripts/functions.ps1
@@ -38,3 +40,5 @@ Set-Location $PSSCriptRoot
 ./../build/build.ps1
 
 ./../deploy/deploy-apps.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
+
+Set-Location $location

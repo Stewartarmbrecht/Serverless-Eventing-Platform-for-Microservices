@@ -71,7 +71,7 @@
             "type": "func",
             "dependsOn": "build",
             "options": {
-                "cwd": "${workspaceFolder}/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Debug/netstandard2.0/"
+                "cwd": "${workspaceFolder}/src/ContentReactor.Categories/ContentReactor.Categories.Api/bin/Debug/netstandard2.1/"
             },
             "command": "host start",
             "isBackground": true,

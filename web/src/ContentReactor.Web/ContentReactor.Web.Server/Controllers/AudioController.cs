@@ -10,6 +10,9 @@ using ContentReactor.Web.Server.Services;
 
 namespace ContentReactor.Web.Server.Controllers
 {
+    /// <summary>
+    /// Provides web server api for audio functionality.
+    /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class AudioController : Controller
@@ -17,12 +20,21 @@ namespace ContentReactor.Web.Server.Controllers
         private readonly ILogger _logger;
         private readonly ICRUDService _crudService;
 
+        /// <summary>
+        /// Creates a new instance of an audio controller.
+        /// </summary>
+        /// <param name="logger">Logger to use for logging.</param>
+        /// <param name="crudService">Service to use for CRUD operations.</param>
         public AudioController(ILogger<AudioController> logger,ICRUDService crudService)
         {
             _logger = logger;
             _crudService = crudService;
         }
 
+        /// <summary>
+        /// Creates a placeholder uploading a new audio file.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost()]
         public async Task<dynamic> Post()
         {

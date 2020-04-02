@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AzureFunctionsVersion>v2</AzureFunctionsVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AzureFunctionsVersion>v3</AzureFunctionsVersion>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\shared\src\ContentReactor.Shared\ContentReactor.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj" />
     <ProjectReference Include="..\ContentReactor.Categories.Services\ContentReactor.Categories.Services.csproj" />
   </ItemGroup>
 

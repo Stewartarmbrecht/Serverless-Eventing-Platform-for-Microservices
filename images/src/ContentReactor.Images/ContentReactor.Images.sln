@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Shared", "..\..\..\shared\src\ContentReactor.Shared\ContentReactor.Shared.csproj", "{AC007F22-F486-4B75-A9A1-0E5C56B78B1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common", "..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj", "{AC007F22-F486-4B75-A9A1-0E5C56B78B1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Tests.FakeBlobRepository", "..\..\..\shared\src\ContentReactor.Tests.FakeBlobRepository\ContentReactor.Tests.FakeBlobRepository.csproj", "{67A2B611-F0A1-4D80-A34B-24D331DAF010}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Tests.FakeBlobRepository", "..\..\..\common\src\ContentReactor.Tests.FakeBlobRepository\ContentReactor.Tests.FakeBlobRepository.csproj", "{67A2B611-F0A1-4D80-A34B-24D331DAF010}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Images.Api", "ContentReactor.Images.Api\ContentReactor.Images.Api.csproj", "{71B278B7-8C1D-43FF-8B35-496F7D778DB0}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Images.Worke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Images.Services.Tests", "ContentReactor.Images.Services.Tests\ContentReactor.Images.Services.Tests.csproj", "{587C18EF-CE94-425E-94FF-D9372A03DA98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Shared.Tests", "..\..\..\shared\src\ContentReactor.Shared.Tests\ContentReactor.Shared.Tests.csproj", "{DECD26EC-AF99-43DC-84E4-BB77CC68C296}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\..\..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{DECD26EC-AF99-43DC-84E4-BB77CC68C296}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

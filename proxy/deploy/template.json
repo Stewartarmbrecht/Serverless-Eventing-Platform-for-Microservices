@@ -39,9 +39,6 @@
             },
             "kind": "functionapp",
             "properties": {
-                "workerTierName": null,
-                "adminSiteName": null,
-                "hostingEnvironmentProfile": null,
                 "perSiteScaling": false,
                 "reserved": false,
                 "targetWorkerCount": 0,
@@ -66,6 +63,7 @@
                     "apiVersion": "2015-08-01",
                     "properties": {
                         "ROUTING_EXTENSION_VERSION": "~0.2",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('applicationInsightsName')), '2014-04-01').InstrumentationKey]",
                         "CategoriesMicroserviceApiAppName": "[concat(parameters('uniqueResourceNamePrefix'),'-categories-api')]",
                         "ImagesMicroserviceApiAppName": "[concat(parameters('uniqueResourceNamePrefix'),'-images-api')]",
                         "AudioMicroserviceApiAppName": "[concat(parameters('uniqueResourceNamePrefix'),'-audio-api')]",

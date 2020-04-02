@@ -6,11 +6,11 @@ using ContentReactor.Categories.Services.Models.Data;
 using ContentReactor.Categories.Services.Models.Response;
 using ContentReactor.Categories.Services.Models.Results;
 using ContentReactor.Categories.Services.Repositories;
-using ContentReactor.Shared;
-using ContentReactor.Shared.EventSchemas.Audio;
-using ContentReactor.Shared.EventSchemas.Categories;
-using ContentReactor.Shared.EventSchemas.Images;
-using ContentReactor.Shared.EventSchemas.Text;
+using ContentReactor.Common;
+using ContentReactor.Common.EventSchemas.Audio;
+using ContentReactor.Common.EventSchemas.Categories;
+using ContentReactor.Common.EventSchemas.Images;
+using ContentReactor.Common.EventSchemas.Text;
 
 namespace ContentReactor.Categories.Services
 {

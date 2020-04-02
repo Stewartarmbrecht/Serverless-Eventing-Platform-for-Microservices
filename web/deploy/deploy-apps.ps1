@@ -35,6 +35,7 @@ $loggingPrefix = "Web Deployment ($namePrefix)"
 $resourceGroupName = "$namePrefix-web"
 $webAIName = "$namePrefix-web-ai"
 $webAppName = "$namePrefix-web-app"
+$api_url = "https://$namePrefix-web-app.azurewebsites.net"
 
 Set-Location "$PSSCriptRoot"
 
@@ -67,6 +68,9 @@ $command = "`$webInstrumentationKey=`$`(az resource show --namespace microsoft.i
 dir ./.dist/wwwroot/main.*.bundle.js | ForEach {(Get-Content `$_).replace('""%INSTRUMENTATION_KEY%""', ""`$webInstrumentationKey"") | Set-Content `$_}" 
 $result = ExecuteCommand $command $loggingPrefix "Updating the instrumentation key in the web app."
 
+$command = "dir ./.dist/wwwroot/main.*.bundle.js | ForEach {(Get-Content `$_).replace(""%API_URL%"", ""$api_url"") | Set-Content `$_}" 
+$result = ExecuteCommand $command $loggingPrefix "Updating the proxy root url in the angular app."
+
 $path = "./.dist/**"
 $destination = "./ContentReactor.Web.zip"
 $command = "Remove-Item -Path $destination -ErrorAction Ignore"
@@ -75,10 +79,5 @@ $result = ExecuteCommand $command $loggingPrefix "Removing the web server zip pa
 $command = "Compress-Archive -Path $path -DestinationPath $destination"
 $result = ExecuteCommand $command $loggingPrefix "Creating the new zip package."
 
-$old_ErrorActionPreference = $ErrorActionPreference
-$ErrorActionPreference = 'SilentlyContinue'
-
 $command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $webAppName --src ./ContentReactor.Web.zip"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the new web server."
-
-$ErrorActionPreference = $old_ErrorActionPreference 

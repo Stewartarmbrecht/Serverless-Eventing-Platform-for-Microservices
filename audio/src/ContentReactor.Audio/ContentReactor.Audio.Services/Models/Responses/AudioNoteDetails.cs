@@ -8,7 +8,6 @@
     /// </summary>
     public class AudioNoteDetails
     {
-
         /// <summary>
         /// Gets or sets id of the audio file.
         /// </summary>

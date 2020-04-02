@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using ContentReactor.Shared;
-using ContentReactor.Shared.EventSchemas.Text;
+using ContentReactor.Common;
+using ContentReactor.Common.EventSchemas.Text;
 using ContentReactor.Text.Services.Models.Data;
 using ContentReactor.Text.Services.Models.Results;
 using Moq;

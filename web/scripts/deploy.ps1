@@ -1,4 +1,4 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
+param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId, [bool] $verboseLogging)
 if (!$namePrefix) {
     $namePrefix = $Env:namePrefix
 }
@@ -13,6 +13,9 @@ if (!$password) {
 }
 if (!$tenantId) {
     $tenantId = $Env:tenantId
+}
+if (!$verboseLogging) {
+    $verboseLogging = $Env:verboseLogging
 }
 
 if(!$namePrefix) {
@@ -31,10 +34,14 @@ if(!$tenantId) {
     $tenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }
 
+$location = Get-Location
+
 Set-Location $PSSCriptRoot
 
 . ./../../scripts/functions.ps1
 
-./../build/build.ps1
+./../build/build.ps1 -verboseLogging $verboseLogging
 
-./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
+./../deploy/deploy.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId -verboseLogging $verboseLogging
+
+Set-Location $location

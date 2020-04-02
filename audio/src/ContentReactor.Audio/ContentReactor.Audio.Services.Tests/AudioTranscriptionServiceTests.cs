@@ -1,39 +1,51 @@
-﻿using System;
-using System.IO;
-using Xunit;
-
-namespace ContentReactor.Audio.Services.Tests
+﻿namespace ContentReactor.Audio.Services.Tests
 {
+    using System;
+    using System.IO;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    /// <summary>
+    /// Tests the audio transcription service.
+    /// </summary>
+    [TestClass]
     public class AudioTranscriptionServiceTests
     {
-        [Fact]
+        /// <summary>
+        /// Given you have a memory stream
+        /// When you call the CreateAudioTranscriptionRequest and pass in the stream
+        /// Then the service should return a result that is not null.
+        /// </summary>
+        [TestMethod]
         public void CreateAudioTranscriptRequest_ReturnsExpectedRequest()
         {
             // arrange
             Environment.SetEnvironmentVariable("CognitiveServicesSpeechApiEndpoint", "http://fakeendpoint");
             Environment.SetEnvironmentVariable("CognitiveServicesSpeechApiKey", "fakekey");
             var stream = new MemoryStream();
-            var service = new AudioTranscriptionService();
 
             // act
-            var result = service.CreateAudioTranscriptRequest(stream);
+            var result = AudioTranscriptionService.CreateAudioTranscriptRequest(stream);
 
             // assert
-            Assert.NotNull(result);
+            Assert.IsNotNull(result);
         }
 
-        [Fact]
+        /// <summary>
+        /// Given you have a valid response from the Microsoft Cognitive Services Speech to Text api
+        /// When you call the ProcessAudioTranscriptResponse and pass in the string representation of the response
+        /// Then the service should return the display value of the best match included in the results.
+        /// </summary>
+        [TestMethod]
         public void ProcessAudioTranscriptResponse_ReturnsExpectedResponse()
         {
             // arrange
             const string responseString = "{\"RecognitionStatus\":\"Success\",\"Offset\":3600000,\"Duration\":89800000,\"NBest\":[{\"Confidence\":0.940092,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download not to install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice.\"},{\"Confidence\":0.929836333,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download now to install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice.\"},{\"Confidence\":0.9099141,\"Lexical\":\"hi i\'m bryan one of the available high-quality text to speech voices select download not to install my voice\",\"ITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice\",\"MaskedITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice\",\"Display\":\"Hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice.\"},{\"Confidence\":0.9099141,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download not too install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice.\"},{\"Confidence\":0.8996583,\"Lexical\":\"hi i\'m bryan one of the available high-quality text to speech voices select download now to install my voice\",\"ITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice\",\"MaskedITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice\",\"Display\":\"Hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice.\"}]}";
-            var service = new AudioTranscriptionService();
 
             // act
-            var response = service.ProcessAudioTranscriptResponse(responseString);
+            var response = AudioTranscriptionService.ProcessAudioTranscriptResponse(responseString);
 
             // assert
-            Assert.Equal("Hi I'm Brian one of the available high-quality text to speech voices select download not to install my voice.", response);
+            Assert.AreEqual("Hi I'm Brian one of the available high-quality text to speech voices select download not to install my voice.", response);
         }
     }
 }

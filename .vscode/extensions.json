@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+      "ms-vscode.csharp",
+      "k--kato.docomment",
+      "josefpihrt-vscode.roslynator",
+      "eamodio.gitlens",
+      "ms-vscode.powershell"
+    ]
+  }

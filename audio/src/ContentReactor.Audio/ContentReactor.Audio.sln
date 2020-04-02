@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Shared", "..\..\..\shared\src\ContentReactor.Shared\ContentReactor.Shared.csproj", "{A2B84E89-AA59-4497-81E7-E0CCB661DFB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common", "..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj", "{A2B84E89-AA59-4497-81E7-E0CCB661DFB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Tests.FakeBlobRepository", "..\..\..\shared\src\ContentReactor.Tests.FakeBlobRepository\ContentReactor.Tests.FakeBlobRepository.csproj", "{3C08827E-88BA-4E08-A214-E1ADCBAD7CF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Tests.Fakes", "..\..\..\common\src\ContentReactor.Tests.Fakes\ContentReactor.Tests.Fakes.csproj", "{3C08827E-88BA-4E08-A214-E1ADCBAD7CF6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.Api", "ContentReactor.Audio.Api\ContentReactor.Audio.Api.csproj", "{2E230A66-5FC0-4D63-9943-DF8D7D2DE5E0}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.Worker
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.Services.Tests", "ContentReactor.Audio.Services.Tests\ContentReactor.Audio.Services.Tests.csproj", "{B6BF0DD1-3CBD-4DC7-9C51-099EE8D41670}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Shared.Tests", "..\..\..\shared\src\ContentReactor.Shared.Tests\ContentReactor.Shared.Tests.csproj", "{4B68677F-EAE5-494D-9FF8-21AFF02B410C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\..\..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{4B68677F-EAE5-494D-9FF8-21AFF02B410C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

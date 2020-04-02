@@ -1,13 +1,22 @@
-## [project-title] Changelog
+# Changelog
 
-<a name="x.y.z"></a>
-# x.y.z (yyyy-mm-dd)
+All notable changes to this project will be documented in this file.
 
-*Features*
-* ...
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-*Bug Fixes*
-* ...
+## [Unreleased]
 
-*Breaking Changes*
-* ...
+## [0.0.1] - 2017-06-20
+
+### Added
+
+- Code commenting and lint fixes.
+
+### Changed
+
+- Web app and server script files.
+
+### Removed
+
+- Section about "changelog" vs "CHANGELOG".

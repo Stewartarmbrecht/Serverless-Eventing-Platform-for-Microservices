@@ -140,6 +140,12 @@ namespace ContentReactor.Web.Server.Services
 
         /** AUDIO API */
 
+        /// <summary>
+        /// Creates
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="requestBody"></param>
+        /// <returns></returns>
         public async Task<dynamic> CreateAudioUrlAsync(string userId, string requestBody)
         {
             string url = functionsApiProxy + "/audio?userId=" + userId;
