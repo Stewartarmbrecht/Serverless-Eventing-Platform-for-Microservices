@@ -64,7 +64,7 @@
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
             "sku": {
-                "name": "[parameters('storageAccountType')]"
+                "name": "Standard_LRS"
             }
         },
         {

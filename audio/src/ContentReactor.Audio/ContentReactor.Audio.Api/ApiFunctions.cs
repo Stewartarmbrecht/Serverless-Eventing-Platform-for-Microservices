@@ -251,13 +251,15 @@ namespace ContentReactor.Audio.Api
                 }
 
                 // serialise the summaries using a custom converter
-                var settings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    Formatting = Formatting.Indented,
-                };
-                settings.Converters.Add(new AudioNoteSummariesConverter());
-                var json = JsonConvert.SerializeObject(summaries, settings);
+                // var settings = new JsonSerializerSettings
+                // {
+                //     NullValueHandling = NullValueHandling.Ignore,
+                //     Formatting = Formatting.Indented,
+                // };
+                // settings.Converters.Add(new AudioNoteSummariesConverter());
+
+                // var json = JsonConvert.SerializeObject(summaries, settings);
+                var json = JsonConvert.SerializeObject(summaries);
 
                 return new ContentResult
                 {

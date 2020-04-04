@@ -186,7 +186,7 @@
         public async Task<IList<Blob>> ListBlobsInFolderAsync(string containerName, string prefix)
         {
             var containerClient = new BlobContainerClient(BlobConnectionString, containerName);
-            containerClient.Create();
+            await containerClient.CreateIfNotExistsAsync().ConfigureAwait(false);
 
             // list all blobs in folder
             var blobsInFolder = new List<Blob>();
@@ -207,9 +207,7 @@
         public async Task DeleteBlobAsync(string containerName, string blobName)
         {
             var containerClient = new BlobContainerClient(BlobConnectionString, containerName);
-            containerClient.Create();
             var blobClient = containerClient.GetBlobClient(blobName);
-
             await blobClient.DeleteIfExistsAsync().ConfigureAwait(false);
         }
     }

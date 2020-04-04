@@ -3,7 +3,7 @@ $loggingPrefix = "Audio Build"
 
 Set-Location "$PSSCriptRoot/../"
 
-. Get-./../scripts/functions.ps1
+. ./../../scripts/functions.ps1
 
 $directoryStart = Get-Location
 
@@ -11,7 +11,7 @@ Set-Location "$directoryStart/src/ContentReactor.$microserviceName"
 ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 
 Set-Location "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Services.Tests"
-ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx""" $loggingPrefix "Testing the solution."
+ExecuteCommand "dotnet test --logger ""trx;logFileName=testResults.trx"" --filter TestCategory!=E2E" $loggingPrefix "Testing the solution."
 
 Set-Location "$directoryStart/src/ContentReactor.$microserviceName/ContentReactor.$microserviceName.Api"
 ExecuteCommand "dotnet publish -c Release -o $directoryStart/.dist/api" $loggingPrefix "Publishing the api application."
