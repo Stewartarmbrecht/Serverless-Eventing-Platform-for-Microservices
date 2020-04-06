@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.WorkerApi", "ContentReactor.Categories.WorkerApi\ContentReactor.Categories.WorkerApi.csproj", "{56483F4C-57A5-4D18-A03E-4FA7F32ED359}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Services.Tests", "ContentReactor.Categories.Services.Tests\ContentReactor.Categories.Services.Tests.csproj", "{1B547AE5-A40B-4938-B0EC-DA6D1E0C198E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Tests", "ContentReactor.Categories.Tests\ContentReactor.Categories.Tests.csproj", "{1B547AE5-A40B-4938-B0EC-DA6D1E0C198E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\..\..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{391DF820-F71B-423E-8C7D-92EE2399454A}"
 EndProject

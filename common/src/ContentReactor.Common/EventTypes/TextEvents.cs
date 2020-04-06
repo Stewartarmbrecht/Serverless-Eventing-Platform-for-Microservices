@@ -3,7 +3,7 @@
     /// <summary>
     /// Events for text.
     /// </summary>
-    internal static class TextEvents
+    public static class TextEvents
     {
         /// <summary>
         /// Type for an event when a text note is created.

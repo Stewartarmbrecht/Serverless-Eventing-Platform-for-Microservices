@@ -1,47 +1,64 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web;
-using Newtonsoft.Json.Linq;
-
-namespace ContentReactor.Categories.Services
+﻿namespace ContentReactor.Categories.Services
 {
-    public interface IImageSearchService
-    {
-        Task<string> FindImageUrlAsync(string searchTerm);
-    }
+    using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Web;
+    using Newtonsoft.Json.Linq;
 
+    /// <summary>
+    /// Provides service to get an image for a term using bing image search.
+    /// </summary>
     public class ImageSearchService : IImageSearchService
     {
         private static readonly string CognitiveServicesSearchApiEndpoint = Environment.GetEnvironmentVariable("CognitiveServicesSearchApiEndpoint");
         private static readonly string CognitiveServicesSearchApiKey = Environment.GetEnvironmentVariable("CognitiveServicesSearchApiKey");
 
-        protected readonly HttpClient HttpClient;
-        protected readonly Random Random;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageSearchService"/> class.
+        /// </summary>
+        /// <param name="random">The random number generator to use to find the image in the search results to use.</param>
+        /// <param name="httpClient">The http client to use.</param>
         public ImageSearchService(Random random, HttpClient httpClient)
         {
-            Random = random;
-            HttpClient = httpClient;
+            this.Random = random;
+            this.HttpClient = httpClient;
         }
 
-        public async Task<string> FindImageUrlAsync(string searchTerm)
+        /// <summary>
+        /// Gets the http client to use to access the Cognitive Services search api.
+        /// </summary>
+        /// <value>The http client.</value>
+        protected HttpClient HttpClient { get; }
+
+        /// <summary>
+        /// Gets the Random number generator to use to find an image in the search results.
+        /// </summary>
+        /// <value>The random number generator.</value>
+        protected Random Random { get; }
+
+        /// <summary>
+        /// Gets the url to a random image returned in the search results for a term using the Cognitive Services search api.
+        /// </summary>
+        /// <param name="searchTerm">The search term to find a image for.</param>
+        /// <returns>The url to the image.</returns>
+        public async Task<Uri> FindImageUrlAsync(string searchTerm)
         {
-            HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", CognitiveServicesSearchApiKey);
+            this.HttpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", CognitiveServicesSearchApiKey);
 
             // construct the URI of the search request
             var uriBuilder = new UriBuilder(CognitiveServicesSearchApiEndpoint);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
             query["q"] = searchTerm;
             uriBuilder.Query = query.ToString();
-            var uriQuery = uriBuilder.ToString();
+            var uriQuery = uriBuilder.Uri;
 
             // execute the request
-            var response = await HttpClient.GetAsync(uriQuery);
+            var response = await this.HttpClient.GetAsync(uriQuery).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            
+
             // get the results
-            var contentString = await response.Content.ReadAsStringAsync();
+            var contentString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             dynamic responseJson = JObject.Parse(contentString);
             var results = (JArray)responseJson.value;
             if (results.Count == 0)
@@ -50,7 +67,7 @@ namespace ContentReactor.Categories.Services
             }
 
             // pick a random result
-            var index = Random.Next(0, results.Count - 1);
+            var index = this.Random.Next(0, results.Count - 1);
             var topResult = (dynamic)results[index];
             return topResult.contentUrl;
         }

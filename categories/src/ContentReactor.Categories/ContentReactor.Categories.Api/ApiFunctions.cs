@@ -1,29 +1,54 @@
-using System;
-using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using ContentReactor.Categories.Services;
-using ContentReactor.Categories.Services.Converters;
-using ContentReactor.Categories.Services.Models.Request;
-using ContentReactor.Categories.Services.Models.Results;
-using ContentReactor.Categories.Services.Repositories;
-using ContentReactor.Common;
-using ContentReactor.Common.UserAuthentication;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json;
-
 namespace ContentReactor.Categories.Api
 {
-    public static class ApiFunctions
+    using System;
+    using System.IO;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using ContentReactor.Categories.Services;
+    using ContentReactor.Categories.Services.Converters;
+    using ContentReactor.Categories.Services.Models.Request;
+    using ContentReactor.Categories.Services.Models.Results;
+    using ContentReactor.Categories.Services.Repositories;
+    using ContentReactor.Common;
+    using ContentReactor.Common.UserAuthentication;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Http;
+    using Microsoft.Azure.WebJobs.Host;
+    using Microsoft.Extensions.Localization;
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// API for managing categories.
+    /// </summary>
+    public class ApiFunctions
     {
         private const string JsonContentType = "application/json";
-        private static readonly ICategoriesService CategoriesService = new CategoriesService(new CategoriesRepository(), new ImageSearchService(new Random(), new HttpClient()), new SynonymService(new HttpClient()), new EventGridPublisherService());
-        public static IUserAuthenticationService UserAuthenticationService = new QueryStringUserAuthenticationService();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiFunctions"/> class.
+        /// </summary>
+        /// <param name="categoriesService">The categories services to use.</param>
+        /// <param name="userAuthentication">The user authentication service to use.</param>
+        /// <param name="stringLocalizer">The string localizer to use for localizing strings.</param>
+        public ApiFunctions(
+            ICategoriesService categoriesService,
+            IUserAuthenticationService userAuthentication,
+            IStringLocalizer stringLocalizer)
+        {
+            this.CategoriesService = categoriesService;
+            this.UserAuthenticationService = userAuthentication;
+            this.StringLocalizer = stringLocalizer;
+        }
+
+        private ICategoriesService CategoriesService { get; }
+
+        private IUserAuthenticationService UserAuthenticationService { get; }
+
+        private IStringLocalizer StringLocalizer { get; }
 
         /// <summary>
         /// Performs a health check for the function.
@@ -31,16 +56,21 @@ namespace ContentReactor.Categories.Api
         /// predefined thresholds to help alert against cost overruns
         /// or certain types of client behavior that was blocked.
         /// </summary>
-        /// <param name="req"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
+        /// <param name="req">The request for the health check.</param>
+        /// <param name="log">The logger to use.</param>
+        /// <returns>The results of the health check. An instance of the <see cref="HealthCheckResults"/> class.</returns>
         [FunctionName("HealthCheck")]
-        public static async Task<IActionResult> HealthCheck(
+        public async Task<IActionResult> HealthCheck(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "healthcheck")]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
+            if (req == null)
+            {
+                throw new ArgumentNullException(nameof(req));
+            }
+
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await this.UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult).ConfigureAwait(false))
             {
                 return responseResult;
             }
@@ -48,7 +78,7 @@ namespace ContentReactor.Categories.Api
             // list the categories
             try
             {
-                var healthCheckResult = await CategoriesService.HealthCheckApi(userId, req.Host.Host);
+                var healthCheckResult = await this.CategoriesService.HealthCheckApi(userId, req.Host.Host).ConfigureAwait(false);
                 if (healthCheckResult == null)
                 {
                     return new NotFoundResult();
@@ -58,7 +88,7 @@ namespace ContentReactor.Categories.Api
                 var settings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
-                    Formatting = Formatting.Indented
+                    Formatting = Formatting.Indented,
                 };
                 var json = JsonConvert.SerializeObject(healthCheckResult, settings);
 
@@ -66,23 +96,35 @@ namespace ContentReactor.Categories.Api
                 {
                     Content = json,
                     ContentType = JsonContentType,
-                    StatusCode = StatusCodes.Status200OK
+                    StatusCode = StatusCodes.Status200OK,
                 };
             }
             catch (Exception ex)
             {
-                log.Error("Unhandled exception", ex);
-                return new ExceptionResult(ex, false);
+                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Creates a new category.
+        /// </summary>
+        /// <param name="req">The request to add the new category.</param>
+        /// <param name="log">The logger to use for logging.</param>
+        /// <returns>Object with the id of the new category.</returns>
         [FunctionName("AddCategory")]
-        public static async Task<IActionResult> AddCategory(
+        public async Task<IActionResult> AddCategory(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "categories")]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
+            if (req == null)
+            {
+                throw new ArgumentNullException(nameof(req));
+            }
+
             // get the request body
-            var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            using var bodyReader = new StreamReader(req.Body);
+            var requestBody = await bodyReader.ReadToEndAsync().ConfigureAwait(false);
             CreateCategoryRequest data;
             try
             {
@@ -100,7 +142,7 @@ namespace ContentReactor.Categories.Api
             }
 
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await this.UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult).ConfigureAwait(false))
             {
                 return responseResult;
             }
@@ -108,22 +150,34 @@ namespace ContentReactor.Categories.Api
             // create category
             try
             {
-                var categoryId = await CategoriesService.AddCategoryAsync(data.Name, userId);
+                var categoryId = await this.CategoriesService.AddCategoryAsync(data.Name, userId).ConfigureAwait(false);
                 return new OkObjectResult(new { id = categoryId });
             }
             catch (Exception ex)
             {
-                log.Error("Unhandled exception", ex);
-                return new ExceptionResult(ex, false);
+                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Deletes a category.
+        /// </summary>
+        /// <param name="req">The request to add the new category.</param>
+        /// <param name="log">The logger to use for logging.</param>
+        /// <param name="id">The id of the category to delete.</param>
+        /// <returns>Object with the id of the new category.</returns>
         [FunctionName("DeleteCategory")]
-        public static async Task<IActionResult> DeleteCategory(
+        public async Task<IActionResult> DeleteCategory(
             [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "categories/{id}")]HttpRequest req,
-            TraceWriter log,
+            ILogger log,
             string id)
         {
+            if (req == null)
+            {
+                throw new ArgumentNullException(nameof(req));
+            }
+
             // validate request
             if (string.IsNullOrEmpty(id))
             {
@@ -131,7 +185,7 @@ namespace ContentReactor.Categories.Api
             }
 
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await this.UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult).ConfigureAwait(false))
             {
                 return responseResult;
             }
@@ -139,24 +193,38 @@ namespace ContentReactor.Categories.Api
             // delete category
             try
             {
-                await CategoriesService.DeleteCategoryAsync(id, userId); // we ignore the result of this call - whether it's Success or NotFound, we return an 'Ok' back to the client
+                await this.CategoriesService.DeleteCategoryAsync(id, userId).ConfigureAwait(false); // we ignore the result of this call - whether it's Success or NotFound, we return an 'Ok' back to the client
                 return new NoContentResult();
             }
             catch (Exception ex)
             {
-                log.Error("Unhandled exception", ex);
-                return new ExceptionResult(ex, false);
+                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Updates the name of a category and raises events to process all additional updates
+        /// on synonyms and images.
+        /// </summary>
+        /// <param name="req">The request to add the new category.</param>
+        /// <param name="log">The logger to use for logging.</param>
+        /// <param name="id">The id of the category to update.</param>
+        /// <returns>Returns <see cref="NoContentResult"/> if sucessful.</returns>
         [FunctionName("UpdateCategory")]
-        public static async Task<IActionResult> UpdateCategory(
+        public async Task<IActionResult> UpdateCategory(
             [HttpTrigger(AuthorizationLevel.Anonymous, "patch", Route = "categories/{id}")]HttpRequest req,
-            TraceWriter log,
+            ILogger log,
             string id)
         {
+            if (req == null)
+            {
+                throw new ArgumentNullException(nameof(req));
+            }
+
             // get the request body
-            var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+            using var bodyReader = new StreamReader(req.Body);
+            var requestBody = await bodyReader.ReadToEndAsync().ConfigureAwait(false);
             UpdateCategoryRequest data;
             try
             {
@@ -172,21 +240,24 @@ namespace ContentReactor.Categories.Api
             {
                 return new BadRequestObjectResult(new { error = "Missing required property 'name'." });
             }
+
             if (data.Id != null && id != null && data.Id != id)
             {
                 return new BadRequestObjectResult(new { error = "Property 'id' does not match the identifier specified in the URL path." });
             }
+
             if (string.IsNullOrEmpty(data.Id))
             {
                 data.Id = id;
             }
+
             if (string.IsNullOrEmpty(data.Name))
             {
                 return new BadRequestObjectResult(new { error = "Missing required property 'name'." });
             }
 
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await this.UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult).ConfigureAwait(false))
             {
                 return responseResult;
             }
@@ -194,7 +265,7 @@ namespace ContentReactor.Categories.Api
             // update category name
             try
             {
-                var result = await CategoriesService.UpdateCategoryAsync(data.Id, userId, data.Name);
+                var result = await this.CategoriesService.UpdateCategoryAsync(data.Id, userId, data.Name).ConfigureAwait(false);
                 if (result == UpdateCategoryResult.NotFound)
                 {
                     return new NotFoundResult();
@@ -204,19 +275,31 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.Error("Unhandled exception", ex);
-                return new ExceptionResult(ex, false);
+                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Gets the full details of a category.
+        /// </summary>
+        /// <param name="req">The request to add the new category.</param>
+        /// <param name="log">The logger to use for logging.</param>
+        /// <param name="id">The id of the category to get.</param>
+        /// <returns>An instance of the <see cref="ContentReactor.Categories.Services.Models.Response.CategoryDetails"/> if found.</returns>
         [FunctionName("GetCategory")]
-        public static async Task<IActionResult> GetCategory(
+        public async Task<IActionResult> GetCategory(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "categories/{id}")]HttpRequest req,
-            TraceWriter log,
+            ILogger log,
             string id)
         {
+            if (req == null)
+            {
+                throw new ArgumentNullException(nameof(req));
+            }
+
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await this.UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult).ConfigureAwait(false))
             {
                 return responseResult;
             }
@@ -224,7 +307,7 @@ namespace ContentReactor.Categories.Api
             // get the category details
             try
             {
-                var document = await CategoriesService.GetCategoryAsync(id, userId);
+                var document = await this.CategoriesService.GetCategoryAsync(id, userId).ConfigureAwait(false);
                 if (document == null)
                 {
                     return new NotFoundResult();
@@ -234,18 +317,29 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.Error("Unhandled exception", ex);
-                return new ExceptionResult(ex, false);
+                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Gets a list of categories for a single user.
+        /// </summary>
+        /// <param name="req">The request to add the new category.</param>
+        /// <param name="log">The logger to use for logging.</param>
+        /// <returns>An instance of the <see cref="ContentReactor.Categories.Services.Models.Response.CategoryDetails"/> if found.</returns>
         [FunctionName("ListCategories")]
-        public static async Task<IActionResult> ListCategories(
+        public async Task<IActionResult> ListCategories(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "categories")]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
+            if (req == null)
+            {
+                throw new ArgumentNullException(nameof(req));
+            }
+
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await this.UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult).ConfigureAwait(false))
             {
                 return responseResult;
             }
@@ -253,7 +347,7 @@ namespace ContentReactor.Categories.Api
             // list the categories
             try
             {
-                var summaries = await CategoriesService.ListCategoriesAsync(userId);
+                var summaries = await this.CategoriesService.ListCategoriesAsync(userId).ConfigureAwait(false);
                 if (summaries == null)
                 {
                     return new NotFoundResult();
@@ -263,7 +357,7 @@ namespace ContentReactor.Categories.Api
                 var settings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
-                    Formatting = Formatting.Indented
+                    Formatting = Formatting.Indented,
                 };
                 settings.Converters.Add(new CategorySummariesConverter());
                 var json = JsonConvert.SerializeObject(summaries, settings);
@@ -272,13 +366,13 @@ namespace ContentReactor.Categories.Api
                 {
                     Content = json,
                     ContentType = JsonContentType,
-                    StatusCode = StatusCodes.Status200OK
+                    StatusCode = StatusCodes.Status200OK,
                 };
             }
             catch (Exception ex)
             {
-                log.Error("Unhandled exception", ex);
-                return new ExceptionResult(ex, false);
+                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                throw;
             }
         }
     }

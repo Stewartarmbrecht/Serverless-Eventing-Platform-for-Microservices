@@ -40,9 +40,9 @@
             "request": "launch",
             "preLaunchTask": "build-categories",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/categories/src/ContentReactor.Categories/ContentReactor.Categories.Services.Tests/bin/Debug/netcoreapp2.0/ContentReactor.Categories.Services.Tests.dll",
+            "program": "${workspaceFolder}/categories/src/ContentReactor.Categories/ContentReactor.Categories.Tests/bin/Debug/netcoreapp2.0/ContentReactor.Categories.Tests.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/categories/src/ContentReactor.Categories/ContentReactor.Categories.Services.Tests",
+            "cwd": "${workspaceFolder}/categories/src/ContentReactor.Categories/ContentReactor.Categories.Tests",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
             "console": "internalConsole",
             "stopAtEntry": false,

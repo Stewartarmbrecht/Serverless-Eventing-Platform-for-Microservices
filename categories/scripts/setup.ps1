@@ -33,10 +33,10 @@ if(!$tenantId) {
 
 $location = Get-Location
 
-$microserviceName = "Audio"
+$microserviceName = "Categories"
 $loggingPrefix = "$microserviceName Build"
-$apiPort = 7073
-$workerPort = 7074
+$apiPort = 7010
+$workerPort = 7011
 
 Set-Location "$PSSCriptRoot/../"
 

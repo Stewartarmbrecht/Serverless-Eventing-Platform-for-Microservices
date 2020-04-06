@@ -1,20 +1,23 @@
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using ContentReactor.Categories.Services;
-using ContentReactor.Categories.Services.Repositories;
-using ContentReactor.Common;
-using ContentReactor.Common.UserAuthentication;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json;
-
 namespace ContentReactor.Categories.WorkerApi
 {
+    using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using ContentReactor.Categories.Services;
+    using ContentReactor.Categories.Services.Repositories;
+    using ContentReactor.Common;
+    using ContentReactor.Common.UserAuthentication;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Http;
+    using Microsoft.Azure.WebJobs.Host;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Work functions that process events that should trigger category updates.
+    /// </summary>
     public static class WorkerApiFunctions
     {
         private const string JsonContentType = "application/json";
@@ -37,7 +40,7 @@ namespace ContentReactor.Categories.WorkerApi
             TraceWriter log)
         {
             // get the user ID
-            if (! await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
+            if (!await UserAuthenticationService.GetUserIdAsync(req, out var userId, out var responseResult))
             {
                 return responseResult;
             }
@@ -119,11 +122,11 @@ namespace ContentReactor.Categories.WorkerApi
                 log.Info("Responding to Event Grid subscription verification.");
                 return eventGridValidationOutput;
             }
-            
+
             try
             {
                 var (eventGridEvent, userId, _) = EventGridSubscriberService.DeconstructEventGridMessage(req);
-                
+
                 // process the category item
                 await CategoriesService.ProcessAddItemEventAsync(eventGridEvent, userId);
 
@@ -148,11 +151,11 @@ namespace ContentReactor.Categories.WorkerApi
                 log.Info("Responding to Event Grid subscription verification.");
                 return eventGridValidationOutput;
             }
-            
+
             try
             {
                 var (eventGridEvent, userId, _) = EventGridSubscriberService.DeconstructEventGridMessage(req);
-                
+
                 // process the category item
                 await CategoriesService.ProcessUpdateItemEventAsync(eventGridEvent, userId);
 
@@ -177,11 +180,11 @@ namespace ContentReactor.Categories.WorkerApi
                 log.Info("Responding to Event Grid subscription verification.");
                 return eventGridValidationOutput;
             }
-            
+
             try
             {
                 var (eventGridEvent, userId, _) = EventGridSubscriberService.DeconstructEventGridMessage(req);
-                
+
                 // process the category item
                 await CategoriesService.ProcessDeleteItemEventAsync(eventGridEvent, userId);
 
@@ -193,7 +196,7 @@ namespace ContentReactor.Categories.WorkerApi
                 return new ExceptionResult(ex, false);
             }
         }
-        
+
         [FunctionName("AddCategoryImage")]
         public static async Task<IActionResult> AddCategoryImage(
             [HttpTrigger(AuthorizationLevel.Function, "post")]HttpRequest req,
@@ -206,7 +209,7 @@ namespace ContentReactor.Categories.WorkerApi
                 log.Info("Responding to Event Grid subscription verification.");
                 return eventGridValidationOutput;
             }
-            
+
             try
             {
                 var (_, userId, categoryId) = EventGridSubscriberService.DeconstructEventGridMessage(req);

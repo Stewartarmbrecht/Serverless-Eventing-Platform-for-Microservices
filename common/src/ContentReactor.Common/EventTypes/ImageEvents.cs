@@ -3,7 +3,7 @@
     /// <summary>
     /// Events for images.
     /// </summary>
-    internal static class ImageEvents
+    public static class ImageEvents
     {
         /// <summary>
         /// Type for an event when an image caption is updated.

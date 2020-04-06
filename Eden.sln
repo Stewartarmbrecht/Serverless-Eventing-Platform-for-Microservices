@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Categories.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Categories.Services", "categories\src\ContentReactor.Categories\ContentReactor.Categories.Services\ContentReactor.Categories.Services.csproj", "{C2B25175-DECA-45E0-B98C-E11EB133F08C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Categories.Services.Tests", "categories\src\ContentReactor.Categories\ContentReactor.Categories.Services.Tests\ContentReactor.Categories.Services.Tests.csproj", "{83DDE9AB-CE3D-4D57-B970-E3CE79854014}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Categories.Tests", "categories\src\ContentReactor.Categories\ContentReactor.Categories.Tests\ContentReactor.Categories.Tests.csproj", "{83DDE9AB-CE3D-4D57-B970-E3CE79854014}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Categories.WorkerApi", "categories\src\ContentReactor.Categories\ContentReactor.Categories.WorkerApi\ContentReactor.Categories.WorkerApi.csproj", "{417F1FB0-47E9-4BA3-B77B-5B3134329144}"
 EndProject
