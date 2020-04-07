@@ -1,1 +1,0 @@
-dotnet watch --project ./../src/ContentReactor.Audio/ContentReactor.Audio.Services.Tests/ContentReactor.Audio.Services.Tests.csproj test --filter TestCategory!=E2E

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.Servic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.WorkerApi", "ContentReactor.Audio.WorkerApi\ContentReactor.Audio.WorkerApi.csproj", "{01617748-9148-4174-AAEE-1BB0C1295BE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.Services.Tests", "ContentReactor.Audio.Services.Tests\ContentReactor.Audio.Services.Tests.csproj", "{B6BF0DD1-3CBD-4DC7-9C51-099EE8D41670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Audio.Tests", "ContentReactor.Audio.Tests\ContentReactor.Audio.Tests.csproj", "{B6BF0DD1-3CBD-4DC7-9C51-099EE8D41670}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\..\..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{4B68677F-EAE5-494D-9FF8-21AFF02B410C}"
 EndProject

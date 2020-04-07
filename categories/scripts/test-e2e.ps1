@@ -114,7 +114,7 @@ While(Get-Job -State "Running")
         
             D "Running E2E Tests" $loggingPrefix
             
-            dotnet watch --project ./../src/ContentReactor.Audio/ContentReactor.Audio.Services.Tests/ContentReactor.Audio.Services.Tests.csproj test --filter TestCategory=E2E
+            dotnet watch --project ./../src/ContentReactor.Audio/ContentReactor.Audio.Tests/ContentReactor.Audio.Tests.csproj test --filter TestCategory=E2E
         } -ArgumentList @($location)
         $testing = $TRUE
         Set-Location $location

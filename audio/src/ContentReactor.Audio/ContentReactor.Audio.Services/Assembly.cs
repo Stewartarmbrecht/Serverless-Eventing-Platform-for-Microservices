@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("ContentReactor.Audio.Services.Tests")]
+[assembly:InternalsVisibleTo("ContentReactor.Audio.Tests")]

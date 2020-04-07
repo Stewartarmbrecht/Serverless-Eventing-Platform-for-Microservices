@@ -17,19 +17,26 @@ $tenantId = $Env:tenantId
 $uniqueDeveloperId = $Env:uniqueDeveloperId
 $region = $Env:region
 
-$loggingPrefix = "$namePrefix $microserviceName Deploy Apps"
+$loggingPrefix = "$namePrefix $microserviceName Deploy Subscriptions"
 
 $currentDirectory = Get-Location
 
-D "Deploying the applications." $loggingPrefix
-
 $resourceGroupName = "$namePrefix-$microserviceName".ToLower()
+$deploymentFile = "./microservice.json"
+$deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
+$storageAccountName = "$($namePrefix)$($microserviceName)blob".ToLower()
+$storageContainerName = $microserviceName.ToLower()
 $apiName = "$namePrefix-$microserviceName-api".ToLower()
-$apiFilePath = "./../.dist/$solutionName.$microserviceName.Api.zip"
+$apiFilePath = "./$solutionName.$microserviceName.Api.zip"
 $workerName = "$namePrefix-$microserviceName-worker".ToLower()
-$workerFilePath = "./../.dist/$solutionName.$microserviceName.WorkerApi.zip"
+$workerFilePath = "./$solutionName.$microserviceName.WorkerApi.zip"
+$eventsResourceGroupName = "$namePrefix-events"
+$eventsSubscriptionDeploymentFile = "./../templates/eventGridSubscriptions-$microserviceName.json".ToLower()
+$eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
 
 Set-Location "$PSSCriptRoot"
+
+D "Deploying the microservice subscriptions." $loggingPrefix
 
 $old_ErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
@@ -44,25 +51,15 @@ if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
 $ErrorActionPreference = $old_ErrorActionPreference 
 
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
-$result = ExecuteCommand $command $loggingPrefix "Logging in to the Azure CLI."
+$result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
     $result
 }
 
-$old_ErrorActionPreference = $ErrorActionPreference
-$ErrorActionPreference = 'SilentlyContinue'
-
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the API application."
+$command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
+$result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
 if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
     $result
 }
 
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath"
-$result = ExecuteCommand $command $loggingPrefix "Deploying the worker application."
-if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
-    $result
-}
-
-$ErrorActionPreference = $old_ErrorActionPreference 
-D "Finished deploying the applications." $loggingPrefix
+D "Deployed the microservice subscriptions." $loggingPrefix

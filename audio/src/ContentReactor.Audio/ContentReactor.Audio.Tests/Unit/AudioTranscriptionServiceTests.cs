@@ -1,7 +1,8 @@
-﻿namespace ContentReactor.Audio.Services.Tests
+﻿namespace ContentReactor.Audio.Tests.Unit
 {
     using System;
     using System.IO;
+    using ContentReactor.Audio.Services;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -16,7 +17,7 @@
         /// Then the service should return a result that is not null.
         /// </summary>
         [TestMethod]
-        public void CreateAudioTranscriptRequest_ReturnsExpectedRequest()
+        public void CreateAudioTranscriptRequestReturnsExpectedRequest()
         {
             // arrange
             Environment.SetEnvironmentVariable("CognitiveServicesSpeechApiEndpoint", "http://fakeendpoint");
@@ -36,7 +37,7 @@
         /// Then the service should return the display value of the best match included in the results.
         /// </summary>
         [TestMethod]
-        public void ProcessAudioTranscriptResponse_ReturnsExpectedResponse()
+        public void ProcessAudioTranscriptResponseReturnsExpectedResponse()
         {
             // arrange
             const string responseString = "{\"RecognitionStatus\":\"Success\",\"Offset\":3600000,\"Duration\":89800000,\"NBest\":[{\"Confidence\":0.940092,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download not to install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice.\"},{\"Confidence\":0.929836333,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download now to install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice.\"},{\"Confidence\":0.9099141,\"Lexical\":\"hi i\'m bryan one of the available high-quality text to speech voices select download not to install my voice\",\"ITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice\",\"MaskedITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice\",\"Display\":\"Hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice.\"},{\"Confidence\":0.9099141,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download not too install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice.\"},{\"Confidence\":0.8996583,\"Lexical\":\"hi i\'m bryan one of the available high-quality text to speech voices select download now to install my voice\",\"ITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice\",\"MaskedITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice\",\"Display\":\"Hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice.\"}]}";
