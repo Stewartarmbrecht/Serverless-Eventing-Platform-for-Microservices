@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string"
         },
         "publicUrlToLocalWebServer": {
@@ -16,7 +16,7 @@
         }
     },
     "variables": {
-        "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
+        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
                 "resourceName": "[concat(parameters('uniqueDeveloperId'),'AudioUpdateAudioTranscript')]",

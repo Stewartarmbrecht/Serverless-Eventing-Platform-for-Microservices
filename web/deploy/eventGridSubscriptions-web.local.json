@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string"
         },
         "publicUrlToLocalWebServer": {
@@ -13,8 +13,8 @@
         }
     },
     "variables": {
-        "appServiceName": "[concat(parameters('uniqueResourceNamePrefix'),'-web-app')]",
-        "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
+        "appServiceName": "[concat(parameters('uniqueResourcesystemName'),'-web-app')]",
+        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
                 "resourceName": "[concat(parameters('uniqueDeveloperId'),'SignalRCategoryNotifications')]",

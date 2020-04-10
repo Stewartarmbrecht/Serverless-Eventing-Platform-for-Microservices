@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string"
         },
 
@@ -12,23 +12,23 @@
         }
     },
     "variables": {
-        "resourceNamePrefix": "[concat(parameters('uniqueResourceNamePrefix'),'-categories')]",
+        "resourcesystemName": "[concat(parameters('uniqueResourcesystemName'),'-categories')]",
 
-        "applicationInsightsName": "[concat(variables('resourceNamePrefix'), '-ai')]",
+        "applicationInsightsName": "[concat(variables('resourcesystemName'), '-ai')]",
 
-        "functionsAppServicePlanName": "[concat(variables('resourceNamePrefix'),'-asp')]",
-        "functionsApiAppName": "[concat(variables('resourceNamePrefix'),'-api')]",
-        "functionsWorkerApiAppName": "[concat(variables('resourceNamePrefix'),'-worker')]",
+        "functionsAppServicePlanName": "[concat(variables('resourcesystemName'),'-asp')]",
+        "functionsApiAppName": "[concat(variables('resourcesystemName'),'-api')]",
+        "functionsWorkerApiAppName": "[concat(variables('resourcesystemName'),'-worker')]",
 
-        "cosmosDbAccountName": "[concat(variables('resourceNamePrefix'), '-db')]",
+        "cosmosDbAccountName": "[concat(variables('resourcesystemName'), '-db')]",
         "cosmosDbDatabaseName": "Categories",
         "cosmosDbCollectionName": "Categories",
 
-        "cognitiveServicesAccountName": "[concat(variables('resourceNamePrefix'), '-cs')]",
+        "cognitiveServicesAccountName": "[concat(variables('resourcesystemName'), '-cs')]",
         "cognitiveServicesSearchApiUrl": "https://api.cognitive.microsoft.com/bing/v7.0/images/search",
         "bigHugeThesaurusApiUrl": "http://words.bighugelabs.com/api/2/",
 
-        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourceNamePrefix'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourceNamePrefix'),'-events-topic'))]"
+        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourcesystemName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourcesystemName'),'-events-topic'))]"
     },
     "resources": [
         {

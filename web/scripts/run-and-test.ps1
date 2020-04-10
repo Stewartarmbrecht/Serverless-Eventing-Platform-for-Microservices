@@ -7,9 +7,9 @@ $location = Get-Location
 $webServerJob = Start-Job -Name "rt-WebServer" -ScriptBlock {
     $loggingPrefix = "Run Web Server"
 
-    $namePrefix = $Env:namePrefix
+    $systemName = $Env:systemName
 
-    $Env:FUNCTION_API_PROXY_ROOT = "https://$namePrefix-proxy-api.azurewebsites.net"
+    $Env:FUNCTION_API_PROXY_ROOT = "https://$systemName-proxy-api.azurewebsites.net"
 
     Set-Location $args[0]
 

@@ -2,15 +2,15 @@ param(
     [Alias("v")]
     [String] $verbosity
 )
-. ./../../scripts/functions.ps1
+. ./functions.ps1
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 
-$loggingPrefix = "$namePrefix $microserviceName Deploy Microservice"
+$loggingPrefix = "$systemName $microserviceName Deploy Microservice"
 
 $currentDirectory = Get-Location
 

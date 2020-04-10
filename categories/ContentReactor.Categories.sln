@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common", "..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj", "{D35121CF-1081-468E-A447-4626219DF9D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common", "..\common\src\ContentReactor.Common\ContentReactor.Common.csproj", "{D35121CF-1081-468E-A447-4626219DF9D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Services", "ContentReactor.Categories.Services\ContentReactor.Categories.Services.csproj", "{965F48C5-CB0E-4223-8B49-DD49AAD16158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Services", "services\ContentReactor.Categories.Services.csproj", "{965F48C5-CB0E-4223-8B49-DD49AAD16158}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Api", "ContentReactor.Categories.Api\ContentReactor.Categories.Api.csproj", "{171A5210-FADD-45F2-9996-62503FEC7E23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Api", "api\ContentReactor.Categories.Api.csproj", "{171A5210-FADD-45F2-9996-62503FEC7E23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.WorkerApi", "ContentReactor.Categories.WorkerApi\ContentReactor.Categories.WorkerApi.csproj", "{56483F4C-57A5-4D18-A03E-4FA7F32ED359}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.WorkerApi", "worker\ContentReactor.Categories.WorkerApi.csproj", "{56483F4C-57A5-4D18-A03E-4FA7F32ED359}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Tests", "ContentReactor.Categories.Tests\ContentReactor.Categories.Tests.csproj", "{1B547AE5-A40B-4938-B0EC-DA6D1E0C198E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Categories.Tests", "tests\ContentReactor.Categories.Tests.csproj", "{1B547AE5-A40B-4938-B0EC-DA6D1E0C198E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\..\..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{391DF820-F71B-423E-8C7D-92EE2399454A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Common.Tests", "..\common\src\ContentReactor.Common.Tests\ContentReactor.Common.Tests.csproj", "{391DF820-F71B-423E-8C7D-92EE2399454A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

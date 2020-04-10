@@ -2,23 +2,23 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string"
         }
     },
     "variables": {
-        "resourceNamePrefix": "[concat(parameters('uniqueResourceNamePrefix'),'-text')]",
+        "resourcesystemName": "[concat(parameters('uniqueResourcesystemName'),'-text')]",
 
-        "applicationInsightsName": "[concat(variables('resourceNamePrefix'), '-ai')]",
+        "applicationInsightsName": "[concat(variables('resourcesystemName'), '-ai')]",
 
-        "functionsAppServicePlanName": "[concat(variables('resourceNamePrefix'),'-asp')]",
-        "functionsApiAppName": "[concat(variables('resourceNamePrefix'),'-api')]",
+        "functionsAppServicePlanName": "[concat(variables('resourcesystemName'),'-asp')]",
+        "functionsApiAppName": "[concat(variables('resourcesystemName'),'-api')]",
 
-        "cosmosDbAccountName": "[concat(variables('resourceNamePrefix'), '-db')]",
+        "cosmosDbAccountName": "[concat(variables('resourcesystemName'), '-db')]",
         "cosmosDbDatabaseName": "Text",
         "cosmosDbCollectionName": "Text",
 
-        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourceNamePrefix'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourceNamePrefix'),'-events-topic'))]"
+        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourcesystemName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourcesystemName'),'-events-topic'))]"
     },
     "resources": [
         {

@@ -14,13 +14,13 @@ $location = Get-Location
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
 $workerPort = $Env:workerPort
 
-$loggingPrefix = "$namePrefix $microserviceName Package"
+$loggingPrefix = "$systemName $microserviceName Package"
 
 Set-Location "$PSSCriptRoot/../"
 

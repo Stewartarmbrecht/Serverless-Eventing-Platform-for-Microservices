@@ -2,27 +2,27 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string",
             "defaultValue": ""
         }
     },
     "variables": {
-        "resourceNamePrefix": "[concat(parameters('uniqueResourceNamePrefix'),'-audio')]",
+        "resourcesystemName": "[concat(parameters('uniqueResourcesystemName'),'-audio')]",
 
-        "applicationInsightsName": "[concat(variables('resourceNamePrefix'), '-ai')]",
+        "applicationInsightsName": "[concat(variables('resourcesystemName'), '-ai')]",
 
-        "functionsAppServicePlanName": "[concat(variables('resourceNamePrefix'),'-asp')]",
-        "functionsApiAppName": "[concat(variables('resourceNamePrefix'),'-api')]",
-        "functionsWorkerApiAppName": "[concat(variables('resourceNamePrefix'),'-worker')]",
+        "functionsAppServicePlanName": "[concat(variables('resourcesystemName'),'-asp')]",
+        "functionsApiAppName": "[concat(variables('resourcesystemName'),'-api')]",
+        "functionsWorkerApiAppName": "[concat(variables('resourcesystemName'),'-worker')]",
 
-        "blobAccountName": "[concat(parameters('uniqueResourceNamePrefix'),'audioblob')]",
-        "storageAccountName": "[concat(parameters('uniqueResourceNamePrefix'),'audiowebjobstorage')]",
+        "blobAccountName": "[concat(parameters('uniqueResourcesystemName'),'audioblob')]",
+        "storageAccountName": "[concat(parameters('uniqueResourcesystemName'),'audiowebjobstorage')]",
 
-        "cognitiveServicesAccountName": "[concat(variables('resourceNamePrefix'), '-cs')]",
+        "cognitiveServicesAccountName": "[concat(variables('resourcesystemName'), '-cs')]",
         "cognitiveServicesApiUrl": "https://westus2.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-us&format=detailed",
 
-        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourceNamePrefix'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourceNamePrefix'),'-events-topic'))]"
+        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourcesystemName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourcesystemName'),'-events-topic'))]"
     },
     "resources": [
         {

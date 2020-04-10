@@ -12,13 +12,13 @@ Set-Location "$PSScriptRoot"
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
 $workerPort = $Env:workerPort
 
-$loggingPrefix = "$namePrefix $microserviceName Build"
+$loggingPrefix = "$systemName $microserviceName Build"
 
 $directoryStart = Get-Location
 
@@ -27,5 +27,7 @@ $result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
     $result
 }
+
+D "Finished building the solution." $loggingPrefix
 
 Set-Location $currentDirectory

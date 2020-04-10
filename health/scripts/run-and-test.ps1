@@ -7,7 +7,7 @@ $location = Get-Location
 $webApiJob = Start-Job -Name "rt-HealthApi" -ScriptBlock {
     $loggingPrefix = "Run Health API"
 
-    $namePrefix = $Env:namePrefix
+    $systemName = $Env:systemName
 
     Set-Location $args[0]
 

@@ -1,6 +1,6 @@
-param([string] $publicUrlToLocalWebServer), [String] $namePrefix, [String] $userName, [String] $password, [String] $tenantId, [string] $uniqueDeveloperId
-if (!$namePrefix) {
-    $namePrefix = $Env:namePrefix
+param([string] $publicUrlToLocalWebServer), [String] $systemName, [String] $userName, [String] $password, [String] $tenantId, [string] $uniqueDeveloperId
+if (!$systemName) {
+    $systemName = $Env:systemName
 }
 if (!$userName) {
     $userName = $Env:userName
@@ -18,8 +18,8 @@ if (!$uniqueDeveloperId) {
     $uniqueDeveloperId = $Env:uniqueDeveloperId
 }
 
-if(!$namePrefix) {
-    $namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
+if(!$systemName) {
+    $systemName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
 }
 if(!$userName) {
     $userName = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
@@ -37,8 +37,8 @@ if(!$uniqueDeveloperId) {
     $uniqueDeveloperId = Read-Host -Prompt 'Please provide a unique identifier for the developer to identify subscriptionbs deployed in the cloud.'
 }
 
-$loggingPrefix = "Web Server Subcriptions ($namePrefix)"
-$eventsResourceGroupName = "$namePrefix-events"
+$loggingPrefix = "Web Server Subcriptions ($systemName)"
+$eventsResourceGroupName = "$systemName-events"
 
 Set-Location "$PSSCriptRoot"
 
@@ -46,9 +46,9 @@ Set-Location "$PSSCriptRoot"
 
 $directoryStart = Get-Location
 
-if (!$namePrefix) {
-    D "Either pass in the '-namePrefix' parameter when calling this script or 
-    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+if (!$systemName) {
+    D "Either pass in the '-systemName' parameter when calling this script or 
+    set and environment variable with the name: 'systemName'." $loggingPrefix
 }
 
 D "Deploying the web server subscriptions." $loggingPrefix
@@ -65,7 +65,7 @@ $ErrorActionPreference = $old_ErrorActionPreference
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 
-$command = "az group deployment create -g $eventsResourceGroupName --template-file ./eventGridSubscriptions-web.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId"
+$command = "az group deployment create -g $eventsResourceGroupName --template-file ./eventGridSubscriptions-web.local.json --parameters uniqueResourcesystemName=$systemName publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
 
 D "Deployed the subscriptions." $loggingPrefix

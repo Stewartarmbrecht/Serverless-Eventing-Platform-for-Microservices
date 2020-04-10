@@ -1,6 +1,6 @@
-param([String] $namePrefix, [String] $region, [String] $bigHugeThesaurusApiKey, [String]$userName, [String] $password, [String] $tenantId, [String] $uniqueDeveloperId)
+param([String] $systemName, [String] $region, [String] $bigHugeThesaurusApiKey, [String]$userName, [String] $password, [String] $tenantId, [String] $uniqueDeveloperId)
 
-$Env:namePrefix = $namePrefix
+$Env:systemName = $systemName
 $Env:region = $region
 $Env:bigHugeThesaurusApiKey = $bigHugeThesaurusApiKey
 $Env:userName = $userName
@@ -8,8 +8,8 @@ $Env:password = $password
 $Env:tenantId = $tenantId
 $Env:uniqueDeveloperId = $uniqueDeveloperId
 
-if(!$Env:namePrefix) {
-    $Env:namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
+if(!$Env:systemName) {
+    $Env:systemName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
 }
 if(!$Env:region) {
     $Env:region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'

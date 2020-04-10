@@ -1,1 +1,0 @@
-dotnet watch --project ./../src/ContentReactor.Categories/ContentReactor.Categories.Tests/ContentReactor.Categories.Tests.csproj test --filter TestCategory!=E2E

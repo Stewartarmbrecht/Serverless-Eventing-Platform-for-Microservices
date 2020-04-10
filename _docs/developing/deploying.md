@@ -31,7 +31,7 @@ during the deployment.  You will be required to provide a globally unique naming
     * is globally unique in Azure when suffixes are added (like `-web`, `-events`, etc.)
 3. Execute the primary deployment script:
 
-        ./scripts/deploy.ps1 -namePrefix {your-name-prefix} -region westus2 -bigHugeThesaurusApiKey {your-api-key}
+        ./scripts/deploy.ps1 -systemName {your-name-prefix} -region westus2 -bigHugeThesaurusApiKey {your-api-key}
 
 ### Deploying A Single Microservice Manually
 
@@ -40,9 +40,9 @@ during the deployment.  You will be required to provide a globally unique naming
 
     * For Categories:
 
-        ./deploy.ps1 -namePrefix {your-name-prefix} -region westus2 -bigHugeThesaurusApiKey {your-api-key}
+        ./deploy.ps1 -systemName {your-name-prefix} -region westus2 -bigHugeThesaurusApiKey {your-api-key}
 
     * For all else (Events, Audio, Images, Text, Proxy, Web)
 
-        ./deploy.ps1 -namePrefix {your-name-prefix} -region westus2
+        ./deploy.ps1 -systemName {your-name-prefix} -region westus2
 

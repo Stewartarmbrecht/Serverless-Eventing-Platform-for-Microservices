@@ -1,6 +1,6 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
-if (!$namePrefix) {
-    $namePrefix = $Env:namePrefix
+param([String] $systemName, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
+if (!$systemName) {
+    $systemName = $Env:systemName
 }
 if (!$region) {
     $region = $Env:region
@@ -15,8 +15,8 @@ if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
 
-if(!$namePrefix) {
-    $namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
+if(!$systemName) {
+    $systemName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
 }
 if(!$region) {
     $region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
@@ -31,23 +31,23 @@ if(!$tenantId) {
     $tenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }
 
-$loggingPrefix = "Images Deployment ($namePrefix)"
-$resourceGroupName = "$namePrefix-images"
+$loggingPrefix = "Images Deployment ($systemName)"
+$resourceGroupName = "$systemName-images"
 $deploymentFile = "./microservice.json"
-$storageAccountName = "$($namePrefix)imagesblob"
+$storageAccountName = "$($systemName)imagesblob"
 $storageContainerFullImagesName = "fullimages"
 $storageContainerPreviewImagesName = "previewimages"
-$eventsResourceGroupName = "$namePrefix-events"
+$eventsResourceGroupName = "$systemName-events"
 $eventsSubscriptionDeploymentFile = "./eventGridSubscriptions-images.json"
-$eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
+$eventsSubscriptionParameters="uniqueResourcesystemName=$systemName"
 
 Set-Location "$PSSCriptRoot"
 
 . ./../../scripts/functions.ps1
 
-if (!$namePrefix) {
-    D "Either pass in the '-namePrefix' parameter when calling this script or 
-    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+if (!$systemName) {
+    D "Either pass in the '-systemName' parameter when calling this script or 
+    set and environment variable with the name: 'systemName'." $loggingPrefix
 }
 if (!$region) {
     D "Either pass in the '-region' parameter when calling this script or 
@@ -71,7 +71,7 @@ $result = ExecuteCommand $command $loggingPrefix "Logging in the Azure CLI"
 $command = "az group create -n $resourceGroupName -l $region"
 $result = ExecuteCommand $command $loggingPrefix "Creating the resource group."
 
-$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourceNamePrefix=$namePrefix"
+$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --mode Complete --parameters uniqueResourcesystemName=$systemName"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the infrastructure."
 
 $command = "az storage container create --account-name $storageAccountName --name $storageContainerFullImagesName"
@@ -86,7 +86,7 @@ $result = ExecuteCommand $command $loggingPrefix "Clearing the storage account C
 $command = "az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins ""*"" --allowed-headers ""*"" --exposed-headers ""*"""
 $result = ExecuteCommand $command $loggingPrefix "Creating the storage account CORS policy."
 
-./deploy-apps.ps1 -namePrefix $namePrefix -region $region -userName $userName -password $password -tenantId $tenantId
+./deploy-apps.ps1 -systemName $systemName -region $region -userName $userName -password $password -tenantId $tenantId
 
 $command = "az group deployment create -g $eventsResourceGroupName --template-file $eventsSubscriptionDeploymentFile --parameters $eventsSubscriptionParameters"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."

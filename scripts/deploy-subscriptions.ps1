@@ -12,7 +12,7 @@ Set-Location "$PSScriptRoot/../"
 
 $location = Get-Location
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
@@ -23,20 +23,20 @@ $tenantId = $Env:tenantId
 $uniqueDeveloperId = $Env:uniqueDeveloperId
 $region = $Env:region
 
-$loggingPrefix = "$namePrefix $microserviceName Deploy Subscriptions"
+$loggingPrefix = "$systemName $microserviceName Deploy Subscriptions"
 
-$resourceGroupName = "$namePrefix-$microserviceName".ToLower()
+$resourceGroupName = "$systemName-$microserviceName".ToLower()
 $deploymentFile = "$location/$microserviceName/templates/microservice.json"
-$deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
-$storageAccountName = "$($namePrefix)$($microserviceName)blob".ToLower()
+$deploymentParameters = "uniqueResourcesystemName=$systemName"
+$storageAccountName = "$($systemName)$($microserviceName)blob".ToLower()
 $storageContainerName = $microserviceName.ToLower()
-$apiName = "$namePrefix-$microserviceName-api".ToLower()
+$apiName = "$systemName-$microserviceName-api".ToLower()
 $apiFilePath = "./$microserviceName/.dist/$solutionName.$microserviceName.Api.zip"
-$workerName = "$namePrefix-$microserviceName-worker".ToLower()
+$workerName = "$systemName-$microserviceName-worker".ToLower()
 $workerFilePath = "./$microserviceName/.dist/$solutionName.$microserviceName.WorkerApi.zip"
-$eventsResourceGroupName = "$namePrefix-events"
+$eventsResourceGroupName = "$systemName-events"
 $eventsSubscriptionDeploymentFile = "$location/$microserviceName/templates/eventGridSubscriptions.json".ToLower()
-$eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
+$eventsSubscriptionParameters="uniqueResourcesystemName=$systemName"
 
 Set-Location "$PSScriptRoot"
 

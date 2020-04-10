@@ -7,7 +7,7 @@ $location = Get-Location
 $webApiJob = Start-Job -Name "rt-TextApi" -ScriptBlock {
     $loggingPrefix = "Run Text API"
 
-    $namePrefix = $Env:namePrefix
+    $systemName = $Env:systemName
 
     Set-Location $args[0]
 

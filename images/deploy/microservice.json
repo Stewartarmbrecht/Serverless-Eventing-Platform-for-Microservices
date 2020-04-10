@@ -2,26 +2,26 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string",
             "defaultValue": ""
         }
     },
     "variables": {
-        "resourceNamePrefix": "[concat(parameters('uniqueResourceNamePrefix'),'-images')]",
+        "resourcesystemName": "[concat(parameters('uniqueResourcesystemName'),'-images')]",
 
-        "applicationInsightsName": "[concat(variables('resourceNamePrefix'), '-ai')]",
+        "applicationInsightsName": "[concat(variables('resourcesystemName'), '-ai')]",
 
-        "functionsAppServicePlanName": "[concat(variables('resourceNamePrefix'),'-asp')]",
-        "functionsApiAppName": "[concat(variables('resourceNamePrefix'),'-api')]",
-        "functionsWorkerApiAppName": "[concat(variables('resourceNamePrefix'),'-worker')]",
+        "functionsAppServicePlanName": "[concat(variables('resourcesystemName'),'-asp')]",
+        "functionsApiAppName": "[concat(variables('resourcesystemName'),'-api')]",
+        "functionsWorkerApiAppName": "[concat(variables('resourcesystemName'),'-worker')]",
 
-        "blobAccountName": "[concat(parameters('uniqueResourceNamePrefix'),'imagesblob')]",
+        "blobAccountName": "[concat(parameters('uniqueResourcesystemName'),'imagesblob')]",
 
-        "cognitiveServicesAccountName": "[concat(variables('resourceNamePrefix'), '-cs')]",
-        "cognitiveServicesAccountConnectionName": "[concat(variables('resourceNamePrefix'), 'cs-conn')]",
+        "cognitiveServicesAccountName": "[concat(variables('resourcesystemName'), '-cs')]",
+        "cognitiveServicesAccountConnectionName": "[concat(variables('resourcesystemName'), 'cs-conn')]",
 
-        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourceNamePrefix'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourceNamePrefix'),'-events-topic'))]"
+        "eventGridTopicResourceId": "[resourceId(concat(parameters('uniqueResourcesystemName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('uniqueResourcesystemName'),'-events-topic'))]"
     },
     "resources": [
         {

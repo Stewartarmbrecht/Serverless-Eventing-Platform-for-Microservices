@@ -1,6 +1,6 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
-if (!$namePrefix) {
-    $namePrefix = $Env:namePrefix
+param([String] $systemName, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
+if (!$systemName) {
+    $systemName = $Env:systemName
 }
 if (!$region) {
     $region = $Env:region
@@ -15,18 +15,18 @@ if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
 
-$loggingPrefix = "Events Deployment ($namePrefix)"
-$resourceGroupName = "$namePrefix-events"
+$loggingPrefix = "Events Deployment ($systemName)"
+$resourceGroupName = "$systemName-events"
 $deploymentFile = "./template.json"
-$deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
+$deploymentParameters = "uniqueResourcesystemName=$systemName"
 
 Set-Location "$PSSCriptRoot"
 
 . ./../../scripts/functions.ps1
 
-if (!$namePrefix) {
-    D "Either pass in the '-namePrefix' parameter when calling this script or 
-    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+if (!$systemName) {
+    D "Either pass in the '-systemName' parameter when calling this script or 
+    set and environment variable with the name: 'systemName'." $loggingPrefix
 }
 if (!$region) {
     D "Either pass in the '-region' parameter when calling this script or 

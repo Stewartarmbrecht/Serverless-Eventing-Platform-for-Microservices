@@ -25,7 +25,7 @@ all aspects of the system architecture as well as the processes you should use t
         az login
         # if you do not want to use your default subscription:
         az account set --subscription {your-subscription-id}
-        ./scripts/buildanddeploy.ps1 -namePrefix {your-globall-unique-naming-prefix} -region westus2 -bigHugeThesaurusApiKey {your-api-key}
+        ./scripts/buildanddeploy.ps1 -systemName {your-globall-unique-naming-prefix} -region westus2 -bigHugeThesaurusApiKey {your-api-key}
 4. Navigate to the app: `http://{your-globall-unique-naming-prefix}-web-app.azurewebsites.net` and try it out.
 
 _The last `buildanddeploy.ps1` script will take a long time to run for the first time.  Enjoy watching the output!_

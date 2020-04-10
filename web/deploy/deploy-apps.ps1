@@ -1,6 +1,6 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
-if (!$namePrefix) {
-    $namePrefix = $Env:namePrefix
+param([String] $systemName, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
+if (!$systemName) {
+    $systemName = $Env:systemName
 }
 if (!$region) {
     $region = $Env:region
@@ -15,8 +15,8 @@ if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
 
-if(!$namePrefix) {
-    $namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
+if(!$systemName) {
+    $systemName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
 }
 if(!$region) {
     $region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
@@ -31,19 +31,19 @@ if(!$tenantId) {
     $tenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }
 
-$loggingPrefix = "Web Deployment ($namePrefix)"
-$resourceGroupName = "$namePrefix-web"
-$webAIName = "$namePrefix-web-ai"
-$webAppName = "$namePrefix-web-app"
-$api_url = "https://$namePrefix-web-app.azurewebsites.net"
+$loggingPrefix = "Web Deployment ($systemName)"
+$resourceGroupName = "$systemName-web"
+$webAIName = "$systemName-web-ai"
+$webAppName = "$systemName-web-app"
+$api_url = "https://$systemName-web-app.azurewebsites.net"
 
 Set-Location "$PSSCriptRoot"
 
 . ./../../scripts/functions.ps1
 
-if (!$namePrefix) {
-    D "Either pass in the '-namePrefix' parameter when calling this script or 
-    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+if (!$systemName) {
+    D "Either pass in the '-systemName' parameter when calling this script or 
+    set and environment variable with the name: 'systemName'." $loggingPrefix
 }
 if (!$region) {
     D "Either pass in the '-region' parameter when calling this script or 

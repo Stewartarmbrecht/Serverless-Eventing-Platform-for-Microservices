@@ -21,13 +21,13 @@ $location = Get-Location
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
 $workerPort = $Env:workerPort
 
-$loggingPrefix = "$namePrefix $microserviceName Run"
+$loggingPrefix = "$systemName $microserviceName Run"
 
 D "Starting jobs." $loggingPrefix
 
@@ -38,7 +38,7 @@ $webApiJob = Start-Job -Name "rt-$microserviceName-Api" -ScriptBlock {
     $loggingPrefix = $args[4]
     $solutionName = $args[5]
 
-    $namePrefix = $Env:namePrefix
+    $systemName = $Env:systemName
 
     Set-Location $args[0]
 

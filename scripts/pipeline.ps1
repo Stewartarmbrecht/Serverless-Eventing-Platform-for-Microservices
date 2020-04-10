@@ -10,11 +10,11 @@ Set-Location "$PSSCriptRoot"
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 
-$loggingPrefix = "$namePrefix $microserviceName Pipeline Microservice"
+$loggingPrefix = "$systemName $microserviceName Pipeline Microservice"
 
 D "Running the full pipeline for the microservice." $loggingPrefix
 

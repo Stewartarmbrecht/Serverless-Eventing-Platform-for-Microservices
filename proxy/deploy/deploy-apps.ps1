@@ -1,6 +1,6 @@
-param([String] $namePrefix, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
-if (!$namePrefix) {
-    $namePrefix = $Env:namePrefix
+param([String] $systemName, [String] $region, [String] $userName, [String] $password, [String] $tenantId)
+if (!$systemName) {
+    $systemName = $Env:systemName
 }
 if (!$region) {
     $region = $Env:region
@@ -15,18 +15,18 @@ if (!$tenantId) {
     $tenantId = $Env:tenantId
 }
 
-$loggingPrefix = "Proxy Deployment ($namePrefix)"
-$resourceGroupName = "$namePrefix-proxy"
-$apiName = "$namePrefix-proxy-api"
+$loggingPrefix = "Proxy Deployment ($systemName)"
+$resourceGroupName = "$systemName-proxy"
+$apiName = "$systemName-proxy-api"
 $apiFilePath = "./ContentReactor.Proxy.Api.zip"
 
 Set-Location "$PSSCriptRoot"
 
 . ./../../scripts/functions.ps1
 
-if (!$namePrefix) {
-    D "Either pass in the '-namePrefix' parameter when calling this script or 
-    set and environment variable with the name: 'namePrefix'." $loggingPrefix
+if (!$systemName) {
+    D "Either pass in the '-systemName' parameter when calling this script or 
+    set and environment variable with the name: 'systemName'." $loggingPrefix
 }
 if (!$region) {
     D "Either pass in the '-region' parameter when calling this script or 

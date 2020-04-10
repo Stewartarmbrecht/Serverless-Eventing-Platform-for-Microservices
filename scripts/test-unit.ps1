@@ -14,14 +14,13 @@ $location = Get-Location
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
 $workerPort = $Env:workerPort
 
-$loggingPrefix = "$namePrefix $microserviceName Test Unit"
-D "Running unit tests." $loggingPrefix
+$loggingPrefix = "$systemName $microserviceName Test Unit"
 
 if ($continuous) {
     $testJob = Start-Job -Name "test-continuous" -ScriptBlock {
@@ -29,6 +28,8 @@ if ($continuous) {
         $solutionName = $args[1]
         $location = $args[2]
         Set-Location $location
+        . ./functions.ps1
+        D "Running unit tests continuously." $loggingPrefix
         dotnet watch --project ./../$microserviceName/tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory!=E2E
     } -ArgumentList @($microserviceName, $solutionName, $location)
 
@@ -62,10 +63,10 @@ if ($continuous) {
 else {
     Set-Location "./../$microserviceName/tests"
     $command = "dotnet test --logger ""trx;logFileName=testResults.trx"" --filter TestCategory!=E2E"
-    $result = ExecuteCommand $command $loggingPrefix "Running the unit tests."
+    $result = ExecuteCommand $command $loggingPrefix "Running unit tests."
     if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
         $result
     }
-    D "Finished running the unit tests." $loggingPrefix
+    D "Finished running unit tests." $loggingPrefix
 }
 Set-Location $currentDirectory

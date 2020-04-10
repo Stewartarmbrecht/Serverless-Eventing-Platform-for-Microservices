@@ -14,7 +14,7 @@ $location = Get-Location
 
 ./configure-env.ps1
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
@@ -24,9 +24,9 @@ $password = $Env:password
 $tenantId = $Env:tenantId
 $uniqueDeveloperId = $Env:uniqueDeveloperId
 
-$loggingPrefix = "$namePrefix $microserviceName Deploy Local Subscriptions"
+$loggingPrefix = "$systemName $microserviceName Deploy Local Subscriptions"
 
-$eventsResourceGroupName = "$namePrefix-events"
+$eventsResourceGroupName = "$systemName-events"
 
 D "Deploying the web server subscriptions." $loggingPrefix
 
@@ -51,9 +51,9 @@ if ($verbosity -eq "Normal" -or $verbosity -eq "n")
 }
 
 $expireTime = Get-Date
-$expireTimeUtc = $expireTime.AddHours(1).ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ")
+$expireTimeUtc = $expireTime.AddHours(1).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-$command = "az group deployment create -g $eventsResourceGroupName --template-file ./../$microserviceName/templates/eventGridSubscriptions.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId expireTimeUtc=$expireTimeUtc"
+$command = "az group deployment create -g $eventsResourceGroupName --template-file ./../$microserviceName/templates/eventGridSubscriptions.local.json --parameters uniqueResourcesystemName=$systemName publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId expireTimeUtc=$expireTimeUtc"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
 if ($verbosity -eq "Normal" -or $verbosity -eq "n")
 {

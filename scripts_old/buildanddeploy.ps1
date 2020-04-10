@@ -1,6 +1,6 @@
-param([String] $namePrefix, [String] $region, [String] $bigHugeThesaurusApiKey, [String]$userName, [String] $password, [String] $tenantId)
-if (!$namePrefix) {
-    $namePrefix = $Env:namePrefix
+param([String] $systemName, [String] $region, [String] $bigHugeThesaurusApiKey, [String]$userName, [String] $password, [String] $tenantId)
+if (!$systemName) {
+    $systemName = $Env:systemName
 }
 if (!$region) {
     $region = $Env:region
@@ -23,8 +23,8 @@ Set-Location $PSSCriptRoot
 . ./functions.ps1
 
 
-if(!$namePrefix) {
-    $namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
+if(!$systemName) {
+    $systemName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
 }
 if(!$region) {
     $region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
@@ -44,7 +44,7 @@ if(!$tenantId) {
 
 $loggingPrefix = "System Build"
 
-D "Using Name Prefix: $namePrefix" $loggingPrefix
+D "Using Name Prefix: $systemName" $loggingPrefix
 D "Using Region: $region" $loggingPrefix
 D "Using Thesaurus Key: $bigHugeThesaurusApiKey" $loggingPrefix
 D "User Name: $userName" $loggingPrefix
@@ -54,4 +54,4 @@ Set-Location $PSSCriptRoot
 
 ./build.ps1
 
-./deploy.ps1 -namePrefix $namePrefix -region $region -bigHugeThesaurusApiKey $bigHugeThesaurusApiKey -userName $userName -password $password -tenantId $tenantId
+./deploy.ps1 -systemName $systemName -region $region -bigHugeThesaurusApiKey $bigHugeThesaurusApiKey -userName $userName -password $password -tenantId $tenantId

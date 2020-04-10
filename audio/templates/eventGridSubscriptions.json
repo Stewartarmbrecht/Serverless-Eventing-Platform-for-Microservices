@@ -2,12 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string"
         }
     },
     "variables": {
-        "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
+        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
                 "resourceName": "audioUpdateAudioTranscript",
@@ -33,7 +33,7 @@
                 "destination": {
                     "endpointType": "WebHook",
                     "properties": {
-                        "endpointUrl": "[listsecrets(resourceId(concat(parameters('uniqueResourceNamePrefix'),'-audio'), 'Microsoft.Web/sites/functions', concat(parameters('uniqueResourceNamePrefix'),'-audio-worker'), variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].functionName),'2015-08-01').trigger_url]"
+                        "endpointUrl": "[listsecrets(resourceId(concat(parameters('uniqueResourcesystemName'),'-audio'), 'Microsoft.Web/sites/functions', concat(parameters('uniqueResourcesystemName'),'-audio-worker'), variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].functionName),'2015-08-01').trigger_url]"
                     }
                 },
                 "filter": {

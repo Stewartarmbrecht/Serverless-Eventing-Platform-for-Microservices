@@ -3,7 +3,7 @@ param(
     [String] $command,
     [Alias("v")]
     [string] $verbosity,
-    [String] $bigHugeThesaurusApiKey,
+    [String] $deploymentParameters,
     [string] $userName,
     [string] $password,
     [string] $tenantId,
@@ -66,13 +66,13 @@ if (!$config -and !$setup) {
 
 if ($config) {
     ./configure-env.ps1 `
-        -namePrefix $systemName `
+        -systemName $systemName `
         -region $region `
         -solutionName $solutionName `
         -microserviceName $microserviceName `
         -apiPort $apiPort `
         -workerPort $workerPort `
-        -bigHugeThesaurusApiKey $bigHugeThesaurusApiKey, `
+        -deploymentParameters $deploymentParameters `
         -userName $userName `
         -password $password  `
         -tenantId $tenantId `

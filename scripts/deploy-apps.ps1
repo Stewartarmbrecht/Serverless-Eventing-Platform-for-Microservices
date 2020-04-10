@@ -12,7 +12,7 @@ Set-Location "$PSScriptRoot/../"
 
 $location = Get-Location
 
-$namePrefix = $Env:namePrefix
+$systemName = $Env:systemName
 $solutionName = $Env:solutionName
 $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
@@ -23,14 +23,14 @@ $tenantId = $Env:tenantId
 $uniqueDeveloperId = $Env:uniqueDeveloperId
 $region = $Env:region
 
-$loggingPrefix = "$namePrefix $microserviceName Deploy Apps"
+$loggingPrefix = "$systemName $microserviceName Deploy Apps"
 
 D "Deploying the applications." $loggingPrefix
 
-$resourceGroupName = "$namePrefix-$microserviceName".ToLower()
-$apiName = "$namePrefix-$microserviceName-api".ToLower()
+$resourceGroupName = "$systemName-$microserviceName".ToLower()
+$apiName = "$systemName-$microserviceName-api".ToLower()
 $apiFilePath = "$location/$microserviceName/.dist/api.zip"
-$workerName = "$namePrefix-$microserviceName-worker".ToLower()
+$workerName = "$systemName-$microserviceName-worker".ToLower()
 $workerFilePath = "$location/$microserviceName/.dist/worker.zip"
 
 Set-Location "$PSSCriptRoot"

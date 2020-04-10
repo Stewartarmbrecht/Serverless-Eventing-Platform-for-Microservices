@@ -1,7 +1,7 @@
 param(
-    [String] $namePrefix, 
+    [String] $systemName, 
     [String] $region, 
-    [String] $bigHugeThesaurusApiKey, 
+    [String] $deploymentParameters, 
     [String] $userName, 
     [String] $password, 
     [String] $tenantId, 
@@ -12,14 +12,14 @@ param(
     [Int] $workerPort
 )
 
-if ($namePrefix) {
-    $Env:namePrefix = $namePrefix
+if ($systemName) {
+    $Env:systemName = $systemName
 }
 if ($region) {
     $Env:region = $region
 }
-if ($bigHugeThesaurusApiKey) {
-    $Env:bigHugeThesaurusApiKey = $bigHugeThesaurusApiKey
+if ($deploymentParameters) {
+    $Env:deploymentParameters = $deploymentParameters
 }
 if ($userName) {
     $Env:userName = $userName
@@ -46,14 +46,14 @@ if ($workerPort) {
     $Env:workerPort = $workerPort
 }
 
-if(!$Env:namePrefix) {
-    $Env:namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
+if(!$Env:systemName) {
+    $Env:systemName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
 }
 if(!$Env:region) {
     $Env:region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
 }
-if(!$Env:bigHugeThesaurusApiKey) {
-    $Env:bigHugeThesaurusApiKey = Read-Host -Prompt 'Please provide an API key for the Big Huge Thesaurus API. You can get a key here: https://words.bighugelabs.com/api.php'
+if(!$Env:deploymentParameters) {
+    $Env:deploymentParameters = Read-Host -Prompt 'Please provide the deployment parameters for your deployment template.'
 }
 if(!$Env:userName) {
     $Env:userName = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'

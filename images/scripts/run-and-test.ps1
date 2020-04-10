@@ -7,7 +7,7 @@ $location = Get-Location
 $webApiJob = Start-Job -Name "rt-ImagesApi" -ScriptBlock {
     $loggingPrefix = "Run Images API"
 
-    $namePrefix = $Env:namePrefix
+    $systemName = $Env:systemName
 
     Set-Location $args[0]
 
@@ -25,7 +25,7 @@ $webApiJob = Start-Job -Name "rt-ImagesApi" -ScriptBlock {
 $webWorkerJob = Start-Job -Name "rt-ImagesWorker" -ScriptBlock {
     $loggingPrefix = "Run Images Worker"
 
-    $namePrefix = $Env:namePrefix
+    $systemName = $Env:systemName
 
     Set-Location $args[0]
 

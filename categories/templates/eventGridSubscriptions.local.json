@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourceNamePrefix": {
+        "uniqueResourcesystemName": {
             "type": "string"
         },
         "publicUrlToLocalWebServer": {
@@ -38,7 +38,7 @@
     },
     "variables": {
         "start-date": "[concat(parameters('utcDateYear'),'-',parameters('utcDateMonths'),'-',parameters('utcDateDays'),'T',add(int(parameters('utcDateHours')), 1),':',parameters('utcDateMinutes'),':',parameters('utcDateSeconds'),'Z')]",
-        "eventGridTopicName": "[concat(parameters('uniqueResourceNamePrefix'),'-events-topic')]",
+        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
                 "resourceName": "[concat(parameters('uniqueDeveloperId'),'CategoryUpdateCategorySynonyms')]",

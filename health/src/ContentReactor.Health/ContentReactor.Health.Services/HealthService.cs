@@ -26,21 +26,21 @@ namespace ContentReactor.Health.Services
     /// </summary>
     public class HealthService : IHealthService
     {
-        static string systemNamePrefix = Environment.GetEnvironmentVariable("SYSTEM_NAME_PREFIX", EnvironmentVariableTarget.Process);
+        static string systemsystemName = Environment.GetEnvironmentVariable("SYSTEM_NAME_PREFIX", EnvironmentVariableTarget.Process);
         static HttpClient client = new HttpClient();
         public async Task<List<HealthCheckResults>> HealthCheck()
         {
             List<HealthCheckResults> results = new List<HealthCheckResults>();
 
             List<string> urls = new List<string>();
-            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/audiohealthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-audio-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/categorieshealthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-categories-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/imageshealthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-images-worker.azurewebsites.net/api/healthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-proxy-api.azurewebsites.net/texthealthcheck?userId={systemNamePrefix}");
-            urls.Add($"https://{systemNamePrefix}-web-app.azurewebsites.net/api/health?userId={systemNamePrefix}");
+            urls.Add($"https://{systemsystemName}-proxy-api.azurewebsites.net/audiohealthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-audio-worker.azurewebsites.net/api/healthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-proxy-api.azurewebsites.net/categorieshealthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-categories-worker.azurewebsites.net/api/healthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-proxy-api.azurewebsites.net/imageshealthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-images-worker.azurewebsites.net/api/healthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-proxy-api.azurewebsites.net/texthealthcheck?userId={systemsystemName}");
+            urls.Add($"https://{systemsystemName}-web-app.azurewebsites.net/api/health?userId={systemsystemName}");
 
             List<Task<HttpResponseMessage>> tasks = new List<Task<HttpResponseMessage>>();
 

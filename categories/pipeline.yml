@@ -11,8 +11,7 @@ trigger:
   branches:
     include: [ master ] # branch names which will trigger a build
   paths:
-    include:  [ categories/* ] # file paths which must match to trigger a build
-    exclude:  [ categories/src/*, categories/categories-app-pipeline.yml, categories/scripts/deploy-apps.ps1, categories/build/*, categories/deploy/deploy-apps.ps1  ] # file paths which must match to trigger a build
+    include:  [ audio/* ] # file paths which must match to trigger a build
 
 steps:
 # PowerShell
@@ -20,10 +19,10 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: filePath # Optional. Options: filePath, inline
-    filePath: ./categories/scripts/deploy.ps1 # Required when targetType == FilePath
-    arguments:  -namePrefix $(namePrefix) -region $(region) -userName $(userName) -password $(password) -tenantId $(tenantId) -bigHugeThesaurusApiKey $(bigHugeThesaurusApiKey)
+    filePath: ./eden.ps1 # Required when targetType == FilePath
+    arguments: -command pipeline -systemName $(systemName) -region $(region) -userName $(userName) -password $(password) -tenantId $(tenantId)
     errorActionPreference: stop # Optional. Options: stop, continue, silentlyContinue
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional
     pwsh: true # Optional
-    workingDirectory: ./categories/scripts # Optional
+    workingDirectory: . # Optional

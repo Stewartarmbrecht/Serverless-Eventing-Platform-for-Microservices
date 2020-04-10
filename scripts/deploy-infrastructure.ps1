@@ -12,31 +12,18 @@ Set-Location "$PSScriptRoot/../"
 
 $location = Get-Location
 
-$namePrefix = $Env:namePrefix
-$solutionName = $Env:solutionName
+$systemName = $Env:systemName
 $microserviceName = $Env:microserviceName
-$apiPort = $Env:apiPort
-$workerPort = $Env:workerPort
 $userName = $Env:userName
 $password = $Env:password
 $tenantId = $Env:tenantId
-$uniqueDeveloperId = $Env:uniqueDeveloperId
 $region = $Env:region
+$deploymentParameters = $Env:deploymentParameters
 
-$loggingPrefix = "$namePrefix $microserviceName Deploy Infrastructure"
+$loggingPrefix = "$systemName $microserviceName Deploy Infrastructure"
 
-$resourceGroupName = "$namePrefix-$microserviceName".ToLower()
+$resourceGroupName = "$systemName-$microserviceName".ToLower()
 $deploymentFile = "$location/$microserviceName/templates/microservice.json"
-$deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
-$storageAccountName = "$($namePrefix)$($microserviceName)blob".ToLower()
-$storageContainerName = $microserviceName.ToLower()
-$apiName = "$namePrefix-$microserviceName-api".ToLower()
-$apiFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.Api.zip"
-$workerName = "$namePrefix-$microserviceName-worker".ToLower()
-$workerFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.WorkerApi.zip"
-$eventsResourceGroupName = "$namePrefix-events"
-$eventsSubscriptionDeploymentFile = "$location/$microserviceName/templates/eventGridSubscriptions-$microserviceName.json".ToLower()
-$eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
 
 D "Deploying the microservice infrastructure." $loggingPrefix
 
@@ -70,23 +57,12 @@ if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
     $result
 }
 
-$command = "az storage container create --account-name $storageAccountName --name $storageContainerName"
-$result = ExecuteCommand $command $loggingPrefix "Creating the stoarge container."
-if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
-    $result
-}
+D "Executing post deployment actions." $loggingPrefix
 
-$command = "az storage cors clear --account-name $storageAccountName --services b"
-$result = ExecuteCommand $command $loggingPrefix "Clearing the storage account CORS policy."
-if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
-    $result
-}
+Set-Location "$location/$microserviceName/"
+./eden-post-deploy.ps1
 
-$command = "az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins ""*"" --allowed-headers ""*"" --exposed-headers ""*"""
-$result = ExecuteCommand $command $loggingPrefix "Creating the storage account CORS policy."
-if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
-    $result
-}
+D "Finished executing post deployment actions." $loggingPrefix
 
 D "Deployed the microservice infrastructure." $loggingPrefix
 Set-Location $currentDirectory
