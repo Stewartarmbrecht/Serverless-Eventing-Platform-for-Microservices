@@ -22,7 +22,7 @@ $loggingPrefix = "$namePrefix $microserviceName Build"
 
 $directoryStart = Get-Location
 
-Set-Location "$directoryStart/../$microserviceName/src/$solutionName.$microserviceName"
+Set-Location "$directoryStart/../$microserviceName"
 $result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
 if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
     $result

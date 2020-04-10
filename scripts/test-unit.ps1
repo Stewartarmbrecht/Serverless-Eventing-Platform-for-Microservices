@@ -29,7 +29,7 @@ if ($continuous) {
         $solutionName = $args[1]
         $location = $args[2]
         Set-Location $location
-        dotnet watch --project ./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory!=E2E
+        dotnet watch --project ./../$microserviceName/tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory!=E2E
     } -ArgumentList @($microserviceName, $solutionName, $location)
 
     # Change the default behavior of CTRL-C so that the script can intercept and use it versus just terminating the script.
@@ -60,7 +60,7 @@ if ($continuous) {
     }
 }
 else {
-    Set-Location "./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests"
+    Set-Location "./../$microserviceName/tests"
     $command = "dotnet test --logger ""trx;logFileName=testResults.trx"" --filter TestCategory!=E2E"
     $result = ExecuteCommand $command $loggingPrefix "Running the unit tests."
     if ($verbosity -eq "Normal" -or $verbosity -eq "n") {

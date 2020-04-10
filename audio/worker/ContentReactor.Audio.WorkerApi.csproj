@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ContentReactor.Audio.Services\ContentReactor.Audio.Services.csproj" />
+    <ProjectReference Include="..\services\ContentReactor.Audio.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

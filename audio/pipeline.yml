@@ -12,7 +12,6 @@ trigger:
     include: [ master ] # branch names which will trigger a build
   paths:
     include:  [ audio/* ] # file paths which must match to trigger a build
-    exclude:  [ audio/src/*, audio/audio-app-pipeline.yml, audio/scripts/deploy-apps.ps1, audio/build/*, audio/deploy/deploy-apps.ps1  ] # file paths which must match to trigger a build
 
 steps:
 # PowerShell
@@ -20,10 +19,10 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: filePath # Optional. Options: filePath, inline
-    filePath: ./audio/scripts/deploy.ps1 # Required when targetType == FilePath
-    arguments:  -namePrefix $(namePrefix) -region $(region) -userName $(userName) -password $(password) -tenantId $(tenantId)
+    filePath: ./eden.ps1 # Required when targetType == FilePath
+    arguments: -command pipeline -systemName $(systemName) -region $(region) -userName $(userName) -password $(password) -tenantId $(tenantId)
     errorActionPreference: stop # Optional. Options: stop, continue, silentlyContinue
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional
     pwsh: true # Optional
-    workingDirectory: ./audio/scripts # Optional
+    workingDirectory: . # Optional

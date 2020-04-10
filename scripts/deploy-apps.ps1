@@ -29,9 +29,9 @@ D "Deploying the applications." $loggingPrefix
 
 $resourceGroupName = "$namePrefix-$microserviceName".ToLower()
 $apiName = "$namePrefix-$microserviceName-api".ToLower()
-$apiFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.Api.zip"
+$apiFilePath = "$location/$microserviceName/.dist/api.zip"
 $workerName = "$namePrefix-$microserviceName-worker".ToLower()
-$workerFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.WorkerApi.zip"
+$workerFilePath = "$location/$microserviceName/.dist/worker.zip"
 
 Set-Location "$PSSCriptRoot"
 

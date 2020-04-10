@@ -44,7 +44,7 @@ $webApiJob = Start-Job -Name "rt-$microserviceName-Api" -ScriptBlock {
 
     . ./functions.ps1
 
-    $location = "./../$microserviceNAme/src/$solutionName.$microserviceName/$solutionName.$microserviceName.API"
+    $location = "./../$microserviceNAme/api"
     
     Set-Location $location
     
@@ -72,7 +72,7 @@ $webWorkerJob = Start-Job -Name "rt-$microserviceName-Worker" -ScriptBlock {
 
     . ./functions.ps1
 
-    $location = "./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.WorkerApi"
+    $location = "./../$microserviceName/worker"
     
     Set-Location $location
     
@@ -186,11 +186,11 @@ While(Get-Job -State "Running")
             if ($continuous)
             {
                     D "Running E2E tests." $loggingPrefix
-                    dotnet watch --project ./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory=E2E
+                    dotnet watch --project ./../$microserviceName/tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory=E2E
             }
             else
             {
-                Set-Location ./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/
+                Set-Location ./../$microserviceName/tests/
                 if ($verbosity -eq "Normal" -or $verbosity -eq "n")
                 {
                     D "Running E2E tests." $loggingPrefix
