@@ -1,1 +1,0 @@
-./test-e2e.ps1 -c $TRUE

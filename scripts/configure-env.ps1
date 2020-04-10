@@ -1,12 +1,50 @@
-param([String] $namePrefix, [String] $region, [String] $bigHugeThesaurusApiKey, [String]$userName, [String] $password, [String] $tenantId, [String] $uniqueDeveloperId)
+param(
+    [String] $namePrefix, 
+    [String] $region, 
+    [String] $bigHugeThesaurusApiKey, 
+    [String] $userName, 
+    [String] $password, 
+    [String] $tenantId, 
+    [String] $uniqueDeveloperId, 
+    [String] $solutionName,
+    [String] $microserviceName,
+    [Int] $apiPort,
+    [Int] $workerPort
+)
 
-$Env:namePrefix = $namePrefix
-$Env:region = $region
-$Env:bigHugeThesaurusApiKey = $bigHugeThesaurusApiKey
-$Env:userName = $userName
-$Env:password = $password
-$Env:tenantId = $tenantId
-$Env:uniqueDeveloperId = $uniqueDeveloperId
+if ($namePrefix) {
+    $Env:namePrefix = $namePrefix
+}
+if ($region) {
+    $Env:region = $region
+}
+if ($bigHugeThesaurusApiKey) {
+    $Env:bigHugeThesaurusApiKey = $bigHugeThesaurusApiKey
+}
+if ($userName) {
+    $Env:userName = $userName
+}
+if ($password) {
+    $Env:password = $password
+}
+if ($tenantId) {
+    $Env:tenantId = $tenantId
+}
+if ($uniqueDeveloperId) {
+    $Env:uniqueDeveloperId = $uniqueDeveloperId
+}
+if ($solutionName) {
+    $Env:solutionName = $solutionName
+}
+if ($microserviceName) {
+    $Env:microserviceName = $microserviceName
+}
+if ($apiPort) {
+    $Env:apiPort = $apiPort
+}
+if ($workerPort) {
+    $Env:workerPort = $workerPort
+}
 
 if(!$Env:namePrefix) {
     $Env:namePrefix = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resource.  Some resources require globally unique names.  This prefix should guarantee that.'
@@ -28,4 +66,16 @@ if(!$Env:tenantId) {
 }
 if(!$Env:uniqueDeveloperId) {
     $Env:uniqueDeveloperId = Read-Host -Prompt 'Please provide a unique id to identify subscriptions deployed to the cloud for the local developer.'
+}
+if(!$Env:solutionName) {
+    $Env:solutionName = Read-Host -Prompt 'Please provide the solution name.'
+}
+if(!$Env:microserviceName) {
+    $Env:microserviceName = Read-Host -Prompt 'Please provide the microservice name.'
+}
+if(!$Env:apiPort) {
+    $Env:apiPort = Read-Host -Prompt 'Please provide the port number for the api.'
+}
+if(!$Env:workerPort) {
+    $Env:workerPort = Read-Host -Prompt 'Please provide the port number for the worker api.'
 }

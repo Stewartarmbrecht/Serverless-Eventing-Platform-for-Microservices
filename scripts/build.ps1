@@ -1,42 +1,31 @@
-$loggingPrefix = "System Build"
+param(  
+    [Alias("c")]
+    [Boolean] $continuous,
+    [Alias("v")]
+    [String] $verbosity
+)
+$currentDirectory = Get-Location
 
-Set-Location $PSSCriptRoot
+Set-Location "$PSScriptRoot"
 
 . ./functions.ps1
 
-D "Audio Microservice Build" $loggingPrefix
-../audio/build/build.ps1
+./configure-env.ps1
 
-Set-Location $PSSCriptRoot
+$namePrefix = $Env:namePrefix
+$solutionName = $Env:solutionName
+$microserviceName = $Env:microserviceName
+$apiPort = $Env:apiPort
+$workerPort = $Env:workerPort
 
-D "Categories Microservice Build" $loggingPrefix
-../categories/build/build.ps1
+$loggingPrefix = "$namePrefix $microserviceName Build"
 
-Set-Location $PSSCriptRoot
+$directoryStart = Get-Location
 
-D "Images Microservice Build" $loggingPrefix
-../images/build/build.ps1
+Set-Location "$directoryStart/../$microserviceName/src/$solutionName.$microserviceName"
+$result = ExecuteCommand "dotnet build" $loggingPrefix "Building the solution."
+if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
+    $result
+}
 
-Set-Location $PSSCriptRoot
-
-D "Text Microservice Build" $loggingPrefix
-../text/build/build.ps1
-
-Set-Location $PSSCriptRoot
-
-D "Health Build" $loggingPrefix
-../health/build/build.ps1
-
-Set-Location $PSSCriptRoot
-
-D "Proxy Build" $loggingPrefix
-../proxy/build/build.ps1
-
-Set-Location $PSSCriptRoot
-
-D "Web Build" $loggingPrefix
-../web/build/build.ps1
-
-Set-Location $PSSCriptRoot
-
-D "Build complete!" $loggingPrefix
+Set-Location $currentDirectory

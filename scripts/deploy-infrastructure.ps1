@@ -2,9 +2,15 @@ param(
     [Alias("v")]
     [String] $verbosity
 )
-. ./../../scripts/functions.ps1
+$currentDirectory = Get-Location
 
-./configure-env.ps1
+Set-Location "$PSScriptRoot/../"
+
+. ./scripts/functions.ps1
+
+./scripts/configure-env.ps1
+
+$location = Get-Location
 
 $namePrefix = $Env:namePrefix
 $solutionName = $Env:solutionName
@@ -19,22 +25,18 @@ $region = $Env:region
 
 $loggingPrefix = "$namePrefix $microserviceName Deploy Infrastructure"
 
-$currentDirectory = Get-Location
-
 $resourceGroupName = "$namePrefix-$microserviceName".ToLower()
-$deploymentFile = "./../templates/microservice.json"
+$deploymentFile = "$location/$microserviceName/templates/microservice.json"
 $deploymentParameters = "uniqueResourceNamePrefix=$namePrefix"
 $storageAccountName = "$($namePrefix)$($microserviceName)blob".ToLower()
 $storageContainerName = $microserviceName.ToLower()
 $apiName = "$namePrefix-$microserviceName-api".ToLower()
-$apiFilePath = "./$solutionName.$microserviceName.Api.zip"
+$apiFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.Api.zip"
 $workerName = "$namePrefix-$microserviceName-worker".ToLower()
-$workerFilePath = "./$solutionName.$microserviceName.WorkerApi.zip"
+$workerFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.WorkerApi.zip"
 $eventsResourceGroupName = "$namePrefix-events"
-$eventsSubscriptionDeploymentFile = "./../templates/eventGridSubscriptions-$microserviceName.json".ToLower()
+$eventsSubscriptionDeploymentFile = "$location/$microserviceName/templates/eventGridSubscriptions-$microserviceName.json".ToLower()
 $eventsSubscriptionParameters="uniqueResourceNamePrefix=$namePrefix"
-
-Set-Location "$PSSCriptRoot"
 
 D "Deploying the microservice infrastructure." $loggingPrefix
 
@@ -46,7 +48,7 @@ $command = "az"
 $result = ExecuteCommand $command $loggingPrefix "Executing first AZ call to get around Task bug."
 if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
     $result
-}
+}cd 
 
 $ErrorActionPreference = $old_ErrorActionPreference 
 
@@ -87,3 +89,4 @@ if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
 }
 
 D "Deployed the microservice infrastructure." $loggingPrefix
+Set-Location $currentDirectory

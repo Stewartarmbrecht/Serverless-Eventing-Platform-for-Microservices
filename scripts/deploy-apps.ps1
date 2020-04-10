@@ -2,9 +2,15 @@ param(
     [Alias("v")]
     [String] $verbosity
 )
-. ./../../scripts/functions.ps1
+$currentDirectory = Get-Location
 
-./configure-env.ps1
+Set-Location "$PSScriptRoot/../"
+
+. ./scripts/functions.ps1
+
+./scripts/configure-env.ps1
+
+$location = Get-Location
 
 $namePrefix = $Env:namePrefix
 $solutionName = $Env:solutionName
@@ -19,15 +25,13 @@ $region = $Env:region
 
 $loggingPrefix = "$namePrefix $microserviceName Deploy Apps"
 
-$currentDirectory = Get-Location
-
 D "Deploying the applications." $loggingPrefix
 
 $resourceGroupName = "$namePrefix-$microserviceName".ToLower()
 $apiName = "$namePrefix-$microserviceName-api".ToLower()
-$apiFilePath = "./../.dist/$solutionName.$microserviceName.Api.zip"
+$apiFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.Api.zip"
 $workerName = "$namePrefix-$microserviceName-worker".ToLower()
-$workerFilePath = "./../.dist/$solutionName.$microserviceName.WorkerApi.zip"
+$workerFilePath = "$location/$microserviceName/.dist/$solutionName.$microserviceName.WorkerApi.zip"
 
 Set-Location "$PSSCriptRoot"
 
@@ -66,3 +70,4 @@ if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
 
 $ErrorActionPreference = $old_ErrorActionPreference 
 D "Finished deploying the applications." $loggingPrefix
+Set-Location $currentDirectory

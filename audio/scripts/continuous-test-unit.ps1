@@ -1,1 +1,0 @@
-./test-unit.ps1 -c $TRUE

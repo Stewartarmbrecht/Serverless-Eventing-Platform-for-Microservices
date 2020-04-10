@@ -4,7 +4,14 @@ param(
     [Alias("u")]
     [String] $publicUrlToLocalWebServer
 )
-. ./../../scripts/functions.ps1
+$currentDirectory = Get-Location
+
+Set-Location "$PSScriptRoot"
+
+$location = Get-Location
+
+. ./functions.ps1
+
 ./configure-env.ps1
 
 $namePrefix = $Env:namePrefix
@@ -20,10 +27,6 @@ $uniqueDeveloperId = $Env:uniqueDeveloperId
 $loggingPrefix = "$namePrefix $microserviceName Deploy Local Subscriptions"
 
 $eventsResourceGroupName = "$namePrefix-events"
-
-Set-Location "$PSSCriptRoot"
-
-$directoryStart = Get-Location
 
 D "Deploying the web server subscriptions." $loggingPrefix
 
@@ -50,7 +53,7 @@ if ($verbosity -eq "Normal" -or $verbosity -eq "n")
 $expireTime = Get-Date
 $expireTimeUtc = $expireTime.AddHours(1).ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ")
 
-$command = "az group deployment create -g $eventsResourceGroupName --template-file ./../templates/eventGridSubscriptions-audio.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId expireTimeUtc=$expireTimeUtc"
+$command = "az group deployment create -g $eventsResourceGroupName --template-file ./../$microserviceName/templates/eventGridSubscriptions.local.json --parameters uniqueResourceNamePrefix=$namePrefix publicUrlToLocalWebServer=$publicUrlToLocalWebServer uniqueDeveloperId=$uniqueDeveloperId expireTimeUtc=$expireTimeUtc"
 $result = ExecuteCommand $command $loggingPrefix "Deploying the event grid subscription."
 if ($verbosity -eq "Normal" -or $verbosity -eq "n")
 {

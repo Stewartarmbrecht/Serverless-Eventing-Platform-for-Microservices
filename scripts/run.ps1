@@ -1,10 +1,23 @@
 param(  
+    [Alias("t")]
+    [Boolean] $test,
     [Alias("c")]
     [Boolean] $continuous,
+    [Alias("s")]
+    [Boolean] $subscriptions,
     [Alias("v")]
     [String] $verbosity
 )
-. ./../../scripts/functions.ps1
+
+$subscriptions = if($test) {$TRUE} else {$FALSE}
+
+$currentDirectory = Get-Location
+
+Set-Location "$PSSCriptRoot"
+
+$location = Get-Location
+
+. ./functions.ps1
 
 ./configure-env.ps1
 
@@ -14,11 +27,9 @@ $microserviceName = $Env:microserviceName
 $apiPort = $Env:apiPort
 $workerPort = $Env:workerPort
 
-$loggingPrefix = "$namePrefix $microserviceName Test E2E"
+$loggingPrefix = "$namePrefix $microserviceName Run"
 
-D "Start E2E testing." $loggingPrefix
-
-$location = Get-Location
+D "Starting jobs." $loggingPrefix
 
 $webApiJob = Start-Job -Name "rt-$microserviceName-Api" -ScriptBlock {
     $microserviceName = $args[1]
@@ -31,9 +42,9 @@ $webApiJob = Start-Job -Name "rt-$microserviceName-Api" -ScriptBlock {
 
     Set-Location $args[0]
 
-    . ./../../scripts/functions.ps1
+    . ./functions.ps1
 
-    $location = "../src/$solutionName.$microserviceName/$solutionName.$microserviceName.API"
+    $location = "./../$microserviceNAme/src/$solutionName.$microserviceName/$solutionName.$microserviceName.API"
     
     Set-Location $location
     
@@ -59,9 +70,9 @@ $webWorkerJob = Start-Job -Name "rt-$microserviceName-Worker" -ScriptBlock {
 
     Set-Location $args[0]
 
-    . ./../../scripts/functions.ps1
+    . ./functions.ps1
 
-    $location = "../src/$solutionName.$microserviceName/$solutionName.$microserviceName.WorkerApi"
+    $location = "./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.WorkerApi"
     
     Set-Location $location
     
@@ -78,35 +89,42 @@ $webWorkerJob = Start-Job -Name "rt-$microserviceName-Worker" -ScriptBlock {
     }
 } -ArgumentList @($location, $microserviceName, $workerPort, $verbosity, $loggingPrefix, $solutionName)
 
-$setupLocalTunnel = Start-Job -Name "rt-$microserviceName-WorkerTunnel" -ScriptBlock {
-    $microserviceName = $args[1]
-    $workerPort = $args[2]
-    $verbosity = $args[3]
-    $loggingPrefix = $args[4]
-    $solutionName = $args[5]
+$setupLocalTunnel
 
-    Set-Location $args[0]
-
-    . ./../../scripts/functions.ps1    
+if($subscriptions) {
+    $setupLocalTunnel = Start-Job -Name "rt-$microserviceName-WorkerTunnel" -ScriptBlock {
+        $microserviceName = $args[1]
+        $workerPort = $args[2]
+        $verbosity = $args[3]
+        $loggingPrefix = $args[4]
+        $solutionName = $args[5]
     
-    if ($verbosity -eq "Normal" -or $verbosity -eq "n")
-    {
-        D "Tunneling to the worker API." $loggingPrefix
-        ngrok http http://localhost:$workerPort -host-header=rewrite
-        D "The worker API tunnel is up." $loggingPrefix
-    }
-    else
-    {
-        ExecuteCommand "ngrok http http://localhost:$workerPort -host-header=rewrite" $loggingPrefix "Tunneling to the worker API."
-        D "The worker API tunnel is up." $loggingPrefix
-    }
-} -ArgumentList @($location, $microserviceName, $workerPort, $verbosity, $loggingPrefix, $solutionName)
+        Set-Location $args[0]
+    
+        . ./functions.ps1    
+        
+        if ($verbosity -eq "Normal" -or $verbosity -eq "n")
+        {
+            D "Tunneling to the worker API." $loggingPrefix
+            ngrok http http://localhost:$workerPort -host-header=rewrite
+            D "The worker API tunnel is up." $loggingPrefix
+        }
+        else
+        {
+            ExecuteCommand "ngrok http http://localhost:$workerPort -host-header=rewrite" $loggingPrefix "Tunneling to the worker API."
+            D "The worker API tunnel is up." $loggingPrefix
+        }
+    } -ArgumentList @($location, $microserviceName, $workerPort, $verbosity, $loggingPrefix, $solutionName)
+}
 
-$publicUrl = $null
-$healthCheck = $FALSE
-$subscribed = $FALSE
-$testing = $FALSE
+$publicUrl = if($subscriptions) {$null} else {"skip"}
+$healthCheck = if($subscriptions) {$FALSE} else {$TRUE}
+$subscribed = if($subscriptions) {$FALSE} else {$TRUE}
+$testing = if($subscriptions) {$FALSE} else {$TRUE}
 $tested = $FALSE
+
+# Change the default behavior of CTRL-C so that the script can intercept and use it versus just terminating the script.
+[Console]::TreatControlCAsInput = $True
 
 While(Get-Job -State "Running")
 {
@@ -163,16 +181,16 @@ While(Get-Job -State "Running")
 
             Set-Location $args[0]
         
-            . ./../../scripts/functions.ps1
+            . ./functions.ps1
         
             if ($continuous)
             {
-                D "Running E2E tests." $loggingPrefix
-                dotnet watch --project ./../src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory=E2E
+                    D "Running E2E tests." $loggingPrefix
+                    dotnet watch --project ./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory=E2E
             }
             else
             {
-                Set-Location ./../src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/
+                Set-Location ./../$microserviceName/src/$solutionName.$microserviceName/$solutionName.$microserviceName.Tests/
                 if ($verbosity -eq "Normal" -or $verbosity -eq "n")
                 {
                     D "Running E2E tests." $loggingPrefix
@@ -180,7 +198,7 @@ While(Get-Job -State "Running")
                 }
                 else
                 {
-                    ExecuteCommand "dotnet test --filter TestCategory=E2E" $loggingPrefix "Running E2E tests."
+                    $result = ExecuteCommand "dotnet test --filter TestCategory=E2E" $loggingPrefix "Running E2E tests."
                 }
                 D "Finished running E2E tests." $loggingPrefix
             }
@@ -191,7 +209,9 @@ While(Get-Job -State "Running")
 
     $webApiJob | Receive-Job
     $webWorkerJob | Receive-Job
-    $setupLocalTunnel | Receive-Job
+    if ($setupLocalTunnel) {
+        $setupLocalTunnel | Receive-Job
+    }
     if ($e2eTestJob) {
         $e2eTestJob | Receive-Job
     }
@@ -200,10 +220,30 @@ While(Get-Job -State "Running")
     }
     if ($e2eTestJob.State -eq "Completed")
     {
-        D "Finishing E2E testing by stopping and removing jobs." $loggingPrefix
+        D "Stopping and removing jobs." $loggingPrefix
         Stop-Job rt-*
         Remove-Job rt-*
-        D "Finished E2E testing." $loggingPrefix
+        D "Stopped." $loggingPrefix
     }
+    # Sleep for 1 second and then flush the key buffer so any previously pressed keys are discarded and the loop can monitor for the use of
+    #   CTRL-C. The sleep command ensures the buffer flushes correctly.
+    # $Host.UI.RawUI.FlushInputBuffer()
     Start-Sleep -Seconds 1
+    # If a key was pressed during the loop execution, check to see if it was CTRL-C (aka "3"), and if so exit the script after clearing
+    #   out any running jobs and setting CTRL-C back to normal.
+    If ($Host.UI.RawUI.KeyAvailable -and ($Key = $Host.UI.RawUI.ReadKey("AllowCtrlC,NoEcho,IncludeKeyUp"))) {
+        If ([Int]$Key.Character -eq 3) {
+            Write-Warning "CTRL-C was used - Shutting down any running jobs before exiting the script."
+            D "Stopping and removing jobs." $loggingPrefix
+            Stop-Job rt-*
+            Remove-Job rt-*
+            D "Stopped." $loggingPrefix
+            [Console]::TreatControlCAsInput = $False
+            Set-Location $currentDirectory
+        }
+        # Flush the key buffer again for the next loop.
+        # $Host.UI.RawUI.FlushInputBuffer()
+    }
 }
+
+Set-Location $currentDirectory
