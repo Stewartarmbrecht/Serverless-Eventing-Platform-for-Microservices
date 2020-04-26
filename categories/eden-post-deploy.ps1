@@ -2,13 +2,11 @@ param(
     [Alias("v")]
     [String] $verbosity
 )
-. ./functions.ps1
+. ./../scripts/functions.ps1
 
-./configure-env.ps1
+./../scripts/configure-env.ps1
 
 $systemName = $Env:systemName
-$solutionName = $Env:solutionName
-$microserviceName = $Env:microserviceName
 $userName = $Env:userName
 $password = $Env:password
 $tenantId = $Env:tenantId
@@ -54,7 +52,5 @@ if($result -eq $false) {
     $command = "az cosmosdb collection create --name $dbAccountName --db-name $dbName --collection-name $dbCollectionName --resource-group $resourceGroupName --partition-key-path $dbPartitionKey --throughput $dbThroughput"
     $result = ExecuteCommand $command $loggingPrefix "Creating the Cosmos DB collection."
 }
-
-./deploy-apps.ps1 -systemName $systemName -region $region -userName $userName -password $password -tenantId $tenantId
 
 D "Finished the post deployment actions." $loggingPrefix

@@ -1,9 +1,11 @@
 {
     "recommendations": [
-      "ms-vscode.csharp",
+      "ms-dotnettools.csharp",
       "k--kato.docomment",
       "josefpihrt-vscode.roslynator",
       "eamodio.gitlens",
-      "ms-vscode.powershell"
+      "ms-vscode.powershell",
+      "formulahendry.dotnet-test-explorer",
+      "ryanluker.vscode-coverage-gutters"
     ]
   }

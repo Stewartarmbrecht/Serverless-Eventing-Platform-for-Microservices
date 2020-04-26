@@ -7,7 +7,7 @@
     using ContentReactor.Categories.Services.Models.Data;
     using ContentReactor.Common;
     using ContentReactor.Common.EventSchemas.Categories;
-    using ContentReactor.Common.EventTypes;
+    using ContentReactor.Common.Events;
     using Microsoft.Extensions.Localization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
@@ -39,8 +39,7 @@
                 fakeCategoriesRepository,
                 mockImageSearchService.Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             var result = await service.UpdateCategoryImageAsync("fakeid", "fakeuserid").ConfigureAwait(false);
@@ -70,8 +69,7 @@
                 fakeCategoriesRepository,
                 mockImageSearchService.Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             await service.UpdateCategoryImageAsync("fakeid", "fakeuserid").ConfigureAwait(false);
@@ -102,8 +100,10 @@
                 fakeCategoriesRepository,
                 mockImageSearchService.Object,
                 new Mock<ISynonymService>().Object,
-                mockEventGridPublisherService.Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
+
+                // mockEventGridPublisherService.Object,
+                // new Mock<IStringLocalizer>().Object);
 
             // act
             await service.UpdateCategoryImageAsync("fakeid", "fakeuserid").ConfigureAwait(false);
@@ -139,8 +139,7 @@
                 fakeCategoriesRepository,
                 mockImageSearchService.Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             var result = await service.UpdateCategoryImageAsync("fakeid", "fakeuserid").ConfigureAwait(false);
@@ -171,8 +170,7 @@
                 fakeCategoriesRepository,
                 mockImageSearchService.Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             var result = await service.UpdateCategoryImageAsync("fakeid", "fakeuserid2").ConfigureAwait(false);
@@ -203,8 +201,7 @@
                 fakeCategoriesRepository,
                 mockImageSearchService.Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             await service.UpdateCategoryImageAsync("fakeid", "fakeuserid2").ConfigureAwait(false);

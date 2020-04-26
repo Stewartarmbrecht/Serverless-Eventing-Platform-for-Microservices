@@ -1,9 +1,10 @@
 param(  
+    [String] $systemName,
     [String] $shortCommand,
-    [String] $command,
     [Alias("v")]
     [string] $verbosity,
-    [String] $bigHugeThesaurusApiKey,
+    [String] $command,
+    [String] $deploymentParameters,
     [string] $userName,
     [string] $password,
     [string] $tenantId,
@@ -14,13 +15,13 @@ param(
     -shortCommand $shortCommand `
     -command $command `
     -verbosity $verbosity `
-    -systemName "toco" `
+    -systemName $systemName `
     -region "WestUS2" `
     -solutionName "ContentReactor" `
-    -microserviceName "Audio" `
-    -apiPort 7073 `
-    -workerPort 7074 `
-    -bigHugeThesaurusApiKey $bigHugeThesaurusApiKey, `
+    -microserviceName "Categories" `
+    -apiPort 7071 `
+    -workerPort 7072 `
+    -deploymentParameters $deploymentParameters `
     -userName $userName `
     -password $password  `
     -tenantId $tenantId `

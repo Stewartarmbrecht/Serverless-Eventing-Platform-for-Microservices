@@ -17,11 +17,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageSearchService"/> class.
         /// </summary>
-        /// <param name="random">The random number generator to use to find the image in the search results to use.</param>
         /// <param name="httpClient">The http client to use.</param>
-        public ImageSearchService(Random random, HttpClient httpClient)
+        public ImageSearchService(HttpClient httpClient)
         {
-            this.Random = random;
+            this.Random = new Random();
             this.HttpClient = httpClient;
         }
 

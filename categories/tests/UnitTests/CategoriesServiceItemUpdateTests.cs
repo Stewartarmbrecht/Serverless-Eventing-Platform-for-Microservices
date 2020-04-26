@@ -6,10 +6,10 @@
     using ContentReactor.Categories.Services.Models;
     using ContentReactor.Categories.Services.Models.Data;
     using ContentReactor.Common;
-    using ContentReactor.Common.EventSchemas.Audio;
+    using ContentReactor.Common.Events.Audio;
     using ContentReactor.Common.EventSchemas.Categories;
     using ContentReactor.Common.EventSchemas.Text;
-    using ContentReactor.Common.EventTypes;
+    using ContentReactor.Common.Events;
     using Microsoft.Extensions.Localization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
@@ -47,8 +47,8 @@
                 fakeCategoriesRepository,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
+
             var eventToProcess = new EventGridEvent
             {
                 Subject = "fakeuserid/fakeitemid",
@@ -96,8 +96,8 @@
                 fakeCategoriesRepository,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
+
             var eventToProcess = new EventGridEvent
             {
                 Subject = "fakeuserid/fakeitemid",
@@ -147,8 +147,7 @@
                 fakeCategoriesRepository,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                mockEventGridPublisherService.Object,
-                new Mock<IStringLocalizer>().Object);
+                mockEventGridPublisherService.Object);
 
             var eventToProcess = new EventGridEvent
             {

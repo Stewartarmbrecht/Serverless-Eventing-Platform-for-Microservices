@@ -30,7 +30,7 @@ if ($continuous) {
         Set-Location $location
         . ./functions.ps1
         D "Running unit tests continuously." $loggingPrefix
-        dotnet watch --project ./../$microserviceName/tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory!=E2E
+        dotnet watch --project ./../$microserviceName/tests/$solutionName.$microserviceName.Tests.csproj test --filter TestCategory!=E2E /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov /p:Include="[$SolutionName.$microserviceName.*]*" /p:Threshold=80 /p:ThresholdType=line /p:ThresholdStat=total
     } -ArgumentList @($microserviceName, $solutionName, $location)
 
     # Change the default behavior of CTRL-C so that the script can intercept and use it versus just terminating the script.
@@ -62,7 +62,7 @@ if ($continuous) {
 }
 else {
     Set-Location "./../$microserviceName/tests"
-    $command = "dotnet test --logger ""trx;logFileName=testResults.trx"" --filter TestCategory!=E2E"
+    $command = "dotnet test --logger ""trx;logFileName=testResults.trx"" --filter TestCategory!=E2E  /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov /p:Include=`"[$SolutionName.$microserviceName.*]*`" /p:Threshold=80 /p:ThresholdType=line /p:ThresholdStat=total"
     $result = ExecuteCommand $command $loggingPrefix "Running unit tests."
     if ($verbosity -eq "Normal" -or $verbosity -eq "n") {
         $result

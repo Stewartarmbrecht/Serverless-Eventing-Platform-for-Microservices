@@ -21,12 +21,13 @@ Below is the list of features currently packed into the solution.
 
 Below is a list of features that are targeted for inclusion in the architecture:
 
-1. **Safe, Continuous Upgrades** - Defined pattern for upgrading projects independently.  Specifically enables upgrading shared components without requiring upgrades to all dependent projects leveraging private nuget feeds. Possible answer [here](https://newsignature.com/articles/want-to-host-your-private-nuget-feed-use-azure-devops/).
+1. **Latest Components** - All code leverages the latests generally available components (like Azure Functions 3.0, .Net Core 3.1 etc.).
 1. **Fully Commented Code** - All code is fully commented.
 1. **Fully Compliant Code** - All analyzer warnings are handled.
 1. **Dependency Injection** - Demonstrates how to use dependency injection in Azure Functions.  Reading [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection).
-1. **Exception Handling** - Demonstrates best practices for handling exceptions.  Reading [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages).
 1. **Validation Pattern** - Demonstrates best practices for handling function input validation.
+1. **Safe, Continuous Upgrades** - Defined pattern for upgrading projects independently.  Specifically enables upgrading shared components without requiring upgrades to all dependent projects leveraging private nuget feeds. Possible answer [here](https://newsignature.com/articles/want-to-host-your-private-nuget-feed-use-azure-devops/).
+1. **Exception Handling** - Demonstrates best practices for handling exceptions.  Reading [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages).
 1. **Retry Pattern** - Demonstrates how to leverage Poly for implementing retry policies for service calls. Reading [here[](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages).
 1. **Circuit Breaker Pattern** - Demonstrates how to implement circuit breakers with Event Grid and Azure functions.
 1. **Idempotent Operations** - Demonstrates how to implement idemptoment Azure Fuction operations.

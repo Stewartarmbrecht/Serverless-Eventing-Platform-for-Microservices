@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\..\..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
     <ProjectReference Include="..\ContentReactor.Health.Services\ContentReactor.Health.Services.csproj" />
   </ItemGroup>
 

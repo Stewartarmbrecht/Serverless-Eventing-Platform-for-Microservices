@@ -65,6 +65,7 @@ if (!$config -and !$setup) {
 }
 
 if ($config) {
+    Set-Location "$PSScriptRoot"
     ./configure-env.ps1 `
         -systemName $systemName `
         -region $region `
@@ -82,55 +83,74 @@ if ($config) {
 }
 
 if ($setup) {
+    Set-Location "$PSScriptRoot"
     ./setup.ps1
     Set-Location $currentDirectory
     exit
 }
 
 if ($pipeline) {
+    Set-Location "$PSScriptRoot"
     ./pipeline.ps1 -v $verbosity
     Set-Location $currentDirectory
     exit
 }
 
 if ($build) {
+    Set-Location "$PSScriptRoot"
     ./build.ps1 -v $verbosity
+    Set-Location $currentDirectory
 }
 
 if ($test) {
+    Set-Location "$PSScriptRoot"
     ./test-unit.ps1 -v $verbosity
+    Set-Location $currentDirectory
 }
 
 if ($continuoustest) {
+    Set-Location "$PSScriptRoot"
     ./test-unit.ps1 -v $verbosity -c $TRUE
 }
 
 if ($run) {
+    Set-Location "$PSScriptRoot"
     ./run.ps1 -v $verbosity
 }
 
 if ($e2e) {
+    Set-Location "$PSScriptRoot"
     ./run.ps1 -t $TRUE -v $verbosity
+    Set-Location $currentDirectory
 }
 
 if ($continuouse2e) {
-    ./run.ps1 -t $TRUE -c $TRUE -v $verbosity -c $TRUE
+    Set-Location "$PSScriptRoot"
+    ./run.ps1 -t $TRUE -c $TRUE -v $verbosity
 }
 
 if ($package) {
+    Set-Location "$PSScriptRoot"
     ./package.ps1 -v $verbosity
+    Set-Location $currentDirectory
 }
 
 if ($deployInfra -or $deployAll) {
+    Set-Location "$PSScriptRoot"
     ./deploy-infrastructure.ps1 -v $verbosity
+    Set-Location $currentDirectory
 }
 
 if ($deployApps -or $deployAll) {
+    Set-Location "$PSScriptRoot"
     ./deploy-apps.ps1 -v $verbosity
+    Set-Location $currentDirectory
 }
 
 if ($deploySubs -or $deployAll) {
+    Set-Location "$PSScriptRoot"
     ./deploy-subscriptions.ps1 -v $verbosity
+    Set-Location $currentDirectory
 }
 
 Set-Location $currentDirectory

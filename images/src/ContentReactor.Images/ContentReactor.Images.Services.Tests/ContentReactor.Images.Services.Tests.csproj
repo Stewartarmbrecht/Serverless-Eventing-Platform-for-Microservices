@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj" />
-    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Tests.FakeBlobRepository\ContentReactor.Tests.FakeBlobRepository.csproj" />
+    <ProjectReference Include="..\..\..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\..\..\..\common\ContentReactor.Tests.FakeBlobRepository\ContentReactor.Tests.FakeBlobRepository.csproj" />
     <ProjectReference Include="..\ContentReactor.Images.Services\ContentReactor.Images.Services.csproj" />
   </ItemGroup>
 

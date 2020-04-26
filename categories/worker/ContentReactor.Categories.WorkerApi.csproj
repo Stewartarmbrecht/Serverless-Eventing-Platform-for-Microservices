@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj" />
-    <ProjectReference Include="..\ContentReactor.Categories.Services\ContentReactor.Categories.Services.csproj" />
+    <ProjectReference Include="..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\services\ContentReactor.Categories.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

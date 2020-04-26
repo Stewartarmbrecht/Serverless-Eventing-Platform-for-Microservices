@@ -28,7 +28,6 @@
             Environment.SetEnvironmentVariable("CognitiveServicesSearchApiEndpoint", "https://fake/");
             Environment.SetEnvironmentVariable("CognitiveServicesSearchApiKey", "tempkey");
             var service = new ImageSearchService(
-                new Random(),
                 new HttpClient(new MockHttpMessageHandler(GetFileResourceString("1.json"))));
 
             // act
@@ -51,7 +50,6 @@
             Environment.SetEnvironmentVariable("CognitiveServicesSearchApiEndpoint", "https://fake/");
             Environment.SetEnvironmentVariable("CognitiveServicesSearchApiKey", "tempkey");
             var service = new ImageSearchService(
-                new Random(),
                 new HttpClient(new MockHttpMessageHandler(GetFileResourceString("0.json"))));
 
             // act

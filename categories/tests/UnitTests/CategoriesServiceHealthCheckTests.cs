@@ -28,8 +28,7 @@
                 new Mock<ICategoriesRepository>().Object,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             var result = await service.HealthCheckApi("mytest@test.com", "my-app-test").ConfigureAwait(false);
@@ -54,8 +53,7 @@
                 new Mock<ICategoriesRepository>().Object,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             var result = await service.HealthCheckWorker("mytest@test.com", "my-app-test").ConfigureAwait(false);

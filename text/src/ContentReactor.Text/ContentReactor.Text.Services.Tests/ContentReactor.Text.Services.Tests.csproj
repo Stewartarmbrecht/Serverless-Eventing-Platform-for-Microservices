@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\common\src\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\..\..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
     <ProjectReference Include="..\ContentReactor.Text.Services\ContentReactor.Text.Services.csproj" />
   </ItemGroup>
 

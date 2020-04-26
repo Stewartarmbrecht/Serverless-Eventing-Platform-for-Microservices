@@ -1,11 +1,10 @@
 ﻿namespace ContentReactor.Audio.Tests.E2E
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using ContentReactor.Audio.Services.Models.Responses;
+    using ContentReactor.Audio.Api;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
 
@@ -41,10 +40,10 @@
             await this.EndAddAudio(blobId).ConfigureAwait(false);
 
             // Get the new audio file and validate its properties
-            AudioNoteDetails audioNoteDetail = await this.GetAudioDetail(blobId).ConfigureAwait(false);
+            GetResponse getResponse = await this.GetAudioDetail(blobId).ConfigureAwait(false);
 
             // Check the blob to verify it is transcribed with in 10 seconds.
-            await this.GetAudioTranscript(audioNoteDetail).ConfigureAwait(false);
+            await this.GetAudioTranscript(getResponse).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -58,13 +57,13 @@
         public async Task DeleteAudioWithSuccess()
         {
             // Add an audio note.
-            AudioNoteDetails audioNoteDetail = await this.AddAudioNote().ConfigureAwait(false);
+            GetResponse getResponse = await this.AddAudioNote().ConfigureAwait(false);
 
             // Delete the audio note.
-            await this.DeleteAudio(audioNoteDetail).ConfigureAwait(false);
+            await this.DeleteAudio(getResponse).ConfigureAwait(false);
 
             // Get the deleted audio file and validate not found result.
-            var missing = await this.GetMissingAudioDetail(audioNoteDetail.Id).ConfigureAwait(false);
+            var missing = await this.GetMissingAudioDetail(getResponse.Id).ConfigureAwait(false);
 
             Assert.IsTrue(missing);
         }
@@ -114,7 +113,7 @@
             return;
         }
 
-        private async Task<AudioNoteDetails> AddAudioNote(string userId = null)
+        private async Task<GetResponse> AddAudioNote(string userId = null)
         {
             (string blobId, string blobUploadUrl) = await this.BeginAddAudio(userId).ConfigureAwait(false);
 
@@ -125,8 +124,8 @@
             await this.EndAddAudio(blobId, userId).ConfigureAwait(false);
 
             // Get the new audio file and validate its properties
-            AudioNoteDetails audioNoteDetail = await this.GetAudioDetail(blobId, userId).ConfigureAwait(false);
-            return audioNoteDetail;
+            GetResponse getResponse = await this.GetAudioDetail(blobId, userId).ConfigureAwait(false);
+            return getResponse;
         }
 
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1009:ClosingParenthesisMustBeSpacedCorrectly", Justification = "Reviewed.")]
@@ -144,27 +143,27 @@
             return (blobId, blobUploadUrl);
         }
 
-        private async Task<AudioNoteDetails> GetAudioDetail(string blobId, string userId = null)
+        private async Task<GetResponse> GetAudioDetail(string blobId, string userId = null)
         {
             userId ??= this.defaultUserId;
             Uri getUrl = new Uri($"{this.baseUrl}/{blobId}?userId={userId}");
             var getResponse = await HttpClientInstance.GetAsync(getUrl).ConfigureAwait(false);
             var getResponseContent = await getResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-            AudioNoteDetails audioNoteDetail =
-                JsonConvert.DeserializeObject<AudioNoteDetails>(getResponseContent);
-            Assert.AreEqual(blobId, audioNoteDetail.Id);
+            GetResponse getResponseBody =
+                JsonConvert.DeserializeObject<GetResponse>(getResponseContent);
+            Assert.AreEqual(blobId, getResponseBody.Id);
             string downloadUrlEnd = $"audioblob.blob.core.windows.net/audio/{userId}/{blobId}";
-            Assert.IsTrue(audioNoteDetail.AudioUrl.ToString().Contains(downloadUrlEnd, StringComparison.Ordinal));
-            return audioNoteDetail;
+            Assert.IsTrue(getResponseBody.AudioUrl.ToString().Contains(downloadUrlEnd, StringComparison.Ordinal));
+            return getResponseBody;
         }
 
-        private async Task<AudioNoteSummaryCollection> ListAudioDetail(string userId = null)
+        private async Task<GetListResponse> ListAudioDetail(string userId = null)
         {
             userId ??= this.defaultUserId;
             Uri getUrl = new Uri($"{this.baseUrl}?userId={userId}");
             var getResponse = await HttpClientInstance.GetAsync(getUrl).ConfigureAwait(false);
             var getResponseContent = await getResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-            AudioNoteSummaryCollection audioNotes = JsonConvert.DeserializeObject<AudioNoteSummaryCollection>(getResponseContent);
+            GetListResponse audioNotes = JsonConvert.DeserializeObject<GetListResponse>(getResponseContent);
             return audioNotes;
         }
 
@@ -186,7 +185,7 @@
             return;
         }
 
-        private async Task<AudioNoteDetails> GetAudioTranscript(AudioNoteDetails audioNoteDetail, string userId = null)
+        private async Task<GetResponse> GetAudioTranscript(GetResponse audioNoteDetail, string userId = null)
         {
             userId ??= this.defaultUserId;
             Uri getUrl = new Uri($"{this.baseUrl}/{audioNoteDetail.Id}?userId={userId}");
@@ -198,7 +197,7 @@
             {
                 var getAudioTranscriptCheckResponse = await HttpClientInstance.GetAsync(getUrl).ConfigureAwait(false);
                 var getAudioTranscriptCheckResponseContent = await getAudioTranscriptCheckResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                audioNoteDetail = JsonConvert.DeserializeObject<AudioNoteDetails>(getAudioTranscriptCheckResponseContent);
+                audioNoteDetail = JsonConvert.DeserializeObject<GetResponse>(getAudioTranscriptCheckResponseContent);
                 if (audioNoteDetail.Transcript == transcript)
                 {
                     transcribed = true;
@@ -211,7 +210,7 @@
             return audioNoteDetail;
         }
 
-        private async Task DeleteAudio(AudioNoteDetails audioNoteDetail, string userId = null)
+        private async Task DeleteAudio(GetResponse audioNoteDetail, string userId = null)
         {
             userId ??= this.defaultUserId;
             Uri noteUrl = new Uri($"{this.baseUrl}/{audioNoteDetail.Id}?userId={userId}");

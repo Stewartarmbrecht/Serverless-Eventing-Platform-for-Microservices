@@ -2,21 +2,17 @@ namespace ContentReactor.Categories.Api
 {
     using System;
     using System.IO;
-    using System.Net.Http;
     using System.Threading.Tasks;
-    using System.Web.Http;
     using ContentReactor.Categories.Services;
     using ContentReactor.Categories.Services.Converters;
     using ContentReactor.Categories.Services.Models.Request;
     using ContentReactor.Categories.Services.Models.Results;
-    using ContentReactor.Categories.Services.Repositories;
     using ContentReactor.Common;
     using ContentReactor.Common.UserAuthentication;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Extensions.Http;
-    using Microsoft.Azure.WebJobs.Host;
     using Microsoft.Extensions.Localization;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
@@ -33,15 +29,12 @@ namespace ContentReactor.Categories.Api
         /// </summary>
         /// <param name="categoriesService">The categories services to use.</param>
         /// <param name="userAuthentication">The user authentication service to use.</param>
-        /// <param name="stringLocalizer">The string localizer to use for localizing strings.</param>
         public ApiFunctions(
             ICategoriesService categoriesService,
-            IUserAuthenticationService userAuthentication,
-            IStringLocalizer stringLocalizer)
+            IUserAuthenticationService userAuthentication)
         {
             this.CategoriesService = categoriesService;
             this.UserAuthenticationService = userAuthentication;
-            this.StringLocalizer = stringLocalizer;
         }
 
         private ICategoriesService CategoriesService { get; }
@@ -101,7 +94,7 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                log.LogError(ex, "Unhandled exception");
                 throw;
             }
         }
@@ -155,7 +148,7 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                log.LogError(ex, "Unhandled exception");
                 throw;
             }
         }
@@ -198,7 +191,7 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                log.LogError(ex, "Unhandled exception");
                 throw;
             }
         }
@@ -275,7 +268,7 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                log.LogError(ex, "Unhandled exception");
                 throw;
             }
         }
@@ -317,7 +310,7 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                log.LogError(ex, "Unhandled exception");
                 throw;
             }
         }
@@ -371,7 +364,7 @@ namespace ContentReactor.Categories.Api
             }
             catch (Exception ex)
             {
-                log.LogError(ex, this.StringLocalizer["Unhandled exception"]);
+                log.LogError(ex, "Unhandled exception");
                 throw;
             }
         }

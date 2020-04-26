@@ -10,11 +10,11 @@
     using ContentReactor.Categories.Services.Models.Results;
     using ContentReactor.Categories.Services.Repositories;
     using ContentReactor.Common;
-    using ContentReactor.Common.EventSchemas.Audio;
+    using ContentReactor.Common.Events.Audio;
     using ContentReactor.Common.EventSchemas.Categories;
     using ContentReactor.Common.EventSchemas.Images;
     using ContentReactor.Common.EventSchemas.Text;
-    using ContentReactor.Common.EventTypes;
+    using ContentReactor.Common.Events;
     using Microsoft.Extensions.Localization;
 
     /// <summary>
@@ -43,30 +43,22 @@
         private readonly IEventGridPublisherService eventGridPublisher;
 
         /// <summary>
-        /// Provides access to localized strings.
-        /// </summary>
-        private readonly IStringLocalizer stringLocalizer;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="CategoriesService"/> class.
         /// </summary>
         /// <param name="categoriesRepository">The categories repository to retrieve, store and update categories.</param>
         /// <param name="imageSearchService">The service to use for finding an image for a category.</param>
         /// <param name="synonymService">The service to use for finding synonyms for a category.</param>
         /// <param name="eventGridPublisher">The service to use for publishing events.</param>
-        /// <param name="stringLocalizer">The service to localize string values.</param>
         public CategoriesService(
             ICategoriesRepository categoriesRepository,
             IImageSearchService imageSearchService,
             ISynonymService synonymService,
-            IEventGridPublisherService eventGridPublisher,
-            IStringLocalizer stringLocalizer)
+            IEventGridPublisherService eventGridPublisher)
         {
             this.categoriesRepository = categoriesRepository;
             this.imageSearchService = imageSearchService;
             this.synonymService = synonymService;
             this.eventGridPublisher = eventGridPublisher;
-            this.stringLocalizer = stringLocalizer;
         }
 
         /// <summary>
@@ -511,7 +503,7 @@
 
             if (operationType == OperationType.Add && string.IsNullOrEmpty(categoryId))
             {
-                throw new InvalidOperationException(this.stringLocalizer["Category ID must be set for new items."]);
+                throw new InvalidOperationException("Category ID must be set for new items.");
             }
 
             return (item, categoryId, operationType);

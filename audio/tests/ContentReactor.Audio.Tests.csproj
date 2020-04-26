@@ -6,18 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="2.8.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
     <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="SecurityCodeScan" Version="2.8.0"/>
+    <PackageReference Include="SecurityCodeScan" Version="2.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\common\src\ContentReactor.Tests.Fakes\ContentReactor.Tests.Fakes.csproj" />
-    <ProjectReference Include="..\services\ContentReactor.Audio.Services.csproj" />
+    <ProjectReference Include="..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\..\common\ContentReactor.Common.Fakes\ContentReactor.Common.Fakes.csproj" />
+    <ProjectReference Include="..\api\ContentReactor.Audio.Api.csproj" />
+    <ProjectReference Include="..\worker\ContentReactor.Audio.Worker.csproj" />
   </ItemGroup>
 
   <ItemGroup>

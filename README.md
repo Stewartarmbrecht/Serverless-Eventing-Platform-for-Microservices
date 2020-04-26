@@ -4,6 +4,10 @@ platforms: dotnet
 author: nzthiago, stewartarmbrecht
 ---
 
+**_NOTE: BROKEN BUILD!! This project is currently under an extensive upgrade of all componenets and a re-architecture to implement several new patterns.  If you are interested in reviewing patterns.  The Audio service is being built first._**
+
+**_All information below will need to be updated once the upgrades and refactoring are complete._**
+
 # Eden: Reference Architecture for Serverless Microservices on Azure
 
 In this sample, we have built four microservices that use an [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview)

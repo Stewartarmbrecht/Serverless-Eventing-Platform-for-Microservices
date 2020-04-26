@@ -5,7 +5,7 @@
     using ContentReactor.Categories.Services;
     using ContentReactor.Common;
     using ContentReactor.Common.EventSchemas.Categories;
-    using ContentReactor.Common.EventTypes;
+    using ContentReactor.Common.Events;
     using Microsoft.Extensions.Localization;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
@@ -32,8 +32,7 @@
                 fakeCategoriesRepository,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             var result = await service.AddCategoryAsync("name", "fakeuserid").ConfigureAwait(false);
@@ -58,8 +57,7 @@
                 fakeCategoriesRepository,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                new Mock<IEventGridPublisherService>().Object,
-                new Mock<IStringLocalizer>().Object);
+                new Mock<IEventGridPublisherService>().Object);
 
             // act
             await service.AddCategoryAsync("name", "fakeuserid").ConfigureAwait(false);
@@ -85,8 +83,7 @@
                 fakeCategoriesRepository,
                 new Mock<IImageSearchService>().Object,
                 new Mock<ISynonymService>().Object,
-                mockEventGridPublisherService.Object,
-                new Mock<IStringLocalizer>().Object);
+                mockEventGridPublisherService.Object);
 
             // act
             var categoryId = await service.AddCategoryAsync("name", "fakeuserid").ConfigureAwait(false);

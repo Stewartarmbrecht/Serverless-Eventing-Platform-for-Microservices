@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ContentReactor.Categories.Services\ContentReactor.Categories.Services.csproj" />
+    <ProjectReference Include="..\services\ContentReactor.Categories.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
