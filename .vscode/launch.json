@@ -4,6 +4,13 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
+   {
+       "name": "Test Audio Build",
+       "type": "PowerShell",
+       "request": "launch",
+       "script": "${workspaceFolder}/ContentReactor/audio/audio.test.ps1",
+       "cwd": "${workspaceFolder}/ContentReactor/audio/"
+   },
        {
            "name": ".NET Core Attach",
            "type": "coreclr",

@@ -3,19 +3,20 @@ function Build-Eden
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]  
-        [String]$serviceName,
+        [String]$systemName,
         [Parameter(Mandatory=$true)]  
-        [String]$systemName
+        [String]$instanceName,
+        [Parameter(Mandatory=$true)]  
+        [String]$serviceName
     )
 
-    $loggingPrefix = "$systemName $serviceName Build"
+    $loggingPrefix = "$systemName $instanceName $serviceName Build"
     
-    D "Building the '$serviceName' service." $loggingPrefix
+    D "Building the service." $loggingPrefix
 
-    $directory = "./$serviceName"
-    $result = dotnet build $directory
+    $result = dotnet build
 
     Write-Verbose $result
 
-    D "Finished building the '$serviceName' service." $loggingPrefix
+    D "Finished building the service." $loggingPrefix
 }
