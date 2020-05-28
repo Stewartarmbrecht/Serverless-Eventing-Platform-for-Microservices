@@ -1,6 +1,1 @@
-{ 
-    "version": "2.0",
-    "extensions": {
-        "http": {}
-    }
-}
+{ "version": "2.0" }

@@ -1,949 +1,572 @@
 {
-  "ContentReactor.Audio.Worker.dll": {
-    "/Users/stewartarmbrecht/Source/Eden/audio/worker/Functions.cs": {
-      "ContentReactor.Audio.Worker.Functions": {
-        "ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Worker.Functions::get_UserAuthenticationService()": {
+  "ContentReactor.Audio.Api.dll": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Functions.cs": {
+      "ContentReactor.Audio.Api.Functions": {
+        "ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Api.Functions::get_UserAuthenticationService()": {
           "Lines": {
-            "72": 0
+            "82": 31
           },
           "Branches": []
         },
-        "ContentReactor.Common.Events.IEventGridSubscriberService ContentReactor.Audio.Worker.Functions::get_EventGridSubscriberService()": {
+        "ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Api.Functions::get_BlobRepository()": {
           "Lines": {
-            "78": 8
+            "88": 22
           },
           "Branches": []
         },
-        "ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Worker.Functions::get_EventGridPublisherService()": {
+        "ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Api.Functions::get_EventGridPublisherService()": {
           "Lines": {
-            "84": 2
+            "94": 7
           },
           "Branches": []
         },
-        "ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Worker.Functions::get_BlobRepository()": {
+        "System.Void ContentReactor.Audio.Api.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository)": {
           "Lines": {
-            "90": 8
+            "53": 3,
+            "54": 3,
+            "55": 3,
+            "56": 3,
+            "57": 3,
+            "58": 3,
+            "59": 3
           },
           "Branches": []
         },
-        "ContentReactor.Audio.Worker.IAudioTranscriptionService ContentReactor.Audio.Worker.Functions::get_AudioTranscriptionService()": {
+        "System.Void ContentReactor.Audio.Api.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Common.Events.IEventGridPublisherService)": {
           "Lines": {
-            "96": 2
-          },
-          "Branches": []
-        },
-        "System.Void ContentReactor.Audio.Worker.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Events.IEventGridSubscriberService,ContentReactor.Common.Events.IEventGridPublisherService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Audio.Worker.IAudioTranscriptionService)": {
-          "Lines": {
-            "54": 4,
-            "55": 4,
-            "56": 4,
-            "57": 4,
-            "58": 4,
-            "59": 4,
-            "60": 4,
-            "61": 4,
-            "62": 4,
-            "63": 4,
-            "64": 4,
-            "65": 4,
-            "66": 4
+            "68": 28,
+            "69": 28,
+            "70": 28,
+            "71": 28,
+            "72": 28,
+            "73": 28,
+            "74": 28,
+            "75": 28,
+            "76": 28
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/audio/worker/HealthCheck/HealthCheckFunction.cs": {
-      "ContentReactor.Audio.Worker.Functions/<HealthCheck>d__22": {
-        "System.Void ContentReactor.Audio.Worker.Functions/<HealthCheck>d__22::MoveNext()": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddBegin/AddBeginFunction.cs": {
+      "ContentReactor.Audio.Api.Functions/<AddBegin>d__0": {
+        "System.Void ContentReactor.Audio.Api.Functions/<AddBegin>d__0::MoveNext()": {
           "Lines": {
-            "31": 0,
-            "32": 0,
-            "33": 0,
-            "34": 0,
-            "38": 0,
-            "39": 0,
-            "40": 0,
-            "45": 0,
-            "46": 0,
-            "47": 0,
-            "48": 0,
-            "49": 0,
-            "50": 0,
-            "51": 0,
-            "52": 0,
-            "53": 0,
-            "57": 0,
-            "58": 0,
-            "59": 0,
-            "60": 0,
-            "61": 0,
-            "62": 0,
-            "64": 0,
-            "65": 0,
-            "66": 0,
-            "67": 0,
-            "68": 0,
-            "69": 0,
-            "71": 0,
-            "72": 0,
-            "73": 0,
-            "74": 0,
-            "76": 0
-          },
-          "Branches": [
-            {
-              "Line": 32,
-              "Offset": 26,
-              "EndOffset": 28,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 32,
-              "Offset": 26,
-              "EndOffset": 40,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 0
-            },
-            {
-              "Line": 38,
-              "Offset": 194,
-              "EndOffset": 196,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 0
-            },
-            {
-              "Line": 38,
-              "Offset": 194,
-              "EndOffset": 209,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 0
-            },
-            {
-              "Line": 51,
-              "Offset": 270,
-              "EndOffset": 272,
-              "Path": 0,
-              "Ordinal": 4,
-              "Hits": 0
-            },
-            {
-              "Line": 51,
-              "Offset": 270,
-              "EndOffset": 284,
-              "Path": 1,
-              "Ordinal": 5,
-              "Hits": 0
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/worker/UpdateTranscript/UpdateTranscriptFunction.cs": {
-      "ContentReactor.Audio.Worker.Functions/<UpdateAudioTranscript>d__23": {
-        "System.Void ContentReactor.Audio.Worker.Functions/<UpdateAudioTranscript>d__23::MoveNext()": {
-          "Lines": {
-            "33": 4,
-            "34": 4,
-            "35": 0,
-            "36": 0,
-            "40": 4,
-            "41": 4,
-            "42": 4,
-            "43": 4,
-            "45": 4,
-            "47": 4,
-            "49": 4,
-            "52": 4,
-            "53": 4,
-            "54": 0,
-            "55": 0,
-            "56": 0,
-            "60": 4,
-            "61": 4,
-            "62": 4,
-            "66": 4,
-            "67": 4,
-            "68": 4,
-            "69": 4,
-            "70": 2,
-            "71": 2,
-            "75": 2,
-            "76": 2,
-            "77": 2,
-            "78": 2,
-            "79": 2,
-            "82": 2,
-            "85": 2,
-            "86": 2,
-            "89": 2,
-            "92": 2,
-            "93": 2,
-            "94": 2,
-            "95": 2,
-            "97": 2,
-            "98": 0,
-            "99": 0,
-            "102": 2,
-            "104": 0,
-            "105": 0,
-            "106": 0,
-            "107": 0,
-            "109": 4
-          },
-          "Branches": [
-            {
-              "Line": 34,
-              "Offset": 27,
-              "EndOffset": 29,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 34,
-              "Offset": 27,
-              "EndOffset": 41,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 4
-            },
-            {
-              "Line": 40,
-              "Offset": 59,
-              "EndOffset": 61,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 4
-            },
-            {
-              "Line": 40,
-              "Offset": 59,
-              "EndOffset": 82,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 4
-            },
-            {
-              "Line": 53,
-              "Offset": 208,
-              "EndOffset": 210,
-              "Path": 0,
-              "Ordinal": 4,
-              "Hits": 0
-            },
-            {
-              "Line": 53,
-              "Offset": 208,
-              "EndOffset": 245,
-              "Path": 1,
-              "Ordinal": 5,
-              "Hits": 6
-            },
-            {
-              "Line": 56,
-              "Offset": 255,
-              "EndOffset": 269,
-              "Path": 0,
-              "Ordinal": 6,
-              "Hits": 4
-            },
-            {
-              "Line": 69,
-              "Offset": 504,
-              "EndOffset": 506,
-              "Path": 0,
-              "Ordinal": 8,
-              "Hits": 2
-            },
-            {
-              "Line": 69,
-              "Offset": 504,
-              "EndOffset": 518,
-              "Path": 1,
-              "Ordinal": 9,
-              "Hits": 2
-            },
-            {
-              "Line": 56,
-              "Offset": 255,
-              "EndOffset": 529,
-              "Path": 1,
-              "Ordinal": 7,
-              "Hits": 4
-            },
-            {
-              "Line": 75,
-              "Offset": 533,
-              "EndOffset": 573,
-              "Path": 0,
-              "Ordinal": 10,
-              "Hits": 2
-            },
-            {
-              "Line": 75,
-              "Offset": 533,
-              "EndOffset": 673,
-              "Path": 1,
-              "Ordinal": 11,
-              "Hits": 2
-            },
-            {
-              "Line": 75,
-              "Offset": 533,
-              "EndOffset": 799,
-              "Path": 2,
-              "Ordinal": 12,
-              "Hits": 0
-            },
-            {
-              "Line": 75,
-              "Offset": 533,
-              "EndOffset": 977,
-              "Path": 3,
-              "Ordinal": 13,
-              "Hits": 0
-            },
-            {
-              "Line": 75,
-              "Offset": 533,
-              "EndOffset": 1150,
-              "Path": 4,
-              "Ordinal": 14,
-              "Hits": 0
-            },
-            {
-              "Line": 97,
-              "Offset": 1200,
-              "EndOffset": 1202,
-              "Path": 0,
-              "Ordinal": 15,
-              "Hits": 0
-            },
-            {
-              "Line": 97,
-              "Offset": 1200,
-              "EndOffset": 1214,
-              "Path": 1,
-              "Ordinal": 16,
-              "Hits": 2
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/worker/Startup.cs": {
-      "ContentReactor.Audio.Worker.Startup": {
-        "System.Void ContentReactor.Audio.Worker.Startup::Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)": {
-          "Lines": {
-            "23": 0,
-            "24": 0,
-            "25": 0,
-            "26": 0,
-            "29": 0,
-            "31": 0,
-            "32": 0,
-            "33": 0,
-            "34": 0,
-            "35": 0,
-            "36": 0
-          },
-          "Branches": [
-            {
-              "Line": 24,
-              "Offset": 7,
-              "EndOffset": 9,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 24,
-              "Offset": 7,
-              "EndOffset": 21,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 0
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/worker/UpdateTranscript/AudioTranscriptionService.cs": {
-      "ContentReactor.Audio.Worker.AudioTranscriptionService": {
-        "System.Net.HttpWebRequest ContentReactor.Audio.Worker.AudioTranscriptionService::CreateAudioTranscriptRequest(System.IO.Stream)": {
-          "Lines": {
+            "28": 3,
+            "31": 3,
+            "33": 3,
+            "34": 1,
+            "35": 1,
+            "39": 1,
+            "42": 1,
             "43": 1,
             "44": 1,
-            "45": 0,
-            "46": 0,
-            "49": 1,
+            "45": 1,
+            "46": 1,
+            "47": 1,
+            "48": 1,
             "50": 1,
             "51": 1,
             "52": 1,
             "53": 1,
-            "54": 1,
-            "55": 1,
-            "56": 1,
-            "58": 1,
-            "59": 1,
-            "60": 1,
-            "61": 1,
-            "64": 1,
-            "65": 1,
-            "67": 1,
-            "69": 1,
-            "70": 0,
-            "71": 0,
-            "72": 0,
-            "74": 1,
-            "75": 1,
-            "77": 1,
-            "78": 1
+            "55": 2
           },
           "Branches": [
             {
-              "Line": 44,
-              "Offset": 7,
-              "EndOffset": 9,
+              "Line": 33,
+              "Offset": 187,
+              "EndOffset": 189,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
-              "Line": 44,
-              "Offset": 7,
-              "EndOffset": 21,
+              "Line": 33,
+              "Offset": 187,
+              "EndOffset": 202,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1
-            },
-            {
-              "Line": 58,
-              "Offset": 130,
-              "EndOffset": 132,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 1
-            },
-            {
-              "Line": 58,
-              "Offset": 130,
-              "EndOffset": 143,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 1
-            },
-            {
-              "Line": 69,
-              "Offset": 217,
-              "EndOffset": 179,
-              "Path": 1,
-              "Ordinal": 5,
-              "Hits": 0
-            },
-            {
-              "Line": 69,
-              "Offset": 217,
-              "EndOffset": 219,
-              "Path": 0,
-              "Ordinal": 4,
               "Hits": 1
             }
           ]
-        },
-        "System.String ContentReactor.Audio.Worker.AudioTranscriptionService::ProcessAudioTranscriptResponse(System.String)": {
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddComplete/AddCompleteFunction.cs": {
+      "ContentReactor.Audio.Api.Functions/<AddComplete>d__1": {
+        "System.Void ContentReactor.Audio.Api.Functions/<AddComplete>d__1::MoveNext()": {
           "Lines": {
-            "86": 1,
-            "87": 1,
-            "88": 1,
-            "89": 0,
-            "90": 0,
+            "35": 11,
+            "38": 11,
+            "40": 11,
+            "41": 1,
+            "42": 1,
+            "46": 9,
+            "47": 9,
+            "50": 9,
+            "51": 9,
+            "52": 8,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "59": 8,
+            "60": 2,
+            "61": 2,
+            "64": 6,
+            "65": 6,
+            "66": 2,
+            "68": 2,
+            "72": 4,
+            "73": 1,
+            "74": 1,
+            "78": 3,
+            "79": 3,
+            "80": 3,
+            "83": 3,
+            "84": 3,
+            "85": 3,
+            "86": 3,
+            "87": 3,
+            "89": 3,
+            "91": 1,
+            "92": 1,
             "93": 1,
             "94": 1,
-            "95": 1,
-            "96": 1
+            "96": 10
           },
           "Branches": [
             {
-              "Line": 88,
-              "Offset": 13,
-              "EndOffset": 17,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 1
-            },
-            {
-              "Line": 88,
-              "Offset": 13,
-              "EndOffset": 61,
+              "Line": 35,
+              "Offset": 26,
+              "EndOffset": 37,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 1
+              "Hits": 11
             },
             {
-              "Line": 88,
-              "Offset": 81,
-              "EndOffset": 85,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 1
-            },
-            {
-              "Line": 88,
-              "Offset": 81,
-              "EndOffset": 139,
+              "Line": 40,
+              "Offset": 189,
+              "EndOffset": 191,
               "Path": 0,
               "Ordinal": 2,
               "Hits": 1
             },
             {
-              "Line": 88,
-              "Offset": 159,
-              "EndOffset": 163,
+              "Line": 40,
+              "Offset": 189,
+              "EndOffset": 204,
               "Path": 1,
-              "Ordinal": 5,
-              "Hits": 1
+              "Ordinal": 3,
+              "Hits": 9
             },
             {
-              "Line": 88,
-              "Offset": 159,
-              "EndOffset": 210,
+              "Line": 35,
+              "Offset": 26,
+              "EndOffset": 226,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 9
+            },
+            {
+              "Line": 46,
+              "Offset": 230,
+              "EndOffset": 270,
               "Path": 0,
               "Ordinal": 4,
-              "Hits": 1
+              "Hits": 9
             },
             {
-              "Line": 88,
-              "Offset": 248,
-              "EndOffset": 250,
-              "Path": 0,
-              "Ordinal": 6,
+              "Line": 46,
+              "Offset": 230,
+              "EndOffset": 348,
+              "Path": 1,
+              "Ordinal": 5,
               "Hits": 0
             },
             {
-              "Line": 88,
-              "Offset": 248,
-              "EndOffset": 263,
-              "Path": 1,
-              "Ordinal": 7,
-              "Hits": 1
-            },
-            {
-              "Line": 93,
-              "Offset": 268,
-              "EndOffset": 272,
-              "Path": 1,
+              "Line": 59,
+              "Offset": 459,
+              "EndOffset": 461,
+              "Path": 0,
               "Ordinal": 9,
-              "Hits": 1
+              "Hits": 7
             },
             {
-              "Line": 93,
-              "Offset": 268,
-              "EndOffset": 319,
-              "Path": 0,
-              "Ordinal": 8,
-              "Hits": 1
-            },
-            {
-              "Line": 94,
-              "Offset": 346,
-              "EndOffset": 350,
+              "Line": 59,
+              "Offset": 459,
+              "EndOffset": 479,
               "Path": 1,
-              "Ordinal": 11,
-              "Hits": 1
-            },
-            {
-              "Line": 94,
-              "Offset": 346,
-              "EndOffset": 397,
-              "Path": 0,
               "Ordinal": 10,
               "Hits": 1
             },
             {
-              "Line": 95,
-              "Offset": 424,
-              "EndOffset": 428,
-              "Path": 1,
-              "Ordinal": 13,
-              "Hits": 1
-            },
-            {
-              "Line": 95,
-              "Offset": 424,
-              "EndOffset": 464,
-              "Path": 0,
-              "Ordinal": 12,
-              "Hits": 1
-            },
-            {
-              "Line": 95,
+              "Line": 59,
               "Offset": 484,
-              "EndOffset": 488,
+              "EndOffset": 486,
+              "Path": 0,
+              "Ordinal": 11,
+              "Hits": 2
+            },
+            {
+              "Line": 59,
+              "Offset": 484,
+              "EndOffset": 508,
               "Path": 1,
+              "Ordinal": 12,
+              "Hits": 6
+            },
+            {
+              "Line": 46,
+              "Offset": 230,
+              "EndOffset": 618,
+              "Path": 2,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 692,
+              "EndOffset": 694,
+              "Path": 0,
+              "Ordinal": 13,
+              "Hits": 2
+            },
+            {
+              "Line": 65,
+              "Offset": 692,
+              "EndOffset": 716,
+              "Path": 1,
+              "Ordinal": 14,
+              "Hits": 4
+            },
+            {
+              "Line": 72,
+              "Offset": 741,
+              "EndOffset": 743,
+              "Path": 0,
               "Ordinal": 15,
               "Hits": 1
             },
             {
-              "Line": 95,
-              "Offset": 484,
-              "EndOffset": 535,
-              "Path": 0,
-              "Ordinal": 14,
-              "Hits": 1
-            }
-          ]
-        },
-        "System.Void ContentReactor.Audio.Worker.AudioTranscriptionService::.cctor()": {
-          "Lines": {
-            "15": 1,
-            "16": 1
-          },
-          "Branches": []
-        }
-      },
-      "ContentReactor.Audio.Worker.AudioTranscriptionService/<GetAudioTranscriptFromCognitiveServicesAsync>d__2": {
-        "System.Void ContentReactor.Audio.Worker.AudioTranscriptionService/<GetAudioTranscriptFromCognitiveServicesAsync>d__2::MoveNext()": {
-          "Lines": {
-            "25": 0,
-            "26": 0,
-            "28": 0,
-            "29": 0,
-            "30": 0,
-            "31": 0,
-            "33": 0,
-            "34": 0
-          },
-          "Branches": []
-        }
-      }
-    }
-  },
-  "ContentReactor.Common.Fakes.dll": {
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common.Fakes/FakeBlobRecord.cs": {
-      "ContentReactor.Common.Fakes.FakeBlobRecord": {
-        "System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContainerName()": {
-          "Lines": {
-            "15": 0
-          },
-          "Branches": []
-        },
-        "System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_BlobId()": {
-          "Lines": {
-            "21": 0
-          },
-          "Branches": []
-        },
-        "ContentReactor.Common.Blobs.Blob ContentReactor.Common.Fakes.FakeBlobRecord::get_Blob()": {
-          "Lines": {
-            "27": 0
-          },
-          "Branches": []
-        },
-        "System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContentType()": {
-          "Lines": {
-            "33": 0
-          },
-          "Branches": []
-        },
-        "System.IO.Stream ContentReactor.Common.Fakes.FakeBlobRecord::get_Stream()": {
-          "Lines": {
-            "39": 0
-          },
-          "Branches": []
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common.Fakes/FakeBlobRepository.cs": {
-      "ContentReactor.Common.Fakes.FakeBlobRepository": {
-        "System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::get_Blobs()": {
-          "Lines": {
-            "32": 63
-          },
-          "Branches": []
-        },
-        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(System.String,System.String)": {
-          "Lines": {
-            "40": 27,
-            "41": 27,
-            "42": 27,
-            "43": 27,
-            "44": 27,
-            "45": 27,
-            "46": 27,
-            "47": 27
-          },
-          "Branches": []
-        },
-        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(ContentReactor.Common.Blobs.Blob)": {
-          "Lines": {
-            "54": 27,
-            "55": 27,
-            "56": 27
-          },
-          "Branches": []
-        },
-        "System.Threading.Tasks.Task`1<System.Uri> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobUploadUrlAsync(System.String,System.String)": {
-          "Lines": {
-            "65": 1,
-            "66": 1,
-            "67": 1
-          },
-          "Branches": []
-        },
-        "System.Uri ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)": {
-          "Lines": {
-            "75": 2,
-            "76": 2,
-            "77": 0,
-            "78": 0,
-            "81": 2,
-            "82": 2
-          },
-          "Branches": [
-            {
-              "Line": 76,
-              "Offset": 7,
-              "EndOffset": 9,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 76,
-              "Offset": 7,
-              "EndOffset": 21,
+              "Line": 72,
+              "Offset": 741,
+              "EndOffset": 765,
               "Path": 1,
-              "Ordinal": 1,
-              "Hits": 2
-            }
-          ]
-        },
-        "System.Threading.Tasks.Task`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobAsync(System.String,System.String)": {
-          "Lines": {
-            "91": 14,
-            "92": 26,
-            "93": 14,
-            "94": 14
-          },
-          "Branches": [
-            {
-              "Line": 92,
-              "Offset": 17,
-              "EndOffset": 19,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 12
-            },
-            {
-              "Line": 92,
-              "Offset": 17,
-              "EndOffset": 38,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 0
-            }
-          ]
-        },
-        "System.Threading.Tasks.Task`1<System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob>> ContentReactor.Common.Fakes.FakeBlobRepository::ListBlobsInFolderAsync(System.String,System.String)": {
-          "Lines": {
-            "117": 2,
-            "118": 2,
-            "119": 6,
-            "120": 2,
-            "121": 2,
-            "122": 2
-          },
-          "Branches": [
-            {
-              "Line": 119,
-              "Offset": 17,
-              "EndOffset": 19,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 4
-            },
-            {
-              "Line": 119,
-              "Offset": 17,
-              "EndOffset": 49,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 0
-            }
-          ]
-        },
-        "System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::UpdateBlobPropertiesAsync(ContentReactor.Common.Blobs.Blob)": {
-          "Lines": {
-            "130": 5,
-            "131": 5,
-            "132": 0,
-            "133": 0,
-            "136": 5,
-            "137": 5
-          },
-          "Branches": [
-            {
-              "Line": 131,
-              "Offset": 7,
-              "EndOffset": 9,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 131,
-              "Offset": 7,
-              "EndOffset": 21,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 5
-            }
-          ]
-        },
-        "System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::DeleteBlobAsync(System.String,System.String)": {
-          "Lines": {
-            "146": 4,
-            "147": 7,
-            "148": 4,
-            "149": 2,
-            "150": 2,
-            "151": 2,
-            "153": 4,
-            "154": 4
-          },
-          "Branches": [
-            {
-              "Line": 148,
-              "Offset": 51,
-              "EndOffset": 53,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 2
-            },
-            {
-              "Line": 148,
-              "Offset": 51,
-              "EndOffset": 68,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 4
-            },
-            {
-              "Line": 147,
-              "Offset": 17,
-              "EndOffset": 19,
-              "Path": 0,
-              "Ordinal": 0,
+              "Ordinal": 16,
               "Hits": 3
             },
             {
-              "Line": 147,
-              "Offset": 17,
-              "EndOffset": 38,
-              "Path": 1,
-              "Ordinal": 1,
+              "Line": 46,
+              "Offset": 230,
+              "EndOffset": 915,
+              "Path": 3,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 230,
+              "EndOffset": 1097,
+              "Path": 4,
+              "Ordinal": 8,
               "Hits": 0
             }
           ]
-        },
-        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository::.ctor()": {
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Delete/DeleteFunction.cs": {
+      "ContentReactor.Audio.Api.Functions/<Delete>d__2": {
+        "System.Void ContentReactor.Audio.Api.Functions/<Delete>d__2::MoveNext()": {
           "Lines": {
-            "23": 21,
-            "24": 21,
-            "25": 21,
-            "26": 21
+            "29": 6,
+            "32": 6,
+            "34": 6,
+            "35": 1,
+            "36": 1,
+            "40": 4,
+            "43": 4,
+            "44": 4,
+            "45": 4,
+            "47": 1,
+            "48": 1,
+            "49": 1,
+            "50": 1,
+            "52": 5
           },
-          "Branches": []
+          "Branches": [
+            {
+              "Line": 34,
+              "Offset": 201,
+              "EndOffset": 203,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 34,
+              "Offset": 201,
+              "EndOffset": 216,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Get/GetFunction.cs": {
+      "ContentReactor.Audio.Api.Functions/<Get>d__21": {
+        "System.Void ContentReactor.Audio.Api.Functions/<Get>d__21::MoveNext()": {
+          "Lines": {
+            "28": 6,
+            "31": 6,
+            "33": 6,
+            "34": 1,
+            "35": 1,
+            "38": 4,
+            "39": 4,
+            "40": 2,
+            "41": 2,
+            "44": 2,
+            "46": 2,
+            "47": 2,
+            "48": 2,
+            "49": 2,
+            "50": 2,
+            "51": 2,
+            "52": 2,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "59": 5
+          },
+          "Branches": [
+            {
+              "Line": 33,
+              "Offset": 187,
+              "EndOffset": 189,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 33,
+              "Offset": 187,
+              "EndOffset": 202,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 39,
+              "Offset": 386,
+              "EndOffset": 388,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 39,
+              "Offset": 386,
+              "EndOffset": 400,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 2
+            },
+            {
+              "Line": 46,
+              "Offset": 482,
+              "EndOffset": 484,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 46,
+              "Offset": 482,
+              "EndOffset": 487,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/GetList/GetListFunction.cs": {
+      "ContentReactor.Audio.Api.Functions/<>c": {
+        "ContentReactor.Audio.Api.GetListItem ContentReactor.Audio.Api.Functions/<>c::<GetList>b__22_0(ContentReactor.Common.Blobs.Blob)": {
+          "Lines": {
+            "44": 5,
+            "45": 5,
+            "46": 5,
+            "47": 5,
+            "48": 5
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 45,
+              "EndOffset": 47,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 44,
+              "Offset": 45,
+              "EndOffset": 54,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
         }
       },
-      "ContentReactor.Common.Fakes.FakeBlobRepository/<CopyBlobToStreamAsync>d__10": {
-        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository/<CopyBlobToStreamAsync>d__10::MoveNext()": {
+      "ContentReactor.Audio.Api.Functions/<GetList>d__22": {
+        "System.Void ContentReactor.Audio.Api.Functions/<GetList>d__22::MoveNext()": {
           "Lines": {
-            "104": 2,
-            "105": 2,
-            "106": 2,
-            "107": 2,
-            "108": 2
+            "32": 2,
+            "34": 2,
+            "36": 2,
+            "37": 0,
+            "38": 0,
+            "42": 2,
+            "43": 2,
+            "49": 2,
+            "51": 2,
+            "52": 2,
+            "54": 2,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "61": 2
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 187,
+              "EndOffset": 189,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 187,
+              "EndOffset": 202,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/HealthCheck/HealthCheckFunction.cs": {
+      "ContentReactor.Audio.Api.Functions/<HealthCheck>d__23": {
+        "System.Void ContentReactor.Audio.Api.Functions/<HealthCheck>d__23::MoveNext()": {
+          "Lines": {
+            "32": 3,
+            "35": 3,
+            "37": 3,
+            "38": 1,
+            "39": 1,
+            "42": 1,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "48": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "55": 2
+          },
+          "Branches": [
+            {
+              "Line": 37,
+              "Offset": 175,
+              "EndOffset": 177,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 37,
+              "Offset": 175,
+              "EndOffset": 187,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddBegin/AddBeginResponse.cs": {
+      "ContentReactor.Audio.Api.AddBeginResponse": {
+        "System.String ContentReactor.Audio.Api.AddBeginResponse::get_Id()": {
+          "Lines": {
+            "16": 3
+          },
+          "Branches": []
+        },
+        "System.Uri ContentReactor.Audio.Api.AddBeginResponse::get_UploadUrl()": {
+          "Lines": {
+            "23": 3
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common.Fakes/Mockers.cs": {
-      "ContentReactor.Common.Fakes.Mockers": {
-        "System.IO.MemoryStream ContentReactor.Common.Fakes.Mockers::SerializeToStream(System.Object)": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddComplete/AddCompleteRequest.cs": {
+      "ContentReactor.Audio.Api.AddCompleteRequest": {
+        "System.String ContentReactor.Audio.Api.AddCompleteRequest::get_CategoryId()": {
           "Lines": {
-            "74": 0,
-            "75": 0,
-            "76": 0,
-            "77": 0,
-            "78": 0,
-            "79": 0
+            "17": 45
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Get/GetResponse.cs": {
+      "ContentReactor.Audio.Api.GetResponse": {
+        "System.String ContentReactor.Audio.Api.GetResponse::get_Id()": {
+          "Lines": {
+            "15": 6
           },
           "Branches": []
         },
-        "Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object,Microsoft.AspNetCore.Http.IHeaderDictionary)": {
+        "System.Uri ContentReactor.Audio.Api.GetResponse::get_AudioUrl()": {
           "Lines": {
-            "88": 4,
-            "89": 4,
-            "90": 4,
-            "91": 4,
-            "92": 4
+            "21": 4
           },
           "Branches": []
         },
-        "Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object)": {
+        "System.String ContentReactor.Audio.Api.GetResponse::get_Transcript()": {
           "Lines": {
-            "100": 21,
-            "101": 21,
-            "103": 21,
-            "104": 10,
-            "105": 10,
-            "106": 10,
-            "108": 10,
-            "110": 10,
-            "111": 10,
-            "113": 10,
-            "115": 10,
-            "116": 10,
-            "118": 21,
-            "119": 21
+            "27": 4
           },
-          "Branches": [
-            {
-              "Line": 103,
-              "Offset": 13,
-              "EndOffset": 15,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 10
-            },
-            {
-              "Line": 103,
-              "Offset": 13,
-              "EndOffset": 136,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 21
-            }
-          ]
-        },
-        "Moq.Mock`1<ContentReactor.Common.UserAuthentication.IUserAuthenticationService> ContentReactor.Common.Fakes.Mockers::MockUserAuth()": {
+          "Branches": []
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/api/GetList/GetListItem.cs": {
+      "ContentReactor.Audio.Api.GetListItem": {
+        "System.String ContentReactor.Audio.Api.GetListItem::get_Id()": {
           "Lines": {
-            "126": 21,
-            "127": 21,
-            "128": 21,
-            "129": 21,
-            "130": 21,
-            "131": 21,
-            "132": 21,
-            "133": 21
+            "14": 4
+          },
+          "Branches": []
+        },
+        "System.String ContentReactor.Audio.Api.GetListItem::get_Preview()": {
+          "Lines": {
+            "20": 4
           },
           "Branches": []
         }
@@ -951,7 +574,7 @@
     }
   },
   "ContentReactor.Common.dll": {
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/StringExtensions.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/StringExtensions.cs": {
       "ContentReactor.Common.StringExtensions": {
         "System.String ContentReactor.Common.StringExtensions::Truncate(System.String,System.Int32,System.String)": {
           "Lines": {
@@ -1019,7 +642,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/UserAuthentication/QueryStringUserAuthenticationService.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/UserAuthentication/QueryStringUserAuthenticationService.cs": {
       "ContentReactor.Common.UserAuthentication.QueryStringUserAuthenticationService": {
         "System.Threading.Tasks.Task`1<System.Boolean> ContentReactor.Common.UserAuthentication.QueryStringUserAuthenticationService::GetUserIdAsync(Microsoft.AspNetCore.Http.HttpRequest,System.String&,Microsoft.AspNetCore.Mvc.IActionResult&)": {
           "Lines": {
@@ -1114,63 +737,63 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/HealthChecks/HealthCheckResponse.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/HealthChecks/HealthCheckResponse.cs": {
       "ContentReactor.Common.HealthChecks.HealthCheckResponse": {
         "ContentReactor.Common.HealthChecks.HealthCheckStatus ContentReactor.Common.HealthChecks.HealthCheckResponse::get_Status()": {
           "Lines": {
-            "18": 0
+            "18": 4
           },
           "Branches": []
         },
         "System.String ContentReactor.Common.HealthChecks.HealthCheckResponse::get_Application()": {
           "Lines": {
-            "25": 0
+            "25": 4
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/EventGridEvent.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridEvent.cs": {
       "ContentReactor.Common.Events.EventGridEvent`1": {
         "System.String ContentReactor.Common.Events.EventGridEvent`1::get_Topic()": {
           "Lines": {
-            "23": 12
+            "23": 18
           },
           "Branches": []
         },
         "System.String ContentReactor.Common.Events.EventGridEvent`1::get_Id()": {
           "Lines": {
-            "29": 12
+            "29": 18
           },
           "Branches": []
         },
         "System.String ContentReactor.Common.Events.EventGridEvent`1::get_EventType()": {
           "Lines": {
-            "36": 12
+            "36": 18
           },
           "Branches": []
         },
         "System.String ContentReactor.Common.Events.EventGridEvent`1::get_Subject()": {
           "Lines": {
-            "43": 12
+            "43": 18
           },
           "Branches": []
         },
         "System.DateTime ContentReactor.Common.Events.EventGridEvent`1::get_EventTime()": {
           "Lines": {
-            "50": 12
+            "50": 18
           },
           "Branches": []
         },
         "T ContentReactor.Common.Events.EventGridEvent`1::get_Data()": {
           "Lines": {
-            "56": 12
+            "56": 18
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/EventGridPublisherService.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridPublisherService.cs": {
       "ContentReactor.Common.Events.EventGridPublisherService": {
         "System.Threading.Tasks.Task ContentReactor.Common.Events.EventGridPublisherService::PostEventGridEventAsync(System.String,System.String,T)": {
           "Lines": {
@@ -1199,29 +822,29 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/EventGridRequest.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridRequest.cs": {
       "ContentReactor.Common.Events.EventGridRequest`1": {
         "System.String ContentReactor.Common.Events.EventGridRequest`1::get_UserId()": {
           "Lines": {
-            "21": 16
+            "21": 23
           },
           "Branches": []
         },
         "System.String ContentReactor.Common.Events.EventGridRequest`1::get_ItemId()": {
           "Lines": {
-            "27": 16
+            "27": 23
           },
           "Branches": []
         },
         "ContentReactor.Common.Events.EventGridEvent`1<TEventData> ContentReactor.Common.Events.EventGridRequest`1::get_Event()": {
           "Lines": {
-            "33": 12
+            "33": 18
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/EventGridSubscriberService.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridSubscriberService.cs": {
       "ContentReactor.Common.Events.EventGridSubscriberService": {
         "Microsoft.AspNetCore.Mvc.IActionResult ContentReactor.Common.Events.EventGridSubscriberService::HandleSubscriptionValidationEvent(System.String,Microsoft.Extensions.Primitives.StringValues)": {
           "Lines": {
@@ -2152,7 +1775,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Text/TextCreatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Text/TextCreatedEventData.cs": {
       "ContentReactor.Common.Events.Text.TextCreatedEventData": {
         "System.String ContentReactor.Common.Events.Text.TextCreatedEventData::get_Preview()": {
           "Lines": {
@@ -2168,7 +1791,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Text/TextUpdatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Text/TextUpdatedEventData.cs": {
       "ContentReactor.Common.Events.Text.TextUpdatedEventData": {
         "System.String ContentReactor.Common.Events.Text.TextUpdatedEventData::get_Preview()": {
           "Lines": {
@@ -2178,7 +1801,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Images/ImageCaptionUpdatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Images/ImageCaptionUpdatedEventData.cs": {
       "ContentReactor.Common.Events.Images.ImageCaptionUpdatedEventData": {
         "System.String ContentReactor.Common.Events.Images.ImageCaptionUpdatedEventData::get_Caption()": {
           "Lines": {
@@ -2188,7 +1811,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Images/ImageCreatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Images/ImageCreatedEventData.cs": {
       "ContentReactor.Common.Events.Images.ImageCreatedEventData": {
         "System.Uri ContentReactor.Common.Events.Images.ImageCreatedEventData::get_PreviewUri()": {
           "Lines": {
@@ -2204,7 +1827,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Categories/CategoryCreatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategoryCreatedEventData.cs": {
       "ContentReactor.Common.Events.Categories.CategoryCreatedEventData": {
         "System.String ContentReactor.Common.Events.Categories.CategoryCreatedEventData::get_Name()": {
           "Lines": {
@@ -2214,7 +1837,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Categories/CategoryImageUpdatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategoryImageUpdatedEventData.cs": {
       "ContentReactor.Common.Events.Categories.CategoryImageUpdatedEventData": {
         "System.Uri ContentReactor.Common.Events.Categories.CategoryImageUpdatedEventData::get_ImageUrl()": {
           "Lines": {
@@ -2224,7 +1847,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Categories/CategoryNameUpdatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategoryNameUpdatedEventData.cs": {
       "ContentReactor.Common.Events.Categories.CategoryNameUpdatedEventData": {
         "System.String ContentReactor.Common.Events.Categories.CategoryNameUpdatedEventData::get_Name()": {
           "Lines": {
@@ -2234,7 +1857,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Categories/CategorySynonymsUpdatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategorySynonymsUpdatedEventData.cs": {
       "ContentReactor.Common.Events.Categories.CategorySynonymsUpdatedEventData": {
         "System.String ContentReactor.Common.Events.Categories.CategorySynonymsUpdatedEventData::get_Name()": {
           "Lines": {
@@ -2250,17 +1873,17 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Audio/AudioCreatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Audio/AudioCreatedEventData.cs": {
       "ContentReactor.Common.Events.Audio.AudioCreatedEventData": {
         "System.String ContentReactor.Common.Events.Audio.AudioCreatedEventData::get_Category()": {
           "Lines": {
-            "12": 16
+            "12": 22
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Events/Audio/AudioTranscriptUpdatedEventData.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Audio/AudioTranscriptUpdatedEventData.cs": {
       "ContentReactor.Common.Events.Audio.AudioTranscriptUpdatedEventData": {
         "System.String ContentReactor.Common.Events.Audio.AudioTranscriptUpdatedEventData::get_TranscriptPreview()": {
           "Lines": {
@@ -2270,7 +1893,7 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Blobs/Blob.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Blobs/Blob.cs": {
       "ContentReactor.Common.Blobs.Blob": {
         "System.String ContentReactor.Common.Blobs.Blob::get_AccountName()": {
           "Lines": {
@@ -2280,13 +1903,13 @@
         },
         "System.String ContentReactor.Common.Blobs.Blob::get_ContainerName()": {
           "Lines": {
-            "44": 21
+            "44": 22
           },
           "Branches": []
         },
         "System.String ContentReactor.Common.Blobs.Blob::get_BlobName()": {
           "Lines": {
-            "50": 24
+            "50": 25
           },
           "Branches": []
         },
@@ -2298,21 +1921,21 @@
         },
         "System.Void ContentReactor.Common.Blobs.Blob::.ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary`2<System.String,System.String>)": {
           "Lines": {
-            "17": 27,
-            "18": 27,
-            "19": 27,
-            "20": 27,
-            "21": 27,
-            "22": 27,
-            "23": 27,
-            "24": 27,
-            "25": 27,
-            "26": 27,
+            "17": 45,
+            "18": 45,
+            "19": 45,
+            "20": 45,
+            "21": 45,
+            "22": 45,
+            "23": 45,
+            "24": 45,
+            "25": 45,
+            "26": 45,
             "27": 0,
             "28": 0,
             "29": 0,
-            "31": 27,
-            "32": 27
+            "31": 45,
+            "32": 45
           },
           "Branches": [
             {
@@ -2329,13 +1952,13 @@
               "EndOffset": 47,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 27
+              "Hits": 45
             }
           ]
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/common/ContentReactor.Common/Blobs/BlobRepository.cs": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Blobs/BlobRepository.cs": {
       "ContentReactor.Common.Blobs.BlobRepository": {
         "System.Uri ContentReactor.Common.Blobs.BlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)": {
           "Lines": {
@@ -2650,91 +2273,93 @@
       }
     }
   },
-  "ContentReactor.Audio.Api.dll": {
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/Functions.cs": {
-      "ContentReactor.Audio.Api.Functions": {
-        "ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Api.Functions::get_UserAuthenticationService()": {
+  "ContentReactor.Audio.Worker.dll": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/worker/Functions.cs": {
+      "ContentReactor.Audio.Worker.Functions": {
+        "ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Worker.Functions::get_UserAuthenticationService()": {
           "Lines": {
-            "80": 17
+            "72": 3
           },
           "Branches": []
         },
-        "ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Api.Functions::get_BlobRepository()": {
+        "ContentReactor.Common.Events.IEventGridSubscriberService ContentReactor.Audio.Worker.Functions::get_EventGridSubscriberService()": {
           "Lines": {
-            "86": 22
+            "78": 11
           },
           "Branches": []
         },
-        "ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Api.Functions::get_EventGridPublisherService()": {
+        "ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Worker.Functions::get_EventGridPublisherService()": {
           "Lines": {
-            "92": 7
+            "84": 2
           },
           "Branches": []
         },
-        "System.Void ContentReactor.Audio.Api.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository)": {
+        "ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Worker.Functions::get_BlobRepository()": {
           "Lines": {
-            "52": 1,
-            "53": 1,
-            "54": 1,
-            "55": 1,
-            "56": 1,
-            "57": 1,
-            "58": 1
+            "90": 10
           },
           "Branches": []
         },
-        "System.Void ContentReactor.Audio.Api.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Common.Events.IEventGridPublisherService)": {
+        "ContentReactor.Audio.Worker.IAudioTranscriptionService ContentReactor.Audio.Worker.Functions::get_AudioTranscriptionService()": {
           "Lines": {
-            "66": 16,
-            "67": 16,
-            "68": 16,
-            "69": 16,
-            "70": 16,
-            "71": 16,
-            "72": 16,
-            "73": 16,
-            "74": 16
+            "96": 3
+          },
+          "Branches": []
+        },
+        "System.Void ContentReactor.Audio.Worker.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Events.IEventGridSubscriberService,ContentReactor.Common.Events.IEventGridPublisherService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Audio.Worker.IAudioTranscriptionService)": {
+          "Lines": {
+            "54": 10,
+            "55": 10,
+            "56": 10,
+            "57": 10,
+            "58": 10,
+            "59": 10,
+            "60": 10,
+            "61": 10,
+            "62": 10,
+            "63": 10,
+            "64": 10,
+            "65": 10,
+            "66": 10
           },
           "Branches": []
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/AddBegin/AddBeginFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<AddBegin>d__0": {
-        "System.Void ContentReactor.Audio.Api.Functions/<AddBegin>d__0::MoveNext()": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/worker/HealthCheck/HealthCheckFunction.cs": {
+      "ContentReactor.Audio.Worker.Functions/<HealthCheck>d__22": {
+        "System.Void ContentReactor.Audio.Worker.Functions/<HealthCheck>d__22::MoveNext()": {
           "Lines": {
-            "28": 1,
-            "30": 1,
-            "31": 0,
-            "32": 0,
-            "37": 1,
+            "32": 3,
+            "35": 3,
+            "37": 3,
+            "38": 1,
             "39": 1,
             "42": 1,
             "43": 1,
             "44": 1,
             "45": 1,
             "46": 1,
-            "47": 1,
             "48": 1,
-            "50": 0,
-            "51": 0,
-            "52": 0,
-            "53": 0,
-            "55": 1
+            "50": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "55": 2
           },
           "Branches": [
             {
-              "Line": 30,
-              "Offset": 177,
-              "EndOffset": 179,
+              "Line": 37,
+              "Offset": 175,
+              "EndOffset": 177,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
-              "Line": 30,
-              "Offset": 177,
-              "EndOffset": 192,
+              "Line": 37,
+              "Offset": 175,
+              "EndOffset": 187,
               "Path": 1,
               "Ordinal": 1,
               "Hits": 1
@@ -2743,583 +2368,199 @@
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/AddComplete/AddCompleteFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<AddComplete>d__1": {
-        "System.Void ContentReactor.Audio.Api.Functions/<AddComplete>d__1::MoveNext()": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/worker/UpdateTranscript/UpdateTranscriptFunction.cs": {
+      "ContentReactor.Audio.Worker.Functions/<UpdateTranscript>d__23": {
+        "System.Void ContentReactor.Audio.Worker.Functions/<UpdateTranscript>d__23::MoveNext()": {
           "Lines": {
-            "34": 6,
-            "35": 6,
-            "36": 0,
-            "37": 0,
-            "41": 6,
-            "42": 6,
-            "45": 6,
-            "46": 6,
-            "47": 6,
-            "48": 0,
-            "49": 0,
-            "50": 0,
-            "54": 6,
-            "55": 0,
-            "56": 0,
-            "60": 6,
-            "61": 0,
-            "62": 0,
-            "67": 6,
-            "68": 6,
-            "69": 6,
-            "70": 2,
-            "72": 2,
-            "76": 4,
-            "77": 1,
-            "78": 1,
-            "82": 3,
-            "83": 3,
-            "84": 3,
-            "87": 3,
-            "88": 3,
-            "89": 3,
-            "90": 3,
-            "91": 3,
-            "93": 3,
-            "95": 0,
-            "96": 0,
-            "97": 0,
-            "98": 0,
-            "100": 6
+            "34": 7,
+            "36": 7,
+            "38": 7,
+            "39": 7,
+            "40": 7,
+            "41": 7,
+            "43": 7,
+            "45": 7,
+            "47": 7,
+            "50": 6,
+            "51": 6,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "57": 5,
+            "58": 5,
+            "62": 5,
+            "63": 5,
+            "64": 5,
+            "65": 5,
+            "66": 2,
+            "67": 2,
+            "71": 3,
+            "72": 3,
+            "73": 3,
+            "74": 3,
+            "75": 3,
+            "78": 3,
+            "80": 3,
+            "81": 1,
+            "82": 1,
+            "86": 2,
+            "87": 2,
+            "90": 2,
+            "93": 2,
+            "94": 2,
+            "95": 2,
+            "96": 2,
+            "98": 2,
+            "100": 1,
+            "101": 1,
+            "102": 1,
+            "103": 1,
+            "105": 6
           },
           "Branches": [
             {
-              "Line": 35,
-              "Offset": 27,
-              "EndOffset": 29,
+              "Line": 38,
+              "Offset": 44,
+              "EndOffset": 46,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 7
             },
             {
-              "Line": 35,
-              "Offset": 27,
-              "EndOffset": 41,
+              "Line": 38,
+              "Offset": 44,
+              "EndOffset": 67,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 6
+              "Hits": 7
             },
             {
-              "Line": 54,
-              "Offset": 290,
-              "EndOffset": 292,
+              "Line": 43,
+              "Offset": 99,
+              "EndOffset": 113,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 6
+              "Hits": 7
             },
             {
-              "Line": 54,
-              "Offset": 290,
-              "EndOffset": 310,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 0
-            },
-            {
-              "Line": 54,
-              "Offset": 315,
-              "EndOffset": 317,
+              "Line": 51,
+              "Offset": 203,
+              "EndOffset": 205,
               "Path": 0,
               "Ordinal": 4,
-              "Hits": 0
-            },
-            {
-              "Line": 54,
-              "Offset": 315,
-              "EndOffset": 339,
-              "Path": 1,
-              "Ordinal": 5,
-              "Hits": 6
-            },
-            {
-              "Line": 60,
-              "Offset": 495,
-              "EndOffset": 497,
-              "Path": 0,
-              "Ordinal": 6,
-              "Hits": 0
-            },
-            {
-              "Line": 60,
-              "Offset": 495,
-              "EndOffset": 510,
-              "Path": 1,
-              "Ordinal": 7,
-              "Hits": 6
-            },
-            {
-              "Line": 62,
-              "Offset": 514,
-              "EndOffset": 545,
-              "Path": 0,
-              "Ordinal": 8,
-              "Hits": 6
-            },
-            {
-              "Line": 62,
-              "Offset": 514,
-              "EndOffset": 656,
-              "Path": 1,
-              "Ordinal": 9,
-              "Hits": 0
-            },
-            {
-              "Line": 69,
-              "Offset": 730,
-              "EndOffset": 732,
-              "Path": 0,
-              "Ordinal": 12,
-              "Hits": 2
-            },
-            {
-              "Line": 69,
-              "Offset": 730,
-              "EndOffset": 754,
-              "Path": 1,
-              "Ordinal": 13,
-              "Hits": 4
-            },
-            {
-              "Line": 76,
-              "Offset": 779,
-              "EndOffset": 781,
-              "Path": 0,
-              "Ordinal": 14,
               "Hits": 1
             },
             {
-              "Line": 76,
-              "Offset": 779,
-              "EndOffset": 803,
+              "Line": 51,
+              "Offset": 203,
+              "EndOffset": 240,
               "Path": 1,
-              "Ordinal": 15,
+              "Ordinal": 5,
+              "Hits": 5
+            },
+            {
+              "Line": 65,
+              "Offset": 474,
+              "EndOffset": 476,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 2
+            },
+            {
+              "Line": 65,
+              "Offset": 474,
+              "EndOffset": 488,
+              "Path": 1,
+              "Ordinal": 7,
               "Hits": 3
             },
             {
-              "Line": 62,
-              "Offset": 514,
-              "EndOffset": 953,
+              "Line": 43,
+              "Offset": 99,
+              "EndOffset": 499,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 6
+            },
+            {
+              "Line": 71,
+              "Offset": 503,
+              "EndOffset": 543,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 3
+            },
+            {
+              "Line": 71,
+              "Offset": 503,
+              "EndOffset": 643,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 3
+            },
+            {
+              "Line": 71,
+              "Offset": 503,
+              "EndOffset": 769,
               "Path": 2,
               "Ordinal": 10,
               "Hits": 0
             },
             {
-              "Line": 62,
-              "Offset": 514,
-              "EndOffset": 1135,
+              "Line": 80,
+              "Offset": 843,
+              "EndOffset": 845,
+              "Path": 0,
+              "Ordinal": 13,
+              "Hits": 1
+            },
+            {
+              "Line": 80,
+              "Offset": 843,
+              "EndOffset": 857,
+              "Path": 1,
+              "Ordinal": 14,
+              "Hits": 2
+            },
+            {
+              "Line": 71,
+              "Offset": 503,
+              "EndOffset": 974,
               "Path": 3,
               "Ordinal": 11,
               "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 503,
+              "EndOffset": 1147,
+              "Path": 4,
+              "Ordinal": 12,
+              "Hits": 0
             }
           ]
         }
       }
     },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/Delete/DeleteFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<DeleteAudio>d__2": {
-        "System.Void ContentReactor.Audio.Api.Functions/<DeleteAudio>d__2::MoveNext()": {
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/worker/Startup.cs": {
+      "ContentReactor.Audio.Worker.Startup": {
+        "System.Void ContentReactor.Audio.Worker.Startup::Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)": {
           "Lines": {
-            "29": 4,
-            "31": 4,
-            "32": 0,
-            "33": 0,
-            "38": 4,
-            "40": 4,
-            "43": 4,
-            "44": 4,
-            "45": 4,
-            "47": 0,
-            "48": 0,
-            "49": 0,
-            "50": 0,
-            "52": 4
-          },
-          "Branches": [
-            {
-              "Line": 29,
-              "Offset": 16,
-              "EndOffset": 27,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 4
-            },
-            {
-              "Line": 31,
-              "Offset": 179,
-              "EndOffset": 181,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 0
-            },
-            {
-              "Line": 29,
-              "Offset": 16,
-              "EndOffset": 194,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 4
-            },
-            {
-              "Line": 31,
-              "Offset": 179,
-              "EndOffset": 194,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 4
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/Get/GetFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<Get>d__21": {
-        "System.Void ContentReactor.Audio.Api.Functions/<Get>d__21::MoveNext()": {
-          "Lines": {
-            "28": 4,
-            "30": 4,
-            "31": 0,
-            "32": 0,
-            "37": 4,
-            "38": 4,
-            "39": 4,
-            "40": 2,
-            "41": 2,
-            "44": 2,
-            "46": 2,
-            "47": 2,
-            "48": 2,
-            "49": 2,
-            "50": 2,
-            "51": 2,
-            "52": 2,
-            "54": 0,
-            "55": 0,
-            "56": 0,
-            "57": 0,
-            "59": 4
-          },
-          "Branches": [
-            {
-              "Line": 30,
-              "Offset": 177,
-              "EndOffset": 179,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 30,
-              "Offset": 177,
-              "EndOffset": 192,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 4
-            },
-            {
-              "Line": 39,
-              "Offset": 386,
-              "EndOffset": 388,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 2
-            },
-            {
-              "Line": 39,
-              "Offset": 386,
-              "EndOffset": 400,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 2
-            },
-            {
-              "Line": 46,
-              "Offset": 482,
-              "EndOffset": 484,
-              "Path": 0,
-              "Ordinal": 4,
-              "Hits": 1
-            },
-            {
-              "Line": 46,
-              "Offset": 482,
-              "EndOffset": 487,
-              "Path": 1,
-              "Ordinal": 5,
-              "Hits": 1
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/GetList/GetListFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<>c": {
-        "ContentReactor.Audio.Api.GetListItem ContentReactor.Audio.Api.Functions/<>c::<GetList>b__22_0(ContentReactor.Common.Blobs.Blob)": {
-          "Lines": {
-            "44": 5,
-            "45": 5,
-            "46": 5,
-            "47": 5,
-            "48": 5
-          },
-          "Branches": [
-            {
-              "Line": 44,
-              "Offset": 45,
-              "EndOffset": 47,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 2
-            },
-            {
-              "Line": 44,
-              "Offset": 45,
-              "EndOffset": 54,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 1
-            }
-          ]
-        }
-      },
-      "ContentReactor.Audio.Api.Functions/<GetList>d__22": {
-        "System.Void ContentReactor.Audio.Api.Functions/<GetList>d__22::MoveNext()": {
-          "Lines": {
-            "32": 2,
-            "34": 2,
-            "35": 0,
-            "36": 0,
-            "41": 2,
-            "42": 2,
-            "43": 2,
-            "49": 2,
-            "51": 2,
-            "52": 2,
-            "54": 2,
-            "55": 0,
-            "56": 0,
-            "59": 2,
-            "61": 0,
-            "62": 0,
-            "63": 0,
-            "64": 0,
-            "66": 2
-          },
-          "Branches": [
-            {
-              "Line": 34,
-              "Offset": 177,
-              "EndOffset": 179,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 34,
-              "Offset": 177,
-              "EndOffset": 192,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 2
-            },
-            {
-              "Line": 54,
-              "Offset": 457,
-              "EndOffset": 459,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 0
-            },
-            {
-              "Line": 54,
-              "Offset": 457,
-              "EndOffset": 468,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 2
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/HealthCheck/HealthCheckFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<HealthCheck>d__23": {
-        "System.Void ContentReactor.Audio.Api.Functions/<HealthCheck>d__23::MoveNext()": {
-          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "29": 0,
             "31": 0,
             "32": 0,
             "33": 0,
             "34": 0,
-            "38": 0,
-            "39": 0,
-            "40": 0,
-            "45": 0,
-            "46": 0,
-            "47": 0,
-            "48": 0,
-            "49": 0,
-            "50": 0,
-            "51": 0,
-            "52": 0,
-            "53": 0,
-            "57": 0,
-            "58": 0,
-            "59": 0,
-            "60": 0,
-            "61": 0,
-            "62": 0,
-            "64": 0,
-            "65": 0,
-            "66": 0,
-            "67": 0,
-            "68": 0,
-            "69": 0,
-            "71": 0,
-            "72": 0,
-            "73": 0,
-            "74": 0,
-            "76": 0
+            "35": 0,
+            "36": 0
           },
           "Branches": [
             {
-              "Line": 32,
-              "Offset": 26,
-              "EndOffset": 28,
-              "Path": 0,
-              "Ordinal": 0,
-              "Hits": 0
-            },
-            {
-              "Line": 32,
-              "Offset": 26,
-              "EndOffset": 40,
-              "Path": 1,
-              "Ordinal": 1,
-              "Hits": 0
-            },
-            {
-              "Line": 38,
-              "Offset": 194,
-              "EndOffset": 196,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 0
-            },
-            {
-              "Line": 38,
-              "Offset": 194,
-              "EndOffset": 209,
-              "Path": 1,
-              "Ordinal": 3,
-              "Hits": 0
-            },
-            {
-              "Line": 51,
-              "Offset": 270,
-              "EndOffset": 272,
-              "Path": 0,
-              "Ordinal": 4,
-              "Hits": 0
-            },
-            {
-              "Line": 51,
-              "Offset": 270,
-              "EndOffset": 284,
-              "Path": 1,
-              "Ordinal": 5,
-              "Hits": 0
-            }
-          ]
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/AddBegin/AddBeginResponse.cs": {
-      "ContentReactor.Audio.Api.AddBeginResponse": {
-        "System.String ContentReactor.Audio.Api.AddBeginResponse::get_Id()": {
-          "Lines": {
-            "16": 3
-          },
-          "Branches": []
-        },
-        "System.Uri ContentReactor.Audio.Api.AddBeginResponse::get_UploadUrl()": {
-          "Lines": {
-            "23": 3
-          },
-          "Branches": []
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/AddComplete/AddCompleteRequest.cs": {
-      "ContentReactor.Audio.Api.AddCompleteRequest": {
-        "System.String ContentReactor.Audio.Api.AddCompleteRequest::get_CategoryId()": {
-          "Lines": {
-            "17": 30
-          },
-          "Branches": []
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/Get/GetResponse.cs": {
-      "ContentReactor.Audio.Api.GetResponse": {
-        "System.String ContentReactor.Audio.Api.GetResponse::get_Id()": {
-          "Lines": {
-            "15": 6
-          },
-          "Branches": []
-        },
-        "System.Uri ContentReactor.Audio.Api.GetResponse::get_AudioUrl()": {
-          "Lines": {
-            "21": 4
-          },
-          "Branches": []
-        },
-        "System.String ContentReactor.Audio.Api.GetResponse::get_Transcript()": {
-          "Lines": {
-            "27": 4
-          },
-          "Branches": []
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/GetList/GetListItem.cs": {
-      "ContentReactor.Audio.Api.GetListItem": {
-        "System.String ContentReactor.Audio.Api.GetListItem::get_Id()": {
-          "Lines": {
-            "14": 4
-          },
-          "Branches": []
-        },
-        "System.String ContentReactor.Audio.Api.GetListItem::get_Preview()": {
-          "Lines": {
-            "20": 4
-          },
-          "Branches": []
-        }
-      }
-    },
-    "/Users/stewartarmbrecht/Source/Eden/audio/api/Startup.cs": {
-      "ContentReactor.Audio.Api.Startup": {
-        "System.Void ContentReactor.Audio.Api.Startup::Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)": {
-          "Lines": {
-            "22": 0,
-            "23": 0,
-            "24": 0,
-            "25": 0,
-            "28": 0,
-            "30": 0,
-            "31": 0,
-            "32": 0,
-            "33": 0,
-            "34": 0
-          },
-          "Branches": [
-            {
-              "Line": 23,
+              "Line": 24,
               "Offset": 7,
               "EndOffset": 9,
               "Path": 0,
@@ -3327,7 +2568,7 @@
               "Hits": 0
             },
             {
-              "Line": 23,
+              "Line": 24,
               "Offset": 7,
               "EndOffset": 21,
               "Path": 1,
@@ -3335,6 +2576,633 @@
               "Hits": 0
             }
           ]
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/audio/worker/UpdateTranscript/AudioTranscriptionService.cs": {
+      "ContentReactor.Audio.Worker.AudioTranscriptionService": {
+        "System.Net.HttpWebRequest ContentReactor.Audio.Worker.AudioTranscriptionService::CreateAudioTranscriptRequest(System.IO.Stream)": {
+          "Lines": {
+            "43": 1,
+            "44": 1,
+            "45": 0,
+            "46": 0,
+            "49": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "58": 1,
+            "59": 1,
+            "60": 1,
+            "61": 1,
+            "64": 1,
+            "65": 1,
+            "67": 1,
+            "69": 1,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "74": 1,
+            "75": 1,
+            "77": 1,
+            "78": 1
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 7,
+              "EndOffset": 21,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 58,
+              "Offset": 130,
+              "EndOffset": 132,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 58,
+              "Offset": 130,
+              "EndOffset": 143,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 69,
+              "Offset": 217,
+              "EndOffset": 179,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 217,
+              "EndOffset": 219,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.String ContentReactor.Audio.Worker.AudioTranscriptionService::ProcessAudioTranscriptResponse(System.String)": {
+          "Lines": {
+            "86": 1,
+            "87": 1,
+            "88": 1,
+            "89": 0,
+            "90": 0,
+            "93": 1,
+            "94": 1,
+            "95": 1,
+            "96": 1
+          },
+          "Branches": [
+            {
+              "Line": 88,
+              "Offset": 13,
+              "EndOffset": 17,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 13,
+              "EndOffset": 61,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 81,
+              "EndOffset": 85,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 81,
+              "EndOffset": 139,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 159,
+              "EndOffset": 163,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 159,
+              "EndOffset": 210,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 88,
+              "Offset": 248,
+              "EndOffset": 250,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 88,
+              "Offset": 248,
+              "EndOffset": 263,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 93,
+              "Offset": 268,
+              "EndOffset": 272,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 1
+            },
+            {
+              "Line": 93,
+              "Offset": 268,
+              "EndOffset": 319,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 1
+            },
+            {
+              "Line": 94,
+              "Offset": 346,
+              "EndOffset": 350,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 1
+            },
+            {
+              "Line": 94,
+              "Offset": 346,
+              "EndOffset": 397,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 1
+            },
+            {
+              "Line": 95,
+              "Offset": 424,
+              "EndOffset": 428,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 1
+            },
+            {
+              "Line": 95,
+              "Offset": 424,
+              "EndOffset": 464,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 1
+            },
+            {
+              "Line": 95,
+              "Offset": 484,
+              "EndOffset": 488,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 1
+            },
+            {
+              "Line": 95,
+              "Offset": 484,
+              "EndOffset": 535,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.Void ContentReactor.Audio.Worker.AudioTranscriptionService::.cctor()": {
+          "Lines": {
+            "15": 1,
+            "16": 1
+          },
+          "Branches": []
+        }
+      },
+      "ContentReactor.Audio.Worker.AudioTranscriptionService/<GetAudioTranscriptFromCognitiveServicesAsync>d__2": {
+        "System.Void ContentReactor.Audio.Worker.AudioTranscriptionService/<GetAudioTranscriptFromCognitiveServicesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "ContentReactor.Common.Fakes.dll": {
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/AbstractLogger.cs": {
+      "ContentReactor.Common.Fakes.AbstractLogger": {
+        "System.IDisposable ContentReactor.Common.Fakes.AbstractLogger::BeginScope(TState)": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean ContentReactor.Common.Fakes.AbstractLogger::IsEnabled(Microsoft.Extensions.Logging.LogLevel)": {
+          "Lines": {
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Void ContentReactor.Common.Fakes.AbstractLogger::Log(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,TState,System.Exception,System.Func`3<TState,System.Exception,System.String>)": {
+          "Lines": {
+            "37": 7
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/FakeBlobRecord.cs": {
+      "ContentReactor.Common.Fakes.FakeBlobRecord": {
+        "System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContainerName()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_BlobId()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "ContentReactor.Common.Blobs.Blob ContentReactor.Common.Fakes.FakeBlobRecord::get_Blob()": {
+          "Lines": {
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContentType()": {
+          "Lines": {
+            "33": 0
+          },
+          "Branches": []
+        },
+        "System.IO.Stream ContentReactor.Common.Fakes.FakeBlobRecord::get_Stream()": {
+          "Lines": {
+            "39": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/FakeBlobRepository.cs": {
+      "ContentReactor.Common.Fakes.FakeBlobRepository": {
+        "System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::get_Blobs()": {
+          "Lines": {
+            "32": 82
+          },
+          "Branches": []
+        },
+        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(System.String,System.String)": {
+          "Lines": {
+            "40": 45,
+            "41": 45,
+            "42": 45,
+            "43": 45,
+            "44": 45,
+            "45": 45,
+            "46": 45,
+            "47": 45
+          },
+          "Branches": []
+        },
+        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(ContentReactor.Common.Blobs.Blob)": {
+          "Lines": {
+            "54": 45,
+            "55": 45,
+            "56": 45
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<System.Uri> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobUploadUrlAsync(System.String,System.String)": {
+          "Lines": {
+            "65": 1,
+            "66": 1,
+            "67": 1
+          },
+          "Branches": []
+        },
+        "System.Uri ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)": {
+          "Lines": {
+            "75": 2,
+            "76": 2,
+            "77": 0,
+            "78": 0,
+            "81": 2,
+            "82": 2
+          },
+          "Branches": [
+            {
+              "Line": 76,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 76,
+              "Offset": 7,
+              "EndOffset": 21,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        },
+        "System.Threading.Tasks.Task`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobAsync(System.String,System.String)": {
+          "Lines": {
+            "91": 15,
+            "92": 28,
+            "93": 15,
+            "94": 15
+          },
+          "Branches": [
+            {
+              "Line": 92,
+              "Offset": 17,
+              "EndOffset": 19,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 13
+            },
+            {
+              "Line": 92,
+              "Offset": 17,
+              "EndOffset": 38,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Threading.Tasks.Task`1<System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob>> ContentReactor.Common.Fakes.FakeBlobRepository::ListBlobsInFolderAsync(System.String,System.String)": {
+          "Lines": {
+            "117": 2,
+            "118": 2,
+            "119": 6,
+            "120": 2,
+            "121": 2,
+            "122": 2
+          },
+          "Branches": [
+            {
+              "Line": 119,
+              "Offset": 17,
+              "EndOffset": 19,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 119,
+              "Offset": 17,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::UpdateBlobPropertiesAsync(ContentReactor.Common.Blobs.Blob)": {
+          "Lines": {
+            "130": 5,
+            "131": 5,
+            "132": 0,
+            "133": 0,
+            "136": 5,
+            "137": 5
+          },
+          "Branches": [
+            {
+              "Line": 131,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 131,
+              "Offset": 7,
+              "EndOffset": 21,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 5
+            }
+          ]
+        },
+        "System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::DeleteBlobAsync(System.String,System.String)": {
+          "Lines": {
+            "146": 4,
+            "147": 7,
+            "148": 4,
+            "149": 2,
+            "150": 2,
+            "151": 2,
+            "153": 4,
+            "154": 4
+          },
+          "Branches": [
+            {
+              "Line": 148,
+              "Offset": 51,
+              "EndOffset": 53,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 148,
+              "Offset": 51,
+              "EndOffset": 68,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 147,
+              "Offset": 17,
+              "EndOffset": 19,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 3
+            },
+            {
+              "Line": 147,
+              "Offset": 17,
+              "EndOffset": 38,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository::.ctor()": {
+          "Lines": {
+            "23": 52,
+            "24": 52,
+            "25": 52,
+            "26": 52
+          },
+          "Branches": []
+        }
+      },
+      "ContentReactor.Common.Fakes.FakeBlobRepository/<CopyBlobToStreamAsync>d__10": {
+        "System.Void ContentReactor.Common.Fakes.FakeBlobRepository/<CopyBlobToStreamAsync>d__10::MoveNext()": {
+          "Lines": {
+            "104": 3,
+            "105": 3,
+            "106": 3,
+            "107": 3,
+            "108": 3
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/Mockers.cs": {
+      "ContentReactor.Common.Fakes.Mockers": {
+        "System.IO.MemoryStream ContentReactor.Common.Fakes.Mockers::SerializeToStream(System.Object)": {
+          "Lines": {
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0
+          },
+          "Branches": []
+        },
+        "Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object,Microsoft.AspNetCore.Http.IHeaderDictionary)": {
+          "Lines": {
+            "88": 6,
+            "89": 6,
+            "90": 6,
+            "91": 6,
+            "92": 6
+          },
+          "Branches": []
+        },
+        "Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object)": {
+          "Lines": {
+            "100": 39,
+            "101": 39,
+            "103": 39,
+            "104": 20,
+            "105": 20,
+            "106": 20,
+            "108": 20,
+            "110": 20,
+            "111": 20,
+            "113": 20,
+            "115": 20,
+            "116": 20,
+            "118": 39,
+            "119": 39
+          },
+          "Branches": [
+            {
+              "Line": 103,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 20
+            },
+            {
+              "Line": 103,
+              "Offset": 13,
+              "EndOffset": 136,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 39
+            }
+          ]
+        },
+        "Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequestWithInvalidJson()": {
+          "Lines": {
+            "126": 1,
+            "127": 1,
+            "129": 1,
+            "130": 1,
+            "132": 1,
+            "133": 1,
+            "135": 1,
+            "137": 1,
+            "138": 1,
+            "139": 1
+          },
+          "Branches": []
+        },
+        "Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequestWithNoPayload()": {
+          "Lines": {
+            "146": 1,
+            "147": 1,
+            "149": 1,
+            "150": 1,
+            "152": 1,
+            "154": 1,
+            "156": 1,
+            "157": 1,
+            "158": 1
+          },
+          "Branches": []
+        },
+        "Moq.Mock`1<ContentReactor.Common.UserAuthentication.IUserAuthenticationService> ContentReactor.Common.Fakes.Mockers::MockUserAuth()": {
+          "Lines": {
+            "165": 41,
+            "166": 41,
+            "167": 41,
+            "168": 41,
+            "169": 41,
+            "170": 41,
+            "171": 41,
+            "172": 41
+          },
+          "Branches": []
         }
       }
     }
