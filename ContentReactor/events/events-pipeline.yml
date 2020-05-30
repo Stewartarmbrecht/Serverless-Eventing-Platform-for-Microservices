@@ -19,10 +19,9 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: filePath # Optional. Options: filePath, inline
-    filePath: ./events/deploy/deploy.ps1 # Required when targetType == FilePath
-    arguments:  -systemName $(systemName) -region $(region) -userName $(userName) -password $(password) -tenantId $(tenantId)
+    filePath: ./events/pipeline/Deploy-Infrastructure.ps1 # Required when targetType == FilePath
     errorActionPreference: stop # Optional. Options: stop, continue, silentlyContinue
     failOnStderr: false # Optional
     ignoreLASTEXITCODE: false # Optional
     pwsh: true # Optional
-    workingDirectory: ./events/deploy # Optional
+    workingDirectory: ./events/pipeline # Optional

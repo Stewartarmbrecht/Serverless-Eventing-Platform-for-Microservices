@@ -27,7 +27,7 @@ Invoke-BuildCommand $command $loggingPrefix "Logging in the Azure CLI"
 $command = "az group create -n $resourceGroupName -l $region"
 Invoke-BuildCommand $command $loggingPrefix "Creating the resource group."
 
-$command = "az deployment group create -g $resourceGroupName --template-file $deploymentFile --parameters uniqueResourcesystemName=$instanceName --mode Complete"
+$command = "az deployment group create -g $resourceGroupName --template-file $deploymentFile --parameters instanceName=$instanceName --mode Complete"
 Invoke-BuildCommand $command $loggingPrefix "Deploying the infrastructure."
 
 $storageAccountName = "$($instanceName)audioblob".ToLower()
@@ -42,5 +42,5 @@ Invoke-BuildCommand $command $loggingPrefix "Clearing the storage account CORS p
 $command = "az storage cors add --account-name $storageAccountName --services b --methods POST GET PUT --origins ""*"" --allowed-headers ""*"" --exposed-headers ""*"""
 Invoke-BuildCommand $command $loggingPrefix "Creating the storage account CORS policy."
 
-Write-BuildInfo "Deployed the microservice infrastructure." $loggingPrefix
+Write-BuildInfo "Deployed the service infrastructure." $loggingPrefix
 Set-Location $currentDirectory

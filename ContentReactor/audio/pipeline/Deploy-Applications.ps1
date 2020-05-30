@@ -32,15 +32,36 @@ Set-Location "$PSSCriptRoot"
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 Invoke-BuildCommand $command $loggingPrefix "Logging in to the Azure CLI."
 
-$old_ErrorActionPreference = $ErrorActionPreference
-$ErrorActionPreference = 'SilentlyContinue'
+# $old_ErrorActionPreference = $ErrorActionPreference
+# $ErrorActionPreference = 'SilentlyContinue'
 
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath"
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath --slot staging"
 Invoke-BuildCommand $command $loggingPrefix "Deploying the API application."
 
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath"
+$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath --slot staging"
 Invoke-BuildCommand $command $loggingPrefix "Deploying the worker application."
 
-$ErrorActionPreference = $old_ErrorActionPreference 
+$e2eTestJob = Test-EndToEnd -E2EUrl "https://$apiName-staging.azurewebsites.net/api/audio" -LoggingPrefix $loggingPrefix
+While($e2eTestJob.State -eq "Running")
+{
+    $e2eTestJob | Receive-Job | Write-Verbose
+}
+$e2eTestJob | Receive-Job | Write-Verbose
+if ($e2eTestJob.State -eq "Failed") {
+    Write-BuildError "The staging end to end testing failed." $loggingPrefix
+    Write-BuildError "Exiting deployment." $loggingPrefix
+    Get-Job | Remove-Job
+    Exit
+}
+Get-Job | Remove-Job
+
+$command = "az functionapp deployment slot swap -g $resourceGroupName -n $apiName --slot staging --target-slot production"
+Invoke-BuildCommand $command $loggingPrefix "Swapping the api staging slot with production."
+
+$command = "az functionapp deployment slot swap -g $resourceGroupName -n $workerName --slot staging --target-slot production"
+Invoke-BuildCommand $command $loggingPrefix "Swapping the worker staging slot with production."
+
+
+# $ErrorActionPreference = $old_ErrorActionPreference 
 Write-BuildInfo "Finished deploying the applications." $loggingPrefix
 Set-Location $currentDirectory

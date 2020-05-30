@@ -70,9 +70,9 @@ While(Get-Job -State "Running")
         -and "" -ne $publicUrl `
         -and $TRUE -eq $healthCheck) {
         if ($RunEndToEndTestsContinuously) {
-            $e2eTestJob = Test-EndToEnd -LoggingPrefix $loggingPrefix -Continuous
+            $e2eTestJob = Test-EndToEnd -E2EUrl "http://localhost:$apiPort/api/audio" -LoggingPrefix $loggingPrefix -Continuous
         } else {
-            $e2eTestJob = Test-EndToEnd -LoggingPrefix $loggingPrefix
+            $e2eTestJob = Test-EndToEnd -E2EUrl "http://localhost:$apiPort/api/audio" -LoggingPrefix $loggingPrefix
         }
         $testing = $TRUE
     }

@@ -50,6 +50,7 @@ function Invoke-BuildCommand {
         Write-BuildError "Failed to execute command: $Command" $LoggingPrefix
         # Write-Error $_
         Write-BuildError "Exiting due to error!" $LoggingPrefix
+        throw $_
     }
 }
 function Start-Function
@@ -209,16 +210,23 @@ function Test-EndToEnd
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$TRUE)]
+        [String]$E2EUrl,
+        [Parameter(Mandatory=$TRUE)]
         [String]$LoggingPrefix,
         [Parameter()]
         [switch]$Continuous
     )
     $e2eTestJob = Start-Job -Name "rt-Audio-EndToEndTesting" -ScriptBlock {
-        $Continuous = $args[0]
-        $LoggingPrefix = $args[1]
+        $E2EUrl = $args[0]
+        $Continuous = $args[1]
+        $LoggingPrefix = $args[2]
+        $VerbosePreference = $args[3]
 
         . ./Functions.ps1
     
+        $Env:E2EUrl = $E2EUrl
+        Write-BuildInfo "Running E2E tests against '$E2EUrl'." $LoggingPrefix
+
         if ($Continuous)
         {
             Write-BuildInfo "Running E2E tests continuously." $LoggingPrefix
@@ -229,6 +237,6 @@ function Test-EndToEnd
             Invoke-BuildCommand "dotnet test ./../tests/ContentReactor.Audio.Tests.csproj --filter TestCategory=E2E" $LoggingPrefix "Running E2E tests once."
             Write-BuildInfo "Finished running E2E tests." $LoggingPrefix
         }
-    } -ArgumentList @($Continuous, $LoggingPrefix)
+    } -ArgumentList @($E2EUrl, $Continuous, $LoggingPrefix, $VerbosePreference)
     return $e2eTestJob
 }

@@ -2,16 +2,23 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourcesystemName": {
+        "instanceName": {
             "type": "string"
         }
     },
     "variables": {
-        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]"
+        "eventGridTopicName": "[concat(parameters('instanceName'),'-events-topic')]",
+        "eventGridTopicNameStaging": "[concat(parameters('instanceName'),'-staging-events-topic')]"
     },
     "resources": [
         {
             "name": "[variables('eventGridTopicName')]",
+            "type": "Microsoft.EventGrid/topics",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2018-01-01"
+        },
+        {
+            "name": "[variables('eventGridTopicNameStaging')]",
             "type": "Microsoft.EventGrid/topics",
             "location": "[resourceGroup().location]",
             "apiVersion": "2018-01-01"
