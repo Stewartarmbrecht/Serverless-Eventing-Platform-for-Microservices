@@ -1,4 +1,4 @@
-﻿namespace ContentReactor.Audio.Tests.E2E
+﻿namespace ContentReactor.Audio.Tests.Automated
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -12,11 +12,11 @@
     /// Contains end to end tests for the Audio API.
     /// </summary>
     [TestClass]
-    [TestCategory("E2E")]
+    [TestCategory("Automated")]
     public class AudioApiTests
     {
         private static readonly HttpClient HttpClientInstance = new HttpClient();
-        private readonly string baseUrl = Environment.GetEnvironmentVariable("E2EUrl");
+        private readonly string baseUrl = Environment.GetEnvironmentVariable("AutomatedUrl");
         private readonly string defaultUserId = "developer@edentest.com";
 
         /// <summary>
@@ -24,7 +24,7 @@
         /// When you add the audio note through the api
         /// Then you should be able to retrieve a url to download the note
         /// And the note should have the category that you specified when completing the upload
-        /// And the note should have a transcription
+        /// And the note should have a transcription.
         /// </summary>
         /// <returns>Task for running the test.</returns>
         [TestMethod]
@@ -50,7 +50,7 @@
         /// Given you have an audio note that you have added
         /// When you delete the audio note
         /// Then you should receive a complete message
-        /// And the get operation should no longer return the note
+        /// And the get operation should no longer return the note.
         /// </summary>
         /// <returns>Task for running the test.</returns>
         [TestMethod]

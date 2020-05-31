@@ -24,7 +24,7 @@ MyTest
 	-UniqueDeveloperId $Env:UniqueDeveloperId `
 	-Verbose
 
-./Test-EndToEnd.ps1 `
+./Test-Automated.ps1 `
 	-InstanceName $Env:InstanceName  `
 	-UserName $Env:UserName `
 	-Password $Env:Password `

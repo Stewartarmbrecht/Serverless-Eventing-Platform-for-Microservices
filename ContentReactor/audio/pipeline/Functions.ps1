@@ -194,7 +194,7 @@ function Deploy-LocalSubscriptions
     $command = @"
         az deployment group create ``
             -g $eventsResourceGroupName ``
-            --template-file ./../infrastructure/eventGridSubscriptions.local.json ``
+            --template-file ./../infrastructure/subscriptions.local.json ``
             --parameters ``
                 uniqueResourcesystemName=$InstanceName ``
                 publicUrlToLocalWebServer=$PublicUrlToLocalWebServer ``
@@ -205,38 +205,38 @@ function Deploy-LocalSubscriptions
     Write-BuildInfo "Deployed the subscriptions." $LoggingPrefix
 }
 
-function Test-EndToEnd
+function Test-Automated
 {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$TRUE)]
-        [String]$E2EUrl,
+        [String]$AutomatedUrl,
         [Parameter(Mandatory=$TRUE)]
         [String]$LoggingPrefix,
         [Parameter()]
         [switch]$Continuous
     )
-    $e2eTestJob = Start-Job -Name "rt-Audio-EndToEndTesting" -ScriptBlock {
-        $E2EUrl = $args[0]
+    $automatedTestJob = Start-Job -Name "rt-Audio-Automated" -ScriptBlock {
+        $AutomatedUrl = $args[0]
         $Continuous = $args[1]
         $LoggingPrefix = $args[2]
         $VerbosePreference = $args[3]
 
         . ./Functions.ps1
     
-        $Env:E2EUrl = $E2EUrl
-        Write-BuildInfo "Running E2E tests against '$E2EUrl'." $LoggingPrefix
+        $Env:AutomatedUrl = $AutomatedUrl
+        Write-BuildInfo "Running automated tests against '$AutomatedUrl'." $LoggingPrefix
 
         if ($Continuous)
         {
-            Write-BuildInfo "Running E2E tests continuously." $LoggingPrefix
-            dotnet watch --project ./../tests/ContentReactor.Audio.Tests.csproj test --filter TestCategory=E2E
+            Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
+            dotnet watch --project ./../tests/ContentReactor.Audio.Tests.csproj test --filter TestCategory=Automated
         }
         else
         {
-            Invoke-BuildCommand "dotnet test ./../tests/ContentReactor.Audio.Tests.csproj --filter TestCategory=E2E" $LoggingPrefix "Running E2E tests once."
-            Write-BuildInfo "Finished running E2E tests." $LoggingPrefix
+            Invoke-BuildCommand "dotnet test ./../tests/ContentReactor.Audio.Tests.csproj --filter TestCategory=Automated" $LoggingPrefix "Running automated tests once."
+            Write-BuildInfo "Finished running automated tests." $LoggingPrefix
         }
-    } -ArgumentList @($E2EUrl, $Continuous, $LoggingPrefix, $VerbosePreference)
-    return $e2eTestJob
+    } -ArgumentList @($AutomatedUrl, $Continuous, $LoggingPrefix, $VerbosePreference)
+    return $automatedTestJob
 }

@@ -10,11 +10,11 @@ Set-Location $PSScriptRoot
 $loggingPrefix = "ContentReactor Audio Test End to End $instanceName"
 
 if ($Continuous) {
-    Write-BuildInfo "Running end to end tests continuously." $loggingPrefix
-    ./Start-Service.ps1 -RunEndToEndTestsContinuously -Verbose
+    Write-BuildInfo "Running automated tests continuously." $loggingPrefix
+    ./Start-Service.ps1 -RunAutomatedTestsContinuously -Verbose
 } else {
-    Write-BuildInfo "Running end to end tests." $loggingPrefix
-    ./Start-Service.ps1 -RunEndToEndTests
+    Write-BuildInfo "Running automated tests." $loggingPrefix
+    ./Start-Service.ps1 -RunAutomatedTests
 }
 
 Set-Location $currentDirectory

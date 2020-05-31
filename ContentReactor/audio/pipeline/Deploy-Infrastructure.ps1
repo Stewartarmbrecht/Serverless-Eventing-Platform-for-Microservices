@@ -17,9 +17,9 @@ $region = $Env:Region
 $loggingPrefix = "ContentReactor Audio Deploy Infrastructure $instanceName"
 
 $resourceGroupName = "$instanceName-audio".ToLower()
-$deploymentFile = "./../infrastructure/microservice.json"
+$deploymentFile = "./../infrastructure/infrastructure.json"
 
-Write-BuildInfo "Deploying the microservice infrastructure." $loggingPrefix
+Write-BuildInfo "Deploying the service infrastructure." $loggingPrefix
 
 $command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
 Invoke-BuildCommand $command $loggingPrefix "Logging in the Azure CLI"

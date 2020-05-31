@@ -41,13 +41,13 @@ Invoke-BuildCommand $command $loggingPrefix "Deploying the API application."
 $command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath --slot staging"
 Invoke-BuildCommand $command $loggingPrefix "Deploying the worker application."
 
-$e2eTestJob = Test-EndToEnd -E2EUrl "https://$apiName-staging.azurewebsites.net/api/audio" -LoggingPrefix $loggingPrefix
-While($e2eTestJob.State -eq "Running")
+$automatedTestJob = Test-Automated -AutomatedUrl "https://$apiName-staging.azurewebsites.net/api/audio" -LoggingPrefix $loggingPrefix
+While($automatedTestJob.State -eq "Running")
 {
-    $e2eTestJob | Receive-Job | Write-Verbose
+    $automatedTestJob | Receive-Job | Write-Verbose
 }
-$e2eTestJob | Receive-Job | Write-Verbose
-if ($e2eTestJob.State -eq "Failed") {
+$automatedTestJob | Receive-Job | Write-Verbose
+if ($automatedTestJob.State -eq "Failed") {
     Write-BuildError "The staging end to end testing failed." $loggingPrefix
     Write-BuildError "Exiting deployment." $loggingPrefix
     Get-Job | Remove-Job

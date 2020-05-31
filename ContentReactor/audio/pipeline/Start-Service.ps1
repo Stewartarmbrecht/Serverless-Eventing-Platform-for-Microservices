@@ -1,9 +1,9 @@
 [CmdletBinding()]
 param(
     [Parameter()]
-    [switch]$RunEndToEndTests,
+    [switch]$RunAutomatedTests,
     [Parameter()]
-    [switch]$RunEndToEndTestsContinuously
+    [switch]$RunAutomatedTestsContinuously
 )
 
 $currentDirectory = Get-Location
@@ -64,21 +64,21 @@ While(Get-Job -State "Running")
     }
 
     if(
-        ($RunEndToEndTestsContinuously -or $RunEndToEndTests) `
+        ($RunAutomatedTestsContinuously -or $RunAutomatedTests) `
         -and $FALSE -eq $testing `
         -and $TRUE -eq $subscribed `
         -and "" -ne $publicUrl `
         -and $TRUE -eq $healthCheck) {
-        if ($RunEndToEndTestsContinuously) {
-            $e2eTestJob = Test-EndToEnd -E2EUrl "http://localhost:$apiPort/api/audio" -LoggingPrefix $loggingPrefix -Continuous
+        if ($RunAutomatedTestsContinuously) {
+            $automatedTestJob = Test-Automated -AutomatedUrl "http://localhost:$apiPort/api/audio" -LoggingPrefix $loggingPrefix -Continuous
         } else {
-            $e2eTestJob = Test-EndToEnd -E2EUrl "http://localhost:$apiPort/api/audio" -LoggingPrefix $loggingPrefix
+            $automatedTestJob = Test-Automated -AutomatedUrl "http://localhost:$apiPort/api/audio" -LoggingPrefix $loggingPrefix
         }
         $testing = $TRUE
     }
 
     Get-Job | Receive-Job | Write-Verbose
-    if ($e2eTestJob.State -eq "Completed")
+    if ($automatedTestJob.State -eq "Completed")
     {
         Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
         Stop-Job rt-*

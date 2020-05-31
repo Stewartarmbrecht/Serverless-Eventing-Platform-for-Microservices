@@ -15,7 +15,7 @@ Write-BuildInfo "Running the full pipeline for the microservice." $loggingPrefix
 
 ./Build-Applications.ps1
 ./Test-Unit.ps1
-./Test-EndToEnd.ps1
+./Test-Automated.ps1
 ./Build-DeploymentPackages.ps1
 ./Deploy-Service.ps1
 

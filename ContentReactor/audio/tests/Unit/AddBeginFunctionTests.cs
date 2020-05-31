@@ -51,7 +51,7 @@
         /// <summary>
         /// Given you have an audio api with an audio file started for upload
         /// When you call the operation to complete the add
-        /// Then it should return a 204 NoContentResult
+        /// Then it should return a 204 NoContentResult.
         /// </summary>
         /// <returns>Task for running the test.</returns>
         [TestMethod]
