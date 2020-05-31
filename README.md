@@ -4,7 +4,7 @@ platforms: dotnet
 author: nzthiago, stewartarmbrecht
 ---
 
-**_NOTE: BROKEN BUILD!! This project is currently under an extensive upgrade of all componenets and a re-architecture to implement several new patterns.  If you are interested in reviewing patterns.  The Audio service is being built first._**
+**_NOTE: BROKEN BUILD!! This project is currently under an extensive upgrade of all componenets and a re-architecture to implement several new patterns.  If you are interested in reviewing patterns.  The Audio service is being built first.  It has a readme file that explains how this service is implemented._**
 
 **_All information below will need to be updated once the upgrades and refactoring are complete._**
 
