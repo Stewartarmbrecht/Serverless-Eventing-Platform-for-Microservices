@@ -2,25 +2,25 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourcesystemName": {
+        "InstanceName": {
             "type": "string"
         },
-        "publicUrlToLocalWebServer": {
+        "PublicUrlToLocalWebServer": {
             "type": "string"
         },
-        "uniqueDeveloperId": {
+        "UniqueDeveloperId": {
             "type": "string"
         },
-        "expireTimeUtc": {
+        "ExpireTimeUtc": {
             "type": "string"
         }
     },
     "variables": {
-        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]",
+        "eventGridTopicName": "[concat(parameters('InstanceName'),'-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
-                "resourceName": "[concat(parameters('uniqueDeveloperId'),'AudioUpdateAudioTranscript')]",
-                "webHookUrl": "[concat(parameters('publicUrlToLocalWebServer'),'/api/UpdateAudioTranscript')]",
+                "resourceName": "[concat(parameters('UniqueDeveloperId'),'AudioUpdateAudioTranscript')]",
+                "webHookUrl": "[concat(parameters('PublicUrlToLocalWebServer'),'/api/UpdateAudioTranscript')]",
                 "eventTypes": [
                     "AudioCreated"
                 ]
@@ -48,7 +48,7 @@
                 "filter": {
                     "includedEventTypes": "[variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].eventTypes]"
                 },
-                "expirationTimeUtc": "[parameters('expireTimeUtc')]"
+                "expirationTimeUtc": "[parameters('ExpireTimeUtc')]"
             }
         }
     ]

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ContentReactor.Audio.Api;
+    using ContentReactor.Audio;
     using ContentReactor.Common.Events;
     using ContentReactor.Common.Fakes;
     using ContentReactor.Common.UserAuthentication;

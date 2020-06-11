@@ -1,10 +1,13 @@
 [CmdletBinding()]
 param(
+    [ValidateLength(3, 18)]
     [String] $InstanceName,
     [String] $Region, 
     [String] $UserName, 
-    [String] $Password, 
-    [String] $TenantId
+    [String] $UserId, 
+    [SecureString] $Password, 
+    [String] $TenantId,
+    [String] $SubscriptionId
 )
 
 if ($InstanceName) {
@@ -18,6 +21,10 @@ if ($Region) {
 if ($UserName) {
     # [Environment]::SetEnvironmentVariable("UserName", $UserName, "User")
     $Env:UserName = $UserName
+}
+if ($UserId) {
+    # [Environment]::SetEnvironmentVariable("UserName", $UserName, "User")
+    $Env:UserId = $UserId
 }
 if ($Password) {
     # [Environment]::SetEnvironmentVariable("Password", $Password, "User")
@@ -35,11 +42,17 @@ if(!$Env:Region) {
     $Env:Region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
 }
 if(!$Env:UserName) {
-    $Env:UserName = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
+    $Env:UserName = Read-Host -Prompt 'Please provide the Display Name for a service principal to use for the deployment.'
 }
+#if(!$Env:UserId) {
+#    $Env:UserId = Read-Host -Prompt 'Please provide the Application (client) ID for a service principal to use for the deployment.'
+#}
 if(!$Env:Password) {
     $Env:Password = Read-Host -Prompt 'Please provide the service principal secret (password) to use for the deployment.'
 }
 if(!$Env:TenantId) {
     $Env:TenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
+}
+if(!$Env:SubscriptionId) {
+    $Env:SubscriptionId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }

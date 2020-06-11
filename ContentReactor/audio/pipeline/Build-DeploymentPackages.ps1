@@ -12,31 +12,19 @@ Set-Location "$PSSCriptRoot/../"
 
 $directoryStart = Get-Location
 
-Write-BuildInfo "Packaging the microservice." $loggingPrefix
+Write-BuildInfo "Packaging the service application." $loggingPrefix
 
-Set-Location "$directoryStart/api"
-Invoke-BuildCommand "dotnet publish -c Release -o $directoryStart/.dist/api" $loggingPrefix "Publishing the api application."
+Set-Location "$directoryStart/application"
+Invoke-BuildCommand "dotnet publish -c Release -o $directoryStart/.dist/app" $loggingPrefix "Publishing the function application."
 
-Set-Location "$directoryStart/worker"
-Invoke-BuildCommand "dotnet publish -c Release -o $directoryStart/.dist/worker" $loggingPrefix "Publishing the worker application."
+$appPath =  "$directoryStart/.dist/app/**"
+$appDestination = "$directoryStart/.dist/app.zip"
 
-$apiPath =  "$directoryStart/.dist/api/**"
-$apiDestination = "$directoryStart/.dist/api.zip"
+Write-BuildInfo "Removing the app package." $loggingPrefix
+Remove-Item -Path $appDestination -Recurse -Force -ErrorAction Ignore
 
-Write-BuildInfo "Removing the api package." $loggingPrefix
-Remove-Item -Path $apiDestination -Recurse -Force -ErrorAction Ignore
+Write-BuildInfo "Creating the app package." $loggingPrefix
+Compress-Archive -Path $appPath -DestinationPath $appDestination
 
-Write-BuildInfo "Creating the api package." $loggingPrefix
-Compress-Archive -Path $apiPath -DestinationPath $apiDestination
-
-$workerPath = "$directoryStart/.dist/worker/**"
-$workerDestination = "$directoryStart/.dist/worker.zip"
-
-Write-BuildInfo "Removing the worker package." $loggingPrefix
-Remove-Item -Path $workerDestination -Recurse -Force -ErrorAction Ignore
-
-Write-BuildInfo "Creating the worker package." $loggingPrefix
-Compress-Archive -Path $workerPath -DestinationPath $workerDestination
-
-Write-BuildInfo "Packaged the Audio microservice." $loggingPrefix
+Write-BuildInfo "Packaged the oservice." $loggingPrefix
 Set-Location $currentDirectory

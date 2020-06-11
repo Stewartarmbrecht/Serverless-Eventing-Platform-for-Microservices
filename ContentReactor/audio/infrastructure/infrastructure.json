@@ -4,7 +4,9 @@
     "parameters": {
         "instanceName": {
             "type": "string",
-            "defaultValue": ""
+            "metadata": {
+                "description": "Provides a unique string that will be pre-pended to all resource names and will ensure that they are globally unique."
+            }
         }
     },
     "variables": {
@@ -13,12 +15,11 @@
         "applicationInsightsName": "[concat(variables('serviceInstanceName'), '-ai')]",
 
         "functionsAppServicePlanName": "[concat(variables('serviceInstanceName'),'-asp')]",
-        "functionsApiAppName": "[concat(variables('serviceInstanceName'),'-api')]",
-        "functionsWorkerAppName": "[concat(variables('serviceInstanceName'),'-worker')]",
+        "functionsAppName": "[variables('serviceInstanceName')]",
 
-        "blobAccountName": "[concat(parameters('instanceName'),'audioblob')]",
-        "blobAccountNameStaging": "[concat(parameters('instanceName'),'audiostagingblob')]",
-        "storageAccountName": "[concat(parameters('instanceName'),'audiowebjobstorage')]",
+        "blobAccountName": "[concat(parameters('instanceName'),'aud')]",
+        "blobAccountNameStaging": "[concat(parameters('instanceName'),'audstg')]",
+        "storageAccountName": "[concat(parameters('instanceName'),'audwjs')]",
 
         "cognitiveServicesAccountName": "[concat(variables('serviceInstanceName'), '-cs')]",
         "cognitiveServicesApiUrl": "https://westus2.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-us&format=detailed",
@@ -27,9 +28,9 @@
         "eventGridTopicStagingResourceId": "[resourceId(concat(parameters('instanceName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('instanceName'),'-staging-events-topic'))]"
     },
     "resources": [
-        {
+        { "type": "Microsoft.Insights/components",
             "name": "[variables('applicationInsightsName')]",
-            "type": "Microsoft.Insights/components",
+            "comments": "The application insights instance to use to monitor all resources in the resource group.",
             "apiVersion": "2014-04-01",
             "location": "[resourceGroup().location]",
             "kind": "other",
@@ -37,31 +38,105 @@
                 "applicationId": "[variables('applicationInsightsName')]"
             }
         },
-        {
+        { "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
             "name": "[variables('blobAccountName')]",
-            "type": "Microsoft.Storage/storageAccounts",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2019-04-01",
             "sku": {
-                "name": "Standard_LRS"
+                "name": "Standard_LRS",
+                "tier": "Standard"
             },
             "kind": "StorageV2",
             "properties": {
-                "accessTier": "Hot",
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
                 "supportsHttpsTrafficOnly": true,
                 "encryption": {
                     "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
                         "blob": {
+                            "keyType": "Account",
                             "enabled": true
                         }
                     },
                     "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        { "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('blobAccountName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountName'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": [
+                        {
+                            "allowedOrigins": [
+                                "*"
+                            ],
+                            "allowedMethods": [
+                                "POST",
+                                "GET",
+                                "PUT"
+                            ],
+                            "maxAgeInSeconds": 0,
+                            "exposedHeaders": [
+                                "*"
+                            ],
+                            "allowedHeaders": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
                 }
             }
         },
-        {
+        { "type": "Microsoft.Storage/storageAccounts/fileServices",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('blobAccountName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountName'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        { "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('blobAccountName'), '/default/audio')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('blobAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountName'))]"
+            ],
+            "properties": {
+                "publicAccess": "None"
+            }
+        },
+        { "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('blobAccountNameStaging')]",
-            "type": "Microsoft.Storage/storageAccounts",
             "location": "[resourceGroup().location]",
             "apiVersion": "2019-04-01",
             "sku": {
@@ -81,8 +156,7 @@
                 }
             }
         },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
+        { "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('storageAccountName')]",
             "apiVersion": "2019-04-01",
             "location": "[resourceGroup().location]",
@@ -91,9 +165,8 @@
                 "name": "Standard_LRS"
             }
         },
-        {
+        { "type": "Microsoft.Web/serverfarms",
             "name": "[variables('functionsAppServicePlanName')]",
-            "type": "Microsoft.Web/serverfarms",
             "location": "[resourceGroup().location]",
             "apiVersion": "2016-09-01",
             "sku": {
@@ -111,9 +184,8 @@
                 "targetWorkerSizeId": 0
             }
         },
-        {
-            "name": "[variables('functionsApiAppName')]",
-            "type": "Microsoft.Web/sites",
+        { "type": "Microsoft.Web/sites",
+            "name": "[variables('functionsAppName')]",
             "location": "[resourceGroup().location]",
             "apiVersion": "2018-11-01",
             "kind": "functionapp",
@@ -142,7 +214,7 @@
                         "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountName'), ';AccountKey=', listKeys(variables('blobAccountName'),'2015-05-01-preview').key1)]"
                     },
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites', variables('functionsApiAppName'))]",
+                        "[resourceId('Microsoft.Web/sites', variables('functionsAppName'))]",
                         "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountName'))]",
                         "[resourceId('Microsoft.CognitiveServices/accounts', variables('cognitiveServicesAccountName'))]"
                     ]
@@ -152,7 +224,7 @@
                     "name": "slotConfigNames",
                     "type": "config",
                     "dependsOn": [
-                      "[resourceId('Microsoft.Web/Sites', variables('functionsApiAppName'))]"
+                      "[resourceId('Microsoft.Web/Sites', variables('functionsAppName'))]"
                     ],
                     "properties": {
                       "appSettingNames": [ "EventGridTopicEndpoint", "EventGridTopicKey", "BlobAccountKey", "BlobConnectionString", "APPINSIGHTS_INSTRUMENTATIONKEY" ]
@@ -163,11 +235,10 @@
                 "[resourceId('Microsoft.Web/serverfarms', variables('functionsAppServicePlanName'))]"
             ]
         },
-        {
-            "name": "[variables('functionsWorkerAppName')]",
-            "type": "Microsoft.Web/sites",
-            "location": "[resourceGroup().location]",
+        { "type": "Microsoft.Web/sites/slots",
+            "name": "[concat(variables('functionsAppName'), '/staging')]",
             "apiVersion": "2018-11-01",
+            "location": "[resourceGroup().location]",
             "kind": "functionapp",
             "properties": {
                 "enabled": true,
@@ -183,42 +254,30 @@
                     "type": "config",
                     "apiVersion": "2018-11-01",
                     "properties": {
-                        "FUNCTIONS_EXTENSION_VERSION": "~3",
                         "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountName'),'2015-05-01-preview').key1)]",
                         "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('applicationInsightsName')), '2014-04-01').InstrumentationKey]",
                         "CognitiveServicesSpeechApiEndpoint": "[variables('cognitiveServicesApiUrl')]",
                         "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2017-04-18').key1]",
-                        "EventGridTopicEndpoint": "[reference(variables('eventGridTopicResourceId'), '2018-01-01').endpoint]",
-                        "EventGridTopicKey": "[listKeys(variables('eventGridTopicResourceId'), '2018-01-01').key1]",
-                        "BlobAccountKey": "[listKeys(variables('blobAccountName'),'2015-05-01-preview').key1]",
-                        "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountName'), ';AccountKey=', listKeys(variables('blobAccountName'),'2015-05-01-preview').key1)]"
+                        "EventGridTopicEndpoint": "[reference(variables('eventGridTopicStagingResourceId'), '2018-01-01').endpoint]",
+                        "EventGridTopicKey": "[listKeys(variables('eventGridTopicStagingResourceId'), '2018-01-01').key1]",
+                        "BlobAccountKey": "[listKeys(variables('blobAccountNameStaging'),'2015-05-01-preview').key1]",
+                        "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountNameStaging'), ';AccountKey=', listKeys(variables('blobAccountNameStaging'),'2015-05-01-preview').key1)]"
                     },
                     "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites', variables('functionsWorkerAppName'))]",
-                        "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountName'))]",
+                        "[resourceId('Microsoft.Web/sites', variables('functionsAppName'))]",
+                        "[resourceId('Microsoft.Web/sites/slots', variables('functionsAppName'), 'staging')]",
+                        "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountNameStaging'))]",
                         "[resourceId('Microsoft.CognitiveServices/accounts', variables('cognitiveServicesAccountName'))]"
                     ]
-                },
-                {
-                    "apiVersion": "2018-11-01",
-                    "name": "slotConfigNames",
-                    "type": "config",
-                    "dependsOn": [
-                      "[resourceId('Microsoft.Web/Sites', variables('functionsWorkerAppName'))]"
-                    ],
-                    "properties": {
-                      "appSettingNames": [ "EventGridTopicEndpoint", "EventGridTopicKey", "BlobAccountKey", "BlobConnectionString", "APPINSIGHTS_INSTRUMENTATIONKEY" ]
-                    }
                 }
             ],
             "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', variables('functionsAppName'))]",
                 "[resourceId('Microsoft.Web/serverfarms', variables('functionsAppServicePlanName'))]"
             ]
         },
-
-        {
+        { "type": "Microsoft.CognitiveServices/accounts",
             "name": "[variables('cognitiveServicesAccountName')]",
-            "type": "Microsoft.CognitiveServices/accounts",
             "apiVersion": "2017-04-18",
             "location": "[resourceGroup().location]",
             "sku": {
@@ -226,90 +285,6 @@
             },
             "kind": "SpeechServices",
             "properties": {}
-        },
-
-        {
-            "type": "Microsoft.Web/sites/slots",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(variables('functionsApiAppName'), '/staging')]",
-            "location": "[resourceGroup().location]",
-            "kind": "functionapp",
-            "properties": {
-                "enabled": true,
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('functionsAppServicePlanName'))]",
-                "reserved": false
-            },
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "resources": [
-                {
-                    "name": "appsettings",
-                    "type": "config",
-                    "apiVersion": "2018-11-01",
-                    "properties": {
-                        "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountName'),'2015-05-01-preview').key1)]",
-                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('applicationInsightsName')), '2014-04-01').InstrumentationKey]",
-                        "CognitiveServicesSpeechApiEndpoint": "[variables('cognitiveServicesApiUrl')]",
-                        "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2017-04-18').key1]",
-                        "EventGridTopicEndpoint": "[reference(variables('eventGridTopicStagingResourceId'), '2018-01-01').endpoint]",
-                        "EventGridTopicKey": "[listKeys(variables('eventGridTopicStagingResourceId'), '2018-01-01').key1]",
-                        "BlobAccountKey": "[listKeys(variables('blobAccountNameStaging'),'2015-05-01-preview').key1]",
-                        "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountNameStaging'), ';AccountKey=', listKeys(variables('blobAccountNameStaging'),'2015-05-01-preview').key1)]"
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites', variables('functionsApiAppName'))]",
-                        "[resourceId('Microsoft.Web/sites/slots', variables('functionsApiAppName'), 'staging')]",
-                        "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountNameStaging'))]",
-                        "[resourceId('Microsoft.CognitiveServices/accounts', variables('cognitiveServicesAccountName'))]"
-                    ]
-                }
-            ],
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('functionsAppServicePlanName'))]"
-            ]
-        },
-
-        {
-            "type": "Microsoft.Web/sites/slots",
-            "apiVersion": "2018-11-01",
-            "name": "[concat(variables('functionsWorkerAppName'), '/staging')]",
-            "location": "[resourceGroup().location]",
-            "kind": "functionapp",
-            "properties": {
-                "enabled": true,
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('functionsAppServicePlanName'))]",
-                "reserved": false
-            },
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "resources": [
-                {
-                    "name": "appsettings",
-                    "type": "config",
-                    "apiVersion": "2018-11-01",
-                    "properties": {
-                        "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountName'),'2015-05-01-preview').key1)]",
-                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('applicationInsightsName')), '2014-04-01').InstrumentationKey]",
-                        "CognitiveServicesSpeechApiEndpoint": "[variables('cognitiveServicesApiUrl')]",
-                        "CognitiveServicesSpeechApiKey": "[listKeys(variables('cognitiveServicesAccountName'),'2017-04-18').key1]",
-                        "EventGridTopicEndpoint": "[reference(variables('eventGridTopicStagingResourceId'), '2018-01-01').endpoint]",
-                        "EventGridTopicKey": "[listKeys(variables('eventGridTopicStagingResourceId'), '2018-01-01').key1]",
-                        "BlobAccountKey": "[listKeys(variables('blobAccountNameStaging'),'2015-05-01-preview').key1]",
-                        "BlobConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('blobAccountNameStaging'), ';AccountKey=', listKeys(variables('blobAccountNameStaging'),'2015-05-01-preview').key1)]"
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites', variables('functionsWorkerAppName'))]",
-                        "[resourceId('Microsoft.Web/sites/slots', variables('functionsWorkerAppName'), 'staging')]",
-                        "[resourceId('Microsoft.Storage/storageAccounts', variables('blobAccountNameStaging'))]",
-                        "[resourceId('Microsoft.CognitiveServices/accounts', variables('cognitiveServicesAccountName'))]"
-                    ]
-                }
-            ],
-            "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('functionsAppServicePlanName'))]"
-            ]
         }
     ]
 }

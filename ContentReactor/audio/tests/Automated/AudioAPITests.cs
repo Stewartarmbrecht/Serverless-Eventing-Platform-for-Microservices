@@ -4,7 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using ContentReactor.Audio.Api;
+    using ContentReactor.Audio;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
 
@@ -152,7 +152,7 @@
             GetResponse getResponseBody =
                 JsonConvert.DeserializeObject<GetResponse>(getResponseContent);
             Assert.AreEqual(blobId, getResponseBody.Id);
-            string downloadUrlEnd = $"blob.blob.core.windows.net/audio/{userId}/{blobId}";
+            string downloadUrlEnd = $".blob.core.windows.net/audio/{userId}/{blobId}";
             Assert.IsTrue(
                 getResponseBody.AudioUrl.ToString().Contains(downloadUrlEnd, StringComparison.Ordinal),
                 $"{getResponseBody.AudioUrl} did not contain the string {downloadUrlEnd}");

@@ -2,7 +2,7 @@
 {
     using System;
     using System.IO;
-    using ContentReactor.Audio.Worker;
+    using ContentReactor.Audio;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -25,7 +25,7 @@
             var stream = new MemoryStream();
 
             // act
-            var result = Worker.AudioTranscriptionService.CreateAudioTranscriptRequest(stream);
+            var result = AudioTranscriptionService.CreateAudioTranscriptRequest(stream);
 
             // assert
             Assert.IsNotNull(result);
@@ -43,7 +43,7 @@
             const string responseString = "{\"RecognitionStatus\":\"Success\",\"Offset\":3600000,\"Duration\":89800000,\"NBest\":[{\"Confidence\":0.940092,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download not to install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download not to install my voice.\"},{\"Confidence\":0.929836333,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download now to install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download now to install my voice.\"},{\"Confidence\":0.9099141,\"Lexical\":\"hi i\'m bryan one of the available high-quality text to speech voices select download not to install my voice\",\"ITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice\",\"MaskedITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice\",\"Display\":\"Hi I\'m Bryan one of the available high-quality text to speech voices select download not to install my voice.\"},{\"Confidence\":0.9099141,\"Lexical\":\"hi i\'m brian one of the available high-quality text to speech voices select download not too install my voice\",\"ITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice\",\"MaskedITN\":\"hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice\",\"Display\":\"Hi I\'m Brian one of the available high-quality text to speech voices select download not too install my voice.\"},{\"Confidence\":0.8996583,\"Lexical\":\"hi i\'m bryan one of the available high-quality text to speech voices select download now to install my voice\",\"ITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice\",\"MaskedITN\":\"hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice\",\"Display\":\"Hi I\'m Bryan one of the available high-quality text to speech voices select download now to install my voice.\"}]}";
 
             // act
-            var response = Worker.AudioTranscriptionService.ProcessAudioTranscriptResponse(responseString);
+            var response = AudioTranscriptionService.ProcessAudioTranscriptResponse(responseString);
 
             // assert
             Assert.AreEqual("Hi I'm Brian one of the available high-quality text to speech voices select download not to install my voice.", response);

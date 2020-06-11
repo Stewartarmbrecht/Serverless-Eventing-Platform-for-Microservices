@@ -58,27 +58,36 @@ function Start-Function
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$TRUE)]
-        [String]$FunctionType,
-        [Parameter(Mandatory=$TRUE)]
         [String]$FunctionLocation,
         [Parameter(Mandatory=$TRUE)]
         [Int32]$Port,
         [Parameter(Mandatory=$TRUE)]
-        [String]$LoggingPrefix
+        [String]$LoggingPrefix,
+        [Switch]$Continous
     )
     
-    Start-Job -Name "rt-Audio-$FunctionType" -ScriptBlock {
+    Start-Job -Name "rt-Audio-App" -ScriptBlock {
         $functionLocation = $args[0]
         $port = $args[1]
         $loggingPrefix = $args[2]
+        $continuous = $args[3]
 
         . ./Functions.ps1
     
         Write-BuildInfo "Setting location to '$functionLocation'" $loggingPrefix
         Set-Location $functionLocation
-        Invoke-BuildCommand "func host start -p $port" $loggingPrefix "Running the API." -Direct
+        try {
+            if ($continous) {
+                $command = "func host start -p $port"    
+            }
+            $command = "func host start -p $port"
+            Invoke-BuildCommand $command $loggingPrefix "Running the function application." -Direct
+        } catch {
+            Write-BuildError "If you get errno: -4058, try this: https://github.com/Azure/azure-functions-core-tools/issues/1804#issuecomment-594990804" $loggingPrefix
+            throw
+        }
         Write-BuildInfo "The function app at '$functionLocation' is running." $loggingPrefix
-    } -ArgumentList @($FunctionLocation, $Port, $LoggingPrefix)
+    } -ArgumentList @($FunctionLocation, $Port, $LoggingPrefix, $Continous)
 }
 
 function Start-LocalTunnel
@@ -86,20 +95,23 @@ function Start-LocalTunnel
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$TRUE)]
-        [String]$FunctionType,
-        [Parameter(Mandatory=$TRUE)]
         [Int32]$Port,
         [Parameter(Mandatory=$TRUE)]
         [String]$LoggingPrefix
     )
 
-    Start-Job -Name "rt-Audio-Tunnel-$FunctionType" -ScriptBlock {
+    Start-Job -Name "rt-Audio-Tunnel-App" -ScriptBlock {
         $port = $args[0]
         $loggingPrefix = $args[1]
 
         . ./Functions.ps1
 
-        ./ngrok http http://localhost:$port -host-header=rewrite | Write-Verbose
+        if ($IsWindows) {
+            ./ngrok.exe http http://localhost:$port -host-header=rewrite | Write-Verbose
+        } else {
+            ./ngrok http http://localhost:$port -host-header=rewrite | Write-Verbose
+        }
+
         Write-BuildInfo "The worker API tunnel is up." $loggingPrefix
     } -ArgumentList @($Port, $LoggingPrefix)
 }
@@ -145,7 +157,7 @@ function Get-HealthStatus
         [String]$LoggingPrefix
     )
     try {
-        Write-BuildInfo "Checking worker API availability at: $PublicUrl/api/healthcheck?userId=developer98765@test.com" $LoggingPrefix
+        Write-BuildInfo "Checking API availability at: $PublicUrl/api/healthcheck?userId=developer98765@test.com" $LoggingPrefix
         $response = Invoke-RestMethod -URI "$PublicUrl/api/healthcheck?userId=developer98765@test.com"
         $status = $response.status
         if($status -eq 0) {
@@ -166,42 +178,34 @@ function Deploy-LocalSubscriptions
     [CmdletBinding()]
     param(  
         [Parameter(Mandatory=$TRUE)]
-        [String] $InstanceName,
-        [Parameter(Mandatory=$TRUE)]
-        [String] $PublicUrlToLocalWebServer,
-        [Parameter(Mandatory=$TRUE)]
-        [String] $UserName,
-        [Parameter(Mandatory=$TRUE)]
-        [String] $Password,
-        [Parameter(Mandatory=$TRUE)]
-        [String] $TenantId,
-        [Parameter(Mandatory=$TRUE)]
-        [String] $UniqueDeveloperId,
-        [Parameter(Mandatory=$TRUE)]
-        [String]$LoggingPrefix
+        [String]$LoggingPrefix,
+        [Parameter(Mandatory=$True)]
+        [String]$PublicUrlToLocalWebServer
     )
 
+    $instanceName = $Env:InstanceName
+    $uniqueDeveloperId = $Env:UniqueDeveloperId
     $eventsResourceGroupName = "$InstanceName-events"
+    $eventsSubscriptionDeploymentFile = "./../infrastructure/subscriptions.local.json"
 
     Write-BuildInfo "Deploying the web server subscriptions." $LoggingPrefix
-
-    $command = "az login --service-principal --username $UserName --password $Password --tenant $TenantId"
-    Invoke-BuildCommand $command $LoggingPrefix "Logging in the Azure CLI."
 
     $expireTime = Get-Date
     $expireTimeUtc = $expireTime.AddHours(1).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-    $command = @"
-        az deployment group create ``
-            -g $eventsResourceGroupName ``
-            --template-file ./../infrastructure/subscriptions.local.json ``
-            --parameters ``
-                uniqueResourcesystemName=$InstanceName ``
-                publicUrlToLocalWebServer=$PublicUrlToLocalWebServer ``
-                uniqueDeveloperId=$UniqueDeveloperId ``
-                expireTimeUtc=$expireTimeUtc
-"@
-    Invoke-BuildCommand $command $LoggingPrefix "Deploying the event grid subscription."
+    Connect-AzureServicePrincipal $loggingPrefix
+
+    Write-BuildInfo "Deploying the event grid subscriptions for the local functions app." $loggingPrefix
+    Write-BuildInfo "Deploying to '$eventsResourceGroupName' events resource group." $loggingPrefix
+    $result = New-AzResourceGroupDeployment `
+        -ResourceGroupName $eventsResourceGroupName `
+        -TemplateFile $eventsSubscriptionDeploymentFile `
+        -InstanceName $instanceName `
+        -PublicUrlToLocalWebServer $PublicUrlToLocalWebServer `
+        -UniqueDeveloperId $uniqueDeveloperId `
+        -ExpireTimeUtc $expireTimeUtc
+    if ($VerbosePreference -ne 'SilentlyContinue') { $result }
+
     Write-BuildInfo "Deployed the subscriptions." $LoggingPrefix
 }
 
@@ -239,4 +243,21 @@ function Test-Automated
         }
     } -ArgumentList @($AutomatedUrl, $Continuous, $LoggingPrefix, $VerbosePreference)
     return $automatedTestJob
+}
+
+function Connect-AzureServicePrincipal {
+    [CmdletBinding()]
+    param(
+        [string] $logginPrefix
+    )
+
+    $userId = $Env:UserId
+    $password = $Env:Password
+    $tenantId = $Env:TenantId
+
+    Write-BuildInfo "Connecting to service principal: $userId on tenant: $tenantId" $loggingPrefix
+    
+    $pswd = ConvertTo-SecureString $password
+    $pscredential = New-Object System.Management.Automation.PSCredential($userId, $pswd)
+    Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $tenantId | Write-Verbose
 }

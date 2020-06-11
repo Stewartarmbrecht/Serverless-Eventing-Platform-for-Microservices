@@ -1,5 +1,6 @@
 [CmdletBinding()]
 param(
+    [switch]$Continuous
 )
 
 $currentDirectory = Get-Location
@@ -9,7 +10,22 @@ Set-Location $PSScriptRoot
 
 $loggingPrefix = "ContentReactor Audio Build"
 
-Invoke-BuildCommand "dotnet build ./../ContentReactor.Audio.sln" $loggingPrefix "Building the solution."
+try {
+    #Set-Location "./../"
+    if ($Continuous) {
+        $command = "dotnet watch --project ./../ContentReactor.Audio.sln build ./ContentReactor.Audio.sln"
+    } else {
+        $command = "dotnet build ./../ContentReactor.Audio.sln"
+    }
+    
+    Invoke-BuildCommand $command $loggingPrefix "Building the solution."    
+
+    Set-Location $PSScriptRoot
+} catch {
+    Set-Location $PSScriptRoot
+}
+
+
 
 Write-BuildInfo "Finished building the solution." $loggingPrefix
 

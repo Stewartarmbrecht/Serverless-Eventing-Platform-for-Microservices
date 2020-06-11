@@ -21,7 +21,7 @@ if ($Continuous) {
             /p:CollectCoverage=true `
             /p:CoverletOutput=TestResults/ `
             /p:CoverletOutputFormat=lcov `
-            /p:Include="[ContentReactor.Audio.*]*" `
+            /p:Include="[ContentReactor.Audio*]*" `
             /p:Threshold=80 `
             /p:ThresholdType=line `
             /p:ThresholdStat=total
@@ -65,7 +65,7 @@ else {
             /p:CollectCoverage=true ``
             /p:CoverletOutput=TestResults/ ``
             /p:CoverletOutputFormat=lcov ``
-            /p:Include=`"[ContentReactor.Audio.*]*`" ``
+            /p:Include=`"[ContentReactor.Audio*]*`" ``
             /p:Threshold=80 ``
             /p:ThresholdType=line ``
             /p:ThresholdStat=total 

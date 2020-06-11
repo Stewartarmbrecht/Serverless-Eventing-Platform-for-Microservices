@@ -22,24 +22,16 @@ $loggingPrefix = "ContentReactor Audio Deploy Apps $instanceName"
 Write-BuildInfo "Deploying the applications." $loggingPrefix
 
 $resourceGroupName = "$instanceName-audio".ToLower()
-$apiName = "$instanceName-audio-api".ToLower()
-$apiFilePath = "$location/.dist/api.zip"
-$workerName = "$instanceName-audio-worker".ToLower()
-$workerFilePath = "$location/.dist/worker.zip"
+$apiName = "$instanceName-audio".ToLower()
+$apiFilePath = "$location/.dist/app.zip"
 
 Set-Location "$PSSCriptRoot"
 
-$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
-Invoke-BuildCommand $command $loggingPrefix "Logging in to the Azure CLI."
+Connect-AzureServicePrincipal $loggingPrefix
 
-# $old_ErrorActionPreference = $ErrorActionPreference
-# $ErrorActionPreference = 'SilentlyContinue'
-
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $apiName --src $apiFilePath --slot staging"
-Invoke-BuildCommand $command $loggingPrefix "Deploying the API application."
-
-$command = "az webapp deployment source config-zip --resource-group $resourceGroupName --name $workerName --src $workerFilePath --slot staging"
-Invoke-BuildCommand $command $loggingPrefix "Deploying the worker application."
+Write-BuildInfo "Deploying the azure functions app using zip from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
+$result = Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $apiName -Slot Staging -ArchivePath $apiFilePath -Force
+if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
 $automatedTestJob = Test-Automated -AutomatedUrl "https://$apiName-staging.azurewebsites.net/api/audio" -LoggingPrefix $loggingPrefix
 While($automatedTestJob.State -eq "Running")
@@ -55,13 +47,9 @@ if ($automatedTestJob.State -eq "Failed") {
 }
 Get-Job | Remove-Job
 
-$command = "az functionapp deployment slot swap -g $resourceGroupName -n $apiName --slot staging --target-slot production"
-Invoke-BuildCommand $command $loggingPrefix "Swapping the api staging slot with production."
+Write-BuildInfo "Switching the '$resourceGroupName/$apiName' azure functions app staging slot with production." $loggingPrefix
+$result = Switch-AzWebAppSlot -SourceSlotName "Staging" -DestinationSlotName "Production" -ResourceGroupName $resourceGroupName -Name $apiName
+if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
-$command = "az functionapp deployment slot swap -g $resourceGroupName -n $workerName --slot staging --target-slot production"
-Invoke-BuildCommand $command $loggingPrefix "Swapping the worker staging slot with production."
-
-
-# $ErrorActionPreference = $old_ErrorActionPreference 
 Write-BuildInfo "Finished deploying the applications." $loggingPrefix
 Set-Location $currentDirectory

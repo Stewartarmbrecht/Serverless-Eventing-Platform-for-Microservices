@@ -1,13 +1,13 @@
 [CmdletBinding()]
 param(
+    [ValidateLength(3, 18)]
     [String] $InstanceName,
     [String] $Region, 
-    [String] $UserName, 
-    [String] $Password, 
     [String] $TenantId, 
+    [String] $UserId, 
+    [SecureString] $Password, 
     [String] $UniqueDeveloperId,
-    [Int] $ApiPort,
-    [Int] $WorkerPort
+    [Int] $AudioLocalHostingPort = 7071
 )
 
 if ($InstanceName) {
@@ -18,13 +18,13 @@ if ($Region) {
     # [Environment]::SetEnvironmentVariable("Region", $Region, "User")
     $Env:Region = $Region
 }
-if ($UserName) {
-    # [Environment]::SetEnvironmentVariable("UserName", $UserName, "User")
-    $Env:UserName = $UserName
+if ($UserId) {
+    # [Environment]::SetEnvironmentVariable("UserId", $UserId, "User")
+    $Env:UserId = $UserId
 }
 if ($Password) {
     # [Environment]::SetEnvironmentVariable("Password", $Password, "User")
-    $Env:Password = $Password
+    $Env:Password = ConvertFrom-SecureString -SecureString $Password
 }
 if ($TenantId) {
     # [Environment]::SetEnvironmentVariable("TenantId", $TenantId, "User")
@@ -34,13 +34,9 @@ if ($UniqueDeveloperId) {
     # [Environment]::SetEnvironmentVariable("UniqueDeveloperId", $UniqueDeveloperId, "User")
     $Env:UniqueDeveloperId = $UniqueDeveloperId
 }
-if ($ApiPort) {
-    # [Environment]::SetEnvironmentVariable("AudioApiPort", $ApiPort, "User")
-    $Env:AudioApiPort = $ApiPort
-}
-if ($WorkerPort) {
-    # [Environment]::SetEnvironmentVariable("AudioWorkerPort", $WorkerPort, "User")
-    $Env:AudioWorkerPort = $WorkerPort
+if ($AudioLocalHostingPort) {
+    # [Environment]::SetEnvironmentVariable("AudioLocalHostingPort", $AudioLocalHostingPort, "User")
+    $Env:AudioLocalHostingPort = $AudioLocalHostingPort
 }
 
 if(!$Env:InstanceName) {
@@ -49,8 +45,8 @@ if(!$Env:InstanceName) {
 if(!$Env:Region) {
     $Env:Region = Read-Host -Prompt 'Please provide a region to deploy to.  Hint: WestUS2'
 }
-if(!$Env:UserName) {
-    $Env:UserName = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
+if(!$Env:UserId) {
+    $Env:UserId = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
 }
 if(!$Env:Password) {
     $Env:Password = Read-Host -Prompt 'Please provide the service principal secret (password) to use for the deployment.'
@@ -61,9 +57,6 @@ if(!$Env:TenantId) {
 if(!$Env:UniqueDeveloperId) {
     $Env:UniqueDeveloperId = Read-Host -Prompt 'Please provide a unique id to identify subscriptions deployed to the cloud for the local developer.'
 }
-if(!$Env:AudioApiPort) {
-    $Env:AudioApiPort = Read-Host -Prompt 'Please provide the port number for the audio api.'
-}
-if(!$Env:AudioWorkerPort) {
-    $Env:AudioWorkerPort = Read-Host -Prompt 'Please provide the port number for the audio worker.'
+if(!$Env:AudioLocalHostingPort) {
+    $Env:AudioLocalHostingPort = Read-Host -Prompt 'Please provide the port number for the audio api.'
 }

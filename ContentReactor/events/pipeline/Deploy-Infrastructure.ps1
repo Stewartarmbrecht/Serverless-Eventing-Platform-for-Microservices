@@ -18,20 +18,17 @@ $region = $Env:Region
 $loggingPrefix = "ContentReactor Events Deployment $instanceName "
 $resourceGroupName = "$instanceName-events"
 $deploymentFile = "./../infrastructure/eventGridTemplate.json"
-$deploymentParameters = "instanceName=$instanceName"
+#$deploymentParameters = "instanceName=$instanceName"
 
 . ./Functions.ps1
 
 Write-BuildInfo "Deploying the event grid." $loggingPrefix
 
-$command = "az login --service-principal --username $userName --password $password --tenant $tenantId"
-Invoke-BuildCommand $command $loggingPrefix "Logging in the Azure CLI"
+Connect-AzureServicePrincipal $loggingPrefix
 
-$command = "az group create -n $resourceGroupName -l $region"
-Invoke-BuildCommand $command $loggingPrefix "Creating the resource group."
+New-AzResourceGroup -Name $resourceGroupName -Location $region -Force
 
-$command = "az group deployment create -g $resourceGroupName --template-file $deploymentFile --parameters $deploymentParameters --mode Complete"
-Invoke-BuildCommand $command $loggingPrefix "Deploying the infrastructure."
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName
 
 Write-BuildInfo "Deployed the event grid infrastructure." $loggingPrefix
 Set-Location $currentDirectory

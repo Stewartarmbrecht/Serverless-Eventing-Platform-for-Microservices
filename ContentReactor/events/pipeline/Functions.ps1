@@ -52,3 +52,22 @@ function Invoke-BuildCommand {
         Write-BuildError "Exiting due to error!" $LoggingPrefix
     }
 }
+
+function Connect-AzureServicePrincipal {
+    [CmdletBinding()]
+    param(
+        [String]$loggingPrefix
+    )
+
+    $userName = $Env:UserName
+    $password = $Env:Password
+    $tenantId = $Env:TenantId
+    $userId = $Env:UserId
+    $subscriptionId = $Env:SubscriptionId
+
+    Write-BuildInfo "Connecting to Azure using User Id: $userId" $loggingPrefix
+
+    $pswd = ConvertTo-SecureString $password
+    $pscredential = New-Object System.Management.Automation.PSCredential($userId, $pswd)
+    Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $tenantId -Subscription $subscriptionId
+}

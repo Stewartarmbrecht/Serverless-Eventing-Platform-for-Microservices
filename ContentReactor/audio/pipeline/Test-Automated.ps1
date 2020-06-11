@@ -7,6 +7,10 @@ param(
 $currentDirectory = Get-Location
 Set-Location $PSScriptRoot
 
+. ./Functions.ps1
+
+./Configure-Environment
+
 $loggingPrefix = "ContentReactor Audio Test End to End $instanceName"
 
 if ($Continuous) {

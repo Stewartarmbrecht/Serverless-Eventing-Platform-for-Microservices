@@ -35,8 +35,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
     <ProjectReference Include="..\..\common\ContentReactor.Common.Fakes\ContentReactor.Common.Fakes.csproj" />
-    <ProjectReference Include="..\api\ContentReactor.Audio.Api.csproj" />
-    <ProjectReference Include="..\worker\ContentReactor.Audio.Worker.csproj" />
+    <ProjectReference Include="..\application\ContentReactor.Audio.csproj" />
   </ItemGroup>
 
   <ItemGroup>

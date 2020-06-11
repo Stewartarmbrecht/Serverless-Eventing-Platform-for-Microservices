@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Api", "api\ContentReactor.Audio.Api.csproj", "{35E0FA10-02DC-425E-A50E-0ECE83F53A16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Worker", "worker\ContentReactor.Audio.Worker.csproj", "{AB894E9D-38D0-451A-94CC-38EB741D9E21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio", "application\ContentReactor.Audio.csproj", "{35E0FA10-02DC-425E-A50E-0ECE83F53A16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Tests", "tests\ContentReactor.Audio.Tests.csproj", "{9F0767EA-FE55-4ABB-9C2B-A12E1BBEB7AF}"
 EndProject
@@ -34,18 +32,6 @@ Global
 		{35E0FA10-02DC-425E-A50E-0ECE83F53A16}.Release|x64.Build.0 = Release|Any CPU
 		{35E0FA10-02DC-425E-A50E-0ECE83F53A16}.Release|x86.ActiveCfg = Release|Any CPU
 		{35E0FA10-02DC-425E-A50E-0ECE83F53A16}.Release|x86.Build.0 = Release|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Debug|x64.Build.0 = Debug|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Debug|x86.Build.0 = Debug|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Release|x64.ActiveCfg = Release|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Release|x64.Build.0 = Release|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Release|x86.ActiveCfg = Release|Any CPU
-		{AB894E9D-38D0-451A-94CC-38EB741D9E21}.Release|x86.Build.0 = Release|Any CPU
 		{9F0767EA-FE55-4ABB-9C2B-A12E1BBEB7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F0767EA-FE55-4ABB-9C2B-A12E1BBEB7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F0767EA-FE55-4ABB-9C2B-A12E1BBEB7AF}.Debug|x64.ActiveCfg = Debug|Any CPU

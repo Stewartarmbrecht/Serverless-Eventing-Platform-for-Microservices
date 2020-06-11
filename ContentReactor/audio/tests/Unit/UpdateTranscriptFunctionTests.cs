@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using ContentReactor.Audio.Worker;
+    using ContentReactor.Audio;
     using ContentReactor.Common.Events;
     using ContentReactor.Common.Events.Audio;
     using ContentReactor.Common.Fakes;
@@ -21,7 +21,7 @@
     public class UpdateTranscriptFunctionTests
     {
         /// <summary>
-        /// Given you have an audio worker with an audio blob
+        /// Given you have an audio api with an audio blob
         /// When you call the update audio transcript function
         /// Then it should update the transcript property of the blob.
         /// </summary>
@@ -32,14 +32,14 @@
             // arrange
             Mock<ILogger> mockLogger = new Mock<ILogger>();
             var mockRequest = AudioMockers.GetMockEventGridAudioCreatedRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventGridPublisherService,
                 out Mock<IEventGridSubscriberService> mockEventGridSubscriberService,
                 out Mock<IAudioTranscriptionService> mockAudioTranscriptionService);
 
-            this.MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
+            MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
 
             mockAudioTranscriptionService
                 .Setup(s => s.GetAudioTranscriptFromCognitiveServicesAsync(It.IsAny<System.IO.Stream>()))
@@ -68,14 +68,14 @@
             // arrange
             Mock<ILogger> mockLogger = new Mock<ILogger>();
             var mockRequest = AudioMockers.GetMockEventGridAudioCreatedRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventGridPublisherService,
                 out Mock<IEventGridSubscriberService> mockEventGridSubscriberService,
                 out Mock<IAudioTranscriptionService> mockAudioTranscriptionService);
 
-            this.MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
+            MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
 
             mockAudioTranscriptionService
                 .Setup(s => s.GetAudioTranscriptFromCognitiveServicesAsync(It.IsAny<System.IO.Stream>()))
@@ -97,7 +97,7 @@
         }
 
         /// <summary>
-        /// Given you have an audio worker
+        /// Given you have an audio api
         /// When you call the update audio transcript function with an invalid audio blob id
         /// Then it should return a not found results.
         /// </summary>
@@ -108,7 +108,7 @@
             // arrange
             Mock<ILogger> mockLogger = new Mock<ILogger>();
             var mockRequest = AudioMockers.GetMockEventGridAudioCreatedRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventGridPublisherService,
@@ -118,7 +118,7 @@
             fakeBlobRepo.Blobs.Clear();
             fakeBlobRepo.AddFakeBlob(Mockers.AudioContainerName, $"{Mockers.DefaultUserId}/invalidblobid");
 
-            this.MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
+            MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
 
             mockAudioTranscriptionService
                 .Setup(s => s.GetAudioTranscriptFromCognitiveServicesAsync(It.IsAny<System.IO.Stream>()))
@@ -135,7 +135,7 @@
         }
 
         /// <summary>
-        /// Given you have an audio worker with a blob
+        /// Given you have an audio api with a blob
         /// When you call the update transcript function with an invalid user id but the correct blob id
         /// Then it should return a not found result.
         /// </summary>
@@ -146,7 +146,7 @@
             // arrange
             Mock<ILogger> mockLogger = new Mock<ILogger>();
             var mockRequest = AudioMockers.GetMockEventGridAudioCreatedRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventGridPublisherService,
@@ -156,7 +156,7 @@
             fakeBlobRepo.Blobs.Clear();
             fakeBlobRepo.AddFakeBlob(Mockers.AudioContainerName, $"invaliduserid/{Mockers.DefaultId}");
 
-            this.MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
+            MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
 
             mockAudioTranscriptionService
                 .Setup(s => s.GetAudioTranscriptFromCognitiveServicesAsync(It.IsAny<System.IO.Stream>()))
@@ -173,7 +173,7 @@
         }
 
         /// <summary>
-        /// Given you have an audio worker with a blob
+        /// Given you have an audio api with a blob
         /// When you call the update transcript function with an audio file that does not return a transcript
         /// Then it should return a not found result.
         /// </summary>
@@ -184,14 +184,14 @@
             // arrange
             Mock<ILogger> mockLogger = new Mock<ILogger>();
             var mockRequest = AudioMockers.GetMockEventGridAudioCreatedRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventGridPublisherService,
                 out Mock<IEventGridSubscriberService> mockEventGridSubscriberService,
                 out Mock<IAudioTranscriptionService> mockAudioTranscriptionService);
 
-            this.MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
+            MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
 
             mockAudioTranscriptionService
                 .Setup(s => s.GetAudioTranscriptFromCognitiveServicesAsync(It.IsAny<System.IO.Stream>()))
@@ -208,7 +208,7 @@
         }
 
         /// <summary>
-        /// Given you have an audio worker with a blob
+        /// Given you have an audio api with a blob
         /// When you call the update transcript function to validate it handles the event grid subscription event
         /// Then it should return the action result return by the Event Subscription service.
         /// </summary>
@@ -219,14 +219,14 @@
             // arrange
             Mock<ILogger> mockLogger = new Mock<ILogger>();
             var mockRequest = AudioMockers.GetMockEventGridAudioCreatedRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventGridPublisherService,
                 out Mock<IEventGridSubscriberService> mockEventGridSubscriberService,
                 out Mock<IAudioTranscriptionService> mockAudioTranscriptionService);
 
-            this.MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
+            MockEventGridSubscriberServiceDeconstructResponse(mockEventGridSubscriberService);
 
             mockEventGridSubscriberService
                 .Setup(s => s.HandleSubscriptionValidationEvent(It.IsAny<string>(), It.IsAny<StringValues>()))
@@ -256,12 +256,12 @@
             var fakeRepository = new FakeBlobRepository();
             Mock<AbstractLogger> mockLogger = new Mock<AbstractLogger>();
             var mockRequest = AudioMockers.GetMockAddCompleteRequest();
-            var sut = AudioMockers.GetWorkerFunctionsWithBlobUploaded(
+            var sut = AudioMockers.GetApiFunctionsWithBlobUploaded(
                 out Mock<IUserAuthenticationService> mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventPub,
                 out Mock<IEventGridSubscriberService> mockEventSub,
-                out Mock<Worker.IAudioTranscriptionService> mockAudioTranscriptService);
+                out Mock<IAudioTranscriptionService> mockAudioTranscriptService);
 
             var ex = new Exception("My error.");
             mockRequest.Setup(m => m.Headers)
@@ -273,7 +273,7 @@
             mockLogger.Verify(moc => moc.Log(LogLevel.Error, It.IsAny<System.Exception>(), "Unhandled Exception."));
         }
 
-        private void MockEventGridSubscriberServiceDeconstructResponse(Mock<IEventGridSubscriberService> mockEventGridSubscriberService)
+        private static void MockEventGridSubscriberServiceDeconstructResponse(Mock<IEventGridSubscriberService> mockEventGridSubscriberService)
         {
             EventGridRequest<AudioCreatedEventData> eventGridRequest = new EventGridRequest<AudioCreatedEventData>()
             {
@@ -289,8 +289,8 @@
                     Data = new AudioCreatedEventData()
                     {
                         Category = "Test",
-                    }
-                }
+                    },
+                },
             };
 
             mockEventGridSubscriberService

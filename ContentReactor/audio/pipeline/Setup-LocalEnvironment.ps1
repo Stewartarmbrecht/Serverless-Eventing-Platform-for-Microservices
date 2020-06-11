@@ -6,27 +6,30 @@ Set-Location $PSSCriptRoot
 
 . ./Functions.ps1
 
+# Collect the environment settings.
 ./Configure-Environment.ps1
 
 $instanceName = $Env:InstanceName
-$region = $Env:Region
-$userName = $Env:UserName
-$password = $Env:Password
-$tenantId = $Env:TenantId
 
-$apiPort = $Env:AudioApiPort
-$workerPort = $Env:AudioWorkerPort
+$apiPort = $Env:AudioLocalHostingPort
 
 $loggingPrefix = "ContentReactor Audio $instanceName Setup"
 
-Set-Location "./../api"
-Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-audio-api" $loggingPrefix "Fetching the API app settings from azure."
-Invoke-BuildCommand "func settings add ""FUNCTIONS_WORKER_RUNTIME"" ""dotnet""" $loggingPrefix "Adding the API run time setting for 'dotnet'."
-Invoke-BuildCommand "func settings add ""Host.LocalHttpPort"" ""$apiPort""" $loggingPrefix "Adding the worker run time port setting for '$apiPort'."
+./Build-Applications.ps1
 
-Set-Location "./../worker"
-Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-audio-worker" $loggingPrefix "Fetching the worker app settings from azure."
-Invoke-BuildCommand "func settings add ""FUNCTIONS_WORKER_RUNTIME"" ""dotnet""" $loggingPrefix "Adding the worker run time setting for 'dotnet'."
-Invoke-BuildCommand "func settings add ""Host.LocalHttpPort"" ""$workerPort""" $loggingPrefix "Adding the worker run time port setting for '$workerPort'."
+./Test-Unit.ps1
+
+./Build-DeploymentPackages.ps1
+
+./Deploy-Infrastructure.ps1
+
+./Deploy-Applications.ps1
+
+./Deploy-Subscriptions.ps1
+
+Set-Location "./../application"
+Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-audio" $loggingPrefix "Fetching the app settings from azure."
+Invoke-BuildCommand "func settings add ""FUNCTIONS_WORKER_RUNTIME"" ""dotnet""" $loggingPrefix "Adding the run time setting for 'dotnet'."
+Invoke-BuildCommand "func settings add ""Host.LocalHttpPort"" ""$apiPort""" $loggingPrefix "Adding the run time port setting for '$apiPort'."
 
 Set-Location $currentDirectory

@@ -1,26 +1,26 @@
 {
-  "ContentReactor.Audio.Api.dll": {
+  "ContentReactor.Audio.dll": {
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Functions.cs": {
-      "ContentReactor.Audio.Api.Functions": {
-        "ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Api.Functions::get_UserAuthenticationService()": {
+      "ContentReactor.Audio.Functions": {
+        "ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Functions::get_UserAuthenticationService()": {
           "Lines": {
             "82": 31
           },
           "Branches": []
         },
-        "ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Api.Functions::get_BlobRepository()": {
+        "ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Functions::get_BlobRepository()": {
           "Lines": {
             "88": 22
           },
           "Branches": []
         },
-        "ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Api.Functions::get_EventGridPublisherService()": {
+        "ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Functions::get_EventGridPublisherService()": {
           "Lines": {
             "94": 7
           },
           "Branches": []
         },
-        "System.Void ContentReactor.Audio.Api.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository)": {
+        "System.Void ContentReactor.Audio.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository)": {
           "Lines": {
             "53": 3,
             "54": 3,
@@ -32,7 +32,7 @@
           },
           "Branches": []
         },
-        "System.Void ContentReactor.Audio.Api.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Common.Events.IEventGridPublisherService)": {
+        "System.Void ContentReactor.Audio.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Common.Events.IEventGridPublisherService)": {
           "Lines": {
             "68": 28,
             "69": 28,
@@ -49,8 +49,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddBegin/AddBeginFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<AddBegin>d__0": {
-        "System.Void ContentReactor.Audio.Api.Functions/<AddBegin>d__0::MoveNext()": {
+      "ContentReactor.Audio.Functions/<AddBegin>d__0": {
+        "System.Void ContentReactor.Audio.Functions/<AddBegin>d__0::MoveNext()": {
           "Lines": {
             "28": 3,
             "31": 3,
@@ -93,8 +93,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddComplete/AddCompleteFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<AddComplete>d__1": {
-        "System.Void ContentReactor.Audio.Api.Functions/<AddComplete>d__1::MoveNext()": {
+      "ContentReactor.Audio.Functions/<AddComplete>d__1": {
+        "System.Void ContentReactor.Audio.Functions/<AddComplete>d__1::MoveNext()": {
           "Lines": {
             "35": 11,
             "38": 11,
@@ -276,8 +276,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Delete/DeleteFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<Delete>d__2": {
-        "System.Void ContentReactor.Audio.Api.Functions/<Delete>d__2::MoveNext()": {
+      "ContentReactor.Audio.Functions/<Delete>d__2": {
+        "System.Void ContentReactor.Audio.Functions/<Delete>d__2::MoveNext()": {
           "Lines": {
             "29": 6,
             "32": 6,
@@ -316,8 +316,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Get/GetFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<Get>d__21": {
-        "System.Void ContentReactor.Audio.Api.Functions/<Get>d__21::MoveNext()": {
+      "ContentReactor.Audio.Functions/<Get>d__21": {
+        "System.Void ContentReactor.Audio.Functions/<Get>d__21::MoveNext()": {
           "Lines": {
             "28": 6,
             "31": 6,
@@ -396,8 +396,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/GetList/GetListFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<>c": {
-        "ContentReactor.Audio.Api.GetListItem ContentReactor.Audio.Api.Functions/<>c::<GetList>b__22_0(ContentReactor.Common.Blobs.Blob)": {
+      "ContentReactor.Audio.Functions/<>c": {
+        "ContentReactor.Audio.GetListItem ContentReactor.Audio.Functions/<>c::<GetList>b__22_0(ContentReactor.Common.Blobs.Blob)": {
           "Lines": {
             "44": 5,
             "45": 5,
@@ -425,8 +425,8 @@
           ]
         }
       },
-      "ContentReactor.Audio.Api.Functions/<GetList>d__22": {
-        "System.Void ContentReactor.Audio.Api.Functions/<GetList>d__22::MoveNext()": {
+      "ContentReactor.Audio.Functions/<GetList>d__22": {
+        "System.Void ContentReactor.Audio.Functions/<GetList>d__22::MoveNext()": {
           "Lines": {
             "32": 2,
             "34": 2,
@@ -467,8 +467,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/HealthCheck/HealthCheckFunction.cs": {
-      "ContentReactor.Audio.Api.Functions/<HealthCheck>d__23": {
-        "System.Void ContentReactor.Audio.Api.Functions/<HealthCheck>d__23::MoveNext()": {
+      "ContentReactor.Audio.Functions/<HealthCheck>d__23": {
+        "System.Void ContentReactor.Audio.Functions/<HealthCheck>d__23::MoveNext()": {
           "Lines": {
             "32": 3,
             "35": 3,
@@ -509,14 +509,14 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddBegin/AddBeginResponse.cs": {
-      "ContentReactor.Audio.Api.AddBeginResponse": {
-        "System.String ContentReactor.Audio.Api.AddBeginResponse::get_Id()": {
+      "ContentReactor.Audio.AddBeginResponse": {
+        "System.String ContentReactor.Audio.AddBeginResponse::get_Id()": {
           "Lines": {
             "16": 3
           },
           "Branches": []
         },
-        "System.Uri ContentReactor.Audio.Api.AddBeginResponse::get_UploadUrl()": {
+        "System.Uri ContentReactor.Audio.AddBeginResponse::get_UploadUrl()": {
           "Lines": {
             "23": 3
           },
@@ -525,8 +525,8 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddComplete/AddCompleteRequest.cs": {
-      "ContentReactor.Audio.Api.AddCompleteRequest": {
-        "System.String ContentReactor.Audio.Api.AddCompleteRequest::get_CategoryId()": {
+      "ContentReactor.Audio.AddCompleteRequest": {
+        "System.String ContentReactor.Audio.AddCompleteRequest::get_CategoryId()": {
           "Lines": {
             "17": 45
           },
@@ -535,20 +535,20 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/Get/GetResponse.cs": {
-      "ContentReactor.Audio.Api.GetResponse": {
-        "System.String ContentReactor.Audio.Api.GetResponse::get_Id()": {
+      "ContentReactor.Audio.GetResponse": {
+        "System.String ContentReactor.Audio.GetResponse::get_Id()": {
           "Lines": {
             "15": 6
           },
           "Branches": []
         },
-        "System.Uri ContentReactor.Audio.Api.GetResponse::get_AudioUrl()": {
+        "System.Uri ContentReactor.Audio.GetResponse::get_AudioUrl()": {
           "Lines": {
             "21": 4
           },
           "Branches": []
         },
-        "System.String ContentReactor.Audio.Api.GetResponse::get_Transcript()": {
+        "System.String ContentReactor.Audio.GetResponse::get_Transcript()": {
           "Lines": {
             "27": 4
           },
@@ -557,14 +557,14 @@
       }
     },
     "/home/vsonline/workspace/Eden/ContentReactor/audio/api/GetList/GetListItem.cs": {
-      "ContentReactor.Audio.Api.GetListItem": {
-        "System.String ContentReactor.Audio.Api.GetListItem::get_Id()": {
+      "ContentReactor.Audio.GetListItem": {
+        "System.String ContentReactor.Audio.GetListItem::get_Id()": {
           "Lines": {
             "14": 4
           },
           "Branches": []
         },
-        "System.String ContentReactor.Audio.Api.GetListItem::get_Preview()": {
+        "System.String ContentReactor.Audio.GetListItem::get_Preview()": {
           "Lines": {
             "20": 4
           },

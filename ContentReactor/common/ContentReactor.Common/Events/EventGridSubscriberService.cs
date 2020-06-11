@@ -2,14 +2,9 @@
 {
     using System;
     using System.Linq;
-    using ContentReactor.Common.Events.Audio;
-    using ContentReactor.Common.Events.Categories;
-    using ContentReactor.Common.Events.Images;
-    using ContentReactor.Common.Events.Text;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// Service for subscribing to event grid events.
@@ -83,53 +78,6 @@
             };
 
             return eventGridRequest;
-        }
-
-        private object CreateStronglyTypedDataObject(object data, string eventType)
-        {
-            object result = eventType switch
-            {
-                // creates
-                AudioEvents.AudioCreated => this.ConvertDataObjectToType<AudioCreatedEventData>(data),
-                CategoryEvents.CategoryCreated => this.ConvertDataObjectToType<CategoryCreatedEventData>(data),
-                ImageEvents.ImageCreated => this.ConvertDataObjectToType<ImageCreatedEventData>(data),
-                TextEvents.TextCreated => this.ConvertDataObjectToType<TextCreatedEventData>(data),
-
-                // updates
-                AudioEvents.AudioTranscriptUpdated => this.ConvertDataObjectToType<AudioTranscriptUpdatedEventData>(data),
-                CategoryEvents.CategoryImageUpdated => this.ConvertDataObjectToType<CategoryImageUpdatedEventData>(data),
-                CategoryEvents.CategoryItemsUpdated => this.ConvertDataObjectToType<CategoryItemsUpdatedEventData>(data),
-                CategoryEvents.CategoryNameUpdated => this.ConvertDataObjectToType<CategoryNameUpdatedEventData>(data),
-                CategoryEvents.CategorySynonymsUpdated => this.ConvertDataObjectToType<CategorySynonymsUpdatedEventData>(data),
-                ImageEvents.ImageCaptionUpdated => this.ConvertDataObjectToType<ImageCaptionUpdatedEventData>(data),
-                TextEvents.TextUpdated => this.ConvertDataObjectToType<TextUpdatedEventData>(data),
-
-                // deletes
-                AudioEvents.AudioDeleted => this.ConvertDataObjectToType<AudioDeletedEventData>(data),
-                CategoryEvents.CategoryDeleted => this.ConvertDataObjectToType<CategoryDeletedEventData>(data),
-                ImageEvents.ImageDeleted => this.ConvertDataObjectToType<ImageDeletedEventData>(data),
-                TextEvents.TextDeleted => this.ConvertDataObjectToType<TextDeletedEventData>(data),
-                _ => null,
-            };
-
-            if (result == null)
-            {
-                throw new ArgumentException($"Unexpected event type '{eventType}' in {nameof(this.CreateStronglyTypedDataObject)}");
-            }
-            else
-            {
-                return result;
-            }
-        }
-
-        private T ConvertDataObjectToType<T>(object dataObject)
-        {
-            if (dataObject is JObject o)
-            {
-                return o.ToObject<T>();
-            }
-
-            return (T)dataObject;
         }
     }
 }

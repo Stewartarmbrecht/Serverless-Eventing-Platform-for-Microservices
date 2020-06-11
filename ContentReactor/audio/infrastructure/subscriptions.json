@@ -2,12 +2,17 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "uniqueResourcesystemName": {
-            "type": "string"
+        "instanceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Provides a unique string that will be pre-pended to all resource names and will ensure that they are globally unique."
+            }
         }
     },
     "variables": {
-        "eventGridTopicName": "[concat(parameters('uniqueResourcesystemName'),'-events-topic')]",
+        "functionUrl" : "[concat('https://', parameters('instanceName'),'-audio.azurewebsites.net/api/UpdateAudioTranscript?code=')]",
+        "eventGridTopicName": "[concat(parameters('instanceName'),'-events-topic')]",
+        "eventGridTopicNameStaging": "[concat(parameters('instanceName'),'-staging-events-topic')]",
         "eventGridFunctionSubscriptions": [
             {
                 "resourceName": "audioUpdateAudioTranscript",
@@ -20,20 +25,19 @@
     },
     "resources": [
         {
-            "name": "[concat(variables('eventGridTopicName'), '/Microsoft.EventGrid/', variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].resourceName)]",
             "copy": {
                 "name": "eventGridFunctionSubscriptions",
                 "count": "[length(variables('eventGridFunctionSubscriptions'))]",
                 "mode": "Parallel"
             },
             "type": "Microsoft.EventGrid/topics/providers/eventSubscriptions",
-            "location": "[resourceGroup().location]",
-            "apiVersion": "2018-01-01",
+            "apiVersion": "2019-01-01",
+            "name": "[concat(variables('eventGridTopicName'), '/Microsoft.EventGrid/', variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].resourceName)]",
             "properties": {
                 "destination": {
                     "endpointType": "WebHook",
                     "properties": {
-                        "endpointUrl": "[listsecrets(resourceId(concat(parameters('uniqueResourcesystemName'),'-audio'), 'Microsoft.Web/sites/functions', concat(parameters('uniqueResourcesystemName'),'-audio-worker'), variables('eventGridFunctionSubscriptions')[copyIndex('eventGridFunctionSubscriptions')].functionName),'2015-08-01').trigger_url]"
+                        "endpointUrl": "[concat(variables('functionUrl'), listKeys(resourceId(concat(parameters('instanceName'),'-audio'), 'Microsoft.Web/sites/host/', concat(parameters('instanceName'),'-audio'), 'default'),'2016-08-01').functionkeys.default)]"
                     }
                 },
                 "filter": {

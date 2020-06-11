@@ -1,7 +1,7 @@
 ﻿namespace ContentReactor.Audio.Tests.Unit
 {
     using System.Threading.Tasks;
-    using ContentReactor.Audio.Api;
+    using ContentReactor.Audio;
     using ContentReactor.Common.Fakes;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;

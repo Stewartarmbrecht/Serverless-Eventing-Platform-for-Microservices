@@ -6,8 +6,7 @@ namespace ContentReactor.Audio.Tests.Unit
     using ContentReactor.Common.UserAuthentication;
     using Microsoft.AspNetCore.Http;
     using Moq;
-    using Api = ContentReactor.Audio.Api;
-    using Worker = ContentReactor.Audio.Worker;
+    using Api = ContentReactor.Audio;
 
     /// <summary>
     /// Helper functions to get mocks for audio unit testing.
@@ -42,7 +41,7 @@ namespace ContentReactor.Audio.Tests.Unit
                 {
                     Data = new AudioCreatedEventData()
                     {
-                        Category = Mockers.DefaultId
+                        Category = Mockers.DefaultId,
                     },
                     EventTime = System.DateTime.Now,
                     Id = System.Guid.NewGuid().ToString(),
@@ -108,15 +107,15 @@ namespace ContentReactor.Audio.Tests.Unit
         /// </summary>
         /// <param name="mockUserAuth">Returns the mock user auth service.</param>
         /// <returns>An instance of the <see cref="Api.Functions"/> class.</returns>
-        public static Worker.Functions GetWorkerFunctionsWithBlobUploaded(
+        public static Api.Functions GetApiFunctionsWithBlobUploaded(
             out Mock<IUserAuthenticationService> mockUserAuth)
         {
-            return GetWorkerFunctionsWithBlobUploaded(
+            return GetApiFunctionsWithBlobUploaded(
                 out mockUserAuth,
                 out FakeBlobRepository fakeBlobRepo,
                 out Mock<IEventGridPublisherService> mockEventPub,
                 out Mock<IEventGridSubscriberService> mockEventSub,
-                out Mock<Worker.IAudioTranscriptionService> mockTranscriptService);
+                out Mock<Api.IAudioTranscriptionService> mockTranscriptService);
         }
 
         /// <summary>
@@ -135,6 +134,8 @@ namespace ContentReactor.Audio.Tests.Unit
             mockUserAuth = Mockers.MockUserAuth();
 
             mockEventPub = new Mock<IEventGridPublisherService>();
+            var mockEventSub = new Mock<IEventGridSubscriberService>();
+            var mockAudioTranscriptionService = new Mock<Api.IAudioTranscriptionService>();
 
             fakeBlobRepo = new FakeBlobRepository();
             fakeBlobRepo.AddFakeBlob(Mockers.AudioContainerName, $"{Mockers.DefaultUserId}/{Mockers.DefaultId}");
@@ -142,7 +143,9 @@ namespace ContentReactor.Audio.Tests.Unit
             return new Api.Functions(
                 mockUserAuth.Object,
                 fakeBlobRepo,
-                mockEventPub.Object);
+                mockEventSub.Object,
+                mockEventPub.Object,
+                mockAudioTranscriptionService.Object);
         }
 
         /// <summary>
@@ -154,28 +157,28 @@ namespace ContentReactor.Audio.Tests.Unit
         /// <param name="mockEventPub">Returns the fake event publisher.</param>
         /// <param name="mockEventSub">Returns the fake event subscriber.</param>
         /// <param name="mockAudioTranscriptionService">Returns the mock audio transcription service.</param>
-        /// <returns>An instance of the <see cref="Worker.Functions"/> class.</returns>
-        public static Worker.Functions GetWorkerFunctionsWithBlobUploaded(
+        /// <returns>An instance of the <see cref="Api.Functions"/> class.</returns>
+        public static Api.Functions GetApiFunctionsWithBlobUploaded(
             out Mock<IUserAuthenticationService> mockUserAuth,
             out FakeBlobRepository fakeBlobRepo,
             out Mock<IEventGridPublisherService> mockEventPub,
             out Mock<IEventGridSubscriberService> mockEventSub,
-            out Mock<Worker.IAudioTranscriptionService> mockAudioTranscriptionService)
+            out Mock<Api.IAudioTranscriptionService> mockAudioTranscriptionService)
         {
             mockUserAuth = Mockers.MockUserAuth();
 
             mockEventPub = new Mock<IEventGridPublisherService>();
             mockEventSub = new Mock<IEventGridSubscriberService>();
-            mockAudioTranscriptionService = new Mock<Worker.IAudioTranscriptionService>();
+            mockAudioTranscriptionService = new Mock<Api.IAudioTranscriptionService>();
 
             fakeBlobRepo = new FakeBlobRepository();
             fakeBlobRepo.AddFakeBlob(Mockers.AudioContainerName, $"{Mockers.DefaultUserId}/{Mockers.DefaultId}");
 
-            return new Worker.Functions(
+            return new Api.Functions(
                 mockUserAuth.Object,
+                fakeBlobRepo,
                 mockEventSub.Object,
                 mockEventPub.Object,
-                fakeBlobRepo,
                 mockAudioTranscriptionService.Object);
         }
     }
