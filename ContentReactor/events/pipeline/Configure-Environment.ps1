@@ -7,6 +7,13 @@ param(
     [SecureString] $Password, 
     [String] $TenantId
 )
+. ./Functions.ps1
+
+if ($InstanceName) {
+    $loggingPrefix = "ContentReactor Configuration $InstanceName"
+} else {
+    $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+}
 
 if ($InstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
@@ -44,3 +51,10 @@ if(!$Env:Password) {
 if(!$Env:TenantId) {
     $Env:TenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'
 }
+
+$loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+Write-Verbose "Env:InstanceName=$Env:InstanceName"
+Write-Verbose "Env:Region=$Env:Region"
+Write-Verbose "Env:UserId=$Env:UserId"
+Write-Verbose "Env:TenantId=$Env:TenantId"
+Write-BuildInfo "Configured the environment." $loggingPrefix

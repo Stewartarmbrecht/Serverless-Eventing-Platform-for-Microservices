@@ -9,6 +9,13 @@ param(
     [String] $UniqueDeveloperId,
     [Int] $AudioLocalHostingPort = 7071
 )
+. ./Functions.ps1
+
+if ($InstanceName) {
+    $loggingPrefix = "ContentReactor Configuration $InstanceName"
+} else {
+    $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+}
 
 if ($InstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
@@ -60,3 +67,12 @@ if(!$Env:UniqueDeveloperId) {
 if(!$Env:AudioLocalHostingPort) {
     $Env:AudioLocalHostingPort = Read-Host -Prompt 'Please provide the port number for the audio api.'
 }
+
+$loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+Write-Verbose "Env:InstanceName=$Env:InstanceName"
+Write-Verbose "Env:Region=$Env:Region"
+Write-Verbose "Env:UserId=$Env:UserId"
+Write-Verbose "Env:TenantId=$Env:TenantId"
+Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
+Write-Verbose "Env:AudioLocalHostingPort=$Env:AudioLocalHostingPort"
+Write-BuildInfo "Configured the environment." $loggingPrefix

@@ -9,7 +9,7 @@ Set-Location $PSScriptRoot
 
 $loggingPrefix = "ContentReactor Api Package"
 
-$path =  "./../application/**"
+$path =  "./../Service/**"
 $destination = "./../.dist/app.zip"
 
 Write-BuildInfo "Removing the API package." $loggingPrefix 

@@ -12,6 +12,13 @@ param(
     [String] $SubscriptionId,
     [String] $UniqueDeveloperId
 )
+. ./Functions.ps1
+
+if ($InstanceName) {
+    $loggingPrefix = "ContentReactor Configuration $InstanceName"
+} else {
+    $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+}
 
 if ($ProdInstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
@@ -77,3 +84,13 @@ if(!$Env:SubscriptionId) {
 if(!$Env:UniqueDeveloperId) {
     $Env:UniqueDeveloperId = Read-Host -Prompt 'Please provide a unique id to identify subscriptions deployed to the cloud for the local developer.'
 }
+
+$loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+Write-Verbose "Env:InstanceName=$Env:InstanceName"
+Write-Verbose "Env:Region=$Env:Region"
+Write-Verbose "Env:UserName=$Env:UserName"
+Write-Verbose "Env:UserId=$Env:UserId"
+Write-Verbose "Env:TenantId=$Env:TenantId"
+Write-Verbose "Env:SubscriptionId=$Env:SubscriptionId"
+Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
+Write-BuildInfo "Configured the environment." $loggingPrefix

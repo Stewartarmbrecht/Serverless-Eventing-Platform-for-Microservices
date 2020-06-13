@@ -6,9 +6,15 @@ param(
     [String] $TenantId, 
     [String] $UserId, 
     [SecureString] $Password, 
-    [String] $UniqueDeveloperId,
-    [Int] $AudioLocalHostingPort = 7071
+    [String] $UniqueDeveloperId
 )
+. ./Functions.ps1
+
+if ($InstanceName) {
+    $loggingPrefix = "ContentReactor Configuration $InstanceName"
+} else {
+    $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+}
 
 if ($InstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
@@ -34,10 +40,6 @@ if ($UniqueDeveloperId) {
     # [Environment]::SetEnvironmentVariable("UniqueDeveloperId", $UniqueDeveloperId, "User")
     $Env:UniqueDeveloperId = $UniqueDeveloperId
 }
-if ($AudioLocalHostingPort) {
-    # [Environment]::SetEnvironmentVariable("AudioLocalHostingPort", $AudioLocalHostingPort, "User")
-    $Env:AudioLocalHostingPort = $AudioLocalHostingPort
-}
 
 if(!$Env:InstanceName) {
     $Env:InstanceName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resources for the instance of the system.  Some resources require globally unique names.  This prefix should guarantee that.'
@@ -57,6 +59,11 @@ if(!$Env:TenantId) {
 if(!$Env:UniqueDeveloperId) {
     $Env:UniqueDeveloperId = Read-Host -Prompt 'Please provide a unique id to identify subscriptions deployed to the cloud for the local developer.'
 }
-if(!$Env:AudioLocalHostingPort) {
-    $Env:AudioLocalHostingPort = Read-Host -Prompt 'Please provide the port number for the audio api.'
-}
+
+$loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+Write-Verbose "Env:InstanceName=$Env:InstanceName"
+Write-Verbose "Env:Region=$Env:Region"
+Write-Verbose "Env:UserId=$Env:UserId"
+Write-Verbose "Env:TenantId=$Env:TenantId"
+Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
+Write-BuildInfo "Configured the environment." $loggingPrefix

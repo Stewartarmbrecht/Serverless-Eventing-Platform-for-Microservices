@@ -17,7 +17,7 @@ $region = $Env:Region
 
 $loggingPrefix = "ContentReactor Api Deploy Infrastructure $instanceName "
 $resourceGroupName = "$instanceName-api"
-$deploymentFile = "./../infrastructure/infrastructure.json"
+$deploymentFile = "./../Infrastructure/Infrastructure.json"
 #$deploymentParameters = "instanceName=$instanceName"
 
 . ./Functions.ps1
