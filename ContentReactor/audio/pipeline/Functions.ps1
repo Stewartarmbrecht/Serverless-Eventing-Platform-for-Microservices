@@ -66,7 +66,7 @@ function Start-Function
         [Switch]$Continuous
     )
     
-    Start-Job -Name "rt-Audio-App" -ScriptBlock {
+    Start-Job -Name "rt-Audio-Service" -ScriptBlock {
         $functionLocation = $args[0]
         $port = $args[1]
         $loggingPrefix = $args[2]
@@ -100,7 +100,7 @@ function Start-LocalTunnel
         [String]$LoggingPrefix
     )
 
-    Start-Job -Name "rt-Audio-Tunnel-App" -ScriptBlock {
+    Start-Job -Name "rt-Audio-Service-Tunnel" -ScriptBlock {
         $port = $args[0]
         $loggingPrefix = $args[1]
 
@@ -186,7 +186,7 @@ function Deploy-LocalSubscriptions
     $instanceName = $Env:InstanceName
     $uniqueDeveloperId = $Env:UniqueDeveloperId
     $eventsResourceGroupName = "$InstanceName-events"
-    $eventsSubscriptionDeploymentFile = "./../infrastructure/subscriptions.local.json"
+    $eventsSubscriptionDeploymentFile = "./../Infrastructure/Subscriptions.local.json"
 
     Write-BuildInfo "Deploying the web server subscriptions." $LoggingPrefix
 
@@ -234,11 +234,11 @@ function Test-Automated
         if ($Continuous)
         {
             Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
-            dotnet watch --project ./../test/ContentReactor.Audio.Tests.csproj test --filter TestCategory=Automated
+            dotnet watch --project ./../Service.Tests/ContentReactor.Audio.Service.Tests.csproj test --filter TestCategory=Automated
         }
         else
         {
-            Invoke-BuildCommand "dotnet test ./../test/ContentReactor.Audio.Tests.csproj --filter TestCategory=Automated" $LoggingPrefix "Running automated tests once."
+            Invoke-BuildCommand "dotnet test ./../Service.Tests/ContentReactor.Audio.Service.Tests.csproj --filter TestCategory=Automated" $LoggingPrefix "Running automated tests once."
             Write-BuildInfo "Finished running automated tests." $LoggingPrefix
         }
     } -ArgumentList @($AutomatedUrl, $Continuous, $LoggingPrefix, $VerbosePreference)

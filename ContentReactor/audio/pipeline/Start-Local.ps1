@@ -22,7 +22,7 @@ $loggingPrefix = "ContentReactor Audio Run $instanceName"
 
 Write-BuildInfo "Starting jobs." $loggingPrefix
 
-Start-Function -FunctionLocation "./../application" -Port $port -LoggingPrefix $loggingPrefix -Continuous:$Continuous
+Start-Function -FunctionLocation "./../Service" -Port $port -LoggingPrefix $loggingPrefix -Continuous:$Continuous
 
 Start-LocalTunnel -Port $port -LoggingPrefix $loggingPrefix
 

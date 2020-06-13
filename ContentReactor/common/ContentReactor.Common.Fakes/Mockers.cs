@@ -96,6 +96,7 @@ namespace ContentReactor.Common.Fakes
         /// </summary>
         /// <param name="requestBody">The object to stream as the body.</param>
         /// <returns>A mock http request object.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification="Reviewed")]
         public static Mock<HttpRequest> MockRequest(object requestBody)
         {
             var mockRequest = new Mock<HttpRequest>();
@@ -103,6 +104,8 @@ namespace ContentReactor.Common.Fakes
             if (requestBody != null)
             {
                 var ms = new MemoryStream();
+
+                // using statement below might cause tests to fail.
                 var sw = new StreamWriter(ms);
 
                 var json = JsonConvert.SerializeObject(requestBody);
@@ -122,6 +125,7 @@ namespace ContentReactor.Common.Fakes
         /// Mocks a request that has invalid json.
         /// </summary>
         /// <returns>A mock http request object.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification="Reviewed")]
         public static Mock<HttpRequest> MockRequestWithInvalidJson()
         {
             var mockRequest = new Mock<HttpRequest>();
@@ -142,6 +146,7 @@ namespace ContentReactor.Common.Fakes
         /// Mocks a request that has invalid json.
         /// </summary>
         /// <returns>A mock http request object.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification="Reviewed")]
         public static Mock<HttpRequest> MockRequestWithNoPayload()
         {
             var mockRequest = new Mock<HttpRequest>();

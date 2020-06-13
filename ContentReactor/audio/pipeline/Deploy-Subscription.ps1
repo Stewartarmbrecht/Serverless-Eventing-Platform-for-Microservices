@@ -13,7 +13,7 @@ $region = $Env:Region
 $loggingPrefix = "ContentReactor Audio Deploy Subscriptions $instanceName"
 
 $eventsResourceGroupName = "$instanceName-events"
-$eventsSubscriptionDeploymentFile = "./../infrastructure/subscriptions.json"
+$eventsSubscriptionDeploymentFile = "./../Infrastructure/Subscriptions.json"
 
 Write-BuildInfo "Deploying the microservice subscriptions." $loggingPrefix
 

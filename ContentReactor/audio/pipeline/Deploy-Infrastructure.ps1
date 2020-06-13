@@ -13,7 +13,7 @@ $region = $Env:Region
 $loggingPrefix = "ContentReactor Audio Deploy Infrastructure $instanceName"
 
 $resourceGroupName = "$instanceName-audio".ToLower()
-$deploymentFile = "./../infrastructure/infrastructure.json"
+$deploymentFile = "./../Infrastructure/Infrastructure.json"
 
 Write-BuildInfo "Deploying the service infrastructure." $loggingPrefix
 

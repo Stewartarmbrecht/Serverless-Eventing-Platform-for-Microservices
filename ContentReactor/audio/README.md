@@ -61,7 +61,7 @@ Below is an overview of what is included in the audio service by folder:
         1. **ApiPort** - The port address to use when running the Api functions app locally.
         1. **WorkerPort** - The port address to use when running the Worker functions app locally.
         
-    1. **Build-Applictions.ps1** - Compiles all projects in the service.  Uses the ContentReactor.Audio.sln solution file to perform the build.
+    1. **Build-Applictions.ps1** - Compiles all projects in the service.  Uses the ContentReactor.Audio.Service.sln solution file to perform the build.
     1. **Test-Unit.ps1** - Executes the unit tests for the service.  Can be set to run continuously by passing the `-Continuous` switch.
     1. **Start-Service.ps1** - Launches the azure function apps locally and connects the worker function app to the event grid for a target instance of the system in a specific azure tenant.  It deploys a developer specific subscription to the AudioCreated event using a service principal in the azure tenant. 
     

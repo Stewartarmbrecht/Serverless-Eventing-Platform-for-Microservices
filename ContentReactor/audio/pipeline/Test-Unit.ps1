@@ -16,12 +16,12 @@ if ($Continuous) {
         $loggingPrefix = $args[0]
         . ./Functions.ps1
         Write-BuildInfo "Running unit tests continuously." $loggingPrefix
-        dotnet watch --project ./../test/ContentReactor.Audio.Tests.csproj test `
+        dotnet watch --project ./../Service.Tests/ContentReactor.Audio.Service.Tests.csproj test `
             --filter TestCategory!=Automated `
             /p:CollectCoverage=true `
             /p:CoverletOutput=TestResults/ `
             /p:CoverletOutputFormat=lcov `
-            /p:Include="[ContentReactor.Audio*]*" `
+            /p:Include="[ContentReactor.Audio.Service*]*" `
             /p:Threshold=80 `
             /p:ThresholdType=line `
             /p:ThresholdStat=total
@@ -59,13 +59,13 @@ else {
         $loggingPrefix = $args[0]
         . ./Functions.ps1
         $command = @"
-        dotnet test ./../test/ContentReactor.Audio.Tests.csproj ``
+        dotnet test ./../Service.Tests/ContentReactor.Audio.Service.Tests.csproj ``
             --logger "trx;logFileName=testResults.trx" ``
             --filter TestCategory!=Automated ``
             /p:CollectCoverage=true ``
             /p:CoverletOutput=TestResults/ ``
             /p:CoverletOutputFormat=lcov ``
-            /p:Include=`"[ContentReactor.Audio*]*`" ``
+            /p:Include=`"[ContentReactor.Audio.Service*]*`" ``
             /p:Threshold=80 ``
             /p:ThresholdType=line ``
             /p:ThresholdStat=total 

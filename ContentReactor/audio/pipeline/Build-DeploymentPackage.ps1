@@ -14,7 +14,7 @@ $directoryStart = Get-Location
 
 Write-BuildInfo "Packaging the service application." $loggingPrefix
 
-Set-Location "$directoryStart/application"
+Set-Location "$directoryStart/Service"
 Invoke-BuildCommand "dotnet publish -c Release -o $directoryStart/.dist/app" $loggingPrefix "Publishing the function application."
 
 $appPath =  "$directoryStart/.dist/app/**"

@@ -33,8 +33,9 @@ namespace ContentReactor.Common.Fakes
         /// <param name="exception">The exception to log.</param>
         /// <param name="formatter">String formatter.</param>
         /// <typeparam name="TState">State to log with the event.</typeparam>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062", Justification="Reviewed")]
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-            => Log(logLevel, exception, formatter(state, exception));
+            => this.Log(logLevel, exception, formatter(state, exception));
 
         /// <summary>
         /// Mock log method used by the Log exceptions.
