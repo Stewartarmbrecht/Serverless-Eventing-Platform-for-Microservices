@@ -69,5 +69,6 @@ function Connect-AzureServicePrincipal {
 
     $pswd = ConvertTo-SecureString $password
     $pscredential = New-Object System.Management.Automation.PSCredential($userId, $pswd)
-    Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $tenantId -Subscription $subscriptionId
+    $result = Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $tenantId
+    if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 }

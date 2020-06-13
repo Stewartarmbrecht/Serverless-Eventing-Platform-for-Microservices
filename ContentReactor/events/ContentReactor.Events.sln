@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Events", "application\ContentReactor.Events.csproj", "{C3DAF00E-9FCF-4DC1-9575-CFA25B6DA1D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Events", "Library\ContentReactor.Events.csproj", "{C3DAF00E-9FCF-4DC1-9575-CFA25B6DA1D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Events.Tests", "tests\ContentReactor.Events.Tests.csproj", "{EC6FFE28-5274-4D32-A8BB-4D3826E0678F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Events.Tests", "Library.Tests\ContentReactor.Events.Tests.csproj", "{EC6FFE28-5274-4D32-A8BB-4D3826E0678F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,7 +17,7 @@ $region = $Env:Region
 
 $loggingPrefix = "ContentReactor Events Deployment $instanceName "
 $resourceGroupName = "$instanceName-events"
-$deploymentFile = "./../infrastructure/eventGridTemplate.json"
+$deploymentFile = "./../Infrastructure/eventGridTemplate.json"
 #$deploymentParameters = "instanceName=$instanceName"
 
 . ./Functions.ps1
@@ -26,9 +26,11 @@ Write-BuildInfo "Deploying the event grid." $loggingPrefix
 
 Connect-AzureServicePrincipal $loggingPrefix
 
-New-AzResourceGroup -Name $resourceGroupName -Location $region -Force
+$result = New-AzResourceGroup -Name $resourceGroupName -Location $region -Force
+if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName
+$result = New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName
+if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
 Write-BuildInfo "Deployed the event grid infrastructure." $loggingPrefix
 Set-Location $currentDirectory

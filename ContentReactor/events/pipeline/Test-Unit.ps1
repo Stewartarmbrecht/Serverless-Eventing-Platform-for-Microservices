@@ -16,7 +16,7 @@ if ($Continuous) {
         $loggingPrefix = $args[0]
         . ./Functions.ps1
         Write-BuildInfo "Running unit tests continuously." $loggingPrefix
-        dotnet watch --project ./../tests/ContentReactor.Events.Tests.csproj test `
+        dotnet watch --project ./../Library.Tests/ContentReactor.Events.Tests.csproj test `
             --filter TestCategory!=Automated `
             /p:CollectCoverage=true `
             /p:CoverletOutput=TestResults/ `
@@ -59,7 +59,7 @@ else {
         $loggingPrefix = $args[0]
         . ./Functions.ps1
         $command = @"
-        dotnet test ./../tests/ContentReactor.Events.Tests.csproj ``
+        dotnet test ./../Library.Tests/ContentReactor.Events.Tests.csproj ``
             --logger "trx;logFileName=testResults.trx" ``
             --filter TestCategory!=Automated ``
             /p:CollectCoverage=true ``

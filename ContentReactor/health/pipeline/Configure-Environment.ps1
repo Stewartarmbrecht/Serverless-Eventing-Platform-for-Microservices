@@ -16,6 +16,8 @@ if ($InstanceName) {
     $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
 }
 
+Write-BuildInfo "Configuring the environment." $loggingPrefix
+
 if ($InstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
     $Env:InstanceName = $InstanceName
