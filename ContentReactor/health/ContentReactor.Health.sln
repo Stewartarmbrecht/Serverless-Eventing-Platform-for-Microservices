@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Health.Api", "application\ContentReactor.Health.csproj", "{2E15FAF4-F788-4294-8270-4C98DFF07055}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Health.Tests", "test\ContentReactor.Health.Tests.csproj", "{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E15FAF4-F788-4294-8270-4C98DFF07055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E15FAF4-F788-4294-8270-4C98DFF07055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E15FAF4-F788-4294-8270-4C98DFF07055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E15FAF4-F788-4294-8270-4C98DFF07055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C925ED81-35AE-4547-B3F4-CECC26D22260}
+	EndGlobalSection
+EndGlobal

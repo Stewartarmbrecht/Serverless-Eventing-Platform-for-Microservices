@@ -63,7 +63,7 @@ function Start-Function
         [Int32]$Port,
         [Parameter(Mandatory=$TRUE)]
         [String]$LoggingPrefix,
-        [Switch]$Continous
+        [Switch]$Continuous
     )
     
     Start-Job -Name "rt-Audio-App" -ScriptBlock {
@@ -77,17 +77,17 @@ function Start-Function
         Write-BuildInfo "Setting location to '$functionLocation'" $loggingPrefix
         Set-Location $functionLocation
         try {
-            if ($continous) {
+            if ($continuous) {
                 $command = "func host start -p $port"    
             }
             $command = "func host start -p $port"
-            Invoke-BuildCommand $command $loggingPrefix "Running the function application." -Direct
+            Invoke-BuildCommand $command $loggingPrefix "Running the function application.  Continuous=$continuous" -Direct
         } catch {
             Write-BuildError "If you get errno: -4058, try this: https://github.com/Azure/azure-functions-core-tools/issues/1804#issuecomment-594990804" $loggingPrefix
             throw
         }
         Write-BuildInfo "The function app at '$functionLocation' is running." $loggingPrefix
-    } -ArgumentList @($FunctionLocation, $Port, $LoggingPrefix, $Continous)
+    } -ArgumentList @($FunctionLocation, $Port, $LoggingPrefix, $Continuous)
 }
 
 function Start-LocalTunnel
@@ -234,11 +234,11 @@ function Test-Automated
         if ($Continuous)
         {
             Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
-            dotnet watch --project ./../tests/ContentReactor.Audio.Tests.csproj test --filter TestCategory=Automated
+            dotnet watch --project ./../test/ContentReactor.Audio.Tests.csproj test --filter TestCategory=Automated
         }
         else
         {
-            Invoke-BuildCommand "dotnet test ./../tests/ContentReactor.Audio.Tests.csproj --filter TestCategory=Automated" $LoggingPrefix "Running automated tests once."
+            Invoke-BuildCommand "dotnet test ./../test/ContentReactor.Audio.Tests.csproj --filter TestCategory=Automated" $LoggingPrefix "Running automated tests once."
             Write-BuildInfo "Finished running automated tests." $LoggingPrefix
         }
     } -ArgumentList @($AutomatedUrl, $Continuous, $LoggingPrefix, $VerbosePreference)

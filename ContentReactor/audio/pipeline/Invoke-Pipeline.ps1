@@ -13,10 +13,10 @@ $loggingPrefix = "ContentReactor Audio Pipeline $instanceName"
 
 Write-BuildInfo "Running the full pipeline for the microservice." $loggingPrefix
 
-./Build-Applications.ps1
+./Build-Application.ps1
 ./Test-Unit.ps1
 ./Test-Automated.ps1
-./Build-DeploymentPackages.ps1
+./Build-DeploymentPackage.ps1
 ./Deploy-Service.ps1
 
 Write-BuildInfo "Finished the full pipeline for the microservice." $loggingPrefix

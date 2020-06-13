@@ -16,9 +16,9 @@ Write-BuildInfo "Deploying the service." $loggingPrefix
 
 ./Deploy-Infrastructure.ps1
 
-./Deploy-Applications.ps1
+./Deploy-Application.ps1
 
-./Deploy-Subscriptions.ps1
+./Deploy-Subscription.ps1
 
 Write-BuildInfo "Deployed the service." $loggingPrefix
 

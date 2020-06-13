@@ -49,7 +49,7 @@ if(!$Env:UserId) {
     $Env:UserId = Read-Host -Prompt 'Please provide the Application (client) ID for a service principle to use for the deployment.'
 }
 if(!$Env:Password) {
-    $Env:Password = Read-Host -Prompt 'Please provide the service principal secret (password) to use for the deployment.'
+    $Env:Password = Read-Host -AsSecureString -Prompt 'Please provide the service principal secret (password) to use for the deployment.'
 }
 if(!$Env:TenantId) {
     $Env:TenantId = Read-Host -Prompt 'Please provide the Directory (tenant) ID for the service principal.'

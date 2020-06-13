@@ -15,17 +15,17 @@ $apiPort = $Env:AudioLocalHostingPort
 
 $loggingPrefix = "ContentReactor Audio $instanceName Setup"
 
-./Build-Applications.ps1
+./Build-Application.ps1
 
 ./Test-Unit.ps1
 
-./Build-DeploymentPackages.ps1
+./Build-DeploymentPackage.ps1
 
 ./Deploy-Infrastructure.ps1
 
-./Deploy-Applications.ps1
+./Deploy-Application.ps1
 
-./Deploy-Subscriptions.ps1
+./Deploy-Subscription.ps1
 
 Set-Location "./../application"
 Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-audio" $loggingPrefix "Fetching the app settings from azure."

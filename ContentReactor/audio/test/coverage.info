@@ -1,0 +1,1407 @@
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/Functions.cs
+FN:81,ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Functions::get_UserAuthenticationService()
+FNDA:31,ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Functions::get_UserAuthenticationService()
+DA:82,31
+FN:87,ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Functions::get_BlobRepository()
+FNDA:22,ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Functions::get_BlobRepository()
+DA:88,22
+FN:93,ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Functions::get_EventGridPublisherService()
+FNDA:7,ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Functions::get_EventGridPublisherService()
+DA:94,7
+FN:52,System.Void ContentReactor.Audio.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository)
+FNDA:3,System.Void ContentReactor.Audio.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository)
+DA:53,3
+DA:54,3
+DA:55,3
+DA:56,3
+DA:57,3
+DA:58,3
+DA:59,3
+FN:67,System.Void ContentReactor.Audio.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Common.Events.IEventGridPublisherService)
+FNDA:28,System.Void ContentReactor.Audio.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Common.Events.IEventGridPublisherService)
+DA:68,28
+DA:69,28
+DA:70,28
+DA:71,28
+DA:72,28
+DA:73,28
+DA:74,28
+DA:75,28
+DA:76,28
+LF:19
+LH:19
+BRF:0
+BRH:0
+FNF:5
+FNH:5
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddBegin/AddBeginFunction.cs
+FN:27,System.Void ContentReactor.Audio.Functions/<AddBegin>d__0::MoveNext()
+FNDA:3,System.Void ContentReactor.Audio.Functions/<AddBegin>d__0::MoveNext()
+DA:28,3
+DA:31,3
+DA:33,3
+DA:34,1
+DA:35,1
+DA:39,1
+DA:42,1
+DA:43,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:47,1
+DA:48,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,1
+DA:55,2
+BRDA:33,187,0,1
+BRDA:33,187,1,1
+LF:18
+LH:18
+BRF:2
+BRH:2
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddComplete/AddCompleteFunction.cs
+FN:34,System.Void ContentReactor.Audio.Functions/<AddComplete>d__1::MoveNext()
+FNDA:11,System.Void ContentReactor.Audio.Functions/<AddComplete>d__1::MoveNext()
+DA:35,11
+DA:38,11
+DA:40,11
+DA:41,1
+DA:42,1
+DA:46,9
+DA:47,9
+DA:50,9
+DA:51,9
+DA:52,8
+DA:53,1
+DA:54,1
+DA:55,1
+DA:59,8
+DA:60,2
+DA:61,2
+DA:64,6
+DA:65,6
+DA:66,2
+DA:68,2
+DA:72,4
+DA:73,1
+DA:74,1
+DA:78,3
+DA:79,3
+DA:80,3
+DA:83,3
+DA:84,3
+DA:85,3
+DA:86,3
+DA:87,3
+DA:89,3
+DA:91,1
+DA:92,1
+DA:93,1
+DA:94,1
+DA:96,10
+BRDA:35,26,0,11
+BRDA:40,189,0,1
+BRDA:40,189,1,9
+BRDA:35,26,1,9
+BRDA:46,230,0,9
+BRDA:46,230,1,0
+BRDA:59,459,0,7
+BRDA:59,459,1,1
+BRDA:59,484,0,2
+BRDA:59,484,1,6
+BRDA:46,230,2,0
+BRDA:65,692,0,2
+BRDA:65,692,1,4
+BRDA:72,741,0,1
+BRDA:72,741,1,3
+BRDA:46,230,3,0
+BRDA:46,230,4,0
+LF:37
+LH:37
+BRF:17
+BRH:13
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/Delete/DeleteFunction.cs
+FN:28,System.Void ContentReactor.Audio.Functions/<Delete>d__2::MoveNext()
+FNDA:6,System.Void ContentReactor.Audio.Functions/<Delete>d__2::MoveNext()
+DA:29,6
+DA:32,6
+DA:34,6
+DA:35,1
+DA:36,1
+DA:40,4
+DA:43,4
+DA:44,4
+DA:45,4
+DA:47,1
+DA:48,1
+DA:49,1
+DA:50,1
+DA:52,5
+BRDA:34,201,0,1
+BRDA:34,201,1,4
+LF:14
+LH:14
+BRF:2
+BRH:2
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/Get/GetFunction.cs
+FN:27,System.Void ContentReactor.Audio.Functions/<Get>d__21::MoveNext()
+FNDA:6,System.Void ContentReactor.Audio.Functions/<Get>d__21::MoveNext()
+DA:28,6
+DA:31,6
+DA:33,6
+DA:34,1
+DA:35,1
+DA:38,4
+DA:39,4
+DA:40,2
+DA:41,2
+DA:44,2
+DA:46,2
+DA:47,2
+DA:48,2
+DA:49,2
+DA:50,2
+DA:51,2
+DA:52,2
+DA:54,1
+DA:55,1
+DA:56,1
+DA:57,1
+DA:59,5
+BRDA:33,187,0,1
+BRDA:33,187,1,4
+BRDA:39,386,0,2
+BRDA:39,386,1,2
+BRDA:46,482,0,1
+BRDA:46,482,1,1
+LF:22
+LH:22
+BRF:6
+BRH:6
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/GetList/GetListFunction.cs
+FN:43,ContentReactor.Audio.GetListItem ContentReactor.Audio.Functions/<>c::<GetList>b__22_0(ContentReactor.Common.Blobs.Blob)
+FNDA:5,ContentReactor.Audio.GetListItem ContentReactor.Audio.Functions/<>c::<GetList>b__22_0(ContentReactor.Common.Blobs.Blob)
+DA:44,5
+DA:45,5
+DA:46,5
+DA:47,5
+DA:48,5
+BRDA:44,45,0,2
+BRDA:44,45,1,1
+FN:31,System.Void ContentReactor.Audio.Functions/<GetList>d__22::MoveNext()
+FNDA:2,System.Void ContentReactor.Audio.Functions/<GetList>d__22::MoveNext()
+DA:32,2
+DA:34,2
+DA:36,2
+DA:37,0
+DA:38,0
+DA:42,2
+DA:43,2
+DA:49,2
+DA:51,2
+DA:52,2
+DA:54,2
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:61,2
+BRDA:36,187,0,0
+BRDA:36,187,1,2
+LF:21
+LH:15
+BRF:4
+BRH:3
+FNF:2
+FNH:2
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/HealthCheck/HealthCheckFunction.cs
+FN:31,System.Void ContentReactor.Audio.Functions/<HealthCheck>d__23::MoveNext()
+FNDA:3,System.Void ContentReactor.Audio.Functions/<HealthCheck>d__23::MoveNext()
+DA:32,3
+DA:35,3
+DA:37,3
+DA:38,1
+DA:39,1
+DA:42,1
+DA:43,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:48,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,1
+DA:55,2
+BRDA:37,175,0,1
+BRDA:37,175,1,1
+LF:16
+LH:16
+BRF:2
+BRH:2
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddBegin/AddBeginResponse.cs
+FN:15,System.String ContentReactor.Audio.AddBeginResponse::get_Id()
+FNDA:3,System.String ContentReactor.Audio.AddBeginResponse::get_Id()
+DA:16,3
+FN:22,System.Uri ContentReactor.Audio.AddBeginResponse::get_UploadUrl()
+FNDA:3,System.Uri ContentReactor.Audio.AddBeginResponse::get_UploadUrl()
+DA:23,3
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/AddComplete/AddCompleteRequest.cs
+FN:16,System.String ContentReactor.Audio.AddCompleteRequest::get_CategoryId()
+FNDA:45,System.String ContentReactor.Audio.AddCompleteRequest::get_CategoryId()
+DA:17,45
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/Get/GetResponse.cs
+FN:14,System.String ContentReactor.Audio.GetResponse::get_Id()
+FNDA:6,System.String ContentReactor.Audio.GetResponse::get_Id()
+DA:15,6
+FN:20,System.Uri ContentReactor.Audio.GetResponse::get_AudioUrl()
+FNDA:4,System.Uri ContentReactor.Audio.GetResponse::get_AudioUrl()
+DA:21,4
+FN:26,System.String ContentReactor.Audio.GetResponse::get_Transcript()
+FNDA:4,System.String ContentReactor.Audio.GetResponse::get_Transcript()
+DA:27,4
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/api/GetList/GetListItem.cs
+FN:13,System.String ContentReactor.Audio.GetListItem::get_Id()
+FNDA:4,System.String ContentReactor.Audio.GetListItem::get_Id()
+DA:14,4
+FN:19,System.String ContentReactor.Audio.GetListItem::get_Preview()
+FNDA:4,System.String ContentReactor.Audio.GetListItem::get_Preview()
+DA:20,4
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/StringExtensions.cs
+FN:15,System.String ContentReactor.Common.StringExtensions::Truncate(System.String,System.Int32,System.String)
+FNDA:3,System.String ContentReactor.Common.StringExtensions::Truncate(System.String,System.Int32,System.String)
+DA:16,3
+DA:17,3
+DA:18,0
+DA:19,0
+DA:22,3
+DA:23,3
+DA:24,3
+DA:27,0
+DA:28,0
+DA:29,3
+BRDA:17,7,0,0
+BRDA:17,7,1,3
+BRDA:22,27,0,3
+BRDA:22,27,1,0
+BRDA:22,46,0,3
+BRDA:22,46,1,0
+LF:10
+LH:6
+BRF:6
+BRH:3
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/UserAuthentication/QueryStringUserAuthenticationService.cs
+FN:31,System.Threading.Tasks.Task`1<System.Boolean> ContentReactor.Common.UserAuthentication.QueryStringUserAuthenticationService::GetUserIdAsync(Microsoft.AspNetCore.Http.HttpRequest,System.String&,Microsoft.AspNetCore.Mvc.IActionResult&)
+FNDA:0,System.Threading.Tasks.Task`1<System.Boolean> ContentReactor.Common.UserAuthentication.QueryStringUserAuthenticationService::GetUserIdAsync(Microsoft.AspNetCore.Http.HttpRequest,System.String&,Microsoft.AspNetCore.Mvc.IActionResult&)
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+BRDA:33,7,0,0
+BRDA:33,7,1,0
+BRDA:42,83,0,0
+BRDA:42,83,1,0
+BRDA:42,100,0,0
+BRDA:42,100,1,0
+BRDA:49,147,0,0
+BRDA:49,147,1,0
+LF:21
+LH:0
+BRF:8
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/HealthChecks/HealthCheckResponse.cs
+FN:17,ContentReactor.Common.HealthChecks.HealthCheckStatus ContentReactor.Common.HealthChecks.HealthCheckResponse::get_Status()
+FNDA:4,ContentReactor.Common.HealthChecks.HealthCheckStatus ContentReactor.Common.HealthChecks.HealthCheckResponse::get_Status()
+DA:18,4
+FN:24,System.String ContentReactor.Common.HealthChecks.HealthCheckResponse::get_Application()
+FNDA:4,System.String ContentReactor.Common.HealthChecks.HealthCheckResponse::get_Application()
+DA:25,4
+LF:2
+LH:2
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridEvent.cs
+FN:22,System.String ContentReactor.Common.Events.EventGridEvent`1::get_Topic()
+FNDA:18,System.String ContentReactor.Common.Events.EventGridEvent`1::get_Topic()
+DA:23,18
+FN:28,System.String ContentReactor.Common.Events.EventGridEvent`1::get_Id()
+FNDA:18,System.String ContentReactor.Common.Events.EventGridEvent`1::get_Id()
+DA:29,18
+FN:35,System.String ContentReactor.Common.Events.EventGridEvent`1::get_EventType()
+FNDA:18,System.String ContentReactor.Common.Events.EventGridEvent`1::get_EventType()
+DA:36,18
+FN:42,System.String ContentReactor.Common.Events.EventGridEvent`1::get_Subject()
+FNDA:18,System.String ContentReactor.Common.Events.EventGridEvent`1::get_Subject()
+DA:43,18
+FN:49,System.DateTime ContentReactor.Common.Events.EventGridEvent`1::get_EventTime()
+FNDA:18,System.DateTime ContentReactor.Common.Events.EventGridEvent`1::get_EventTime()
+DA:50,18
+FN:55,T ContentReactor.Common.Events.EventGridEvent`1::get_Data()
+FNDA:18,T ContentReactor.Common.Events.EventGridEvent`1::get_Data()
+DA:56,18
+LF:6
+LH:6
+BRF:0
+BRH:0
+FNF:6
+FNH:6
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridPublisherService.cs
+FN:22,System.Threading.Tasks.Task ContentReactor.Common.Events.EventGridPublisherService::PostEventGridEventAsync(System.String,System.String,T)
+FNDA:0,System.Threading.Tasks.Task ContentReactor.Common.Events.EventGridPublisherService::PostEventGridEventAsync(System.String,System.String,T)
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:45,0
+DA:46,0
+DA:47,0
+LF:20
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridRequest.cs
+FN:20,System.String ContentReactor.Common.Events.EventGridRequest`1::get_UserId()
+FNDA:23,System.String ContentReactor.Common.Events.EventGridRequest`1::get_UserId()
+DA:21,23
+FN:26,System.String ContentReactor.Common.Events.EventGridRequest`1::get_ItemId()
+FNDA:23,System.String ContentReactor.Common.Events.EventGridRequest`1::get_ItemId()
+DA:27,23
+FN:32,ContentReactor.Common.Events.EventGridEvent`1<TEventData> ContentReactor.Common.Events.EventGridRequest`1::get_Event()
+FNDA:18,ContentReactor.Common.Events.EventGridEvent`1<TEventData> ContentReactor.Common.Events.EventGridRequest`1::get_Event()
+DA:33,18
+LF:3
+LH:3
+BRF:0
+BRH:0
+FNF:3
+FNH:3
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/EventGridSubscriberService.cs
+FN:26,Microsoft.AspNetCore.Mvc.IActionResult ContentReactor.Common.Events.EventGridSubscriberService::HandleSubscriptionValidationEvent(System.String,Microsoft.Extensions.Primitives.StringValues)
+FNDA:0,Microsoft.AspNetCore.Mvc.IActionResult ContentReactor.Common.Events.EventGridSubscriberService::HandleSubscriptionValidationEvent(System.String,Microsoft.Extensions.Primitives.StringValues)
+DA:27,0
+DA:28,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:40,0
+DA:42,0
+DA:43,0
+BRDA:30,14,1,0
+BRDA:30,14,0,0
+BRDA:30,636,1,0
+BRDA:32,99,1,0
+BRDA:32,99,0,0
+BRDA:32,178,0,0
+BRDA:32,188,1,0
+BRDA:32,188,0,0
+BRDA:32,267,1,0
+BRDA:32,267,0,0
+BRDA:32,345,1,0
+BRDA:32,345,0,0
+BRDA:32,178,1,0
+BRDA:32,448,0,0
+BRDA:36,459,1,0
+BRDA:36,459,0,0
+BRDA:36,530,1,0
+BRDA:36,530,0,0
+BRDA:32,448,1,0
+BRDA:30,636,0,0
+FN:52,ContentReactor.Common.Events.EventGridRequest`1<TEventData> ContentReactor.Common.Events.EventGridSubscriberService::DeconstructEventGridMessage(System.String)
+FNDA:0,ContentReactor.Common.Events.EventGridRequest`1<TEventData> ContentReactor.Common.Events.EventGridSubscriberService::DeconstructEventGridMessage(System.String)
+DA:53,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:66,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:85,0
+DA:86,0
+BRDA:56,17,0,0
+BRDA:56,17,1,0
+BRDA:61,35,0,0
+BRDA:61,35,1,0
+BRDA:73,84,0,0
+BRDA:73,84,1,0
+FN:88,System.Object ContentReactor.Common.Events.EventGridSubscriberService::CreateStronglyTypedDataObject(System.Object,System.String)
+FNDA:0,System.Object ContentReactor.Common.Events.EventGridSubscriberService::CreateStronglyTypedDataObject(System.Object,System.String)
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:120,0
+DA:121,0
+DA:123,0
+BRDA:90,2,0,0
+BRDA:90,20,0,0
+BRDA:90,28,0,0
+BRDA:90,36,0,0
+BRDA:90,49,0,0
+BRDA:90,28,1,0
+BRDA:90,78,0,0
+BRDA:90,86,0,0
+BRDA:90,78,1,0
+BRDA:90,115,0,0
+BRDA:90,20,1,0
+BRDA:90,144,0,0
+BRDA:90,152,0,0
+BRDA:90,160,0,0
+BRDA:90,152,1,0
+BRDA:90,189,0,0
+BRDA:90,144,1,0
+BRDA:90,215,0,0
+BRDA:90,223,0,0
+BRDA:90,215,1,0
+BRDA:90,249,0,0
+BRDA:90,189,1,0
+BRDA:90,236,1,0
+BRDA:90,36,1,0
+BRDA:90,249,1,0
+BRDA:90,173,1,0
+BRDA:90,223,1,0
+BRDA:90,86,1,0
+BRDA:90,128,1,0
+BRDA:90,259,1,0
+BRDA:90,62,1,0
+BRDA:90,199,1,0
+BRDA:90,99,1,0
+BRDA:90,49,1,0
+BRDA:90,160,1,0
+BRDA:90,115,1,0
+BRDA:90,280,1,0
+BRDA:90,301,1,0
+BRDA:90,322,1,0
+BRDA:90,343,1,0
+BRDA:90,364,1,0
+BRDA:90,385,1,0
+BRDA:90,406,1,0
+BRDA:90,427,1,0
+BRDA:90,448,1,0
+BRDA:90,469,1,0
+BRDA:90,490,1,0
+BRDA:90,511,1,0
+BRDA:90,532,1,0
+BRDA:90,553,1,0
+BRDA:90,574,1,0
+BRDA:90,2,1,0
+BRDA:90,62,0,0
+BRDA:90,99,0,0
+BRDA:90,128,0,0
+BRDA:90,173,0,0
+BRDA:90,199,0,0
+BRDA:90,236,0,0
+BRDA:90,259,0,0
+BRDA:90,280,0,0
+BRDA:90,301,0,0
+BRDA:90,322,0,0
+BRDA:90,343,0,0
+BRDA:90,364,0,0
+BRDA:90,385,0,0
+BRDA:90,406,0,0
+BRDA:90,427,0,0
+BRDA:90,448,0,0
+BRDA:90,469,0,0
+BRDA:90,490,0,0
+BRDA:90,511,0,0
+BRDA:90,532,0,0
+BRDA:90,553,0,0
+BRDA:90,574,0,0
+BRDA:115,752,0,0
+BRDA:115,752,1,0
+FN:125,T ContentReactor.Common.Events.EventGridSubscriberService::ConvertDataObjectToType(System.Object)
+FNDA:0,T ContentReactor.Common.Events.EventGridSubscriberService::ConvertDataObjectToType(System.Object)
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:132,0
+DA:133,0
+BRDA:127,14,0,0
+BRDA:127,14,1,0
+LF:71
+LH:0
+BRF:104
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Text/TextCreatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Text.TextCreatedEventData::get_Preview()
+FNDA:0,System.String ContentReactor.Common.Events.Text.TextCreatedEventData::get_Preview()
+DA:12,0
+FN:17,System.String ContentReactor.Common.Events.Text.TextCreatedEventData::get_Category()
+FNDA:0,System.String ContentReactor.Common.Events.Text.TextCreatedEventData::get_Category()
+DA:18,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Text/TextUpdatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Text.TextUpdatedEventData::get_Preview()
+FNDA:0,System.String ContentReactor.Common.Events.Text.TextUpdatedEventData::get_Preview()
+DA:12,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Images/ImageCaptionUpdatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Images.ImageCaptionUpdatedEventData::get_Caption()
+FNDA:0,System.String ContentReactor.Common.Events.Images.ImageCaptionUpdatedEventData::get_Caption()
+DA:12,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Images/ImageCreatedEventData.cs
+FN:11,System.Uri ContentReactor.Common.Events.Images.ImageCreatedEventData::get_PreviewUri()
+FNDA:0,System.Uri ContentReactor.Common.Events.Images.ImageCreatedEventData::get_PreviewUri()
+DA:12,0
+FN:17,System.String ContentReactor.Common.Events.Images.ImageCreatedEventData::get_Category()
+FNDA:0,System.String ContentReactor.Common.Events.Images.ImageCreatedEventData::get_Category()
+DA:18,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategoryCreatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Categories.CategoryCreatedEventData::get_Name()
+FNDA:0,System.String ContentReactor.Common.Events.Categories.CategoryCreatedEventData::get_Name()
+DA:12,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategoryImageUpdatedEventData.cs
+FN:11,System.Uri ContentReactor.Common.Events.Categories.CategoryImageUpdatedEventData::get_ImageUrl()
+FNDA:0,System.Uri ContentReactor.Common.Events.Categories.CategoryImageUpdatedEventData::get_ImageUrl()
+DA:12,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategoryNameUpdatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Categories.CategoryNameUpdatedEventData::get_Name()
+FNDA:0,System.String ContentReactor.Common.Events.Categories.CategoryNameUpdatedEventData::get_Name()
+DA:12,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Categories/CategorySynonymsUpdatedEventData.cs
+FN:13,System.String ContentReactor.Common.Events.Categories.CategorySynonymsUpdatedEventData::get_Name()
+FNDA:0,System.String ContentReactor.Common.Events.Categories.CategorySynonymsUpdatedEventData::get_Name()
+DA:14,0
+FN:19,System.Collections.Generic.IEnumerable`1<System.String> ContentReactor.Common.Events.Categories.CategorySynonymsUpdatedEventData::get_Synonyms()
+FNDA:0,System.Collections.Generic.IEnumerable`1<System.String> ContentReactor.Common.Events.Categories.CategorySynonymsUpdatedEventData::get_Synonyms()
+DA:20,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Audio/AudioCreatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Audio.AudioCreatedEventData::get_Category()
+FNDA:22,System.String ContentReactor.Common.Events.Audio.AudioCreatedEventData::get_Category()
+DA:12,22
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Events/Audio/AudioTranscriptUpdatedEventData.cs
+FN:11,System.String ContentReactor.Common.Events.Audio.AudioTranscriptUpdatedEventData::get_TranscriptPreview()
+FNDA:3,System.String ContentReactor.Common.Events.Audio.AudioTranscriptUpdatedEventData::get_TranscriptPreview()
+DA:12,3
+LF:1
+LH:1
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Blobs/Blob.cs
+FN:37,System.String ContentReactor.Common.Blobs.Blob::get_AccountName()
+FNDA:0,System.String ContentReactor.Common.Blobs.Blob::get_AccountName()
+DA:38,0
+FN:43,System.String ContentReactor.Common.Blobs.Blob::get_ContainerName()
+FNDA:22,System.String ContentReactor.Common.Blobs.Blob::get_ContainerName()
+DA:44,22
+FN:49,System.String ContentReactor.Common.Blobs.Blob::get_BlobName()
+FNDA:25,System.String ContentReactor.Common.Blobs.Blob::get_BlobName()
+DA:50,25
+FN:55,System.Collections.Generic.IDictionary`2<System.String,System.String> ContentReactor.Common.Blobs.Blob::get_Properties()
+FNDA:25,System.Collections.Generic.IDictionary`2<System.String,System.String> ContentReactor.Common.Blobs.Blob::get_Properties()
+DA:56,25
+FN:16,System.Void ContentReactor.Common.Blobs.Blob::.ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary`2<System.String,System.String>)
+FNDA:45,System.Void ContentReactor.Common.Blobs.Blob::.ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary`2<System.String,System.String>)
+DA:17,45
+DA:18,45
+DA:19,45
+DA:20,45
+DA:21,45
+DA:22,45
+DA:23,45
+DA:24,45
+DA:25,45
+DA:26,45
+DA:27,0
+DA:28,0
+DA:29,0
+DA:31,45
+DA:32,45
+BRDA:26,36,0,0
+BRDA:26,36,1,45
+LF:19
+LH:15
+BRF:2
+BRH:1
+FNF:5
+FNH:4
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common/Blobs/BlobRepository.cs
+FN:76,System.Uri ContentReactor.Common.Blobs.BlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)
+FNDA:0,System.Uri ContentReactor.Common.Blobs.BlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:84,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:100,0
+DA:103,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:114,0
+DA:115,0
+BRDA:78,9,0,0
+BRDA:78,9,1,0
+FN:20,System.Void ContentReactor.Common.Blobs.BlobRepository::.cctor()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository::.cctor()
+DA:21,0
+DA:23,0
+FN:31,System.Void ContentReactor.Common.Blobs.BlobRepository/<GetBlobUploadUrlAsync>d__2::MoveNext()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository/<GetBlobUploadUrlAsync>d__2::MoveNext()
+DA:32,0
+DA:34,0
+DA:37,0
+DA:40,0
+DA:43,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:54,0
+DA:57,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:68,0
+DA:69,0
+FN:123,System.Void ContentReactor.Common.Blobs.BlobRepository/<GetBlobAsync>d__4::MoveNext()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository/<GetBlobAsync>d__4::MoveNext()
+DA:124,0
+DA:125,0
+DA:126,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:134,0
+DA:136,0
+DA:137,0
+BRDA:129,237,0,0
+BRDA:129,237,1,0
+FN:146,System.Void ContentReactor.Common.Blobs.BlobRepository/<CopyBlobToStreamAsync>d__5::MoveNext()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository/<CopyBlobToStreamAsync>d__5::MoveNext()
+DA:147,0
+DA:148,0
+DA:149,0
+DA:151,0
+DA:153,0
+DA:154,0
+FN:161,System.Void ContentReactor.Common.Blobs.BlobRepository/<UpdateBlobPropertiesAsync>d__6::MoveNext()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository/<UpdateBlobPropertiesAsync>d__6::MoveNext()
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:168,0
+DA:169,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:177,0
+DA:178,0
+BRDA:163,40,0,0
+BRDA:163,40,1,0
+BRDA:172,272,0,0
+BRDA:172,272,1,0
+FN:186,System.Void ContentReactor.Common.Blobs.BlobRepository/<ListBlobsInFolderAsync>d__7::MoveNext()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository/<ListBlobsInFolderAsync>d__7::MoveNext()
+DA:187,0
+DA:188,0
+DA:189,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:198,0
+DA:199,0
+BRDA:193,470,1,0
+BRDA:193,379,0,0
+BRDA:193,379,1,0
+BRDA:193,470,0,0
+BRDA:193,495,0,0
+BRDA:193,526,0,0
+BRDA:193,526,1,0
+BRDA:193,495,1,0
+BRDA:193,616,0,0
+BRDA:193,629,0,0
+BRDA:193,629,1,0
+BRDA:193,616,1,0
+FN:207,System.Void ContentReactor.Common.Blobs.BlobRepository/<DeleteBlobAsync>d__8::MoveNext()
+FNDA:0,System.Void ContentReactor.Common.Blobs.BlobRepository/<DeleteBlobAsync>d__8::MoveNext()
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+LF:94
+LH:0
+BRF:20
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/worker/Functions.cs
+FN:71,ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Worker.Functions::get_UserAuthenticationService()
+FNDA:3,ContentReactor.Common.UserAuthentication.IUserAuthenticationService ContentReactor.Audio.Worker.Functions::get_UserAuthenticationService()
+DA:72,3
+FN:77,ContentReactor.Common.Events.IEventGridSubscriberService ContentReactor.Audio.Worker.Functions::get_EventGridSubscriberService()
+FNDA:11,ContentReactor.Common.Events.IEventGridSubscriberService ContentReactor.Audio.Worker.Functions::get_EventGridSubscriberService()
+DA:78,11
+FN:83,ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Worker.Functions::get_EventGridPublisherService()
+FNDA:2,ContentReactor.Common.Events.IEventGridPublisherService ContentReactor.Audio.Worker.Functions::get_EventGridPublisherService()
+DA:84,2
+FN:89,ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Worker.Functions::get_BlobRepository()
+FNDA:10,ContentReactor.Common.Blobs.IBlobRepository ContentReactor.Audio.Worker.Functions::get_BlobRepository()
+DA:90,10
+FN:95,ContentReactor.Audio.Worker.IAudioTranscriptionService ContentReactor.Audio.Worker.Functions::get_AudioTranscriptionService()
+FNDA:3,ContentReactor.Audio.Worker.IAudioTranscriptionService ContentReactor.Audio.Worker.Functions::get_AudioTranscriptionService()
+DA:96,3
+FN:53,System.Void ContentReactor.Audio.Worker.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Events.IEventGridSubscriberService,ContentReactor.Common.Events.IEventGridPublisherService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Audio.Worker.IAudioTranscriptionService)
+FNDA:10,System.Void ContentReactor.Audio.Worker.Functions::.ctor(ContentReactor.Common.UserAuthentication.IUserAuthenticationService,ContentReactor.Common.Events.IEventGridSubscriberService,ContentReactor.Common.Events.IEventGridPublisherService,ContentReactor.Common.Blobs.IBlobRepository,ContentReactor.Audio.Worker.IAudioTranscriptionService)
+DA:54,10
+DA:55,10
+DA:56,10
+DA:57,10
+DA:58,10
+DA:59,10
+DA:60,10
+DA:61,10
+DA:62,10
+DA:63,10
+DA:64,10
+DA:65,10
+DA:66,10
+LF:18
+LH:18
+BRF:0
+BRH:0
+FNF:6
+FNH:6
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/worker/HealthCheck/HealthCheckFunction.cs
+FN:31,System.Void ContentReactor.Audio.Worker.Functions/<HealthCheck>d__22::MoveNext()
+FNDA:3,System.Void ContentReactor.Audio.Worker.Functions/<HealthCheck>d__22::MoveNext()
+DA:32,3
+DA:35,3
+DA:37,3
+DA:38,1
+DA:39,1
+DA:42,1
+DA:43,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:48,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,1
+DA:55,2
+BRDA:37,175,0,1
+BRDA:37,175,1,1
+LF:16
+LH:16
+BRF:2
+BRH:2
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/worker/UpdateTranscript/UpdateTranscriptFunction.cs
+FN:33,System.Void ContentReactor.Audio.Worker.Functions/<UpdateTranscript>d__23::MoveNext()
+FNDA:7,System.Void ContentReactor.Audio.Worker.Functions/<UpdateTranscript>d__23::MoveNext()
+DA:34,7
+DA:36,7
+DA:38,7
+DA:39,7
+DA:40,7
+DA:41,7
+DA:43,7
+DA:45,7
+DA:47,7
+DA:50,6
+DA:51,6
+DA:52,1
+DA:53,1
+DA:54,1
+DA:57,5
+DA:58,5
+DA:62,5
+DA:63,5
+DA:64,5
+DA:65,5
+DA:66,2
+DA:67,2
+DA:71,3
+DA:72,3
+DA:73,3
+DA:74,3
+DA:75,3
+DA:78,3
+DA:80,3
+DA:81,1
+DA:82,1
+DA:86,2
+DA:87,2
+DA:90,2
+DA:93,2
+DA:94,2
+DA:95,2
+DA:96,2
+DA:98,2
+DA:100,1
+DA:101,1
+DA:102,1
+DA:103,1
+DA:105,6
+BRDA:38,44,0,7
+BRDA:38,44,1,7
+BRDA:43,99,0,7
+BRDA:51,203,0,1
+BRDA:51,203,1,5
+BRDA:65,474,0,2
+BRDA:65,474,1,3
+BRDA:43,99,1,6
+BRDA:71,503,0,3
+BRDA:71,503,1,3
+BRDA:71,503,2,0
+BRDA:80,843,0,1
+BRDA:80,843,1,2
+BRDA:71,503,3,0
+BRDA:71,503,4,0
+LF:44
+LH:44
+BRF:15
+BRH:12
+FNF:1
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/worker/Startup.cs
+FN:22,System.Void ContentReactor.Audio.Worker.Startup::Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)
+FNDA:0,System.Void ContentReactor.Audio.Worker.Startup::Configure(Microsoft.Azure.Functions.Extensions.DependencyInjection.IFunctionsHostBuilder)
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+BRDA:24,7,0,0
+BRDA:24,7,1,0
+LF:11
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/audio/worker/UpdateTranscript/AudioTranscriptionService.cs
+FN:42,System.Net.HttpWebRequest ContentReactor.Audio.Worker.AudioTranscriptionService::CreateAudioTranscriptRequest(System.IO.Stream)
+FNDA:1,System.Net.HttpWebRequest ContentReactor.Audio.Worker.AudioTranscriptionService::CreateAudioTranscriptRequest(System.IO.Stream)
+DA:43,1
+DA:44,1
+DA:45,0
+DA:46,0
+DA:49,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,1
+DA:54,1
+DA:55,1
+DA:56,1
+DA:58,1
+DA:59,1
+DA:60,1
+DA:61,1
+DA:64,1
+DA:65,1
+DA:67,1
+DA:69,1
+DA:70,0
+DA:71,0
+DA:72,0
+DA:74,1
+DA:75,1
+DA:77,1
+DA:78,1
+BRDA:44,7,0,0
+BRDA:44,7,1,1
+BRDA:58,130,0,1
+BRDA:58,130,1,1
+BRDA:69,217,1,0
+BRDA:69,217,0,1
+FN:85,System.String ContentReactor.Audio.Worker.AudioTranscriptionService::ProcessAudioTranscriptResponse(System.String)
+FNDA:1,System.String ContentReactor.Audio.Worker.AudioTranscriptionService::ProcessAudioTranscriptResponse(System.String)
+DA:86,1
+DA:87,1
+DA:88,1
+DA:89,0
+DA:90,0
+DA:93,1
+DA:94,1
+DA:95,1
+DA:96,1
+BRDA:88,13,1,1
+BRDA:88,13,0,1
+BRDA:88,81,1,1
+BRDA:88,81,0,1
+BRDA:88,159,1,1
+BRDA:88,159,0,1
+BRDA:88,248,0,0
+BRDA:88,248,1,1
+BRDA:93,268,1,1
+BRDA:93,268,0,1
+BRDA:94,346,1,1
+BRDA:94,346,0,1
+BRDA:95,424,1,1
+BRDA:95,424,0,1
+BRDA:95,484,1,1
+BRDA:95,484,0,1
+FN:14,System.Void ContentReactor.Audio.Worker.AudioTranscriptionService::.cctor()
+FNDA:1,System.Void ContentReactor.Audio.Worker.AudioTranscriptionService::.cctor()
+DA:15,1
+DA:16,1
+FN:24,System.Void ContentReactor.Audio.Worker.AudioTranscriptionService/<GetAudioTranscriptFromCognitiveServicesAsync>d__2::MoveNext()
+FNDA:0,System.Void ContentReactor.Audio.Worker.AudioTranscriptionService/<GetAudioTranscriptFromCognitiveServicesAsync>d__2::MoveNext()
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:33,0
+DA:34,0
+LF:46
+LH:31
+BRF:22
+BRH:19
+FNF:4
+FNH:3
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/AbstractLogger.cs
+FN:17,System.IDisposable ContentReactor.Common.Fakes.AbstractLogger::BeginScope(TState)
+FNDA:0,System.IDisposable ContentReactor.Common.Fakes.AbstractLogger::BeginScope(TState)
+DA:18,0
+FN:24,System.Boolean ContentReactor.Common.Fakes.AbstractLogger::IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+FNDA:0,System.Boolean ContentReactor.Common.Fakes.AbstractLogger::IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+DA:25,0
+FN:36,System.Void ContentReactor.Common.Fakes.AbstractLogger::Log(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,TState,System.Exception,System.Func`3<TState,System.Exception,System.String>)
+FNDA:7,System.Void ContentReactor.Common.Fakes.AbstractLogger::Log(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,TState,System.Exception,System.Func`3<TState,System.Exception,System.String>)
+DA:37,7
+LF:3
+LH:1
+BRF:0
+BRH:0
+FNF:3
+FNH:1
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/FakeBlobRecord.cs
+FN:14,System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContainerName()
+FNDA:0,System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContainerName()
+DA:15,0
+FN:20,System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_BlobId()
+FNDA:0,System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_BlobId()
+DA:21,0
+FN:26,ContentReactor.Common.Blobs.Blob ContentReactor.Common.Fakes.FakeBlobRecord::get_Blob()
+FNDA:0,ContentReactor.Common.Blobs.Blob ContentReactor.Common.Fakes.FakeBlobRecord::get_Blob()
+DA:27,0
+FN:32,System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContentType()
+FNDA:0,System.String ContentReactor.Common.Fakes.FakeBlobRecord::get_ContentType()
+DA:33,0
+FN:38,System.IO.Stream ContentReactor.Common.Fakes.FakeBlobRecord::get_Stream()
+FNDA:0,System.IO.Stream ContentReactor.Common.Fakes.FakeBlobRecord::get_Stream()
+DA:39,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/FakeBlobRepository.cs
+FN:31,System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::get_Blobs()
+FNDA:82,System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::get_Blobs()
+DA:32,82
+FN:39,System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(System.String,System.String)
+FNDA:45,System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(System.String,System.String)
+DA:40,45
+DA:41,45
+DA:42,45
+DA:43,45
+DA:44,45
+DA:45,45
+DA:46,45
+DA:47,45
+FN:53,System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(ContentReactor.Common.Blobs.Blob)
+FNDA:45,System.Void ContentReactor.Common.Fakes.FakeBlobRepository::AddFakeBlob(ContentReactor.Common.Blobs.Blob)
+DA:54,45
+DA:55,45
+DA:56,45
+FN:64,System.Threading.Tasks.Task`1<System.Uri> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobUploadUrlAsync(System.String,System.String)
+FNDA:1,System.Threading.Tasks.Task`1<System.Uri> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobUploadUrlAsync(System.String,System.String)
+DA:65,1
+DA:66,1
+DA:67,1
+FN:74,System.Uri ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)
+FNDA:2,System.Uri ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobDownloadUrl(ContentReactor.Common.Blobs.Blob)
+DA:75,2
+DA:76,2
+DA:77,0
+DA:78,0
+DA:81,2
+DA:82,2
+BRDA:76,7,0,0
+BRDA:76,7,1,2
+FN:90,System.Threading.Tasks.Task`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobAsync(System.String,System.String)
+FNDA:15,System.Threading.Tasks.Task`1<ContentReactor.Common.Blobs.Blob> ContentReactor.Common.Fakes.FakeBlobRepository::GetBlobAsync(System.String,System.String)
+DA:91,15
+DA:92,28
+DA:93,15
+DA:94,15
+BRDA:92,17,0,13
+BRDA:92,17,1,0
+FN:116,System.Threading.Tasks.Task`1<System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob>> ContentReactor.Common.Fakes.FakeBlobRepository::ListBlobsInFolderAsync(System.String,System.String)
+FNDA:2,System.Threading.Tasks.Task`1<System.Collections.Generic.IList`1<ContentReactor.Common.Blobs.Blob>> ContentReactor.Common.Fakes.FakeBlobRepository::ListBlobsInFolderAsync(System.String,System.String)
+DA:117,2
+DA:118,2
+DA:119,6
+DA:120,2
+DA:121,2
+DA:122,2
+BRDA:119,17,0,4
+BRDA:119,17,1,0
+FN:129,System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::UpdateBlobPropertiesAsync(ContentReactor.Common.Blobs.Blob)
+FNDA:5,System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::UpdateBlobPropertiesAsync(ContentReactor.Common.Blobs.Blob)
+DA:130,5
+DA:131,5
+DA:132,0
+DA:133,0
+DA:136,5
+DA:137,5
+BRDA:131,7,0,0
+BRDA:131,7,1,5
+FN:145,System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::DeleteBlobAsync(System.String,System.String)
+FNDA:4,System.Threading.Tasks.Task ContentReactor.Common.Fakes.FakeBlobRepository::DeleteBlobAsync(System.String,System.String)
+DA:146,4
+DA:147,7
+DA:148,4
+DA:149,2
+DA:150,2
+DA:151,2
+DA:153,4
+DA:154,4
+BRDA:148,51,0,2
+BRDA:148,51,1,4
+BRDA:147,17,0,3
+BRDA:147,17,1,0
+FN:22,System.Void ContentReactor.Common.Fakes.FakeBlobRepository::.ctor()
+FNDA:52,System.Void ContentReactor.Common.Fakes.FakeBlobRepository::.ctor()
+DA:23,52
+DA:24,52
+DA:25,52
+DA:26,52
+FN:103,System.Void ContentReactor.Common.Fakes.FakeBlobRepository/<CopyBlobToStreamAsync>d__10::MoveNext()
+FNDA:3,System.Void ContentReactor.Common.Fakes.FakeBlobRepository/<CopyBlobToStreamAsync>d__10::MoveNext()
+DA:104,3
+DA:105,3
+DA:106,3
+DA:107,3
+DA:108,3
+LF:54
+LH:50
+BRF:12
+BRH:7
+FNF:11
+FNH:11
+end_of_record
+SF:/home/vsonline/workspace/Eden/ContentReactor/common/ContentReactor.Common.Fakes/Mockers.cs
+FN:73,System.IO.MemoryStream ContentReactor.Common.Fakes.Mockers::SerializeToStream(System.Object)
+FNDA:0,System.IO.MemoryStream ContentReactor.Common.Fakes.Mockers::SerializeToStream(System.Object)
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+FN:87,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object,Microsoft.AspNetCore.Http.IHeaderDictionary)
+FNDA:6,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object,Microsoft.AspNetCore.Http.IHeaderDictionary)
+DA:88,6
+DA:89,6
+DA:90,6
+DA:91,6
+DA:92,6
+FN:99,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object)
+FNDA:39,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequest(System.Object)
+DA:100,39
+DA:101,39
+DA:103,39
+DA:104,20
+DA:105,20
+DA:106,20
+DA:108,20
+DA:110,20
+DA:111,20
+DA:113,20
+DA:115,20
+DA:116,20
+DA:118,39
+DA:119,39
+BRDA:103,13,0,20
+BRDA:103,13,1,39
+FN:125,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequestWithInvalidJson()
+FNDA:1,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequestWithInvalidJson()
+DA:126,1
+DA:127,1
+DA:129,1
+DA:130,1
+DA:132,1
+DA:133,1
+DA:135,1
+DA:137,1
+DA:138,1
+DA:139,1
+FN:145,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequestWithNoPayload()
+FNDA:1,Moq.Mock`1<Microsoft.AspNetCore.Http.HttpRequest> ContentReactor.Common.Fakes.Mockers::MockRequestWithNoPayload()
+DA:146,1
+DA:147,1
+DA:149,1
+DA:150,1
+DA:152,1
+DA:154,1
+DA:156,1
+DA:157,1
+DA:158,1
+FN:164,Moq.Mock`1<ContentReactor.Common.UserAuthentication.IUserAuthenticationService> ContentReactor.Common.Fakes.Mockers::MockUserAuth()
+FNDA:41,Moq.Mock`1<ContentReactor.Common.UserAuthentication.IUserAuthenticationService> ContentReactor.Common.Fakes.Mockers::MockUserAuth()
+DA:165,41
+DA:166,41
+DA:167,41
+DA:168,41
+DA:169,41
+DA:170,41
+DA:171,41
+DA:172,41
+LF:52
+LH:46
+BRF:2
+BRH:2
+FNF:6
+FNH:5
+end_of_record
