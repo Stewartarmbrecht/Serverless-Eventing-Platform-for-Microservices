@@ -1,4 +1,4 @@
-namespace ContentReactor.Health
+namespace ContentReactor.Health.Service
 {
     using System;
     using System.Threading.Tasks;
@@ -21,10 +21,10 @@ namespace ContentReactor.Health
         /// <param name="req">Request sent to the azure function.</param>
         /// <param name="log">Logger to use for logging information or errors.</param>
         /// <returns>Results of the health check.</returns>
-        [FunctionName("HealthCheck")]
+        [FunctionName("SystemHealthCheck")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062", Justification = "Reviewed")]
-        public async Task<IActionResult> HealthCheck(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "healthcheck")] HttpRequest req,
+        public async Task<IActionResult> SystemHealthCheck(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "systemhealthcheck")] HttpRequest req,
             ILogger log)
         {
             // list the categories
@@ -46,7 +46,7 @@ namespace ContentReactor.Health
             }
             catch (Exception ex)
             {
-                log.LogError("Unhandled exception", ex);
+                log.LogError(UnhandledExceptionError, ex);
                 throw;
             }
         }

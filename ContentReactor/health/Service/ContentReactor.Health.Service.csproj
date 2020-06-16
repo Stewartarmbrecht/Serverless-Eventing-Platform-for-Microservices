@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\..\Common\ContentReactor.Common\ContentReactor.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

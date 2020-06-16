@@ -107,7 +107,7 @@ function Start-LocalTunnel
         . ./Functions.ps1
 
         if ($IsWindows) {
-            ./ngrok.exe http http://localhost:$port -host-header=rewrite | Write-Verbose
+            Invoke-BuildCommand "./ngrok.exe http http://localhost:$port -host-header=rewrite | Write-Verbose" $loggingPrefix "Invoking ngrok.exe for windows."
         } else {
             ./ngrok http http://localhost:$port -host-header=rewrite | Write-Verbose
         }
@@ -164,6 +164,7 @@ function Get-HealthStatus
             Write-BuildInfo "Health check status: $status." $LoggingPrefix
             return $TRUE
         } else {
+            Write-BuildInfo "Health check status: $status." $LoggingPrefix
             return $FALSE
         }
     } catch {
@@ -233,8 +234,8 @@ function Test-Automated
 
         if ($Continuous)
         {
-            Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
-            dotnet watch --project ./../Service.Tests/ContentReactor.Audio.Service.Tests.csproj test --filter TestCategory=Automated
+            # Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
+            Invoke-BuildCommand "dotnet watch --project ./../Service.Tests/ContentReactor.Audio.Service.Tests.csproj test --filter TestCategory=Automated" $LoggingPrefix "Running automated tests continuously."
         }
         else
         {

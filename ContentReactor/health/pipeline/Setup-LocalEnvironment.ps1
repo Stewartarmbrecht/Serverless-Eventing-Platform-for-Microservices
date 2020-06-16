@@ -11,9 +11,9 @@ Set-Location $PSSCriptRoot
 
 $instanceName = $Env:InstanceName
 
-$apiPort = $Env:AudioLocalHostingPort
+$apiPort = $Env:HealthLocalHostingPort
 
-$loggingPrefix = "ContentReactor Audio $instanceName Setup"
+$loggingPrefix = "ContentReactor Health $instanceName Setup"
 
 ./Build-Application.ps1
 
@@ -25,10 +25,8 @@ $loggingPrefix = "ContentReactor Audio $instanceName Setup"
 
 ./Deploy-Application.ps1
 
-./Deploy-Subscription.ps1
-
-Set-Location "./../application"
-Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-audio" $loggingPrefix "Fetching the app settings from azure."
+Set-Location "./../Service"
+Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-health" $loggingPrefix "Fetching the app settings from azure."
 Invoke-BuildCommand "func settings add ""FUNCTIONS_WORKER_RUNTIME"" ""dotnet""" $loggingPrefix "Adding the run time setting for 'dotnet'."
 Invoke-BuildCommand "func settings add ""Host.LocalHttpPort"" ""$apiPort""" $loggingPrefix "Adding the run time port setting for '$apiPort'."
 

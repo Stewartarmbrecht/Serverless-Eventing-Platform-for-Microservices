@@ -3,9 +3,9 @@ using ContentReactor.Common.UserAuthentication;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: FunctionsStartup(typeof(ContentReactor.Health.Startup))]
+[assembly: FunctionsStartup(typeof(ContentReactor.Health.Service.Startup))]
 
-namespace ContentReactor.Health
+namespace ContentReactor.Health.Service
 {
     /// <summary>
     /// Initialized at that startup of the function.

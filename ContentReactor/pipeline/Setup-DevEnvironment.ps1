@@ -47,12 +47,12 @@ Connect-AzureServicePrincipal $loggingPrefix
 ## Invoke Pipelines
 $Env:InstanceName = $Env:DevInstanceName
 
-Start-EdenJob "events-pipeline" "./../events/pipeline/Invoke-Pipeline.ps1"
-Start-EdenJob "events-pipeline" "./../audio/pipeline/Invoke-Pipeline.ps1"
+./../Events/Pipeline/Invoke-Pipeline.ps1
+
+Start-EdenJob "Audio-Pipeline" "./../Audio/Pipeline/Invoke-Pipeline.ps1"
 #./../category/pipeline/Invoke-Pipeline.ps1
 #./../text/pipeline/Invoke-Pipeline.ps1
 #./../image/pipeline/Invoke-Pipeline.ps1
-#./../web/pipeline/Invoke-Pipeline.ps1
 
 # Change the default behavior of CTRL-C so that the script can intercept and use it versus just terminating the script.
 [Console]::TreatControlCAsInput = $True
@@ -83,6 +83,9 @@ While(Get-Job -State "Running")
 
 Get-Job | Receive-Job
 
+./../Api/pipeline/Invoke-Pipeline.ps1
+#./../Web/pipeline/Invoke-Pipeline.ps1
+#./../Health/Pipeline/Invoke-Pipeline.ps1
 
 ## Setup LocalEnvironments
 

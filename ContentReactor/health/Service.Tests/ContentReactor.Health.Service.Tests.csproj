@@ -33,9 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\common\ContentReactor.Common\ContentReactor.Common.csproj" />
-    <ProjectReference Include="..\..\common\ContentReactor.Common.Fakes\ContentReactor.Common.Fakes.csproj" />
-    <ProjectReference Include="..\application\ContentReactor.Health.csproj" />
+    <ProjectReference Include="..\..\Common\ContentReactor.Common\ContentReactor.Common.csproj" />
+    <ProjectReference Include="..\..\Common\ContentReactor.Common.Fakes\ContentReactor.Common.Fakes.csproj" />
+    <ProjectReference Include="..\Service\ContentReactor.Health.Service.csproj" />
   </ItemGroup>
 
 </Project>

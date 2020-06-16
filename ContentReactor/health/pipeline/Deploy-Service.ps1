@@ -1,25 +1,34 @@
 [CmdletBinding()]
 param()
 
-$currentDirectory = Get-Location
-Set-Location $PSScriptRoot
+$solutionName = "ContentReactor"
+$serviceName = "Health"
 
-. ./Functions.ps1
+try {
+    $currentDirectory = Get-Location
+    Set-Location $PSScriptRoot
 
-./Configure-Environment.ps1
+    . ./Functions.ps1
 
-$instanceName = $Env:InstanceName
+    ./Configure-Environment.ps1 -Check
 
-$loggingPrefix = "ContentReactor Audio Deploy Service $instanceName"
+    $instanceName = $Env:InstanceName
 
-Write-BuildInfo "Deploying the service." $loggingPrefix
+    $loggingPrefix = "$solutionName $serviceName Deploy Service $instanceName"
 
-./Deploy-Infrastructure.ps1
+    Write-BuildInfo "Deploying the service." $loggingPrefix
 
-./Deploy-Application.ps1
+    ./Deploy-Infrastructure.ps1
 
-./Deploy-Subscription.ps1
+    ./Deploy-Application.ps1
 
-Write-BuildInfo "Deployed the service." $loggingPrefix
+    #./Deploy-Subscription.ps1
 
-Set-Location $currentDirectory
+    Write-BuildInfo "Deployed the service." $loggingPrefix
+
+    Set-Location $currentDirectory
+}
+catch {
+    Set-Location $currentDirectory
+    throw $_    
+}

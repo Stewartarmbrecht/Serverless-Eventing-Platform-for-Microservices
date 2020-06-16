@@ -1,24 +1,35 @@
 [CmdletBinding()]
 param()
-$currentDirectory = Get-Location
-Set-Location $PSSCriptRoot
 
-. ./Functions.ps1
+$solutionName = "ContentReactor"
+$serviceName = "Health"
 
-./Configure-Environment.ps1
+try {
+    $currentDirectory = Get-Location
+    Set-Location $PSSCriptRoot
 
-$instanceName = $Env:InstanceName
+    . ./Functions.ps1
 
-$loggingPrefix = "ContentReactor Audio Pipeline $instanceName"
+    ./Configure-Environment.ps1 -Check
 
-Write-BuildInfo "Running the full pipeline for the microservice." $loggingPrefix
+    $instanceName = $Env:InstanceName
 
-./Build-Application.ps1
-./Test-Unit.ps1
-./Test-Automated.ps1
-./Build-DeploymentPackage.ps1
-./Deploy-Service.ps1
+    $loggingPrefix = "$solutionName $serviceName Pipeline $instanceName"
 
-Write-BuildInfo "Finished the full pipeline for the microservice." $loggingPrefix
+    Write-BuildInfo "Running the full pipeline for the service." $loggingPrefix
 
-Set-Location $currentDirectory
+    ./Build-Application.ps1
+    ./Test-Unit.ps1
+    ./Test-Automated.ps1
+    ./Build-DeploymentPackage.ps1
+    ./Deploy-Service.ps1
+
+    Write-BuildInfo "Finished the full pipeline for the service." $loggingPrefix
+
+    Set-Location $currentDirectory
+}
+catch
+{
+    Set-Location $currentDirectory
+    throw $_
+}

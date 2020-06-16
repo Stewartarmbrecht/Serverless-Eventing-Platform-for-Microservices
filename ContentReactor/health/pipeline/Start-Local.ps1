@@ -8,96 +8,87 @@ param(
     [switch]$RunAutomatedTestsContinuously
 )
 
-$currentDirectory = Get-Location
-Set-Location $PSScriptRoot
+$solutionName = "ContentReactor"
+$serviceName = "Health"
 
-. ./Functions.ps1
+try {
 
-. ./Configure-Environment.ps1
+    $currentDirectory = Get-Location
+    Set-Location $PSScriptRoot
 
-$instanceName = $Env:InstanceName
-$port = $Env:AudioLocalHostingPort
+    . ./Functions.ps1
 
-$loggingPrefix = "ContentReactor Audio Run $instanceName"
+    ./Configure-Environment -Check
 
-Write-BuildInfo "Starting jobs." $loggingPrefix
+    $instanceName = $Env:InstanceName
+    $port = $Env:HealthLocalHostingPort
 
-Start-Function -FunctionLocation "./../application" -Port $port -LoggingPrefix $loggingPrefix -Continuous:$Continuous
+    $loggingPrefix = "$solutionName $serviceName Run $instanceName"
 
-Start-LocalTunnel -Port $port -LoggingPrefix $loggingPrefix
+    Write-BuildInfo "Starting jobs." $loggingPrefix
 
-$publicUrl = ""
-$healthCheck = $FALSE
-$subscribed = $FALSE
-$testing = $FALSE
+    Start-Function -FunctionLocation "./../Service" -Port $port -LoggingPrefix $loggingPrefix
 
-# Change the default behavior of CTRL-C so that the script can intercept and use it versus just terminating the script.
-[Console]::TreatControlCAsInput = $True
+    $serviceUrl = "http://localhost:$port"
+    $healthCheck = $FALSE
+    $testing = $FALSE
 
-While(Get-Job -State "Running")
-{
-    if ([string]::IsNullOrEmpty($publicUrl)) {
-        $publicUrl = Get-PublicUrl -Port $port -LoggingPrefix $loggingPrefix
-    }
-    
-    if ($FALSE -eq $healthCheck -and ![string]::IsNullOrEmpty($publicUrl)) {
-        $healthCheck = Get-HealthStatus -PublicUrl $publicUrl -LoggingPrefix $loggingPrefix
-    }
-    
-    
-    if($subscribed -eq $FALSE -and ![string]::IsNullOrEmpty($publicUrl) -and $TRUE -eq $healthCheck) {
-        Write-BuildInfo "Deploying subscriptions to event grid." $loggingPrefix
-        Deploy-LocalSubscriptions `
-            -PublicUrlToLocalWebServer $publicUrl `
-            -LoggingPrefix $loggingPrefix
-        $subscribed = $TRUE
-    }
-
-    if(
-        ($RunAutomatedTestsContinuously -or $RunAutomatedTests) `
-        -and $FALSE -eq $testing `
-        -and $TRUE -eq $subscribed `
-        -and "" -ne $publicUrl `
-        -and $TRUE -eq $healthCheck) {
-        if ($RunAutomatedTestsContinuously) {
-            $automatedTestJob = Test-Automated `
-                -AutomatedUrl "http://localhost:$port/api/audio" `
-                -LoggingPrefix $loggingPrefix `
-                -Continuous
-        } else {
-            $automatedTestJob = Test-Automated `
-            -AutomatedUrl "http://localhost:$port/api/audio" `
-            -LoggingPrefix $loggingPrefix
-        }
-        $testing = $TRUE
-    }
-
-    Get-Job | Receive-Job | Write-Verbose
-    if ($automatedTestJob.State -eq "Completed")
+    While(Get-Job -State "Running")
     {
-        Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
-        Stop-Job rt-*
-        Remove-Job rt-*
-        Write-BuildInfo "Stopped." $loggingPrefix
-    }
-    # Sleep for 1 second and then flush the key buffer so any previously pressed keys are discarded and the loop can monitor for the use of
-    #   CTRL-C. The sleep command ensures the buffer flushes correctly.
-    # $Host.UI.RawUI.FlushInputBuffer()
-    Start-Sleep -Seconds 1
-    # If a key was pressed during the loop execution, check to see if it was CTRL-C (aka "3"), and if so exit the script after clearing
-    #   out any running jobs and setting CTRL-C back to normal.
-    If ($Host.UI.RawUI.KeyAvailable -and ($Key = $Host.UI.RawUI.ReadKey("AllowCtrlC,NoEcho,IncludeKeyUp"))) {
-        If ([Int]$Key.Character -eq 3) {
-            Write-Warning "CTRL-C was used - Shutting down any running jobs before exiting the script."
+        if ($FALSE -eq $healthCheck -and ![string]::IsNullOrEmpty($serviceUrl)) {
+            $healthCheck = Get-HealthStatus -PublicUrl $serviceUrl -LoggingPrefix $loggingPrefix
+        }
+
+        if(
+            ($RunAutomatedTestsContinuously -or $RunAutomatedTests) `
+            -and $FALSE -eq $testing `
+            -and "" -ne $serviceUrl `
+            -and $TRUE -eq $healthCheck) {
+            if ($RunAutomatedTestsContinuously) {
+                $automatedTestJob = Test-Automated `
+                    -SolutionName $solutionName `
+                    -ServiceName $serviceName `
+                    -AutomatedUrl "http://localhost:$port/api" `
+                    -LoggingPrefix $loggingPrefix `
+                    -Continuous
+            } else {
+                $automatedTestJob = Test-Automated `
+                    -SolutionName $solutionName `
+                    -ServiceName $serviceName `
+                    -AutomatedUrl "http://localhost:$port/api" `
+                    -LoggingPrefix $loggingPrefix
+            }
+            $testing = $TRUE
+        }
+
+        if ($automatedTestJob -and $automatedTestJob.State -ne "Running")
+        {
+            if ($automatedTestJob.State -eq "Failed")
+            {
+                throw "Automated tests failed."
+            }
             Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
             Stop-Job rt-*
             Remove-Job rt-*
             Write-BuildInfo "Stopped." $loggingPrefix
-            [Console]::TreatControlCAsInput = $False
         }
-        # Flush the key buffer again for the next loop.
-        # $Host.UI.RawUI.FlushInputBuffer()
+        Get-Job | Receive-Job | Write-Verbose
     }
-}
 
-Set-Location $currentDirectory
+    Get-Job | Receive-Job | Write-Verbose
+
+    if (Get-Job -State "Failed") 
+    {
+        throw "One of the jobs failed."
+    }
+
+    Set-Location $currentDirectory
+} 
+catch 
+{
+    Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
+    Stop-Job rt-*
+    Remove-Job rt-*
+    Write-BuildInfo "Stopped." $loggingPrefix
+    throw $_
+}

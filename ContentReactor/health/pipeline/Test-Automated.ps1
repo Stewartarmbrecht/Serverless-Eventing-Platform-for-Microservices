@@ -4,21 +4,34 @@ param(
     [switch]$Continuous
 )
 
-$currentDirectory = Get-Location
-Set-Location $PSScriptRoot
+$solutionName = "ContentReactor"
+$serviceName = "Health"
 
-. ./Functions.ps1
+try
+{
+    $currentDirectory = Get-Location
+    Set-Location $PSScriptRoot
 
-./Configure-Environment
+    . ./Functions.ps1
 
-$loggingPrefix = "ContentReactor Audio Test End to End $instanceName"
+    ./Configure-Environment -Check
 
-if ($Continuous) {
-    Write-BuildInfo "Running automated tests continuously." $loggingPrefix
-    ./Start-Local.ps1 -RunAutomatedTestsContinuously -Verbose
-} else {
-    Write-BuildInfo "Running automated tests." $loggingPrefix
-    ./Start-Local.ps1 -RunAutomatedTests
+    $instanceName = $Env:InstanceName
+
+    $loggingPrefix = "$solutionName $serviceName Test End to End $instanceName"
+
+    if ($Continuous) {
+        Write-BuildInfo "Running automated tests continuously." $loggingPrefix
+        ./Start-Local.ps1 -RunAutomatedTestsContinuously -Verbose
+    } else {
+        Write-BuildInfo "Running automated tests." $loggingPrefix
+        ./Start-Local.ps1 -RunAutomatedTests
+    }
+
+    Set-Location $currentDirectory
 }
-
-Set-Location $currentDirectory
+catch
+{
+    Set-Location $currentDirectory
+    throw $_
+}

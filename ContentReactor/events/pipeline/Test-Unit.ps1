@@ -77,9 +77,10 @@ else {
         }
     } -ArgumentList @($loggingPrefix, $verbose)
 
-    While ($testJob.State -ne "Completed") {
+    While ($testJob.State -eq "Running") {
         $testJob | Receive-Job
     }
+    $testJob | Receive-Job
     Write-BuildInfo "Finished running unit tests." $loggingPrefix
 }
 

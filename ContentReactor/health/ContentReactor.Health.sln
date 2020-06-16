@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Health.Api", "application\ContentReactor.Health.csproj", "{2E15FAF4-F788-4294-8270-4C98DFF07055}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Health.Service", "Service\ContentReactor.Health.Service.csproj", "{2E15FAF4-F788-4294-8270-4C98DFF07055}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Health.Tests", "test\ContentReactor.Health.Tests.csproj", "{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentReactor.Health.Service.Tests", "Service.Tests\ContentReactor.Health.Service.Tests.csproj", "{FD30305D-1C87-4567-A0F9-7CE9DC740CF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

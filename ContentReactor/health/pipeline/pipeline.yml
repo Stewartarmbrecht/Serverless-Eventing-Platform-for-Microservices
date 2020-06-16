@@ -11,7 +11,7 @@ trigger:
   branches:
     include: [ master ] # branch names which will trigger a build
   paths:
-    include:  [ audio/* ] # file paths which must match to trigger a build
+    include:  [ health/* ] # file paths which must match to trigger a build
 
 steps:
 # PowerShell

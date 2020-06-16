@@ -1,4 +1,4 @@
-namespace ContentReactor.Health
+namespace ContentReactor.Health.Service
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,12 @@ namespace ContentReactor.Health
     public class HealthService : IHealthService
     {
         private static readonly string InstanceName = Environment.GetEnvironmentVariable("SYSTEM_NAME_PREFIX", EnvironmentVariableTarget.Process);
-        private static readonly HttpClient Client = new HttpClient();
+
+        /// <summary>
+        /// Gets or sets the Http client for calling health check functions.
+        /// </summary>
+        /// <returns>An instance of the <see class="HttpClient"/> class.</returns>
+        public static HttpClient Client { get; set; }
 
         /// <summary>
         /// Calls the HealthCheck function for each service.
@@ -26,8 +31,8 @@ namespace ContentReactor.Health
 
             List<string> urls = new List<string>
             {
-                $"https://{InstanceName}-api.azurewebsites.net/audiohealthcheck?userId={InstanceName}",
                 $"https://{InstanceName}-api.azurewebsites.net/categorieshealthcheck?userId={InstanceName}",
+                $"https://{InstanceName}-api.azurewebsites.net/audiohealthcheck?userId={InstanceName}",
                 $"https://{InstanceName}-api.azurewebsites.net/imageshealthcheck?userId={InstanceName}",
                 $"https://{InstanceName}-api.azurewebsites.net/texthealthcheck?userId={InstanceName}",
                 $"https://{InstanceName}-web-app.azurewebsites.net/api/health?userId={InstanceName}",

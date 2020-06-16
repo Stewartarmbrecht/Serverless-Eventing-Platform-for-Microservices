@@ -1,55 +1,70 @@
 [CmdletBinding()]
 param()
-$currentDirectory = Get-Location
-Set-Location $PSScriptRoot
 
-. ./Functions.ps1
+$solutionName = "ContentReactor"
+$serviceName = "Health"
 
-./Configure-Environment.ps1
+try {
+    $currentDirectory = Get-Location
+    Set-Location $PSScriptRoot
 
-Set-Location "./../"
-$location = Get-Location
+    . ./Functions.ps1
 
-$instanceName = $Env:InstanceName
-$userName = $Env:UserName
-$password = $Env:Password
-$tenantId = $Env:TenantId
-$uniqueDeveloperId = $Env:UniqueDeveloperId
-$region = $Env:Region
+    ./Configure-Environment.ps1 -Check
 
-$loggingPrefix = "ContentReactor Audio Deploy Apps $instanceName"
+    Set-Location "./../"
+    $location = Get-Location
 
-Write-BuildInfo "Deploying the applications." $loggingPrefix
+    $instanceName = $Env:InstanceName
+    $userName = $Env:UserName
+    $password = $Env:Password
+    $tenantId = $Env:TenantId
+    $uniqueDeveloperId = $Env:UniqueDeveloperId
+    $region = $Env:Region
 
-$resourceGroupName = "$instanceName-audio".ToLower()
-$apiName = "$instanceName-audio".ToLower()
-$apiFilePath = "$location/.dist/app.zip"
+    $loggingPrefix = "$solutionName $serviceName Deploy Apps $instanceName"
 
-Set-Location "$PSSCriptRoot"
+    Write-BuildInfo "Deploying the applications." $loggingPrefix
 
-Connect-AzureServicePrincipal $loggingPrefix
+    $resourceGroupName = "$instanceName-$serviceName".ToLower()
+    $apiName = "$instanceName-$serviceName".ToLower()
+    $apiFilePath = "$location/.dist/app.zip"
 
-Write-BuildInfo "Deploying the azure functions app using zip from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
-$result = Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $apiName -Slot Staging -ArchivePath $apiFilePath -Force
-if ($VerbosePreference -ne 'SilentlyContinue') { $result }
+    Set-Location "$PSSCriptRoot"
 
-$automatedTestJob = Test-Automated -AutomatedUrl "https://$apiName-staging.azurewebsites.net/api/audio" -LoggingPrefix $loggingPrefix
-While($automatedTestJob.State -eq "Running")
-{
+    Connect-AzureServicePrincipal $loggingPrefix
+
+    Write-BuildInfo "Deploying the azure functions app using zip from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
+    $result = Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $apiName -Slot Staging -ArchivePath $apiFilePath -Force
+    if ($VerbosePreference -ne 'SilentlyContinue') { $result }
+
+    $automatedTestJob = Test-Automated `
+        -SolutionName $solutionName `
+        -ServiceName $serviceName `
+        -AutomatedUrl "https://$apiName-staging.azurewebsites.net/api/" `
+        -LoggingPrefix $loggingPrefix
+    While($automatedTestJob.State -eq "Running")
+    {
+        $automatedTestJob | Receive-Job | Write-Verbose
+    }
     $automatedTestJob | Receive-Job | Write-Verbose
-}
-$automatedTestJob | Receive-Job | Write-Verbose
-if ($automatedTestJob.State -eq "Failed") {
-    Write-BuildError "The staging end to end testing failed." $loggingPrefix
-    Write-BuildError "Exiting deployment." $loggingPrefix
+    if ($automatedTestJob.State -eq "Failed") {
+        Write-BuildError "The staging end to end testing failed." $loggingPrefix
+        Write-BuildError "Exiting deployment." $loggingPrefix
+        Get-Job | Remove-Job
+        throw "Automated tests failed."
+    }
     Get-Job | Remove-Job
-    Exit
+
+    Write-BuildInfo "Switching the '$resourceGroupName/$apiName' azure functions app staging slot with production." $loggingPrefix
+    $result = Switch-AzWebAppSlot -SourceSlotName "Staging" -DestinationSlotName "Production" -ResourceGroupName $resourceGroupName -Name $apiName
+    if ($VerbosePreference -ne 'SilentlyContinue') { $result }
+
+    Write-BuildInfo "Finished deploying the applications." $loggingPrefix
+    Set-Location $currentDirectory
 }
-Get-Job | Remove-Job
-
-Write-BuildInfo "Switching the '$resourceGroupName/$apiName' azure functions app staging slot with production." $loggingPrefix
-$result = Switch-AzWebAppSlot -SourceSlotName "Staging" -DestinationSlotName "Production" -ResourceGroupName $resourceGroupName -Name $apiName
-if ($VerbosePreference -ne 'SilentlyContinue') { $result }
-
-Write-BuildInfo "Finished deploying the applications." $loggingPrefix
-Set-Location $currentDirectory
+catch {
+    Get-Job | Stop-Job | Remove-Job
+    Set-Location $currentDirectory
+    throw $_    
+}

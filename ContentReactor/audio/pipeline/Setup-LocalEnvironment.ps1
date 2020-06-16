@@ -25,8 +25,6 @@ $loggingPrefix = "ContentReactor Audio $instanceName Setup"
 
 ./Deploy-Application.ps1
 
-./Deploy-Subscription.ps1
-
 Set-Location "./../Service"
 Invoke-BuildCommand "func azure functionapp fetch-app-settings $instanceName-audio" $loggingPrefix "Fetching the app settings from azure."
 Invoke-BuildCommand "func settings add ""FUNCTIONS_WORKER_RUNTIME"" ""dotnet""" $loggingPrefix "Adding the run time setting for 'dotnet'."

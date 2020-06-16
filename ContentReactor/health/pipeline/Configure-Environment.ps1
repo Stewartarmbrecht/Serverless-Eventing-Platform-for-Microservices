@@ -6,7 +6,9 @@ param(
     [String] $TenantId, 
     [String] $UserId, 
     [SecureString] $Password, 
-    [String] $UniqueDeveloperId
+    [String] $UniqueDeveloperId,
+    [Int] $HealthLocalHostingPort = 7061,
+    [Switch] $Check
 )
 . ./Functions.ps1
 
@@ -16,7 +18,10 @@ if ($InstanceName) {
     $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
 }
 
-Write-BuildInfo "Configuring the environment." $loggingPrefix
+if (!$Check) 
+{
+    Write-BuildInfo "Configuring the environment." $loggingPrefix
+}
 
 if ($InstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
@@ -42,6 +47,10 @@ if ($UniqueDeveloperId) {
     # [Environment]::SetEnvironmentVariable("UniqueDeveloperId", $UniqueDeveloperId, "User")
     $Env:UniqueDeveloperId = $UniqueDeveloperId
 }
+if ($HealthLocalHostingPort) {
+    # [Environment]::SetEnvironmentVariable("HealthLocalHostingPort", $HealthLocalHostingPort, "User")
+    $Env:HealthLocalHostingPort = $HealthLocalHostingPort
+}
 
 if(!$Env:InstanceName) {
     $Env:InstanceName = Read-Host -Prompt 'Please provide a prefix to add to the beginning of every resources for the instance of the system.  Some resources require globally unique names.  This prefix should guarantee that.'
@@ -61,11 +70,18 @@ if(!$Env:TenantId) {
 if(!$Env:UniqueDeveloperId) {
     $Env:UniqueDeveloperId = Read-Host -Prompt 'Please provide a unique id to identify subscriptions deployed to the cloud for the local developer.'
 }
+if(!$Env:HealthLocalHostingPort) {
+    $Env:HealthLocalHostingPort = Read-Host -Prompt 'Please provide the port number for the audio api.'
+}
 
-$loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
-Write-Verbose "Env:InstanceName=$Env:InstanceName"
-Write-Verbose "Env:Region=$Env:Region"
-Write-Verbose "Env:UserId=$Env:UserId"
-Write-Verbose "Env:TenantId=$Env:TenantId"
-Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
-Write-BuildInfo "Configured the environment." $loggingPrefix
+if (!$Check)
+{
+    $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
+    Write-Verbose "Env:InstanceName=$Env:InstanceName"
+    Write-Verbose "Env:Region=$Env:Region"
+    Write-Verbose "Env:UserId=$Env:UserId"
+    Write-Verbose "Env:TenantId=$Env:TenantId"
+    Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
+    Write-Verbose "Env:HealthLocalHostingPort=$Env:HealthLocalHostingPort"
+    Write-BuildInfo "Configured the environment." $loggingPrefix
+}

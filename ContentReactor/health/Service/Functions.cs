@@ -1,10 +1,10 @@
-namespace ContentReactor.Health
+namespace ContentReactor.Health.Service
 {
     using ContentReactor.Common.UserAuthentication;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
-    /// Base class for all Audio operations.
+    /// Base class for all Health operations.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724", Justification = "Reviewed")]
     public partial class Functions
@@ -28,11 +28,14 @@ namespace ContentReactor.Health
         /// Initializes a new instance of the <see cref="Functions"/> class.
         /// </summary>
         /// <param name="userAuthenticationService">The user authentication service to use to identify the calling user.</param>
+        /// <param name="healthService">The service to use to perform the system wide health checks.</param>
         [ActivatorUtilitiesConstructor]
         public Functions(
-            IUserAuthenticationService userAuthenticationService)
+            IUserAuthenticationService userAuthenticationService,
+            IHealthService healthService)
         {
             this.UserAuthenticationService = userAuthenticationService;
+            this.HealthService = healthService;
         }
 
         /// <summary>

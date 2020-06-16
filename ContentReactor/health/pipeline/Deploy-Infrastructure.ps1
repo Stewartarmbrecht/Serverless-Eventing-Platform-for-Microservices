@@ -1,29 +1,39 @@
 [CmdletBinding()]
 param()
-$currentDirectory = Get-Location
-Set-Location $PSScriptRoot
 
-. ./Functions.ps1
+$solutionName = "ContentReactor"
+$serviceName = "Health"
 
-./Configure-Environment.ps1
+try {
+    $currentDirectory = Get-Location
+    Set-Location $PSScriptRoot
 
-$instanceName = $Env:InstanceName
-$region = $Env:Region
+    . ./Functions.ps1
 
-$loggingPrefix = "ContentReactor Audio Deploy Infrastructure $instanceName"
+    ./Configure-Environment.ps1 -Check
 
-$resourceGroupName = "$instanceName-audio".ToLower()
-$deploymentFile = "./../infrastructure/infrastructure.json"
+    $instanceName = $Env:InstanceName
+    $region = $Env:Region
 
-Write-BuildInfo "Deploying the service infrastructure." $loggingPrefix
+    $loggingPrefix = "$solutionName $serviceName Deploy Infrastructure $instanceName"
 
-Connect-AzureServicePrincipal $loggingPrefix
+    $resourceGroupName = "$instanceName-health".ToLower()
+    $deploymentFile = "./../Infrastructure/Infrastructure.json"
 
-Write-BuildInfo "Creating the resource group: $resourceGroupName." $loggingPrefix
-New-AzResourceGroup -Name $resourceGroupName -Location $region -Force | Write-Verbose
+    Write-BuildInfo "Deploying the service infrastructure." $loggingPrefix
 
-Write-BuildInfo "Executing the deployment using: $deploymentFile." $loggingPrefix
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName | Write-Verbose
+    Connect-AzureServicePrincipal $loggingPrefix
 
-Write-BuildInfo "Deployed the service infrastructure." $loggingPrefix
-Set-Location $currentDirectory
+    Write-BuildInfo "Creating the resource group: $resourceGroupName." $loggingPrefix
+    New-AzResourceGroup -Name $resourceGroupName -Location $region -Force | Write-Verbose
+
+    Write-BuildInfo "Executing the deployment using: $deploymentFile." $loggingPrefix
+    New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName | Write-Verbose
+
+    Write-BuildInfo "Deployed the service infrastructure." $loggingPrefix
+    Set-Location $currentDirectory
+}
+catch {
+    Set-Location $currentDirectory
+    throw $_    
+}

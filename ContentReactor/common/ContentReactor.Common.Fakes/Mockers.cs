@@ -1,13 +1,20 @@
 namespace ContentReactor.Common.Fakes
 {
+    using System.Collections.Generic;
     using System.IO;
+    using System.Net;
+    using System.Net.Http;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
+    using System.Threading;
+    using System.Threading.Tasks;
     using ContentReactor.Common.UserAuthentication;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Primitives;
+    using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Timers;
     using Moq;
+    using Moq.Protected;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -96,7 +103,7 @@ namespace ContentReactor.Common.Fakes
         /// </summary>
         /// <param name="requestBody">The object to stream as the body.</param>
         /// <returns>A mock http request object.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification="Reviewed")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification = "Reviewed")]
         public static Mock<HttpRequest> MockRequest(object requestBody)
         {
             var mockRequest = new Mock<HttpRequest>();
@@ -125,7 +132,7 @@ namespace ContentReactor.Common.Fakes
         /// Mocks a request that has invalid json.
         /// </summary>
         /// <returns>A mock http request object.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification="Reviewed")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification = "Reviewed")]
         public static Mock<HttpRequest> MockRequestWithInvalidJson()
         {
             var mockRequest = new Mock<HttpRequest>();
@@ -146,7 +153,7 @@ namespace ContentReactor.Common.Fakes
         /// Mocks a request that has invalid json.
         /// </summary>
         /// <returns>A mock http request object.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification="Reviewed")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification = "Reviewed")]
         public static Mock<HttpRequest> MockRequestWithNoPayload()
         {
             var mockRequest = new Mock<HttpRequest>();
@@ -174,6 +181,39 @@ namespace ContentReactor.Common.Fakes
             var userId = "fakeuserid";
             mockUserAuth.Setup(m => m.GetUserIdAsync(It.IsAny<HttpRequest>(), out userId, out mockResultObject)).ReturnsAsync(true);
             return mockUserAuth;
+        }
+
+        /// <summary>
+        /// Mocks an HttpMessageHandler to rertun a response for any request.
+        /// </summary>
+        /// <param name="responses">The object to JSON serialize as the content of the response.</param>
+        /// <returns>HttpMessageHandler mock that will return a set response for any request.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000", Justification = "Reviewed")]
+        public static Mock<HttpMessageHandler> MockHttpMessageHandler(Queue<HttpResponseMessage> responses)
+        {
+            var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            handlerMock.Protected()
+
+                // Setup the PROTECTED method to mock
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+
+                // prepare the expected response of the mocked http call
+                .ReturnsAsync(() => responses.Dequeue())
+                .Verifiable();
+
+            return handlerMock;
+        }
+
+        /// <summary>
+        /// Returns a TimerInfo object to use to call Timer based azure functions.
+        /// </summary>
+        /// <returns>An instance of the <see class="TimerInfo"/> class.</returns>
+        public static TimerInfo GetTimerInfo()
+        {
+            return new TimerInfo(new ScheduleStub(), new ScheduleStatus(), false);
         }
     }
 }

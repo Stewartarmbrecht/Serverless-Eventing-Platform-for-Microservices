@@ -1,4 +1,4 @@
-namespace ContentReactor.Health
+namespace ContentReactor.Health.Service
 {
     using System;
     using System.Threading.Tasks;
@@ -19,8 +19,8 @@ namespace ContentReactor.Health
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "RCS1163", Justification = "Reviewed")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Redundancy", "IDE0060", Justification = "Reviewed")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801", Justification = "Reviewed")]
-        [FunctionName("HealthCheckTimer")]
-        public async Task HealthCheckTimer(
+        [FunctionName("SystemHealthCheckTimer")]
+        public async Task SystemHealthCheckTimer(
             [TimerTrigger("0 0/10 * * * *")]TimerInfo timer,
             ILogger log)
         {
@@ -35,7 +35,7 @@ namespace ContentReactor.Health
             }
             catch (Exception ex)
             {
-                log.LogError("Unhandled exception", ex);
+                log.LogError(UnhandledExceptionError, ex);
                 throw;
             }
         }
