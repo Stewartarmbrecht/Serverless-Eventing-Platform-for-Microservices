@@ -16,10 +16,16 @@ task Pipeline Clean, Analyze, Test, Publish
 # Synopsis: Install Build Dependencies
 task InstallDependencies {
     # Cant run an Invoke-Build Task without Invoke-Build.
+    Remove-Module -Name InvokeBuild
     Install-Module -Name InvokeBuild -Force
 
+    Remove-Module -Name DscResourceTestHelper
     Install-Module -Name DscResourceTestHelper -Force
+
+    Remove-Module -Name Pester
     Install-Module -Name Pester -Force
+
+    Remove-Module -Name PSScriptAnalyzer
     Install-Module -Name PSScriptAnalyzer -Force
 }
 
@@ -52,27 +58,34 @@ task Analyze BeforeAnalyze, {
 
     if ($saResults) {
         $saResults | Format-Table
-        throw "One or more PSScriptAnalyzer errors/warnings where found."
+        throw "One or more PSScriptAnalyzer errors/warnings were found."
     }
 }, AfterAnalyze
 
 # Synopsis: Test the project with Pester. Publish Test and Coverage Reports
 task RunTests {
-    $invokePesterParams = @{
-        OutputFile =  (Join-Path $Artifacts "TestResults.xml")
-        OutputFormat = 'NUnitXml'
+    $invokePesterParams = [PesterConfiguration]@{
+        TestResults = @{
+            OutputFile =  (Join-Path $Artifacts "TestResults.xml")
+            OutputFormat = 'NUnitXml'
+        }
         Strict = $true
+        Run = @{
+            Exit = $false
+        }
+        CodeCoverage = @{
+            Enable = $true
+            Path = (Get-ChildItem -Path "$ModulePath\*.ps1" -Exclude "*.Tests.*" -Recurse).FullName
+        }
         PassThru = $true
         Verbose = $false
-        EnableExit = $false
-        CodeCoverage = (Get-ChildItem -Path "$ModulePath\*.ps1" -Exclude "*.Tests.*" -Recurse).FullName
     }
 
     # Publish Test Results as NUnitXml
-    $testResults = Invoke-Pester @invokePesterParams;
+    $testResults = Invoke-Pester -Configuration @invokePesterParams;
 
     # Save Test Results as JSON
-    $testresults | ConvertTo-Json -Depth 5 | Set-Content  (Join-Path $Artifacts "PesterResults.json")
+    $testresults | ConvertTo-Json -Depth 6 | Set-Content  (Join-Path $Artifacts "PesterResults.json")
 
     # Old: Publish Code Coverage as HTML
     # $moduleInfo = @{
