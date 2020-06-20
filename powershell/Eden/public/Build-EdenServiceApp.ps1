@@ -14,18 +14,14 @@ function Build-EdenServiceApp
 
         $loggingPrefix = "$solutionName $serviceName Build"
         
-        Write-BuildInfo $currentDirectory $loggingPrefix
-
         Write-BuildInfo $location $loggingPrefix
         
         if ($Continuous) {
             Write-BuildInfo "Building the solution continuously." $loggingPrefix
-            dotnet watch --project ./$solutionName.$serviceName.sln build ./$solutionName.$serviceName.sln | Write-Verbose
-            if ($LASTEXITCODE -ne 0) { throw "Building the solution exited with an error."}
+            Invoke-ContinuousBuildCommand -SolutionName $solutionName -ServiceName $serviceName 
         } else {
             Write-BuildInfo "Building the solution." $loggingPrefix
-            dotnet build ./$solutionName.$serviceName.sln | Write-Verbose
-            if ($LASTEXITCODE -ne 0) { throw "Building the solution exited with an error."}
+            Invoke-BuildCommand -SolutionName $solutionName -ServiceName $serviceName 
         }
         
         Write-BuildInfo "Finished building the solution." $loggingPrefix
