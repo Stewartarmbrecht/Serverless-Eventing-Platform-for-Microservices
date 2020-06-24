@@ -15,6 +15,7 @@ function Get-HealthStatus
             Write-BuildInfo "Health check status successful." $LoggingPrefix
             return $TRUE
         } else {
+            Write-BuildInfo "Health check status unsuccessful. Status: $status" $LoggingPrefix
             return $FALSE
         }
     } catch {

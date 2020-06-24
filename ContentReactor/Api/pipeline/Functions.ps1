@@ -1,18 +1,18 @@
 function Write-BuildInfo {
     [CmdletBinding()]
     param(
-        [String]$message,
-        [String]$loggingPrefix
+        [String]$Message,
+        [String]$LoggingPrefix
         )  
-    Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($loggingPrefix): $message"  -ForegroundColor DarkCyan 
+    Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($LoggingPrefix): $Message"  -ForegroundColor DarkCyan 
 }
 function Write-BuildError {
     [CmdletBinding()]
     param(
-        [String]$message,
-        [String]$loggingPrefix
+        [String]$Message,
+        [String]$LoggingPrefix
     ) 
-    Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($loggingPrefix): $message" -ForegroundColor DarkRed 
+    Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($LoggingPrefix): $Message" -ForegroundColor DarkRed 
 }
 function Invoke-BuildCommand {
     [CmdletBinding()]
@@ -59,18 +59,26 @@ function Connect-AzureServicePrincipal {
         [String]$loggingPrefix
     )
 
-    $userName = $Env:UserName
-    $password = $Env:Password
-    $tenantId = $Env:TenantId
-    $userId = $Env:UserId
-    #$subscriptionId = $Env:SubscriptionId
-
-    Write-BuildInfo "Connecting to Azure using User Id: $userId" $loggingPrefix
-
-    $pswd = ConvertTo-SecureString $password
-    $pscredential = New-Object System.Management.Automation.PSCredential($userId, $pswd)
-    $result = Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $tenantId #-Subscription $subscriptionId
-    if ($VerbosePreference) {$result}
+    try 
+    {
+        $userName = $Env:UserName
+        $password = $Env:Password
+        $tenantId = $Env:TenantId
+        $userId = $Env:UserId
+        #$subscriptionId = $Env:SubscriptionId
+    
+        Write-BuildInfo "Connecting to Azure using User Id: $userId" $loggingPrefix
+    
+        $pswd = ConvertTo-SecureString $password
+        $pscredential = New-Object System.Management.Automation.PSCredential($userId, $pswd)
+        $result = Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $tenantId #-Subscription $subscriptionId
+        if ($VerbosePreference) {$result}
+    }
+    catch
+    {
+        Write-BuildError 
+        throw $_
+    }
 }
 
 function Test-Automated

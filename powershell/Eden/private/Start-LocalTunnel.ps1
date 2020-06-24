@@ -9,18 +9,17 @@ function Start-LocalTunnel
         [String]$LoggingPrefix
     )
 
-    Start-Job -Name "rt-Tunnel" -ScriptBlock {
-        $port = $args[0]
-        $loggingPrefix = $args[1]
+    try
+    {
+        Write-BuildInfo "Starting the local tunnel to port $Port." $LoggingPrefix
 
-        . ./Functions.ps1
+        Invoke-CommandLocalTunnel -Port $Port
 
-        if ($IsWindows) {
-            ./ngrok.exe http http://localhost:$port -host-header=rewrite | Write-Verbose
-        } else {
-            ./ngrok http http://localhost:$port -host-header=rewrite | Write-Verbose
-        }
-
-        Write-BuildInfo "The service tunnel is up." $loggingPrefix
-    } -ArgumentList @($Port, $LoggingPrefix)
+        Write-BuildInfo "The service tunnel has been shut down." $LoggingPrefix
+    }
+    catch
+    {
+        Write-BuildError "Exception thrown while starting the local tunnel. Message: '$($_.Exception.Message)'" $LoggingPrefix
+        throw $_ 
+    }
 }

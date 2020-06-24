@@ -13,7 +13,7 @@ InModuleScope "Eden" {
     Describe "Public/Build-EdenServiceApp" {
         Context "When executed only once" {
             It "Executes successfully for a build without error" {
-                Mock Invoke-BuildCommand { 
+                Mock Invoke-CommandBuild { 
                     Write-Verbose "Build ran successfully." 
                 }
                 {
@@ -21,7 +21,7 @@ InModuleScope "Eden" {
                 } | Should -Not -Throw
             }
             It "Throws an error for a failed build" {
-                Mock Invoke-BuildCommand { 
+                Mock Invoke-CommandBuild { 
                     Write-Host "Build failed."
                     throw "Building the solution exited with an error."
                 }
@@ -32,7 +32,7 @@ InModuleScope "Eden" {
         }
         Context "Continuously" {
             It "Executes successfully" {
-                Mock Invoke-ContinuousBuildCommand { 
+                Mock Invoke-CommandBuildContinuous { 
                     Write-Verbose "Build ran successfully." 
                 }
                 {
@@ -40,7 +40,7 @@ InModuleScope "Eden" {
                 } | Should -Not -Throw
             }
             It "Throws an error if the project is missing" {
-                Mock Invoke-ContinuousBuildCommand { 
+                Mock Invoke-CommandBuildContinuous { 
                     Write-Host "Cannot find the project."
                     throw "Building the solution exited with an error."
                 }

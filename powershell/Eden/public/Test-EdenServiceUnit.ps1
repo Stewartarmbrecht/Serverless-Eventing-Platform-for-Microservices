@@ -10,9 +10,9 @@ function Test-EdenServiceUnit
     {
         $currentDirectory = Get-Location
 
-        $solutionName = ($currentDirectory -split '\\')[-2]
-        $serviceName = ($currentDirectory -split '\\')[-1]
-
+        $solutionName = Get-SolutionName
+        $serviceName = Get-ServiceName
+    
         $loggingPrefix = "$solutionName $serviceName Test Unit"
         
         $verbose = $VerbosePreference
@@ -20,12 +20,12 @@ function Test-EdenServiceUnit
         if ($Continuous) {
             Write-BuildInfo "Running the unit tests continuously." $loggingPrefix
             $VerbosePreference = "Continue"
-            Invoke-ContinuousTestUnitCommand -SolutionName $solutionName -ServiceName $serviceName
+            Invoke-CommandTestUnitContinuous -SolutionName $solutionName -ServiceName $serviceName
         }
         else 
         {
             Write-BuildInfo "Running the unit tests." $loggingPrefix
-            Invoke-TestUnitCommand -SolutionName $solutionName -ServiceName $serviceName
+            Invoke-CommandTestUnit -SolutionName $solutionName -ServiceName $serviceName
         }
         
         $VerbosePreference = $verbose

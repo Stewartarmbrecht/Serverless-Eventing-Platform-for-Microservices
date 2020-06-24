@@ -66,7 +66,7 @@ function Start-Function
         [Switch]$Continuous
     )
     
-    Start-Job -Name "rt-Audio-Service" -ScriptBlock {
+    $job = Start-Job -Name "rt-Audio-Service" -ScriptBlock {
         $functionLocation = $args[0]
         $port = $args[1]
         $loggingPrefix = $args[2]
@@ -88,6 +88,7 @@ function Start-Function
         }
         Write-BuildInfo "The function app at '$functionLocation' is running." $loggingPrefix
     } -ArgumentList @($FunctionLocation, $Port, $LoggingPrefix, $Continuous)
+    return $job
 }
 
 function Start-LocalTunnel

@@ -2,8 +2,8 @@ function Write-BuildInfo {
     #[System.Diagnostics.CodeAnalysis.SuppressMessage('PSAvoidUsingWriteHost', '', Scope='Function')]
     [CmdletBinding()]
     param(
-        [String]$message,
-        [String]$loggingPrefix
+        [String]$Message,
+        [String]$LoggingPrefix
         )  
-    Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($loggingPrefix): $message"  -ForegroundColor DarkCyan 
+    Write-Host "$(Get-Date -UFormat "%Y-%m-%d %H:%M:%S") $($LoggingPrefix): $Message"  -ForegroundColor DarkCyan 
 }

@@ -13,7 +13,7 @@ InModuleScope "Eden" {
     Describe "Public/Test-EdenServiceUnit" {
         Context "When executed only once" {
             It "Executes successfully for a unit test run without error." {
-                Mock Invoke-TestUnitCommand { 
+                Mock Invoke-CommandTestUnit { 
                     Write-Verbose "Unit tests ran successfully." 
                 }
                 
@@ -22,7 +22,7 @@ InModuleScope "Eden" {
                 } | Should -Not -Throw
             }
             It "Throws an error for a failed unit test run." {
-                Mock Invoke-TestUnitCommand { 
+                Mock Invoke-CommandTestUnit { 
                     Write-Host "Test run failed."
                     throw "Unit testing the solution exited with an error."
                 }
@@ -33,7 +33,7 @@ InModuleScope "Eden" {
         }
         Context "Continuously" {
             It "Executes successfully" {
-                Mock Invoke-ContinuousTestUnitCommand { 
+                Mock Invoke-CommandTestUnitContinuous { 
                     Write-Verbose "Unit tests ran successfully." 
                 }
                 {
@@ -41,7 +41,7 @@ InModuleScope "Eden" {
                 } | Should -Not -Throw
             }
             It "Throws an error if the project is missing" {
-                Mock Invoke-ContinuousTestUnitCommand { 
+                Mock Invoke-CommandTestUnitContinuous { 
                     Write-Host "Cannot find project."
                     throw "Unit testing the solution exited with an error."
                 }
