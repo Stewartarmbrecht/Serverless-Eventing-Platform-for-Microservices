@@ -1,4 +1,4 @@
-function Test-Automated
+function Test-AutomatedJob
 {
     [CmdletBinding()]
     param(
@@ -13,7 +13,7 @@ function Test-Automated
         [Parameter()]
         [switch]$Continuous
     )
-    $automatedTestJob = Start-Job -Name "rt-Automated" -ScriptBlock {
+    $automatedTestJob = Start-ThreadJob -Name "rt-Automated" -ScriptBlock {
         $AutomatedUrl = $args[0]
         $Continuous = $args[1]
         $LoggingPrefix = $args[2]

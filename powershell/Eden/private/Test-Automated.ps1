@@ -14,16 +14,24 @@ function Test-Automated
         [switch]$Continuous
     )
 
-    $Env:AutomatedUrl = $AutomatedUrl
-    Write-BuildInfo "Running automated tests against '$AutomatedUrl'." $LoggingPrefix
-
-    if ($Continuous)
-    {
-        Invoke-BuildCommand "dotnet watch --project ./../Service.Tests/$SolutionName.$ServiceName.Service.Tests.csproj test --filter TestCategory=Automated" "Running automated tests continuously." $LoggingPrefix
-    }
-    else
-    {
-        Invoke-BuildCommand "dotnet test ./../Service.Tests/$SolutionName.$ServiceName.Service.Tests.csproj --filter TestCategory=Automated" "Running automated tests once." $LoggingPrefix
-        Write-BuildInfo "Finished running automated tests." $LoggingPrefix
+    try {
+        $Env:AutomatedUrl = $AutomatedUrl
+        Write-BuildInfo "Running automated tests against '$AutomatedUrl'." $LoggingPrefix
+    
+        if ($Continuous)
+        {
+            Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
+            Invoke-CommandTestAutomatedContinuous -SolutionName $SolutionName -ServiceName $ServiceName
+        }
+        else
+        {
+            Write-BuildInfo "Running automated tests once." $LoggingPrefix
+            Invoke-CommandTestAutomated -SolutionName $SolutionName -ServiceName $ServiceName
+            Write-BuildInfo "Finished running automated tests." $LoggingPrefix
+        }
+        }
+    catch {
+        Write-BuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $LoggingPrefix
+        throw $_        
     }
 }
