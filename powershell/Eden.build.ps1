@@ -80,7 +80,7 @@ task RunTests {
         }
         CodeCoverage = @{
             Enabled = $true
-            Path = (Get-ChildItem -Path "$ModulePath\*.ps1" -Exclude "*.Tests.*" -Recurse).FullName
+            Path = (Get-ChildItem -Path "$ModulePath\*.ps1" -Exclude "*.Tests.*", "Invoke-Command*" -Recurse).FullName
             OutputPath =  (Join-Path $Artifacts "coverage.xml")
         }
         Output = @{

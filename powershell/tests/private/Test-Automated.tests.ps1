@@ -96,5 +96,45 @@ InModuleScope "Eden" {
                 }
             }
         }
+        Context "When executed continuously with success" {
+            BeforeEach {
+                Mock Invoke-CommandTestAutomatedContinuous {
+                    # param($SolutionName, $ServiceName)
+                    # Write-Verbose $SolutionName
+                    # Write-Verbose $ServiceName
+                 }
+                Mock Write-BuildInfo {
+                    # param($Message, $LoggingPrefix)
+                    # Write-Verbose $Message
+                    # Write-Verbose $LoggingPrefix
+                }
+
+                Test-Automated `
+                    -SolutionName "My Solution" `
+                    -ServiceName "My Service" `
+                    -AutomatedUrl "Test Url" `
+                    -LoggingPrefix "My Prefix" `
+                    -Continuous
+            }
+            It "Prints the appropriate message to the host." {
+                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                    $Message -eq "Running automated tests against 'Test Url'." `
+                    -and `
+                    $LoggingPrefix -eq "My Prefix" 
+                } 
+                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                    $Message -eq "Running automated tests continuously." `
+                    -and `
+                    $LoggingPrefix -eq "My Prefix" 
+                }
+            }
+            It "Calls the test automated command." {
+                Assert-MockCalled Invoke-CommandTestAutomatedContinuous 1 -ParameterFilter { 
+                    $SolutionName -eq "My Solution" `
+                    -and `
+                    $ServiceName -eq "My Service" 
+                }
+            }
+        }
     }
 }

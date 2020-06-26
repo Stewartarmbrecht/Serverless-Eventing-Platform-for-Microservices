@@ -9,7 +9,6 @@ $here = $here -replace 'tests', 'Eden'
 # Import our module to use InModuleScope
 $modulePath = Join-Path $PSScriptRoot "../../Eden/Eden.psm1"
 Import-Module $modulePath -Force
-Write-Host (Get-Location)
 Import-Module (Join-Path $PSScriptRoot "../TestUtilities.psm1") -Force
 
 InModuleScope "Eden" {

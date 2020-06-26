@@ -22,7 +22,7 @@ InModuleScope "Eden" {
             BeforeEach {
                 Mock Start-Application {}
 
-                Mock Start-Job { 
+                Mock Start-ThreadJob { 
                     param ([String]$Name, [ScriptBlock]$ScriptBlock, $ArgumentList) 
                     Invoke-Command $ScriptBlock -ArgumentList $ArgumentList
                 }

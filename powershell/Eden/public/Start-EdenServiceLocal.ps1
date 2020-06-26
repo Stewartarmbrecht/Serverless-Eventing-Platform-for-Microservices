@@ -17,7 +17,7 @@ function Start-EdenServiceLocal
         $solutionName = Get-SolutionName
         $serviceName = Get-ServiceName
         
-        Set-EnvironmentVariables -Check
+        Set-EdenServiceEnvVariables -Check
     
         $instanceName = Get-EnvironmentVariable "$solutionName.$serviceName.InstanceName"
         $port = Get-EnvironmentVariable "$solutionName.$serviceName.LocalHostingPort"
@@ -44,14 +44,16 @@ function Start-EdenServiceLocal
                 -and "" -ne $serviceUrl `
                 -and $TRUE -eq $healthCheck) {
                 if ($RunAutomatedTestsContinuously) {
-                    $automatedTestJob = Test-Automated `
+                    Write-BuildInfo "Starting continuous automated test job." $loggingPrefix
+                    $automatedTestJob = Test-AutomatedJob `
                         -SolutionName $solutionName `
                         -ServiceName $serviceName `
                         -AutomatedUrl "http://localhost:$port/api" `
                         -LoggingPrefix $loggingPrefix `
                         -Continuous
                 } else {
-                    $automatedTestJob = Test-Automated `
+                    Write-BuildInfo "Starting automated test job." $loggingPrefix
+                    $automatedTestJob = Test-AutomatedJob `
                         -SolutionName $solutionName `
                         -ServiceName $serviceName `
                         -AutomatedUrl "http://localhost:$port/api" `
@@ -60,12 +62,8 @@ function Start-EdenServiceLocal
                 $testing = $TRUE
             }
     
-            if ($automatedTestJob -and $automatedTestJob.State -ne "Running")
+            if ($automatedTestJob -and $automatedTestJob.State -eq "Completed")
             {
-                if ($automatedTestJob.State -eq "Failed")
-                {
-                    throw "Automated tests failed."
-                }
                 Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
                 Stop-Job rt-*
                 Remove-Job rt-*
@@ -74,6 +72,8 @@ function Start-EdenServiceLocal
             Get-Job | Receive-Job | Write-Verbose
         }
     
+        Write-BuildInfo "All jobs stopped running." $loggingPrefix
+
         Get-Job | Receive-Job | Write-Verbose
     
         if (Get-Job -State "Failed") 
@@ -85,10 +85,10 @@ function Start-EdenServiceLocal
     } 
     catch 
     {
-        Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
+        Write-BuildError "Stopping and removing jobs due to exception. Message: '$($_.Exception.Message)'" $loggingPrefix
         Stop-Job rt-*
         Remove-Job rt-*
-        Write-BuildInfo "Stopped." $loggingPrefix
+        Write-BuildError "Stopped." $loggingPrefix
         throw $_
     }
 }

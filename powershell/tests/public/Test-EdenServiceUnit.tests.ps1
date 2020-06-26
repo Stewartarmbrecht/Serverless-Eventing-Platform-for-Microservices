@@ -11,7 +11,7 @@ Import-Module (Resolve-Path ".\Eden\Eden.psm1") -Force
 
 InModuleScope "Eden" {
     Describe "Public/Test-EdenServiceUnit" {
-        Context "When executed only once" {
+       Context "When executed only once" {
             It "Executes successfully for a unit test run without error." {
                 Mock Invoke-CommandTestUnit { 
                     Write-Verbose "Unit tests ran successfully." 
