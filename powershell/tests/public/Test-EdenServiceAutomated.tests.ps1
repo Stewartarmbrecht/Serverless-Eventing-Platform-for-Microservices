@@ -12,7 +12,7 @@ Import-Module $modulePath -Force
 Import-Module (Join-Path $PSScriptRoot "../TestUtilities.psm1") -Force
 
 InModuleScope "Eden" {
-    Describe "Public/$sut" {
+    Describe "Public/Test-EdenServiceAutoamted" {
         BeforeAll {
             Mock Get-SolutionName { "TestSolution" }
             Mock Get-ServiceName { "TestService" }
