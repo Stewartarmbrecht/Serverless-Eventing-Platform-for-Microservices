@@ -11,11 +11,9 @@ function Test-EdenServiceAutomated
         $solutionName = Get-SolutionName
         $serviceName = Get-ServiceName
     
-        Set-EdenServiceEnvVariables -Check
+        $edenEnvConfig = Get-EdenEnvConfig -SolutionName $solutionName -ServiceName $serviceName -Check
     
-        $instanceName = Get-EnvironmentVariable "$solutionName.$serviceName.InstanceName"
-    
-        $loggingPrefix = "$solutionName $serviceName Test Automated $instanceName"
+        $loggingPrefix = "$solutionName $serviceName Test Automated $($edenEnvConfig.EnvironmentName)"
     
         if ($Continuous) {
             Write-BuildInfo "Running automated tests continuously." $loggingPrefix

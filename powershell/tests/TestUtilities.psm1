@@ -18,14 +18,16 @@ function Set-TestEnvironment {
     param(
     )
 
-    Set-EdenEnvConfig -Clear
+    Set-EdenEnvConfig -SolutionName "TestSolution" -ServiceName "TestService" -Clear
     Set-EdenEnvConfig `
+        -SolutionName "TestSolution" `
+        -ServiceName "TestService" `
         -EnvironmentName "TestEnvironment" `
         -Region "TestRegion" `
-        -TenantId "TestTenant" `
+        -TenantId "TestTenantId" `
         -ServicePrincipalId "TestServicePrincipalId" `
         -ServicePrincipalPassword (ConvertTo-SecureString "TestServicePrincipalPassword" -AsPlainText) `
-        -DeveloperId "TestDevId"
+        -DeveloperId "TestDeveloperId"
 }
 function Get-MockWriteBuildInfoBlock {
     [CmdletBinding()]

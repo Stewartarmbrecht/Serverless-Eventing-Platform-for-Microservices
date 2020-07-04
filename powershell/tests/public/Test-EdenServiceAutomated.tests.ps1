@@ -13,7 +13,7 @@ Import-Module (Join-Path $PSScriptRoot "../TestUtilities.psm1") -Force
 
 InModuleScope "Eden" {
     Describe "Public/Test-EdenServiceAutoamted" {
-        BeforeAll {
+        BeforeEach {
             Mock Get-SolutionName { "TestSolution" }
             Mock Get-ServiceName { "TestService" }
             Set-TestEnvironment
@@ -40,14 +40,14 @@ InModuleScope "Eden" {
                 Assert-MockCalled Write-BuildInfo 1 -ParameterFilter {
                     $Message -eq "Running automated tests." `
                     -and `
-                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestInstance"
+                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestEnvironment"
                 }
             }
             It "Prints a message that it is finished running automated tests." {
                 Assert-MockCalled Write-BuildInfo 1 -ParameterFilter {
                     $Message -eq "Finished running automated tests." `
                     -and `
-                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestInstance"
+                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestEnvironment"
                 }
             }
         }
@@ -65,7 +65,7 @@ InModuleScope "Eden" {
                 Assert-MockCalled Write-BuildInfo 1 -ParameterFilter {
                     $Message -eq "Running automated tests continuously." `
                     -and `
-                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestInstance"
+                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestEnvironment"
                 }
             }
         }
@@ -85,14 +85,14 @@ InModuleScope "Eden" {
                 Assert-MockCalled Write-BuildInfo 1 -ParameterFilter {
                     $Message -eq "Running automated tests." `
                     -and `
-                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestInstance"
+                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestEnvironment"
                 }
             }
             It "Prints a message that it there was an exception running the automated tests." {
                 Assert-MockCalled Write-BuildError 1 -ParameterFilter {
                     $Message -eq "Error running automated tests.  Message: 'Tests failed.'" `
                     -and `
-                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestInstance"
+                    $LoggingPrefix -eq "TestSolution TestService Test Automated TestEnvironment"
                 }
             }
         }

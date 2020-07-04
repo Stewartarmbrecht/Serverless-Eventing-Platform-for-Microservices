@@ -4,7 +4,8 @@ function Get-EdenEnvConfig
     param(
         [String] $SolutionName,
         [String] $ServiceName,
-        [Switch] $Prompt
+        [Switch] $Prompt,
+        [Switch] $Check
     )
 
     if ($Prompt) {
@@ -29,6 +30,37 @@ function Get-EdenEnvConfig
     }
     $config.TenantId = Get-EnvironmentVariable "$SolutionName.$ServiceName.TenantId"
     $config.DeveloperId = Get-EnvironmentVariable "$SolutionName.$ServiceName.DeveloperId"
+
+    if ($Check)
+    {
+        $message = "The following Eden environment configuration values are missing: "
+        $missing = New-Object -TypeName "System.Collections.ArrayList"
+
+        $config.PSObject.Properties | ForEach-Object {
+            if(!($_.Value)) {
+                $missing.Add($_.Name)
+            }
+        }
+
+        if ($missing.Count -gt 0) {
+
+            $first = $true
+
+            $missing.Sort()
+            $missing | ForEach-Object {
+                if (!$first) {
+                    $message = $message + ", " + $_
+                } else {
+                    $message = $message + $_
+                    $first = $false
+                }
+            }
+    
+            Write-BuildError $message "$SolutionName $ServiceName"
+    
+            throw $message    
+        }
+    }
     
     return $config
 
