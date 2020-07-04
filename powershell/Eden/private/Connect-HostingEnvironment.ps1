@@ -7,9 +7,9 @@ function Connect-HostingEnvironment {
     try {
         [EdenEnvConfig] $envConfig = Get-EdenEnvConfig
 
-        Write-BuildInfo "Connecting to the '$($envConfig.EnvironmentName)' environment in the '$($envConfig.TenantId)' tenant as '$($envConfig.UserId)'" $LoggingPrefix
+        Write-BuildInfo "Connecting to the '$($envConfig.EnvironmentName)' environment in the '$($envConfig.TenantId)' tenant as '$($envConfig.ServicePrincipalId)'" $LoggingPrefix
 
-        Invoke-CommandConnect -UserId $envConfig.UserId -Password $envConfig.Password -Tenant $envConfig.TenantId
+        Invoke-CommandConnect -EdenEnvConfig $envConfig
         
     }
     catch

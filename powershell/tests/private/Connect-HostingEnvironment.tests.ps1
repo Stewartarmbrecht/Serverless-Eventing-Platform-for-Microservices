@@ -29,18 +29,18 @@ InModuleScope "Eden" {
                 }
                 # Mock Write-BuildInfo -MockWith (Get-MockWriteBuildInfoBlock -Log $log)
                 Mock Invoke-CommandConnect {
-                    param($UserId, [SecureString]$Password, $TenantId)
-                    $logEntry = "Invoke-CommandConnect $UserId $($Password.Length -gt 0) $TenantId"
+                    param($EdenEnvConfig)
+                    $logEntry = "Invoke-CommandConnect $($EdenEnvConfig.ServicePrincipalId) $($EdenEnvConfig.ServicePrincipalPassword.Length -gt 0) $($EdenEnvConfig.TenantId)"
                     Write-Verbose $logEntry
                     $log.Add($logEntry)
                 }
                 Connect-HostingEnvironment -LoggingPrefix "TestLoggingPrefix"
             }
             It "Prints a message it is connecting to the hosting environment." {
-                $log[0] | Should -Be "TestLoggingPrefix Connecting to hosting environment tenant 'TestTenant' as 'TestUserId'"
+                $log[0] | Should -Be "TestLoggingPrefix Connecting to the 'TestEnvironment' environment in the 'TestTenantId' tenant as 'TestServicePrincipalId'"
             }
             It "Invokes the command to connect to the hosting environment." {
-                $log[1] | Should -Be "Invoke-CommandConnect TestUserId True TestTenant"
+                $log[1] | Should -Be "Invoke-CommandConnect TestServicePrincipalId True TestTenantId"
             }
         }
         Context "When executed with exception" {
@@ -59,8 +59,8 @@ InModuleScope "Eden" {
                     $log.Add($logEntry)
                 }
                 Mock Invoke-CommandConnect {
-                    param($UserId, [SecureString]$Password, $TenantId)
-                    $logEntry = "Invoke-CommandConnect $UserId $($Password.Length -gt 0) $TenantId"
+                    param($EdenEnvConfig)
+                    $logEntry = "Invoke-CommandConnect $($EdenEnvConfig.ServicePrincipalId) $($EdenEnvConfig.ServicePrincipalPassword.Length -gt 0) $($EdenEnvConfig.TenantId)"
                     Write-Verbose $logEntry
                     $log.Add($logEntry)
                     throw "My Error!"
@@ -70,10 +70,10 @@ InModuleScope "Eden" {
                 } | Should -Throw
             }
             It "Prints a message it is connecting to the hosting environment." {
-                $log[0] | Should -Be "TestLoggingPrefix Connecting to hosting environment tenant 'TestTenant' as 'TestUserId'"
+                $log[0] | Should -Be "TestLoggingPrefix Connecting to the 'TestEnvironment' environment in the 'TestTenantId' tenant as 'TestServicePrincipalId'"
             }
             It "Invokes the command to connect to the hosting environment." {
-                $log[1] | Should -Be "Invoke-CommandConnect TestUserId True TestTenant"
+                $log[1] | Should -Be "Invoke-CommandConnect TestServicePrincipalId True TestTenantId"
             }
             It "Prints a message it experienced an error." {
                 $log[2] | Should -Be "Error TestLoggingPrefix Experienced an error connecting to the hosting environment."
