@@ -10,16 +10,18 @@ function Build-EdenService
         $solutionName = Get-SolutionName
         $serviceName = Get-ServiceName
 
+        $edenEnvConfig = Get-EdenEnvConfig -SolutionName $solutionName -ServiceName $serviceName
+
         $loggingPrefix = "$solutionName $serviceName Build"
         
         Write-BuildInfo $location $loggingPrefix
         
         if ($Continuous) {
             Write-BuildInfo "Building the service continuously." $loggingPrefix
-            Invoke-CommandBuildContinuous -SolutionName $solutionName -ServiceName $serviceName 
+            Invoke-CommandBuildContinuous -EdenEnvConfig $edenEnvConfig
         } else {
             Write-BuildInfo "Building the service." $loggingPrefix
-            Invoke-CommandBuild -SolutionName $solutionName -ServiceName $serviceName 
+            Invoke-CommandBuild -EdenEnvConfig $edenEnvConfig 
             Write-BuildInfo "Finished building the service." $loggingPrefix
         }
         

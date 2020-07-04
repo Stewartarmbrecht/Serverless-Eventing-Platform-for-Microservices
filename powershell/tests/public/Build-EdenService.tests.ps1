@@ -37,9 +37,9 @@ InModuleScope "Eden" {
             }
             It "Invokes the build command" {
                 Assert-MockCalled Invoke-CommandBuild 1 -ParameterFilter {
-                    $SolutionName -eq "TestSolution" `
+                    $EdenEnvConfig.SolutionName -eq "TestSolution" `
                     -and `
-                    $ServiceName -eq "TestService"
+                    $EdenEnvConfig.ServiceName -eq "TestService"
                 } 
             }
             It "Prints a message that it is building the service" {
@@ -68,9 +68,9 @@ InModuleScope "Eden" {
             }
             It "Invokes the build command with continuous switch" {
                 Assert-MockCalled Invoke-CommandBuildContinuous 1 -ParameterFilter {
-                    $SolutionName -eq "TestSolution" `
+                    $EdenEnvConfig.SolutionName -eq "TestSolution" `
                     -and `
-                    $ServiceName -eq "TestService"
+                    $EdenEnvConfig.ServiceName -eq "TestService"
                 } 
             }
             It "Prints a message that it is building the service continuously" {
@@ -92,9 +92,9 @@ InModuleScope "Eden" {
             }
             It "Invokes the build command" {
                 Assert-MockCalled Invoke-CommandBuild 1 -ParameterFilter {
-                    $SolutionName -eq "TestSolution" `
+                    $EdenEnvConfig.SolutionName -eq "TestSolution" `
                     -and `
-                    $ServiceName -eq "TestService"
+                    $EdenEnvConfig.ServiceName -eq "TestService"
                 } 
             }
             It "Prints a message that it is building the service" {

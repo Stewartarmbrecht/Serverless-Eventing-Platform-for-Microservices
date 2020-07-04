@@ -2,13 +2,13 @@ function Invoke-CommandLocalTunnel
 {
     [CmdletBinding()]
     param(
-        [String]$Port
+        [EdenEnvConfig]$EdenEnvConfig
     ) 
 
     if ($IsWindows) {
-        ./../apps/ngrok.exe http http://localhost:$Port -host-header=rewrite
+        ./../apps/ngrok.exe http http://localhost:7071 -host-header=rewrite
     } else {
-        ./../apps/ngrok http http://localhost:$Port -host-header=rewrite
+        ./../apps/ngrok http http://localhost:7071 -host-header=rewrite
     }
-    if ($LASTEXITCODE -ne 0) { throw "Using ngrok to create a local tunnel on port $Port failed."}    
+    if ($LASTEXITCODE -ne 0) { throw "Using ngrok to create a local tunnel on port 7071 failed."}    
 }

@@ -2,16 +2,17 @@ function Invoke-CommandTestUnitContinuous
 {
     [CmdletBinding()]
     param(
-        [String]$SolutionName,
-        [String]$ServiceName
+        [EdenEnvConfig]$EdenEnvConfig
     ) 
-    dotnet watch --project ./Service.Tests/$SolutionName.$ServiceName.Service.Tests.csproj test `
+    dotnet watch `
+        --project ./Service.Tests/$($EdenEnvConfig.SolutionName).$($EdenEnvConfig.ServiceName).Service.Tests.csproj `
+        test `
         --logger "trx;logFileName=testResults.trx" `
         --filter TestCategory!=Automated `
         /p:CollectCoverage=true `
         /p:CoverletOutput=TestResults/lcov.info `
         /p:CoverletOutputFormat=lcov `
-        /p:Include=[$SolutionName.$ServiceName.Service*]* `
+        /p:Include=[$($EdenEnvConfig.SolutionName).$($EdenEnvConfig.ServiceName).Service*]* `
         /p:Threshold=80 `
         /p:ThresholdType=line `
         /p:ThresholdStat=total | Write-Verbose

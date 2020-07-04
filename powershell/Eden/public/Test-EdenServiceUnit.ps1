@@ -8,11 +8,11 @@ function Test-EdenServiceUnit
 
     try
     {
-        $currentDirectory = Get-Location
-
         $solutionName = Get-SolutionName
         $serviceName = Get-ServiceName
     
+        $edenEnvConfig = Get-EdenEnvConfig -SolutionName $solutionName -ServiceName $serviceName
+
         $loggingPrefix = "$solutionName $serviceName Test Unit"
         
         $verbose = $VerbosePreference
@@ -20,24 +20,21 @@ function Test-EdenServiceUnit
         if ($Continuous) {
             Write-BuildInfo "Running the unit tests continuously." $loggingPrefix
             $VerbosePreference = "Continue"
-            Invoke-CommandTestUnitContinuous -SolutionName $solutionName -ServiceName $serviceName
+            Invoke-CommandTestUnitContinuous -EdenEnvConfig $edenEnvConfig
         }
         else 
         {
             Write-BuildInfo "Running the unit tests." $loggingPrefix
-            Invoke-CommandTestUnit -SolutionName $solutionName -ServiceName $serviceName
+            Invoke-CommandTestUnit -EdenEnvConfig $edenEnvConfig
         }
         
         $VerbosePreference = $verbose
-        Write-BuildInfo "Finished running unit tests." $loggingPrefix
-
-        Set-Location $currentDirectory
+        Write-BuildInfo "Finished running the unit tests." $loggingPrefix
     }
     catch
     {
         $VerbosePreference = $verbose
-        Set-Location $currentDirectory
-        Write-BuildError "Running unit tests failed." $loggingPrefix
+        Write-BuildError "Error unit testing the service. Message: '$($_.Exception.Message)'" $loggingPrefix
         throw $_
     }
 }

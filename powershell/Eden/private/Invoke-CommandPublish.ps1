@@ -2,10 +2,12 @@ function Invoke-CommandPublish
 {
     [CmdletBinding()]
     param(
-        [String]$SolutionName,
-        [String]$ServiceName
+        [EdenEnvConfig]$EdenEnvConfig
     ) 
-    dotnet publish ./Service/$SolutionName.$ServiceName.Service.csproj -c Release -o ./.dist/app
+    dotnet publish `
+        ./Service/$($EdenEnvConfig.SolutionName).$($EdenEnvConfig.ServiceName).Service.csproj `
+        -c Release `
+        -o ./.dist/app
     if ($LASTEXITCODE -ne 0) { throw "Publishing exited with an error."}
 
     $appPath =  "./.dist/app/**"

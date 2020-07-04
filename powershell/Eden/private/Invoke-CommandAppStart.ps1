@@ -2,8 +2,8 @@ function Invoke-CommandAppStart
 {
     [CmdletBinding()]
     param(
-        [Int]$Port
+        [EdenEnvConfig]$EdenEnvConfig
     ) 
-    func host start -p $Port
+    func host start -p 7071
     if ($LASTEXITCODE -ne 0) { throw "Starting the function host threw an error."}
 }

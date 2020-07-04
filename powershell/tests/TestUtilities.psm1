@@ -18,15 +18,23 @@ function Set-TestEnvironment {
     param(
     )
 
-    Mock Get-SolutionName { "TestSolution" }
-    Mock Get-ServiceName { "TestService" }
-    Set-EdenServiceEnvVariables -Clear
-    Set-EdenServiceEnvVariables -InstanceName "TestInstance" `
+    Set-EdenEnvConfig -Clear
+    Set-EdenEnvConfig `
+        -EnvironmentName "TestEnvironment" `
         -Region "TestRegion" `
         -TenantId "TestTenant" `
-        -UserId "TestUserId" `
-        -Password (ConvertTo-SecureString "TestPassword" -AsPlainText) `
-        -UniqueDeveloperId "TestDevId" `
-        -LocalHostingPort 9876
+        -ServicePrincipalId "TestServicePrincipalId" `
+        -ServicePrincipalPassword (ConvertTo-SecureString "TestServicePrincipalPassword" -AsPlainText) `
+        -DeveloperId "TestDevId"
 }
-Export-ModuleMember -Function Set-TestEnvironment
+function Get-MockWriteBuildInfoBlock {
+    [CmdletBinding()]
+    param([System.Collections.ArrayList]$Log)
+    return {
+        param($Message, $LoggingPrefix)
+        $logEntry = "$LoggingPrefix $Message"
+        Write-Verbose $logEntry
+        $Log.Add($logEntry)
+    }
+}
+Export-ModuleMember -Function Set-TestEnvironment, Get-MockWriteBuildInfoBlock

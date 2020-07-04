@@ -2,9 +2,8 @@ function Invoke-CommandBuild
 {
     [CmdletBinding()]
     param(
-        [String]$SolutionName,
-        [String]$ServiceName
+        [EdenEnvConfig]$EdenEnvConfig
     ) 
-    dotnet build ./$SolutionName.$ServiceName.sln | Write-Verbose
+    dotnet build ./$($EdenEnvConfig.SolutionName).$($EdenEnvConfig.ServiceName).sln | Write-Verbose
     if ($LASTEXITCODE -ne 0) { throw "Building the solution exited with an error."}
 }

@@ -68,6 +68,7 @@ task RunTests {
     $Artifacts = "./artifacts"
     $ModulePath = "$pwd/Eden"
     $PercentCompliance  = '60'
+    Import-Module Pester
     $invokePesterParams = [PesterConfiguration]@{
         TestResult = @{
             Enabled = $true

@@ -1,0 +1,76 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "AccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Visual Studio Team Services account, if it doesn't exist it will be created."
+            }
+        },
+        "ProjectName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Visual Studio Team Services project."
+            }
+        },
+        "ProcessTemplateId": {
+            "type": "string",
+            "defaultValue": "6B724908-EF14-45CF-84F8-768B5384DA45",
+            "allowedValues": [
+                "6B724908-EF14-45CF-84F8-768B5384DA45",
+                "ADCC42AB-9882-485E-A3ED-7678F01F66BC",
+                "27450541-8E31-4150-9947-DC59F998FC01"
+            ],
+            "metadata": {
+                "description": "Scrum: 6B724908-EF14-45CF-84F8-768B5384DA45 / Agile: ADCC42AB-9882-485E-A3ED-7678F01F66BC / CMMI: 27450541-8E31-4150-9947-DC59F998FC01"
+            }
+        },
+        "VersionControlOption": {
+            "type": "string",
+            "defaultValue": "Git",
+            "allowedValues": [
+                "Git",
+                "Tfvc"
+            ],
+            "metadata": {
+                "description": "The version control of the Visual Studio Team Services project's source code: Git or Tfvc."
+            }
+        },
+        "Location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.visualstudio/account",
+            "name": "[parameters('AccountName')]",
+            "apiVersion": "2014-02-26",
+            "location": "[parameters('Location')]",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "operationType": "Create",
+                "accountName": "[parameters('AccountName')]"
+            },
+            "dependsOn": [],
+            "resources": [
+                {
+                    "name": "[concat(parameters('AccountName'), '/', parameters('ProjectName'))]",
+                    "type": "microsoft.visualstudio/account/project",
+                    "location": "[parameters('Location')]",
+                    "apiVersion": "2014-02-26",
+                    "properties": {
+                        "ProcessTemplateId": "[parameters('ProcessTemplateId')]",
+                        "VersionControlOption": "[parameters('VersionControlOption')]"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -2,10 +2,9 @@ function Invoke-CommandTestAutomated
 {
     [CmdletBinding()]
     param(
-        [String]$SolutionName,
-        [String]$ServiceName
+        [EdenEnvConfig]$EdenEnvConfig
     ) 
-    dotnet test ./../Service.Tests/$SolutionName.$ServiceName.Service.Tests.csproj `
+    dotnet test ./../Service.Tests/$($EdenEnvConfig.SolutionName).$($EdenEnvConfig.ServiceName).Service.Tests.csproj `
         --filter TestCategory=Automated
     if ($LASTEXITCODE -ne 0) { throw "Running the unit tests exited with an error."}
 }
