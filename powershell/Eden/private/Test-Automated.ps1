@@ -3,35 +3,31 @@ function Test-Automated
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$TRUE)]
-        [String]$SolutionName,
-        [Parameter(Mandatory=$TRUE)]
-        [String]$ServiceName,
-        [Parameter(Mandatory=$TRUE)]
-        [String]$AutomatedUrl,
-        [Parameter(Mandatory=$TRUE)]
-        [String]$LoggingPrefix,
+        [EdenEnvConfig] $EdenEnvConfig,
         [Parameter()]
-        [switch]$Continuous
+        [switch] $Continuous
     )
 
     try {
-        $Env:AutomatedUrl = $AutomatedUrl
-        Write-BuildInfo "Running automated tests against '$AutomatedUrl'." $LoggingPrefix
+
+        $loggingPrefix = "$($EdenEnvConfig.SolutionName) $($EdenEnvConfig.ServiceName) Test Automated"
+
+        Write-BuildInfo "Running automated tests against the local environment." $loggingPrefix
     
         if ($Continuous)
         {
-            Write-BuildInfo "Running automated tests continuously." $LoggingPrefix
-            Invoke-CommandTestAutomatedContinuous -SolutionName $SolutionName -ServiceName $ServiceName
+            Write-BuildInfo "Running automated tests continuously." $loggingPrefix
+            Invoke-CommandTestAutomatedContinuous -EdenEnvConfig $EdenEnvConfig
         }
         else
         {
-            Write-BuildInfo "Running automated tests once." $LoggingPrefix
-            Invoke-CommandTestAutomated -SolutionName $SolutionName -ServiceName $ServiceName
-            Write-BuildInfo "Finished running automated tests." $LoggingPrefix
+            Write-BuildInfo "Running automated tests once." $loggingPrefix
+            Invoke-CommandTestAutomated -EdenEnvConfig $EdenEnvConfig
+            Write-BuildInfo "Finished running automated tests." $loggingPrefix
         }
-        }
+    }
     catch {
-        Write-BuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $LoggingPrefix
+        Write-BuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $loggingPrefix
         throw $_        
     }
 }
