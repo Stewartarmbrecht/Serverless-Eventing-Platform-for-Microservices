@@ -55,7 +55,7 @@ function Start-EdenServiceLocal
                 Write-BuildInfo "Finished deploying the event subscrpitions for the local service." $loggingPrefix
                 $subscriptionsDeployed = $true
             }
-            if ($RunFeatureTests -and $subscriptionsDeployed) {
+            if (($RunFeatureTests -or $RunFeatureTestsContinuously) -and $subscriptionsDeployed) {
                 if ($RunFeatureTestsContinuously) {
                     Write-BuildInfo "Testing the service features continuously." $loggingPrefix
                     Start-EdenCommand  `
