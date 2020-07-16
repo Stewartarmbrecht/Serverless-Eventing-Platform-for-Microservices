@@ -12,82 +12,73 @@ function Start-EdenServiceLocal
     
     try {
     
-        $currentDirectory = Get-Location
+        $edenEnvConfig = Get-EdenEnvConfig -Check
+    
+        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Run $($edenEnvConfig.EnvironmentName)"
+    
+        Write-BuildInfo "Starting the local service job." $loggingPrefix
+        $serviceJob = Start-EdenCommand `
+            -EdenCommand "Start-LocalService" `
+            -EdenEnvConfig $edenEnvConfig `
+            -LoggingPrefix $loggingPrefix
 
-        $solutionName = Get-SolutionName
-        $serviceName = Get-ServiceName
-        
-        Set-EdenServiceEnvVariables -Check
-    
-        $instanceName = Get-EnvironmentVariable "$solutionName.$serviceName.InstanceName"
-        $port = Get-EnvironmentVariable "$solutionName.$serviceName.LocalHostingPort"
-    
-        $loggingPrefix = "$solutionName $serviceName Run $instanceName"
-    
-        Write-BuildInfo "Starting jobs." $loggingPrefix
-    
-        Start-ApplicationJob -Location "./Service" -Port $port -LoggingPrefix $loggingPrefix
-    
-        $serviceUrl = "http://localhost:$port"
-        $healthCheck = $FALSE
-        $testing = $FALSE
-    
-        While(Get-Job -State "Running")
+        Write-BuildInfo "Starting the public tunnel job." $loggingPrefix
+        $tunnelJob = Start-EdenCommand `
+            -EdenCommand "Start-LocalTunnel" `
+            -EdenEnvConfig $edenEnvConfig `
+            -LoggingPrefix $loggingPrefix
+
+        $serviceReady = $false
+        $subscriptionsDeployed = $false
+
+        While(($serviceJob.State -eq "Running" -or $serviceJob.State -eq "NotStarted") `
+            -and ($tunnelJob.State -eq "Running" -or $tunnelJob.State -eq "NotStarted"))
         {
-            if ($FALSE -eq $healthCheck -and ![string]::IsNullOrEmpty($serviceUrl)) {
-                $healthCheck = Get-HealthStatus -PublicUrl $serviceUrl -LoggingPrefix $loggingPrefix
-            }
-    
-            if(
-                ($RunAutomatedTestsContinuously -or $RunAutomatedTests) `
-                -and $FALSE -eq $testing `
-                -and "" -ne $serviceUrl `
-                -and $TRUE -eq $healthCheck) {
-                if ($RunAutomatedTestsContinuously) {
-                    Write-BuildInfo "Starting continuous automated test job." $loggingPrefix
-                    $automatedTestJob = Test-AutomatedJob `
-                        -SolutionName $solutionName `
-                        -ServiceName $serviceName `
-                        -AutomatedUrl "http://localhost:$port/api" `
-                        -LoggingPrefix $loggingPrefix `
-                        -Continuous
+            if (!$serviceReady) {
+                Write-BuildInfo "Checking whether the local service is ready." $loggingPrefix
+                $serviceReady = Invoke-EdenCommand "Get-LocalServiceHealth" $edenEnvConfig $loggingPrefix
+                if ($serviceReady) {
+                    Write-BuildInfo "The local service passed the health check." $loggingPrefix    
                 } else {
-                    Write-BuildInfo "Starting automated test job." $loggingPrefix
-                    $automatedTestJob = Test-AutomatedJob `
-                        -SolutionName $solutionName `
-                        -ServiceName $serviceName `
-                        -AutomatedUrl "http://localhost:$port/api" `
-                        -LoggingPrefix $loggingPrefix
+                    Write-BuildError "The local service failed the health check." $loggingPrefix    
                 }
-                $testing = $TRUE
+            } 
+            if ($serviceReady -and !$subscriptionsDeployed) {
+                Write-BuildInfo "Deploying the event subscrpitions for the local service." $loggingPrefix
+                Invoke-EdenCommand "Deploy-LocalSubscriptions" $edenEnvConfig $loggingPrefix
+                Write-BuildInfo "Finished deploying the event subscrpitions for the local service." $loggingPrefix
+                $subscriptionsDeployed = $true
             }
-    
-            if ($automatedTestJob -and $automatedTestJob.State -eq "Completed")
-            {
-                Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
-                Stop-Job rt-*
-                Remove-Job rt-*
-                Write-BuildInfo "Stopped." $loggingPrefix
-            }
-            Get-Job | Receive-Job | Write-Verbose
-        }
-    
-        Write-BuildInfo "All jobs stopped running." $loggingPrefix
 
-        Get-Job | Receive-Job | Write-Verbose
-    
-        if (Get-Job -State "Failed") 
-        {
-            throw "One of the jobs failed."
+            $serviceJob | Receive-Job | Write-Verbose
+            $tunnelJob | Receive-Job | Write-Verbose
+
+            Start-Sleep 1
         }
     
-        Set-Location $currentDirectory
+        $serviceJob | Receive-Job | Write-Verbose
+        $tunnelJob | Receive-Job | Write-Verbose
+
+        if ($serviceJob.State -eq "Failed") 
+        {
+            #TODO: Figure out how to ensure StatusMessage has the message from a thrown error in the job.
+            throw "Local service failed to run. Status Message: '$($serviceJob.StatusMessage)'"
+        }
+    
+        if ($tunnelJob.State -eq "Failed") 
+        {
+            #TODO: Figure out how to ensure StatusMessage has the message from a thrown error in the job.
+            throw "Local tunnel failed to run. Status Message: '$($tunnelJob.StatusMessage)'"
+        }
+    
     } 
     catch 
     {
         Write-BuildError "Stopping and removing jobs due to exception. Message: '$($_.Exception.Message)'" $loggingPrefix
-        Stop-Job rt-*
-        Remove-Job rt-*
+        $serviceJob.StopJob()
+        $serviceJob | Remove-Job
+        $tunnelJob.StopJob()
+        $tunnelJob | Remove-Job
         Write-BuildError "Stopped." $loggingPrefix
         throw $_
     }

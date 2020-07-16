@@ -4,26 +4,19 @@ function Start-Application
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$TRUE)]
-        [String]$Location,
-        [Parameter(Mandatory=$TRUE)]
-        [Int32]$Port,
-        [Parameter(Mandatory=$TRUE)]
-        [String]$LoggingPrefix
+        [EdenEnvConfig] $EdenEnvConfig
     )
     
-    $currentLocation = Get-Location
-    
+    $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Run $($edenEnvConfig.EnvironmentName)"
+
     try {
-        Write-BuildInfo "Setting location to '$Location'." $LoggingPrefix
-        Set-Location $Location
-        Write-BuildInfo "Running the function application." $LoggingPrefix
-        Invoke-CommandAppStart -Port $Port
+        Write-BuildInfo "Running the application." $LoggingPrefix
+        Invoke-CommandAppStart -EdenEvnConfig $EdenEvnConfig
     }
     catch {
         $message = $_.Exception.Message
         Write-BuildError "The job threw an exception: '$message'." $LoggingPrefix
         Write-BuildError "If you get errno: -4058, try this: https://github.com/Azure/azure-functions-core-tools/issues/1804#issuecomment-594990804" $LoggingPrefix
-        Set-Location $currentLocation
         throw $_
     }
 }

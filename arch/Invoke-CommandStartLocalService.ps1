@@ -1,4 +1,4 @@
-function Invoke-CommandAppStart 
+function Invoke-CommandStartLocalService 
 {
     [CmdletBinding()]
     param(

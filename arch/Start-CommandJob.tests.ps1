@@ -13,26 +13,36 @@ Import-Module (Join-Path $PSScriptRoot "../TestUtilities.psm1") -Force
 
 InModuleScope "Eden" {
     Describe "Private/Start-ApplicationJob" {
-        BeforeAll {
+        BeforeEach {
             Mock Get-SolutionName { "TestSolution" }
             Mock Get-ServiceName { "TestService" }
-            Set-TestEnvironment
+            $edenEnvConfig = Set-TestEnvironment
+            [System.Collections.ArrayList]$log = @()
+            Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+            Mock Write-BuildError (Get-BuildInfoErrorBlock $log)
         }
         Context "When executed with success" {
             BeforeEach {
-                Mock Start-Application {}
+                $command = {
+                    param([EdenEnvConfig]$EdenEnvConfig)
+                    Write-BuildInfo "Test command." "TestPrefix" 
+                }
 
                 Mock Start-ThreadJob { 
                     param ([String]$Name, [ScriptBlock]$ScriptBlock, $ArgumentList) 
                     Invoke-Command $ScriptBlock -ArgumentList $ArgumentList
                 }
-    
-                Start-ApplicationJob -Location "." -Port 9876 -LoggingPrefix "My Prefix"    
+
+                Start-CommandJob `
+                    -Command $command `
+                    -EdenEnvConfig $edenEnvConfig `
+                    -LoggingPrefix "TestLogPrefix"
             }
-            It "Calls Start-Application" {
-                Assert-MockCalled Start-Application 1 -ParameterFilter { 
-                    $Location -eq "." -and $Port -eq 9876 -and $LoggingPrefix -eq "My Prefix"
-                }
+            It "Print the following logs" {
+                Assert-Logs $log @(
+                    "TestLogPrefix Starting job for command: 'Invoke-CommandBuild'",
+                    "TestPrefix Invoke-CommandBuild"
+                )
             }
         }
     }

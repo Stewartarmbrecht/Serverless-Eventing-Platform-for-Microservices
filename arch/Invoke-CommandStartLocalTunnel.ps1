@@ -1,4 +1,4 @@
-function Invoke-CommandLocalTunnel 
+function Invoke-CommandStartLocalTunnel 
 {
     [CmdletBinding()]
     param(

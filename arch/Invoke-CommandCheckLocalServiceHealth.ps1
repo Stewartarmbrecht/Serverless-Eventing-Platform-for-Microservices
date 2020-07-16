@@ -1,14 +1,8 @@
-function Get-HealthStatus
+function Invoke-CommandCheckLocalServiceHealth
 {
     [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$TRUE)]
-        [String]$PublicUrl,
-        [Parameter(Mandatory=$TRUE)]
-        [String]$LoggingPrefix
-    )
+    param([EdenEnvConfig] $EdenEnvConfig)
     try {
-        Write-BuildInfo "Checking API availability at: $PublicUrl/api/healthcheck?userId=developer98765@test.com" $LoggingPrefix
         $response = Invoke-RestMethod -URI "$PublicUrl/api/healthcheck?userId=developer98765@test.com"
         $status = $response.status
         if($status -eq 0) {
