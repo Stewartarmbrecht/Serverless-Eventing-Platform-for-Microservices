@@ -47,6 +47,23 @@ InModuleScope "Eden" {
                 )
             }
         }
+        Context "When executed continuously successfully" {
+            It "Prints the following logs" {
+                Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
+                Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
+                    $EdenCommand -ne "Get-LocalServiceHealth"
+                }
+                Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log -ReturnValueSet @($false,$true)) -ParameterFilter {
+                    $EdenCommand -eq "Get-LocalServiceHealth"
+                }
+                Start-EdenServiceLocal -Continuous -Verbose
+                Assert-Logs $log @(
+                    "!SKIP!",
+                    "Mock: Start-LocalServiceContinuous job starting. TestSolution TestService Run TestEnvironment"
+                    # Remaining logs ignored.
+                )
+            }
+        }
         Context "When executed with start error" {
             It "Prints the following logs" {
                 Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log)
@@ -96,6 +113,37 @@ InModuleScope "Eden" {
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
                     "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Local tunnel failed to run. Status Message: '''",
                     "TestSolution TestService Run TestEnvironment Stopped."
+                )
+            }
+        }
+        Context "When executed with feature testing" {
+            It "Prints the following logs" {
+                Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
+                Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
+                    $EdenCommand -ne "Get-LocalServiceHealth"
+                }
+                Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log -ReturnValueSet @($false,$true)) -ParameterFilter {
+                    $EdenCommand -eq "Get-LocalServiceHealth"
+                }
+                Start-EdenServiceLocal -RunFeatureTests -Verbose
+                Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service job.",
+                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
+                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
+                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment The local service failed the health check.",
+                    "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
+                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment The local service passed the health check.",
+                    "TestSolution TestService Run TestEnvironment Deploying the event subscrpitions for the local service.",
+                    "TestSolution TestService Run TestEnvironment Deploy-LocalSubscriptions TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service.",
+                    "TestSolution TestService Run TestEnvironment Testing the service features.",
+                    "TestSolution TestService Run TestEnvironment Test-Features TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Finished testing the service features.",
+                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs."
                 )
             }
         }

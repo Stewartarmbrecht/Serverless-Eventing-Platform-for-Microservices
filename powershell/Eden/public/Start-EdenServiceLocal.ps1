@@ -5,9 +5,9 @@ function Start-EdenServiceLocal
         [Parameter()]
         [Switch]$Continuous,
         [Parameter()]
-        [switch]$RunAutomatedTests,
+        [switch]$RunFeatureTests,
         [Parameter()]
-        [switch]$RunAutomatedTestsContinuously
+        [switch]$RunFeatureTestsContinuously
     )
     
     try {
@@ -15,10 +15,16 @@ function Start-EdenServiceLocal
         $edenEnvConfig = Get-EdenEnvConfig -Check
     
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Run $($edenEnvConfig.EnvironmentName)"
-    
+
+        if ($Continuous) {
+            $startCommand = "Start-LocalServiceContinuous"
+        } else {
+            $startCommand = "Start-LocalService"
+        }
+        
         Write-BuildInfo "Starting the local service job." $loggingPrefix
         $serviceJob = Start-EdenCommand `
-            -EdenCommand "Start-LocalService" `
+            -EdenCommand $startCommand `
             -EdenEnvConfig $edenEnvConfig `
             -LoggingPrefix $loggingPrefix
 
@@ -48,6 +54,24 @@ function Start-EdenServiceLocal
                 Invoke-EdenCommand "Deploy-LocalSubscriptions" $edenEnvConfig $loggingPrefix
                 Write-BuildInfo "Finished deploying the event subscrpitions for the local service." $loggingPrefix
                 $subscriptionsDeployed = $true
+            }
+            if ($RunFeatureTests -and $subscriptionsDeployed) {
+                if ($RunFeatureTestsContinuously) {
+                    Write-BuildInfo "Testing the service features continuously." $loggingPrefix
+                    Start-EdenCommand  `
+                        -EdenCommand "Test-FeaturesContinuously" `
+                        -EdenEnvConfig $edenEnvConfig `
+                        -LoggingPrefix $loggingPrefix
+                } else { 
+                    Write-BuildInfo "Testing the service features." $loggingPrefix
+                    Invoke-EdenCommand "Test-Features" $edenEnvConfig $loggingPrefix
+                    Write-BuildInfo "Finished testing the service features." $loggingPrefix
+                    Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
+                    $serviceJob.StopJob()
+                    $serviceJob | Remove-Job
+                    $tunnelJob.StopJob()
+                    $tunnelJob | Remove-Job            
+                }
             }
 
             $serviceJob | Receive-Job | Write-Verbose

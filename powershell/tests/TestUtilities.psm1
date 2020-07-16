@@ -160,7 +160,9 @@ function Assert-Logs {
         [Array] $Expected
     )
     for ($i=0; $i -lt $Expected.Length; $i++) {
-        $Actual[$i] | Should -Be $Expected[$i] -Because "Exepcted the $i entry in log: `n$($Actual -Join "`n") `nto have a value of: `n'$($Expected[$i])' `nbut it was `n'$($Actual[$i])'"
+        if ($Expected[$i] -ne "!SKIP!") {
+            $Actual[$i] | Should -Be $Expected[$i] -Because "Exepcted the $i entry in log: `n$($Actual -Join "`n") `nto have a value of: `n'$($Expected[$i])' `nbut it was `n'$($Actual[$i])'"
+        }
     }
 }
 Export-ModuleMember -Function `
