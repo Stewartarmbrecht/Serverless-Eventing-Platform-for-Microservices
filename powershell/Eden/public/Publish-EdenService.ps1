@@ -4,16 +4,13 @@ function Publish-EdenService {
     )
     
     try {
-        $solutionName = Get-SolutionName
-        $serviceName = Get-ServiceName
+        $edenEnvConfig = Get-EdenEnvConfig -Check
     
-        Set-EdenServiceEnvVariables -Check
-    
-        $loggingPrefix = "$solutionName $serviceName Publish"
-        
+        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Publish"
+
         Write-BuildInfo "Publishing the service." $loggingPrefix
 
-        Invoke-CommandPublish -SolutionName $solutionName -ServiceName $serviceName
+        Invoke-EdenCommand "Publish-Service" $edenEnvConfig $loggingPrefix
         
         Write-BuildInfo "Finished publishing the service." $loggingPrefix
     }
