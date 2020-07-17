@@ -157,7 +157,11 @@ function Assert-Logs {
     )
     for ($i=0; $i -lt $Expected.Length; $i++) {
         if ($Expected[$i] -ne "!SKIP!") {
-            $Actual[$i] | Should -Be $Expected[$i] -Because "Exepcted the $i entry in log: `n$($Actual -Join "`n") `nto have a value of: `n'$($Expected[$i])' `nbut it was `n'$($Actual[$i])'"
+            $actualPrint
+            foreach($entry in $Actual) {
+                $actualPrint = "$actualPrint`"$entry`",`n"
+            } 
+            $Actual[$i] | Should -Be $Expected[$i] -Because "Exepcted the $i entry in log: `n$($actualPrint) `nto have a value of: `n'$($Expected[$i])' `nbut it was `n'$($Actual[$i])'"
         }
     }
 }
