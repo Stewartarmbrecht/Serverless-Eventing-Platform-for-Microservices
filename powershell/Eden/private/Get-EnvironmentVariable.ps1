@@ -5,8 +5,5 @@ function Get-EnvironmentVariable {
         [String]$Name
     ) 
     $result = [System.Environment]::GetEnvironmentVariable($Name)
-    if ($Name -like "*.Password") {
-        $result = ConvertTo-SecureString $result
-    }
     return $result
 }
