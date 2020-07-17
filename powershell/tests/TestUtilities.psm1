@@ -111,13 +111,9 @@ function Get-StartEdenCommandBlock {
             )
 
             $VerbosePreference = $VerbosePref
-            $run = $true
             $message = "Mock: $($EdenCommand) job executing"
             Write-Verbose $message
-            while ($run -eq $true) {
-                Start-Sleep 2
-                $run = $false
-            }
+            Start-Sleep -Milliseconds 2000
         } -ArgumentList @($EdenCommand, $VerbosePreference)
         return $job
     }).GetNewClosure()

@@ -58,7 +58,7 @@ function Start-EdenServiceLocal
             if (($RunFeatureTests -or $RunFeatureTestsContinuously) -and $subscriptionsDeployed) {
                 if ($RunFeatureTestsContinuously) {
                     Write-BuildInfo "Testing the service features continuously." $loggingPrefix
-                    Start-EdenCommand  `
+                    $testingJob = Start-EdenCommand  `
                         -EdenCommand "Test-FeaturesContinuously" `
                         -EdenEnvConfig $edenEnvConfig `
                         -LoggingPrefix $loggingPrefix
@@ -68,20 +68,26 @@ function Start-EdenServiceLocal
                     Write-BuildInfo "Finished testing the service features." $loggingPrefix
                     Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
                     $serviceJob.StopJob()
-                    $serviceJob | Remove-Job
+                    $serviceJob | Remove-Job -Force
                     $tunnelJob.StopJob()
-                    $tunnelJob | Remove-Job            
+                    $tunnelJob | Remove-Job -Force    
                 }
             }
 
             $serviceJob | Receive-Job | Write-Verbose
             $tunnelJob | Receive-Job | Write-Verbose
+            if ($testingJob) {
+                $testingJob | Receive-Job | Write-Verbose
+            }
 
             Start-Sleep 1
         }
     
         $serviceJob | Receive-Job | Write-Verbose
         $tunnelJob | Receive-Job | Write-Verbose
+        if ($testingJob) {
+            $testingJob | Receive-Job | Write-Verbose
+        }
 
         if ($serviceJob.State -eq "Failed") 
         {
@@ -95,14 +101,36 @@ function Start-EdenServiceLocal
             throw "Local tunnel failed to run. Status Message: '$($tunnelJob.StatusMessage)'"
         }
     
+        if ($testingJob.State -eq "Failed") 
+        {
+            #TODO: Figure out how to ensure StatusMessage has the message from a thrown error in the job.
+            throw "Continuous feature testing failed to run. Status Message: '$($testingJob.StatusMessage)'"
+        }
+    
+        if ($serviceJob) {
+            $serviceJob.StopJob()
+            $serviceJob | Remove-Job -Force
+        }
+        if ($tunnelJob) {
+            $tunnelJob.StopJob()
+            $tunnelJob | Remove-Job -Force
+        }
+        if ($testingJob) {
+            $testingJob.StopJob()
+            $testingJob | Remove-Job -Force
+        }
     } 
     catch 
     {
         Write-BuildError "Stopping and removing jobs due to exception. Message: '$($_.Exception.Message)'" $loggingPrefix
         $serviceJob.StopJob()
-        $serviceJob | Remove-Job
+        $serviceJob | Remove-Job -Force
         $tunnelJob.StopJob()
-        $tunnelJob | Remove-Job
+        $tunnelJob | Remove-Job -Force
+        if ($testingJob) {
+            $testingJob.StopJob()
+            $testingJob | Remove-Job -Force
+        }
         Write-BuildError "Stopped." $loggingPrefix
         throw $_
     }
