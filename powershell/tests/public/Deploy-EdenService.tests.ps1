@@ -11,7 +11,7 @@ Import-Module (Join-Path $PSScriptRoot "../../Eden/Eden.psm1") -Force
 Import-Module (Join-Path $PSScriptRoot "../TestUtilities.psm1") -Force
 
 InModuleScope "Eden" {
-    Describe "Public/Test-EdenServiceFeatures" {
+    Describe "Public/Deploy-EdenService" {
         Context "When executed" {
             It "Calls the commands to deploy infrastructure, application, and subscriptions" {
                 [System.Collections.ArrayList]$log = @()
