@@ -32,13 +32,24 @@ function Set-TestEnvironment {
     return Get-EdenEnvConfig
 }
 function Get-BuildInfoErrorBlock {
-    param([System.Collections.ArrayList]$log)
+    param(
+        [System.Collections.ArrayList]$Log,
+        [int]$LogLimit = 0
+    )
+    $logCount = 0;
     $block = [scriptblock]::Create({
         param($Message, $LoggingPrefix)
+        $VerbosePreference = "Continue"
         $logEntry = "$LoggingPrefix $Message"
         Write-Verbose $logEntry
-        $log.Add($logEntry)
-    })
+        $Log.Add($logEntry)
+        $script:logCount++
+        Write-Verbose "Count: $script:logCount Limit: $LogLimit"
+        if ($LogLimit -gt 0 -and $script:logCount -ge $LogLimit) {
+            Write-Verbose "Stopping jobs!"
+            Get-Job | Stop-Job
+        }
+    }).GetNewClosure()
     return $block
 }
 function Get-InvokeEdenCommandBlock {
@@ -54,8 +65,8 @@ function Get-InvokeEdenCommandBlock {
             $EdenEnvConfig, 
             $LoggingPrefix
         ) 
-        
-        $logEntry = "$LoggingPrefix $EdenCommand $($EdenEnvConfig.SolutionName) $($EdenEnvConfig.ServiceName)"
+        $VerbosePreference = "Continue"
+        $logEntry = "$LoggingPrefix Mock: $EdenCommand $($EdenEnvConfig.SolutionName) $($EdenEnvConfig.ServiceName)"
         Write-Verbose $logEntry
         [Void]$Log.Add($logEntry)
         if ($ReturnValue) {
@@ -63,7 +74,7 @@ function Get-InvokeEdenCommandBlock {
         }
         if ($ReturnValueSet) {
             if ($null -eq $script:callCount) { $script:callCount = 0 } else { $script:callCount++ }
-            Write-Verbose "Call Count: $script:callCount"
+            #Write-Verbose "Call Count: $script:callCount"
             return $ReturnValueSet[$script:callCount]
         }
     }).GetNewClosure()
@@ -81,7 +92,8 @@ function Get-InvokeEdenCommandBlockWithError {
             $LoggingPrefix
         ) 
         
-        $logEntry = "$LoggingPrefix $EdenCommand $($EdenEnvConfig.SolutionName) $($EdenEnvConfig.ServiceName)"
+        $VerbosePreference = "Continue"
+        $logEntry = "$LoggingPrefix Mock With Error: $EdenCommand $($EdenEnvConfig.SolutionName) $($EdenEnvConfig.ServiceName)"
         Write-Verbose $logEntry
         [Void]$Log.Add($logEntry)
         throw "My Error!"
@@ -99,22 +111,25 @@ function Get-StartEdenCommandBlock {
             [String]$LoggingPrefix
         ) 
         
-        $message = "Mock: $EdenCommand job starting. $LoggingPrefix"
+        $VerbosePreference = "Continue"
+        $job = Start-ThreadJob {
+            param(
+                $EdenCommand,
+                $VerbosePref,
+                $LoggingPrefix
+            )
+
+            $VerbosePreference = $VerbosePref
+            $message = "$LoggingPrefix Mock: $($EdenCommand) job executing"
+            Write-Verbose $message
+            While ($true) {}
+        } -ArgumentList @($EdenCommand, $VerbosePreference, $LoggingPrefix)
+
+        $message = "$LoggingPrefix Mock: $EdenCommand job starting."
         [Void]$Log.Add($message)
         Write-Verbose $message
 
         # Execute the body of the job sequentially.
-        $job = Start-ThreadJob {
-            param(
-                $EdenCommand,
-                $VerbosePref
-            )
-
-            $VerbosePreference = $VerbosePref
-            $message = "Mock: $($EdenCommand) job executing"
-            Write-Verbose $message
-            Start-Sleep -Milliseconds 2000
-        } -ArgumentList @($EdenCommand, $VerbosePreference)
         return $job
     }).GetNewClosure()
     return $block
@@ -130,7 +145,8 @@ function Get-StartEdenCommandBlockWithError {
             [String]$LoggingPrefix
         ) 
         
-        $message = "Mock: $EdenCommand job starting. $LoggingPrefix"
+        $VerbosePreference = "Continue"
+        $message = "$LoggingPrefix Mock With Error: $EdenCommand job starting."
         [Void]$Log.Add($message)
         Write-Verbose $message
 
@@ -138,14 +154,16 @@ function Get-StartEdenCommandBlockWithError {
         $job = Start-ThreadJob {
             param(
                 $EdenCommand,
-                $VerbosePref
+                $VerbosePref,
+                $LoggingPrefix
             )
             
             $VerbosePreference = $VerbosePref
-            $message = "Mock: $($EdenCommand) job executing"
+            $message = "$LoggingPrefix Mock: $($EdenCommand) job executing"
             Write-Verbose $message
+            #Start-Sleep -Milliseconds 200
             throw "My Error!"
-        } -ArgumentList @($EdenCommand, $VerbosePreference)
+        } -ArgumentList @($EdenCommand, $VerbosePreference, $LoggingPrefix)
         return $job
     }).GetNewClosure()
     return $block
@@ -155,13 +173,13 @@ function Assert-Logs {
         [System.Collections.ArrayList] $Actual,
         [Array] $Expected
     )
-    for ($i=0; $i -lt $Expected.Length; $i++) {
+    for ($i=0; $i -lt $Expected.Count; $i++) {
         if ($Expected[$i] -ne "!SKIP!") {
-            $actualPrint
+            $actualPrint = ""
             foreach($entry in $Actual) {
                 $actualPrint = "$actualPrint`"$entry`",`n"
             } 
-            $Actual[$i] | Should -Be $Expected[$i] -Because "Exepcted the $i entry in log: `n$($actualPrint) `nto have a value of: `n'$($Expected[$i])' `nbut it was `n'$($Actual[$i])'"
+            $Actual[$i] | Should -Be $Expected[$i] -Because "Exepcted the $i entry in log with $($Actual.Count) entries: `n$($actualPrint) `nto have a value of: `n'$($Expected[$i])' `nbut it was `n'$($Actual[$i])'"
         }
     }
 }

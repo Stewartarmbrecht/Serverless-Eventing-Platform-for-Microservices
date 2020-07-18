@@ -17,11 +17,11 @@ InModuleScope "Eden" {
             Mock Get-ServiceName { "TestService" }
             Set-TestEnvironment
             [System.Collections.ArrayList]$log = @()
-            Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
             Mock Write-BuildError (Get-BuildInfoErrorBlock $log)
         }
         Context "When executed successfully" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -31,24 +31,27 @@ InModuleScope "Eden" {
                 }
                 Start-EdenServiceLocal -Verbose
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service passed the health check.",
                     "TestSolution TestService Run TestEnvironment Deploying the event subscrpitions for the local service.",
-                    "TestSolution TestService Run TestEnvironment Deploy-LocalSubscriptions TestSolution TestService",
-                    "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service."
-                )
+                    "TestSolution TestService Run TestEnvironment Mock: Deploy-LocalSubscriptions TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service.",
+                    "TestSolution TestService Run TestEnvironment Stopping the local service.",
+                    "TestSolution TestService Run TestEnvironment Finished stopping the local service."                )
             }
         }
         Context "When executed continuously successfully" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -59,14 +62,21 @@ InModuleScope "Eden" {
                 Start-EdenServiceLocal -Continuous -Verbose
                 Assert-Logs $log @(
                     "!SKIP!",
-                    "Mock: Start-LocalServiceContinuous job starting. TestSolution TestService Run TestEnvironment"
+                    "!SKIP!",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalServiceContinuous job starting."
                     # Remaining logs ignored.
                 )
             }
         }
         Context "When executed with start error" {
             It "Prints the following logs" {
-                Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log)
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log) -ParameterFilter {
+                    $EdenCommand -eq "Start-LocalService"
+                }
+                Mock Start-EdenCommand (Get-StartEdenCommandBlock $log) -ParameterFilter {
+                    $EdenCommand -ne "Start-LocalService"
+                }
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
                 }
@@ -75,21 +85,19 @@ InModuleScope "Eden" {
                 }
                 { Start-EdenServiceLocal -Verbose } | Should -Throw
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock With Error: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
-                    "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
-                    "TestSolution TestService Run TestEnvironment The local service failed the health check.",
-                    #TODO: Figure out how to get the actual thown message instead of "'"
-                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Local service failed to run. Status Message: '''",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
+                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Local service failed to run. Status Message: 'My Error!''",    
                     "TestSolution TestService Run TestEnvironment Stopped."
                 )
             }
         }
         Context "When executed with tunnel error" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log) -ParameterFilter {
                     $EdenCommand -eq "Start-LocalTunnel"
                 }
@@ -104,20 +112,22 @@ InModuleScope "Eden" {
                 }
                 { Start-EdenServiceLocal -Verbose } | Should -Throw
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock With Error: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
-                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Local tunnel failed to run. Status Message: '''",
+                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Local tunnel failed to run. Status Message: 'My Error!''",
                     "TestSolution TestService Run TestEnvironment Stopped."
                 )
             }
         }
         Context "When executed with health check error" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -127,19 +137,21 @@ InModuleScope "Eden" {
                 }
                 { Start-EdenServiceLocal -Verbose } | Should -Throw
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock With Error: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'My Error!'",
                     "TestSolution TestService Run TestEnvironment Stopped."
                 )
             }
         }
-        Context "When executed with feature testing" {
+        Context "When executed with feature testing" -Tag "Now" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -149,28 +161,32 @@ InModuleScope "Eden" {
                 }
                 Start-EdenServiceLocal -RunFeatureTests -Verbose
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service passed the health check.",
                     "TestSolution TestService Run TestEnvironment Deploying the event subscrpitions for the local service.",
-                    "TestSolution TestService Run TestEnvironment Deploy-LocalSubscriptions TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Deploy-LocalSubscriptions TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service.",
                     "TestSolution TestService Run TestEnvironment Testing the service features.",
-                    "TestSolution TestService Run TestEnvironment Test-Features TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Test-Features TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Finished testing the service features.",
-                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs."
+                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs.",
+                    "TestSolution TestService Run TestEnvironment Stopping the local service.",
+                    "TestSolution TestService Run TestEnvironment Finished stopping the local service."
                 )
             }
         }
         Context "When executed with feature testing error" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth" -and $EdenCommand -ne "Test-Features"
@@ -183,22 +199,22 @@ InModuleScope "Eden" {
                 }
                 { Start-EdenServiceLocal -RunFeatureTests -Verbose } | Should -Throw
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service passed the health check.",
                     "TestSolution TestService Run TestEnvironment Deploying the event subscrpitions for the local service.",
-                    "TestSolution TestService Run TestEnvironment Deploy-LocalSubscriptions TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Deploy-LocalSubscriptions TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service.",
                     "TestSolution TestService Run TestEnvironment Testing the service features.",
-                    "TestSolution TestService Run TestEnvironment Test-Features TestSolution TestService",
-                    #TODO: Figure out how to get the actual thown message instead of "'"
+                    "TestSolution TestService Run TestEnvironment Mock With Error: Test-Features TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'My Error!'",
                     "TestSolution TestService Run TestEnvironment Stopped."
                 )
@@ -206,6 +222,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with feature testing continuously" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -215,26 +232,28 @@ InModuleScope "Eden" {
                 }
                 Start-EdenServiceLocal -RunFeatureTestsContinuously -Verbose
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service passed the health check.",
                     "TestSolution TestService Run TestEnvironment Deploying the event subscrpitions for the local service.",
-                    "TestSolution TestService Run TestEnvironment Deploy-LocalSubscriptions TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Deploy-LocalSubscriptions TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service.",
                     "TestSolution TestService Run TestEnvironment Testing the service features continuously.",
-                    "Mock: Test-FeaturesContinuously job starting. TestSolution TestService Run TestEnvironment"
+                    "TestSolution TestService Run TestEnvironment Mock: Test-FeaturesContinuously job starting."
                 )
             }
         }
         Context "When executed with feature testing continuously that errors" {
             It "Prints the following logs" {
+                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log) -ParameterFilter {
                     $EdenCommand -eq "Test-FeaturesContinuously"
                 }
@@ -249,23 +268,23 @@ InModuleScope "Eden" {
                 }
                 { Start-EdenServiceLocal -RunFeatureTestsContinuously -Verbose } | Should -Throw
                 Assert-Logs $log @(
+                    "TestSolution TestService Run TestEnvironment Starting the local service.",
                     "TestSolution TestService Run TestEnvironment Starting the local service job.",
-                    "Mock: Start-LocalService job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalService job starting.",
                     "TestSolution TestService Run TestEnvironment Starting the public tunnel job.",
-                    "Mock: Start-LocalTunnel job starting. TestSolution TestService Run TestEnvironment",
+                    "TestSolution TestService Run TestEnvironment Mock: Start-LocalTunnel job starting.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service failed the health check.",
                     "TestSolution TestService Run TestEnvironment Checking whether the local service is ready.",
-                    "TestSolution TestService Run TestEnvironment Get-LocalServiceHealth TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Get-LocalServiceHealth TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment The local service passed the health check.",
                     "TestSolution TestService Run TestEnvironment Deploying the event subscrpitions for the local service.",
-                    "TestSolution TestService Run TestEnvironment Deploy-LocalSubscriptions TestSolution TestService",
+                    "TestSolution TestService Run TestEnvironment Mock: Deploy-LocalSubscriptions TestSolution TestService",
                     "TestSolution TestService Run TestEnvironment Finished deploying the event subscrpitions for the local service.",
                     "TestSolution TestService Run TestEnvironment Testing the service features continuously.",
-                    "Mock: Test-FeaturesContinuously job starting. TestSolution TestService Run TestEnvironment",
-                    #TODO: Figure out how to get the actual thown message instead of "'"
-                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Continuous feature testing failed to run. Status Message: '''",
+                    "TestSolution TestService Run TestEnvironment Mock With Error: Test-FeaturesContinuously job starting.",
+                    "TestSolution TestService Run TestEnvironment Stopping and removing jobs due to exception. Message: 'Continuous feature testing failed to run. Status Message: 'My Error!''",
                     "TestSolution TestService Run TestEnvironment Stopped."
                 )
             }
