@@ -26,7 +26,7 @@ InModuleScope "Eden" {
                 Deploy-EdenServiceInfrastructure -Verbose
                 Assert-Logs $log @(
                     "TestSolution TestService Deploy Infrastructure TestEnvironment Deploying the service infrastructure.",
-                    "TestSolution TestService Deploy Infrastructure TestEnvironment Deploy-ServiceInfrastructure TestSolution TestService",
+                    "TestSolution TestService Deploy Infrastructure TestEnvironment Mock: Deploy-ServiceInfrastructure TestSolution TestService",
                     "TestSolution TestService Deploy Infrastructure TestEnvironment Finished deploying the service infrastructure."
                 )
             }
@@ -39,7 +39,7 @@ InModuleScope "Eden" {
                 } | Should -Throw                
                 Assert-Logs $log @(
                     "TestSolution TestService Deploy Infrastructure TestEnvironment Deploying the service infrastructure.",
-                    "TestSolution TestService Deploy Infrastructure TestEnvironment Deploy-ServiceInfrastructure TestSolution TestService",
+                    "TestSolution TestService Deploy Infrastructure TestEnvironment Mock With Error: Deploy-ServiceInfrastructure TestSolution TestService",
                     "TestSolution TestService Deploy Infrastructure TestEnvironment Error deploying the service infrastructure. Message: 'My Error!'"
                 )
             }

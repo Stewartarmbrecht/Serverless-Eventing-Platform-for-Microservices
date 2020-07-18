@@ -26,7 +26,7 @@ InModuleScope "Eden" {
                 Publish-EdenService -Verbose
                 Assert-Logs $log @(
                     "TestSolution TestService Publish Publishing the service.",
-                    "TestSolution TestService Publish Publish-Service TestSolution TestService",
+                    "TestSolution TestService Publish Mock: Publish-Service TestSolution TestService",
                     "TestSolution TestService Publish Finished publishing the service."
                 )
             }
@@ -39,7 +39,7 @@ InModuleScope "Eden" {
                 } | Should -Throw                
                 Assert-Logs $log @(
                     "TestSolution TestService Publish Publishing the service.",
-                    "TestSolution TestService Publish Publish-Service TestSolution TestService",
+                    "TestSolution TestService Publish Mock With Error: Publish-Service TestSolution TestService",
                     "TestSolution TestService Publish Error publishing the service. Message: 'My Error!'"
                 )
             }

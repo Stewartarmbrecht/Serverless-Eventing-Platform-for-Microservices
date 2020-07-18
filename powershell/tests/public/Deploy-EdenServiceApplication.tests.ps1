@@ -27,17 +27,17 @@ InModuleScope "Eden" {
                 Assert-Logs $log @(
                     "TestSolution TestService Deploy Application TestEnvironment Deploying the application.",
                     "TestSolution TestService Deploy Application TestEnvironment Connecting to the hosting environment.",
-                    "TestSolution TestService Deploy Application TestEnvironment Connect-ServiceHostingEnvironment TestSolution TestService",
+                    "TestSolution TestService Deploy Application TestEnvironment Mock: Connect-ServiceHostingEnvironment TestSolution TestService",
                     "TestSolution TestService Deploy Application TestEnvironment Connected to the hosting environment.",
                     "TestSolution TestService Deploy Application TestEnvironment Deploying the service application to staging.",
-                    "TestSolution TestService Deploy Application TestEnvironment Deploy-ServiceAppStaging TestSolution TestService",
+                    "TestSolution TestService Deploy Application TestEnvironment Mock: Deploy-ServiceAppStaging TestSolution TestService",
                     "TestSolution TestService Deploy Application TestEnvironment Finished deploying the service application to staging.",
                     "TestSolution TestService Deploy Application TestEnvironment Testing the staging instance of the service application.",
-                    "TestSolution TestService Deploy Application TestEnvironment Test-ServiceAppStaging TestSolution TestService",
+                    "TestSolution TestService Deploy Application TestEnvironment Mock: Test-ServiceAppStaging TestSolution TestService",
                     "TestSolution TestService Deploy Application TestEnvironment Finished testing the staging instance of the service application.",
-                    "TestSolution TestService Deploy Application TestEnvironment Swapping the staging instance of the service application with the production instance.",    
-                    "TestSolution TestService Deploy Application TestEnvironment Invoke-ServiceStagingSwap TestSolution TestService",
-                    "TestSolution TestService Deploy Application TestEnvironment Finished swapping the staging instance of the service application with the production instance.",
+                    "TestSolution TestService Deploy Application TestEnvironment Swapping the staging instance of the service application with the production instance.",
+                    "TestSolution TestService Deploy Application TestEnvironment Mock: Invoke-ServiceStagingSwap TestSolution TestService",
+                    "TestSolution TestService Deploy Application TestEnvironment Finished swapping the staging instance of the service application with the production instance.",      
                     "TestSolution TestService Deploy Application TestEnvironment Finished deploying the applications."
                 )
             }
@@ -51,7 +51,7 @@ InModuleScope "Eden" {
                 Assert-Logs $log @(
                     "TestSolution TestService Deploy Application TestEnvironment Deploying the application.",
                     "TestSolution TestService Deploy Application TestEnvironment Connecting to the hosting environment.",
-                    "TestSolution TestService Deploy Application TestEnvironment Connect-ServiceHostingEnvironment TestSolution TestService",
+                    "TestSolution TestService Deploy Application TestEnvironment Mock With Error: Connect-ServiceHostingEnvironment TestSolution TestService",
                     "TestSolution TestService Deploy Application TestEnvironment Error deploying the service application. Message: 'My Error!'"
                 )
             }

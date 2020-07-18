@@ -26,7 +26,7 @@ InModuleScope "Eden" {
                 Build-EdenService -Verbose
                 Assert-Logs $log @(
                     "TestSolution TestService Build Building the service.",
-                    "TestSolution TestService Build Build-Service TestSolution TestService",
+                    "TestSolution TestService Build Mock: Build-Service TestSolution TestService",
                     "TestSolution TestService Build Finished building the service."
                 )
             }
@@ -37,7 +37,7 @@ InModuleScope "Eden" {
                 Build-EdenService -Continuous -Verbose
                 Assert-Logs $log @(
                     "TestSolution TestService Build Building the service continuously.",
-                    "TestSolution TestService Build Build-ServiceContinuous TestSolution TestService"
+                    "TestSolution TestService Build Mock: Build-ServiceContinuous TestSolution TestService"
                 )
             }
         }
@@ -49,7 +49,7 @@ InModuleScope "Eden" {
                 } | Should -Throw                
                 Assert-Logs $log @(
                     "TestSolution TestService Build Building the service.",
-                    "TestSolution TestService Build Build-Service TestSolution TestService",
+                    "TestSolution TestService Build Mock With Error: Build-Service TestSolution TestService",
                     "TestSolution TestService Build Error building the service. Message: 'My Error!'"
                 )
             }

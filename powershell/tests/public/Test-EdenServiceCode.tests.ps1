@@ -26,7 +26,7 @@ InModuleScope "Eden" {
                 Test-EdenServiceCode -Verbose
                 Assert-Logs $log @(
                     "TestSolution TestService Test Unit Testing the service code.",
-                    "TestSolution TestService Test Unit Test-ServiceCode TestSolution TestService",
+                    "TestSolution TestService Test Unit Mock: Test-ServiceCode TestSolution TestService",
                     "TestSolution TestService Test Unit Finished testing the service code."
                 )
             }
@@ -37,7 +37,7 @@ InModuleScope "Eden" {
                 Test-EdenServiceCode -Continuous -Verbose
                 Assert-Logs $log @(
                     "TestSolution TestService Test Unit Testing the service code continuously.",
-                    "TestSolution TestService Test Unit Test-ServiceCodeContinuously TestSolution TestService"
+                    "TestSolution TestService Test Unit Mock: Test-ServiceCodeContinuously TestSolution TestService"
                 )
             }
         }
@@ -49,7 +49,7 @@ InModuleScope "Eden" {
                 } | Should -Throw                
                 Assert-Logs $log @(
                     "TestSolution TestService Test Unit Testing the service code.",
-                    "TestSolution TestService Test Unit Test-ServiceCode TestSolution TestService",
+                    "TestSolution TestService Test Unit Mock With Error: Test-ServiceCode TestSolution TestService",
                     "TestSolution TestService Test Unit Error testing the service code. Message: 'My Error!'"
                 )
             }
