@@ -183,6 +183,32 @@ function Assert-Logs {
         }
     }
 }
+function Assert-LogsContainSequence {
+    param(
+        [System.Collections.ArrayList] $Actual,
+        [Array] $Expected
+    )
+    $actualPrint = ""
+    foreach($entry in $Actual) {
+        $actualPrint = "$actualPrint`"$entry`",`n"
+    } 
+    $expectedPrint = ""
+    foreach($entry in $Expected) {
+        $expectedPrint = "$expectedPrint`"$entry`",`n"
+    } 
+    $match = $false
+    for ($i=0; $i -lt $Actual.Count; $i++) {
+        if ($Actual[$i] -eq $Expected[0]) {
+            $match = $true
+            for ($ii=1; $ii -le $Expected.Count; $ii++) {
+                if ($Actual[($i+$ii)] -ne $Expected[$ii]) {
+                    $match = $false
+                }
+            }
+        }
+    }
+    $match | Should -Be $True -Because "Exepcted the log with $($Actual.Count) entries: `n$($actualPrint) `nto contain the sequence: `n$($expectedPrint)"
+}
 Export-ModuleMember -Function `
     Set-TestEnvironment, `
     Get-BuildInfoErrorBlock, `
@@ -190,4 +216,5 @@ Export-ModuleMember -Function `
     Get-InvokeEdenCommandBlockWithError, `
     Get-StartEdenCommandBlock, `
     Get-StartEdenCommandBlockWithError, `
-    Assert-Logs
+    Assert-Logs, `
+    Assert-LogsContainSequence
