@@ -17,11 +17,11 @@ InModuleScope "Eden" {
             Mock Get-ServiceName { "TestService" }
             Set-TestEnvironment
             [System.Collections.ArrayList]$log = @()
-            Mock Write-BuildError (Get-BuildInfoErrorBlock $log)
+            Mock Write-EdenBuildError (Get-BuildInfoErrorBlock $log)
         }
         Context "When executed successfully" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -51,7 +51,7 @@ InModuleScope "Eden" {
         }
         Context "When executed continuously successfully" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -70,7 +70,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with start error" -Tag "Now" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log) -ParameterFilter {
                     $EdenCommand -eq "Start-LocalService"
                 }
@@ -92,7 +92,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with tunnel error" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log) -ParameterFilter {
                     $EdenCommand -eq "Start-LocalTunnel"
                 }
@@ -114,7 +114,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with health check error" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -131,7 +131,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with feature testing" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -166,7 +166,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with feature testing error" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth" -and $EdenCommand -ne "Test-Features"
@@ -202,7 +202,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with feature testing continuously" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log -LogLimit 8)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlock $log)
                 Mock Invoke-EdenCommand (Get-InvokeEdenCommandBlock $log) -ParameterFilter {
                     $EdenCommand -ne "Get-LocalServiceHealth"
@@ -233,7 +233,7 @@ InModuleScope "Eden" {
         }
         Context "When executed with feature testing continuously that errors" {
             It "Prints the following logs" {
-                Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
+                Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
                 Mock Start-EdenCommand (Get-StartEdenCommandBlockWithError $log) -ParameterFilter {
                     $EdenCommand -eq "Test-FeaturesContinuously"
                 }

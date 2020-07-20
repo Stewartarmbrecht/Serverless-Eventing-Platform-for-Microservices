@@ -17,8 +17,8 @@ InModuleScope "Eden" {
             Mock Get-ServiceName { "TestService" }
             Set-TestEnvironment
             [System.Collections.ArrayList]$log = @()
-            Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
-            Mock Write-BuildError (Get-BuildInfoErrorBlock $log)
+            Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
+            Mock Write-EdenBuildError (Get-BuildInfoErrorBlock $log)
         }
         Context "When executed once successfully" {
             It "Print the following logs" {

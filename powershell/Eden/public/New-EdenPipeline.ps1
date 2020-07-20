@@ -19,14 +19,14 @@ function New-EdenPipeline {
         $resourceGroupName = "$solutionName-devops".ToLower()
         $deploymentFile = "./../Infrastructure/Infrastructure.json"
 
-        Write-BuildInfo "Deploying the DevOps infrastructure." $loggingPrefix
+        Write-EdenBuildInfo "Deploying the DevOps infrastructure." $loggingPrefix
 
         Connect-HostingEnvironment $loggingPrefix
 
-        Write-BuildInfo "Creating the resource group: $resourceGroupName." $loggingPrefix
+        Write-EdenBuildInfo "Creating the resource group: $resourceGroupName." $loggingPrefix
         New-AzResourceGroup -Name $resourceGroupName -Location $region -Force | Write-Verbose
 
-        Write-BuildInfo "Executing the deployment using: $deploymentFile." $loggingPrefix
+        Write-EdenBuildInfo "Executing the deployment using: $deploymentFile." $loggingPrefix
         New-AzResourceGroupDeployment `
             -ResourceGroupName $resourceGroupName `
             -TemplateFile $deploymentFile `
@@ -36,11 +36,11 @@ function New-EdenPipeline {
             
             | Write-Verbose
 
-        Write-BuildInfo "Deployed the service infrastructure." $loggingPrefix
+        Write-EdenBuildInfo "Deployed the service infrastructure." $loggingPrefix
         Set-Location $currentDirectory
     }
     catch {
         Set-Location $currentDirectory
-        throw $_    
+        exit 1
     }
 }

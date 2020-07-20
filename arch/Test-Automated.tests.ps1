@@ -17,11 +17,11 @@ InModuleScope "Eden" {
             # Mock Get-SolutionName { "TestSolution" }
             # Mock Get-ServiceName { "TestService" }
             # Set-TestEnvironment
-            Mock Write-BuildInfo {
+            Mock Write-EdenBuildInfo {
                 param($Message, $LoggingPrefix)
                 Write-Verbose "$LoggingPrefix $Message"
             }
-            Mock Write-BuildError {
+            Mock Write-EdenBuildError {
                 param($Message, $LoggingPrefix)
                 Write-Verbose "$LoggingPrefix $Message"
             }
@@ -46,12 +46,12 @@ InModuleScope "Eden" {
                 Test-Automated -EdenEnvConfig $edenEnvConfig
             }
             It "Prints the appropriate message to the host." {
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Running automated tests against the local environment." `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 
                 } 
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Running automated tests once." `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 
@@ -88,21 +88,21 @@ InModuleScope "Eden" {
                 } | Should -Throw
             }
             It "Prints a message that it is running the automated test against the test url." {
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Running automated tests against the local environment." `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 
                 } 
             }
             It "Prints a message that it is running the automated tests once." {
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Running automated tests once." `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 
                 } 
             }
             It "Prints a message that an exception was thrown." {
-                Assert-MockCalled Write-BuildError 1 -ParameterFilter {
+                Assert-MockCalled Write-EdenBuildError 1 -ParameterFilter {
                     $Message -eq "Exception thrown while executing the automated tests. Message: 'My error.'" `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 
@@ -129,12 +129,12 @@ InModuleScope "Eden" {
                 Test-Automated -EdenEnvConfig $edenEnvConfig -Continuous
             }
             It "Prints the appropriate message to the host." {
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Running automated tests against the local environment." `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 
                 } 
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Running automated tests continuously." `
                     -and `
                     $LoggingPrefix -eq "TestSolution TestService Test Automated" 

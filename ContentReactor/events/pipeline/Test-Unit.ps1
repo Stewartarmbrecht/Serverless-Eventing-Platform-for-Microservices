@@ -15,7 +15,7 @@ if ($Continuous) {
     $testJob = Start-Job -Name "test-continuous" -ScriptBlock {
         $loggingPrefix = $args[0]
         . ./Functions.ps1
-        Write-BuildInfo "Running unit tests continuously." $loggingPrefix
+        Write-EdenBuildInfo "Running unit tests continuously." $loggingPrefix
         dotnet watch --project ./../Library.Tests/ContentReactor.Events.Tests.csproj test `
             --filter TestCategory!=Automated `
             /p:CollectCoverage=true `
@@ -40,7 +40,7 @@ if ($Continuous) {
         If ($Host.UI.RawUI.KeyAvailable -and ($Key = $Host.UI.RawUI.ReadKey("AllowCtrlC,NoEcho,IncludeKeyUp"))) {
             If ([Int]$Key.Character -eq 3) {
                 Write-Warning "CTRL-C was used - Shutting down any running jobs before exiting the script."
-                Write-BuildInfo "Shutting down testing job." $loggingPrefix
+                Write-EdenBuildInfo "Shutting down testing job." $loggingPrefix
                 Get-Job | Where-Object {$_.Name -like "test-continuous"} | Remove-Job -Force -Confirm:$False
                 [Console]::TreatControlCAsInput = $False
                 exit
@@ -81,7 +81,7 @@ else {
         $testJob | Receive-Job
     }
     $testJob | Receive-Job
-    Write-BuildInfo "Finished running unit tests." $loggingPrefix
+    Write-EdenBuildInfo "Finished running unit tests." $loggingPrefix
 }
 
 Set-Location $currentDirectory

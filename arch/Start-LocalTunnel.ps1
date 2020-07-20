@@ -11,15 +11,15 @@ function Start-LocalTunnel
 
     try
     {
-        Write-BuildInfo "Starting the local tunnel to port $Port." $LoggingPrefix
+        Write-EdenBuildInfo "Starting the local tunnel to port $Port." $LoggingPrefix
 
         Invoke-CommandLocalTunnel -Port $Port
 
-        Write-BuildInfo "The service tunnel has been shut down." $LoggingPrefix
+        Write-EdenBuildInfo "The service tunnel has been shut down." $LoggingPrefix
     }
     catch
     {
-        Write-BuildError "Exception thrown while starting the local tunnel. Message: '$($_.Exception.Message)'" $LoggingPrefix
+        Write-EdenBuildError "Exception thrown while starting the local tunnel. Message: '$($_.Exception.Message)'" $LoggingPrefix
         throw $_ 
     }
 }

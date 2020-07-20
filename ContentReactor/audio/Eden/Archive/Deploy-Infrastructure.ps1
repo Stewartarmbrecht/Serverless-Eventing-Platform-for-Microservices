@@ -15,15 +15,15 @@ $loggingPrefix = "ContentReactor Audio Deploy Infrastructure $instanceName"
 $resourceGroupName = "$instanceName-audio".ToLower()
 $deploymentFile = "./../Infrastructure/Infrastructure.json"
 
-Write-BuildInfo "Deploying the service infrastructure." $loggingPrefix
+Write-EdenBuildInfo "Deploying the service infrastructure." $loggingPrefix
 
 Connect-AzureServicePrincipal $loggingPrefix
 
-Write-BuildInfo "Creating the resource group: $resourceGroupName." $loggingPrefix
+Write-EdenBuildInfo "Creating the resource group: $resourceGroupName." $loggingPrefix
 New-AzResourceGroup -Name $resourceGroupName -Location $region -Force | Write-Verbose
 
-Write-BuildInfo "Executing the deployment using: $deploymentFile." $loggingPrefix
+Write-EdenBuildInfo "Executing the deployment using: $deploymentFile." $loggingPrefix
 New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName | Write-Verbose
 
-Write-BuildInfo "Deployed the service infrastructure." $loggingPrefix
+Write-EdenBuildInfo "Deployed the service infrastructure." $loggingPrefix
 Set-Location $currentDirectory

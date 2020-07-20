@@ -1,4 +1,4 @@
-function Write-BuildInfo {
+function Write-EdenBuildInfo {
     #[System.Diagnostics.CodeAnalysis.SuppressMessage('PSAvoidUsingWriteHost', '', Scope='Function')]
     [CmdletBinding()]
     param(

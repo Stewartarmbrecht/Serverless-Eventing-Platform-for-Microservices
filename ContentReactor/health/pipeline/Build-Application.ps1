@@ -25,7 +25,7 @@ try {
     
     Invoke-BuildCommand $command $message $loggingPrefix 
 
-    Write-BuildInfo "Finished building the solution." $loggingPrefix
+    Write-EdenBuildInfo "Finished building the solution." $loggingPrefix
 
     Set-Location $currentDirectory
 }

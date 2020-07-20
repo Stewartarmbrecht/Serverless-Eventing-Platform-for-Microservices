@@ -8,14 +8,14 @@ function Deploy-EdenServiceSubscriptions {
     
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Deploy Subscriptions $($edenEnvConfig.EnvironmentName)"
 
-        Write-BuildInfo "Deploying the service subscriptions." $loggingPrefix
+        Write-EdenBuildInfo "Deploying the service subscriptions." $loggingPrefix
 
         Invoke-EdenCommand "Deploy-ServiceSubscriptions" $edenEnvConfig $loggingPrefix
         
-        Write-BuildInfo "Finished deploying the service subscriptions." $loggingPrefix
+        Write-EdenBuildInfo "Finished deploying the service subscriptions." $loggingPrefix
     }
     catch {
-        Write-BuildError "Error deploying the service subscriptions. Message: '$($_.Exception.Message)'" $loggingPrefix
-        throw $_
+        Write-EdenBuildError "Error deploying the service subscriptions. Message: '$($_.Exception.Message)'" $loggingPrefix
+        exit 1
     }    
 }

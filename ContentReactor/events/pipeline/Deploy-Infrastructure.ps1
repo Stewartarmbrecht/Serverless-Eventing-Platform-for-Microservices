@@ -22,7 +22,7 @@ $deploymentFile = "./../Infrastructure/eventGridTemplate.json"
 
 . ./Functions.ps1
 
-Write-BuildInfo "Deploying the event grid." $loggingPrefix
+Write-EdenBuildInfo "Deploying the event grid." $loggingPrefix
 
 Connect-AzureServicePrincipal $loggingPrefix
 
@@ -32,5 +32,5 @@ if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 $result = New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName
 if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
-Write-BuildInfo "Deployed the event grid infrastructure." $loggingPrefix
+Write-EdenBuildInfo "Deployed the event grid infrastructure." $loggingPrefix
 Set-Location $currentDirectory

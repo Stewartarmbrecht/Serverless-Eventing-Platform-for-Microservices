@@ -8,14 +8,14 @@ function Deploy-EdenServiceInfrastructure {
     
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Deploy Infrastructure $($edenEnvConfig.EnvironmentName)"
 
-        Write-BuildInfo "Deploying the service infrastructure." $loggingPrefix
+        Write-EdenBuildInfo "Deploying the service infrastructure." $loggingPrefix
 
         Invoke-EdenCommand "Deploy-ServiceInfrastructure" $edenEnvConfig $loggingPrefix
         
-        Write-BuildInfo "Finished deploying the service infrastructure." $loggingPrefix
+        Write-EdenBuildInfo "Finished deploying the service infrastructure." $loggingPrefix
     }
     catch {
-        Write-BuildError "Error deploying the service infrastructure. Message: '$($_.Exception.Message)'" $loggingPrefix
-        throw $_
+        Write-EdenBuildError "Error deploying the service infrastructure. Message: '$($_.Exception.Message)'" $loggingPrefix
+        exit 1
     }    
 }

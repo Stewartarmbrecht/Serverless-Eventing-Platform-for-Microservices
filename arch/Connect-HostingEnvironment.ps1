@@ -7,15 +7,15 @@ function Connect-HostingEnvironment {
     try {
         [EdenEnvConfig] $envConfig = Get-EdenEnvConfig
 
-        Write-BuildInfo "Connecting to the '$($envConfig.EnvironmentName)' environment in the '$($envConfig.TenantId)' tenant as '$($envConfig.ServicePrincipalId)'" $LoggingPrefix
+        Write-EdenBuildInfo "Connecting to the '$($envConfig.EnvironmentName)' environment in the '$($envConfig.TenantId)' tenant as '$($envConfig.ServicePrincipalId)'" $LoggingPrefix
 
         Invoke-CommandConnect -EdenEnvConfig $envConfig
         
     }
     catch
     {
-        Write-BuildError "Experienced an error connecting to the hosting environment." $LoggingPrefix
-        Write-BuildError "Error message: '$($_.Exception.Message)'" $LoggingPrefix
+        Write-EdenBuildError "Experienced an error connecting to the hosting environment." $LoggingPrefix
+        Write-EdenBuildError "Error message: '$($_.Exception.Message)'" $LoggingPrefix
         throw $_
     }
 }

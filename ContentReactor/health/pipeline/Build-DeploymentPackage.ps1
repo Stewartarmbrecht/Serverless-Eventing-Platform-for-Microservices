@@ -17,7 +17,7 @@ try {
     
     $directoryStart = Get-Location
     
-    Write-BuildInfo "Packaging the service application." $loggingPrefix
+    Write-EdenBuildInfo "Packaging the service application." $loggingPrefix
     
     Set-Location "$directoryStart/Service"
     Invoke-BuildCommand "dotnet publish -c Release -o $directoryStart/.dist/app" "Publishing the function application." $loggingPrefix
@@ -25,13 +25,13 @@ try {
     $appPath =  "$directoryStart/.dist/app/**"
     $appDestination = "$directoryStart/.dist/app.zip"
     
-    Write-BuildInfo "Removing the app package." $loggingPrefix
+    Write-EdenBuildInfo "Removing the app package." $loggingPrefix
     Remove-Item -Path $appDestination -Recurse -Force -ErrorAction Ignore
     
-    Write-BuildInfo "Creating the app package." $loggingPrefix
+    Write-EdenBuildInfo "Creating the app package." $loggingPrefix
     Compress-Archive -Path $appPath -DestinationPath $appDestination
     
-    Write-BuildInfo "Packaged the service." $loggingPrefix
+    Write-EdenBuildInfo "Packaged the service." $loggingPrefix
     Set-Location $currentDirectory
 }
 catch {

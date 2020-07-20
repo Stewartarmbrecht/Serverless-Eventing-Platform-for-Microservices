@@ -11,12 +11,25 @@ function Set-EdenEnvConfig
         [String] $ServicePrincipalId, 
         [SecureString] $ServicePrincipalPassword, 
         [String] $DeveloperId,
-        [Int] $LocalHostingPort,
         [Switch] $Check,
-        [Switch] $Clear
+        [Switch] $Clear,
+        [Switch] $Save,
+        [String] $Load
         
     )
 
+    if ($Load) {
+        [String]$json = Get-Content "./Eden/$Load.json"
+        $jsonObject = ConvertFrom-Json $json
+        $DeveloperId = $jsonObject.DeveloperId
+        $EnvironmentName = $jsonObject.EnvironmentName
+        $Region = $jsonObject.Region
+        $ServiceName = $jsonObject.ServiceName
+        $ServicePrincipalId = $jsonObject.ServicePrincipalId
+        $ServicePrincipalPassword = (ConvertTo-SecureString $jsonObject.ServicePrincipalPassword)
+        $SolutionName = $jsonObject.SolutionName
+        $TenantId = $jsonObject.TenantId
+    }
     if (!$SolutionName) {
         $SolutionName = Get-SolutionName
     }
@@ -44,13 +57,13 @@ function Set-EdenEnvConfig
         Set-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalPassword" $null
         Set-EnvironmentVariable "$SolutionName.$ServiceName.TenantId" $null
         Set-EnvironmentVariable "$SolutionName.$ServiceName.DeveloperId" $null
-        Write-BuildInfo "Cleared the environment variables." $loggingPrefix
+        Write-EdenBuildInfo "Cleared the environment variables." $loggingPrefix
         return
     }
     
     if (!$Check) 
     {
-        Write-BuildInfo "Configuring the environment." $loggingPrefix
+        Write-EdenBuildInfo "Configuring the environment." $loggingPrefix
     }
     
     if ($EnvironmentName) { Set-EnvironmentVariable "$SolutionName.$ServiceName.EnvironmentName" $EnvironmentName }
@@ -93,6 +106,21 @@ function Set-EdenEnvConfig
         Write-Verbose "Env:$SolutionName.$ServiceName.ServicePrincipalId=$(Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalId")"
         Write-Verbose "Env:$SolutionName.$ServiceName.TenantId=$(Get-EnvironmentVariable "$SolutionName.$ServiceName.TenantId")"
         Write-Verbose "Env:$SolutionName.$ServiceName.DeveloperId=$(Get-EnvironmentVariable "$SolutionName.$ServiceName.DeveloperId")"
-        Write-BuildInfo "Configured the environment." $loggingPrefix
-    }    
+        Write-EdenBuildInfo "Configured the environment." $loggingPrefix
+    }
+
+    if ($Save) {
+        $edenEnvConfig = @{
+            EnvironmentName = $EnvironmentName
+            DeveloperId = $DeveloperId
+            Region = $Region
+            ServiceName = $ServiceName
+            SolutionName = $SolutionName
+            TenantId = $TenantId
+            ServicePrincipalId = $ServicePrincipalId
+            ServicePrincipalPassword = (ConvertFrom-SecureString -SecureString $ServicePrincipalPassword)    
+        }
+        $json = ConvertTo-Json $edenEnvConfig
+        $json | Out-File "./Eden/$($edenEnvConfig.EnvironmentName).json" -Force
+    }
 }

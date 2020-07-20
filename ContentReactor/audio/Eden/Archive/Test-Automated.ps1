@@ -14,10 +14,10 @@ Set-Location $PSScriptRoot
 $loggingPrefix = "ContentReactor Audio Test End to End $instanceName"
 
 if ($Continuous) {
-    Write-BuildInfo "Running automated tests continuously." $loggingPrefix
+    Write-EdenBuildInfo "Running automated tests continuously." $loggingPrefix
     ./Start-Local.ps1 -RunAutomatedTestsContinuously -Verbose
 } else {
-    Write-BuildInfo "Running automated tests." $loggingPrefix
+    Write-EdenBuildInfo "Running automated tests." $loggingPrefix
     ./Start-Local.ps1 -RunAutomatedTests
 }
 

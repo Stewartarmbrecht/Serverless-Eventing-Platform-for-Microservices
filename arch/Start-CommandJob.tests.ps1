@@ -18,14 +18,14 @@ InModuleScope "Eden" {
             Mock Get-ServiceName { "TestService" }
             $edenEnvConfig = Set-TestEnvironment
             [System.Collections.ArrayList]$log = @()
-            Mock Write-BuildInfo (Get-BuildInfoErrorBlock $log)
-            Mock Write-BuildError (Get-BuildInfoErrorBlock $log)
+            Mock Write-EdenBuildInfo (Get-BuildInfoErrorBlock $log)
+            Mock Write-EdenBuildError (Get-BuildInfoErrorBlock $log)
         }
         Context "When executed with success" {
             BeforeEach {
                 $command = {
                     param([EdenEnvConfig]$EdenEnvConfig)
-                    Write-BuildInfo "Test command." "TestPrefix" 
+                    Write-EdenBuildInfo "Test command." "TestPrefix" 
                 }
 
                 Mock Start-ThreadJob { 

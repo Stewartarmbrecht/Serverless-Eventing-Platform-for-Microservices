@@ -12,7 +12,7 @@ function Invoke-StagingSwap
 
     try {
 
-        Write-BuildInfo "Deploying the application from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
+        Write-EdenBuildInfo "Deploying the application from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
     
         Invoke-CommandDeployApp `
             -ServiceName $serviceName `
@@ -22,7 +22,7 @@ function Invoke-StagingSwap
     
     }
     catch {
-        Write-BuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $LoggingPrefix
+        Write-EdenBuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $LoggingPrefix
         throw $_        
     }
 }

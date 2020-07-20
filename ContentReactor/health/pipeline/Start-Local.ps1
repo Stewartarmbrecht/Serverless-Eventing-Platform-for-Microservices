@@ -25,7 +25,7 @@ try {
 
     $loggingPrefix = "$solutionName $serviceName Run $instanceName"
 
-    Write-BuildInfo "Starting jobs." $loggingPrefix
+    Write-EdenBuildInfo "Starting jobs." $loggingPrefix
 
     Start-Function -FunctionLocation "./../Service" -Port $port -LoggingPrefix $loggingPrefix
 
@@ -67,10 +67,10 @@ try {
             {
                 throw "Automated tests failed."
             }
-            Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
+            Write-EdenBuildInfo "Stopping and removing jobs." $loggingPrefix
             Stop-Job rt-*
             Remove-Job rt-*
-            Write-BuildInfo "Stopped." $loggingPrefix
+            Write-EdenBuildInfo "Stopped." $loggingPrefix
         }
         Get-Job | Receive-Job | Write-Verbose
     }
@@ -86,9 +86,9 @@ try {
 } 
 catch 
 {
-    Write-BuildInfo "Stopping and removing jobs." $loggingPrefix
+    Write-EdenBuildInfo "Stopping and removing jobs." $loggingPrefix
     Stop-Job rt-*
     Remove-Job rt-*
-    Write-BuildInfo "Stopped." $loggingPrefix
+    Write-EdenBuildInfo "Stopped." $loggingPrefix
     throw $_
 }

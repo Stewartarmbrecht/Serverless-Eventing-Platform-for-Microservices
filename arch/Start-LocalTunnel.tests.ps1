@@ -16,17 +16,17 @@ InModuleScope "Eden" {
         Context "When executed with success" {
             BeforeEach {
                 Mock Invoke-CommandLocalTunnel { }
-                Mock Write-BuildInfo
+                Mock Write-EdenBuildInfo
 
                 Start-LocalTunnel -Port 9876 -LoggingPrefix "My Prefix"
             }
             It "Prints the appropriate message to the host." {
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "Starting the local tunnel to port 9876." `
                     -and `
                     $LoggingPrefix -eq "My Prefix" 
                 } 
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -eq "The service tunnel has been shut down." `
                     -and `
                     $LoggingPrefix -eq "My Prefix" 
@@ -41,19 +41,19 @@ InModuleScope "Eden" {
         Context "When executed with exception" {
             It "Prints the appropriate message to the host and throws the exception." {
                 Mock Invoke-CommandLocalTunnel { throw "My error." }
-                Mock Write-BuildInfo
-                Mock Write-BuildError
+                Mock Write-EdenBuildInfo
+                Mock Write-EdenBuildError
 
                 {
                     Start-LocalTunnel -Port 9876 -LoggingPrefix "My Prefix"
                 } | Should -Throw
 
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -like "Starting the local tunnel to port 9876." `
                     -and `
                     $LoggingPrefix -eq "My Prefix" 
                 } 
-                Assert-MockCalled Write-BuildError 1 -ParameterFilter {
+                Assert-MockCalled Write-EdenBuildError 1 -ParameterFilter {
                     $Message -eq "Exception thrown while starting the local tunnel. Message: 'My error.'" `
                     -and `
                     $LoggingPrefix -eq "My Prefix" 

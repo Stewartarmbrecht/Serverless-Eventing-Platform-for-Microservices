@@ -12,22 +12,22 @@ function Test-Automated
 
         $loggingPrefix = "$($EdenEnvConfig.SolutionName) $($EdenEnvConfig.ServiceName) Test Automated"
 
-        Write-BuildInfo "Running automated tests against the local environment." $loggingPrefix
+        Write-EdenBuildInfo "Running automated tests against the local environment." $loggingPrefix
     
         if ($Continuous)
         {
-            Write-BuildInfo "Running automated tests continuously." $loggingPrefix
+            Write-EdenBuildInfo "Running automated tests continuously." $loggingPrefix
             Invoke-CommandTestAutomatedContinuous -EdenEnvConfig $EdenEnvConfig
         }
         else
         {
-            Write-BuildInfo "Running automated tests once." $loggingPrefix
+            Write-EdenBuildInfo "Running automated tests once." $loggingPrefix
             Invoke-CommandTestAutomated -EdenEnvConfig $EdenEnvConfig
-            Write-BuildInfo "Finished running automated tests." $loggingPrefix
+            Write-EdenBuildInfo "Finished running automated tests." $loggingPrefix
         }
     }
     catch {
-        Write-BuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $loggingPrefix
+        Write-EdenBuildError "Exception thrown while executing the automated tests. Message: '$($_.Exception.Message)'" $loggingPrefix
         throw $_        
     }
 }

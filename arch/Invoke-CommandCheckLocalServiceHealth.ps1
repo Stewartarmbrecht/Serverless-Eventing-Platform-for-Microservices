@@ -6,15 +6,15 @@ function Invoke-CommandCheckLocalServiceHealth
         $response = Invoke-RestMethod -URI "$PublicUrl/api/healthcheck?userId=developer98765@test.com"
         $status = $response.status
         if($status -eq 0) {
-            Write-BuildInfo "Health check status successful." $LoggingPrefix
+            Write-EdenBuildInfo "Health check status successful." $LoggingPrefix
             return $TRUE
         } else {
-            Write-BuildInfo "Health check status unsuccessful. Status: $status" $LoggingPrefix
+            Write-EdenBuildInfo "Health check status unsuccessful. Status: $status" $LoggingPrefix
             return $FALSE
         }
     } catch {
         $message = $_.Exception.Message
-        Write-BuildError "Failed to execute health check: '$message'." $LoggingPrefix
+        Write-EdenBuildError "Failed to execute health check: '$message'." $LoggingPrefix
         return $FALSE
     }
 }

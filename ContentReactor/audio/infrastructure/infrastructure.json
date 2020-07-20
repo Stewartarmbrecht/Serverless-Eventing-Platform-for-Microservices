@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "instanceName": {
+        "EnvironmentName": {
             "type": "string",
             "metadata": {
                 "description": "Provides a unique string that will be pre-pended to all resource names and will ensure that they are globally unique."
@@ -10,22 +10,22 @@
         }
     },
     "variables": {
-        "serviceInstanceName": "[concat(parameters('instanceName'),'-audio')]",
+        "serviceInstanceName": "[concat(parameters('EnvironmentName'),'-audio')]",
 
         "applicationInsightsName": "[concat(variables('serviceInstanceName'), '-ai')]",
 
         "functionsAppServicePlanName": "[concat(variables('serviceInstanceName'),'-asp')]",
         "functionsAppName": "[variables('serviceInstanceName')]",
 
-        "blobAccountName": "[concat(parameters('instanceName'),'aud')]",
-        "blobAccountNameStaging": "[concat(parameters('instanceName'),'audstg')]",
-        "storageAccountName": "[concat(parameters('instanceName'),'audwjs')]",
+        "blobAccountName": "[concat(parameters('EnvironmentName'),'aud')]",
+        "blobAccountNameStaging": "[concat(parameters('EnvironmentName'),'audstg')]",
+        "storageAccountName": "[concat(parameters('EnvironmentName'),'audwjs')]",
 
         "cognitiveServicesAccountName": "[concat(variables('serviceInstanceName'), '-cs')]",
         "cognitiveServicesApiUrl": "https://westus2.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-us&format=detailed",
 
-        "eventGridTopicResourceId": "[resourceId(concat(parameters('instanceName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('instanceName'),'-events-topic'))]",
-        "eventGridTopicStagingResourceId": "[resourceId(concat(parameters('instanceName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('instanceName'),'-staging-events-topic'))]"
+        "eventGridTopicResourceId": "[resourceId(concat(parameters('EnvironmentName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('EnvironmentName'),'-events-topic'))]",
+        "eventGridTopicStagingResourceId": "[resourceId(concat(parameters('EnvironmentName'),'-events'), 'Microsoft.EventGrid/topics', concat(parameters('EnvironmentName'),'-staging-events-topic'))]"
     },
     "resources": [
         { "type": "Microsoft.Insights/components",

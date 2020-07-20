@@ -9,10 +9,8 @@ Set-Location $PSScriptRoot
 
 $loggingPrefix = "ContentReactor Start IDE"
 
-Write-BuildInfo "Starting up the default development tool." $loggingPrefix
+Write-EdenBuildInfo "Starting up the default development tool." $loggingPrefix
 
-Set-Location ../
-
-code .
+code ./../ ./../README.md -n
 
 Set-Location $currentDirectory

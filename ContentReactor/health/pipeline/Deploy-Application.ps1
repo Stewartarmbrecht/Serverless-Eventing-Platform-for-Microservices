@@ -24,7 +24,7 @@ try {
 
     $loggingPrefix = "$solutionName $serviceName Deploy Apps $instanceName"
 
-    Write-BuildInfo "Deploying the applications." $loggingPrefix
+    Write-EdenBuildInfo "Deploying the applications." $loggingPrefix
 
     $resourceGroupName = "$instanceName-$serviceName".ToLower()
     $apiName = "$instanceName-$serviceName".ToLower()
@@ -34,7 +34,7 @@ try {
 
     Connect-AzureServicePrincipal $loggingPrefix
 
-    Write-BuildInfo "Deploying the azure functions app using zip from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
+    Write-EdenBuildInfo "Deploying the azure functions app using zip from '$apiFilePath' to group '$resourceGroupName', app '$apiName' on the staging slot." $loggingPrefix
     $result = Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $apiName -Slot Staging -ArchivePath $apiFilePath -Force
     if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
@@ -49,18 +49,18 @@ try {
     }
     $automatedTestJob | Receive-Job | Write-Verbose
     if ($automatedTestJob.State -eq "Failed") {
-        Write-BuildError "The staging end to end testing failed." $loggingPrefix
-        Write-BuildError "Exiting deployment." $loggingPrefix
+        Write-EdenBuildError "The staging end to end testing failed." $loggingPrefix
+        Write-EdenBuildError "Exiting deployment." $loggingPrefix
         Get-Job | Remove-Job
         throw "Automated tests failed."
     }
     Get-Job | Remove-Job
 
-    Write-BuildInfo "Switching the '$resourceGroupName/$apiName' azure functions app staging slot with production." $loggingPrefix
+    Write-EdenBuildInfo "Switching the '$resourceGroupName/$apiName' azure functions app staging slot with production." $loggingPrefix
     $result = Switch-AzWebAppSlot -SourceSlotName "Staging" -DestinationSlotName "Production" -ResourceGroupName $resourceGroupName -Name $apiName
     if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
-    Write-BuildInfo "Finished deploying the applications." $loggingPrefix
+    Write-EdenBuildInfo "Finished deploying the applications." $loggingPrefix
     Set-Location $currentDirectory
 }
 catch {

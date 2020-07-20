@@ -24,6 +24,7 @@ function Get-EdenEnvConfig
     $config.EnvironmentName = Get-EnvironmentVariable "$SolutionName.$ServiceName.EnvironmentName"
     $config.Region = Get-EnvironmentVariable "$SolutionName.$ServiceName.Region"
     $config.ServicePrincipalId = Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalId"
+    $config.PublicUrlToLocalWebServer = ""
     $pwdSS = Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalPassword"
     if ($pwdSS) {
         $config.ServicePrincipalPassword = ConvertTo-SecureString $pwdSS
@@ -37,7 +38,7 @@ function Get-EdenEnvConfig
         $missing = New-Object -TypeName "System.Collections.ArrayList"
 
         $config.PSObject.Properties | ForEach-Object {
-            if(!($_.Value)) {
+            if(!($_.Value) -and $_.Name -ne "PublicUrlToLocalWebServer") {
                 $missing.Add($_.Name)
             }
         }
@@ -56,7 +57,7 @@ function Get-EdenEnvConfig
                 }
             }
     
-            Write-BuildError $message "$SolutionName $ServiceName"
+            Write-EdenBuildError $message "$SolutionName $ServiceName"
     
             throw $message    
         }

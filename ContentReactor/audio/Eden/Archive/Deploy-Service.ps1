@@ -12,7 +12,7 @@ $instanceName = $Env:InstanceName
 
 $loggingPrefix = "ContentReactor Audio Deploy Service $instanceName"
 
-Write-BuildInfo "Deploying the service." $loggingPrefix
+Write-EdenBuildInfo "Deploying the service." $loggingPrefix
 
 ./Deploy-Infrastructure.ps1
 
@@ -20,6 +20,6 @@ Write-BuildInfo "Deploying the service." $loggingPrefix
 
 ./Deploy-Subscription.ps1
 
-Write-BuildInfo "Deployed the service." $loggingPrefix
+Write-EdenBuildInfo "Deployed the service." $loggingPrefix
 
 Set-Location $currentDirectory

@@ -20,7 +20,7 @@ if ($InstanceName) {
 
 if (!$Check) 
 {
-    Write-BuildInfo "Configuring the environment." $loggingPrefix
+    Write-EdenBuildInfo "Configuring the environment." $loggingPrefix
 }
 
 if ($InstanceName) {
@@ -83,5 +83,5 @@ if (!$Check)
     Write-Verbose "Env:TenantId=$Env:TenantId"
     Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
     Write-Verbose "Env:HealthLocalHostingPort=$Env:HealthLocalHostingPort"
-    Write-BuildInfo "Configured the environment." $loggingPrefix
+    Write-EdenBuildInfo "Configured the environment." $loggingPrefix
 }

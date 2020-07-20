@@ -7,4 +7,5 @@ Class EdenEnvConfig {
     [SecureString] $ServicePrincipalPassword = $null
     [String] $TenantId = $null
     [String] $DeveloperId = $null
+    [String] $PublicUrlToLocalWebServer = $null
 }

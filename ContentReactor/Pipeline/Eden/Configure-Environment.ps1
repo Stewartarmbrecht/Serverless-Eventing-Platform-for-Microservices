@@ -20,7 +20,7 @@ if ($InstanceName) {
     $loggingPrefix = "ContentReactor Configuration $Env:InstanceName"
 }
 
-Write-BuildInfo "Configuring the environment." $loggingPrefix
+Write-EdenBuildInfo "Configuring the environment." $loggingPrefix
 
 if ($ProdInstanceName) {
     # [Environment]::SetEnvironmentVariable("InstanceName", $InstanceName, [System.EnvironmentVariableTarget]::Machine)
@@ -95,4 +95,4 @@ Write-Verbose "Env:UserId=$Env:UserId"
 Write-Verbose "Env:TenantId=$Env:TenantId"
 Write-Verbose "Env:SubscriptionId=$Env:SubscriptionId"
 Write-Verbose "Env:UniqueDeveloperId=$Env:UniqueDeveloperId"
-Write-BuildInfo "Configured the environment." $loggingPrefix
+Write-EdenBuildInfo "Configured the environment." $loggingPrefix

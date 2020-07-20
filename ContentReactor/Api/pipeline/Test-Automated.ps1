@@ -13,6 +13,6 @@ Set-Location $PSScriptRoot
 
 $loggingPrefix = "ContentReactor Api Test End to End $instanceName"
 
-Write-BuildInfo "This application does not have any automated tests yet.  Please add some!" $loggingPrefix
+Write-EdenBuildInfo "This application does not have any automated tests yet.  Please add some!" $loggingPrefix
 
 Set-Location $currentDirectory

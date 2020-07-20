@@ -31,17 +31,17 @@ InModuleScope "Eden" {
                         } 
                     } 
                 }
-                Mock Write-BuildInfo
+                Mock Write-EdenBuildInfo
                 
                 Get-PublicUrl -Port 9876 -LoggingPrefix "My Prefix"
                 
-                Assert-MockCalled Write-BuildInfo 2 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 2 -ParameterFilter { 
                     $LoggingPrefix -like "My Prefix" 
                 }
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -like "Calling the ngrok API to get the public url to port '9876'."
                 } 
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -like "Found the public URL: 'MyPublicUrl' for private URL: 'http://localhost:9876'." 
                 }
             }
@@ -57,7 +57,7 @@ InModuleScope "Eden" {
                         } 
                     } 
                 }
-                Mock Write-BuildInfo
+                Mock Write-EdenBuildInfo
                 
                 $result = Get-PublicUrl -Port 9876 -LoggingPrefix "My Prefix"
                 
@@ -67,28 +67,28 @@ InModuleScope "Eden" {
         Context "When executed with an unsuccessfull attempt" {
             It "Prints the appropriate message to the host." {
                 Mock Invoke-RestMethod { Throw "MyError" }
-                Mock Write-BuildInfo
-                Mock Write-BuildError
+                Mock Write-EdenBuildInfo
+                Mock Write-EdenBuildError
 
                 Get-PublicUrl -Port 9876 -LoggingPrefix "My Prefix"
                 
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $LoggingPrefix -like "My Prefix" 
                 }
-                Assert-MockCalled Write-BuildError 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildError 1 -ParameterFilter { 
                     $LoggingPrefix -like "My Prefix" 
                 }
-                Assert-MockCalled Write-BuildInfo 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildInfo 1 -ParameterFilter { 
                     $Message -like "Calling the ngrok API to get the public url to port '9876'."
                 }
-                Assert-MockCalled Write-BuildError 1 -ParameterFilter { 
+                Assert-MockCalled Write-EdenBuildError 1 -ParameterFilter { 
                     $Message -like "Failed to get the public url: 'MyError'."
                 }
             }
             It "Returns an empty string." {
                 Mock Invoke-RestMethod { throw "MyError" }
-                Mock Write-BuildInfo
-                Mock Write-BuildError
+                Mock Write-EdenBuildInfo
+                Mock Write-EdenBuildError
 
                 $result = Get-PublicUrl -Port 9876 -LoggingPrefix "My Prefix"
                 $result | Should -Be ""                

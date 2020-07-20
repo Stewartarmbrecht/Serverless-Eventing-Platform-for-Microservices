@@ -22,7 +22,7 @@ $deploymentFile = "./../Infrastructure/Infrastructure.json"
 
 . ./Functions.ps1
 
-Write-BuildInfo "Deploying the api." $loggingPrefix
+Write-EdenBuildInfo "Deploying the api." $loggingPrefix
 
 Connect-AzureServicePrincipal $loggingPrefix
 
@@ -32,5 +32,5 @@ if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 $result = New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $deploymentFile -InstanceName $instanceName
 if ($VerbosePreference -ne 'SilentlyContinue') { $result }
 
-Write-BuildInfo "Deployed the api infrastructure." $loggingPrefix
+Write-EdenBuildInfo "Deployed the api infrastructure." $loggingPrefix
 Set-Location $currentDirectory
