@@ -1,0 +1,68 @@
+{
+  "uid" : "2839814b5618d22d",
+  "name" : "WithIncorrectUserIdReturnsNull",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithIncorrectUserIdReturnsNull",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithIncorrectUserIdReturnsNull",
+  "time" : {
+    "start" : 1595280478375,
+    "stop" : 1595280478377,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "30caf436b3ce972c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478375,
+          "stop" : 1595280478377,
+          "duration" : 2
+        }
+      }, {
+        "uid" : "8149a2500908620e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478375,
+          "stop" : 1595280478377,
+          "duration" : 2
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "2839814b5618d22d.json",
+  "parameterValues" : [ ]
+}

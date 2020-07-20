@@ -1,0 +1,92 @@
+{
+  "total" : 8,
+  "items" : [ {
+    "uid" : "2b95507ab59a7246734c9edc9c03a153",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 11,
+      "unknown" : 0,
+      "total" : 11
+    }
+  }, {
+    "uid" : "a075e751e1415ec25ba003ef2f0936ca",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 7,
+      "unknown" : 0,
+      "total" : 7
+    }
+  }, {
+    "uid" : "c29877d879089d498cf476949ea64b64",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 6,
+      "unknown" : 0,
+      "total" : 6
+    }
+  }, {
+    "uid" : "29eed4523a77178a549600965a2775e2",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 6,
+      "unknown" : 0,
+      "total" : 6
+    }
+  }, {
+    "uid" : "60ddabe196bfb54528e75f59389ff65f",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    }
+  }, {
+    "uid" : "102fb2ea737390e2c65e03a2e75dacf1",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    }
+  }, {
+    "uid" : "2274294065530fdd0dc0a870e4c0a664",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 2,
+      "unknown" : 0,
+      "total" : 2
+    }
+  }, {
+    "uid" : "0c1c02f67e2fe34044cec2143e72b7c6",
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 2,
+      "unknown" : 0,
+      "total" : 2
+    }
+  } ]
+}

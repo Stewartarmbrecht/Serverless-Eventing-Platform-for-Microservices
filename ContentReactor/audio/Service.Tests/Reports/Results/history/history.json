@@ -1,0 +1,1402 @@
+{
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithSuccessUpdatesBlobMetadata" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "d090a55560be3ab",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478192,
+        "stop" : 1595280478193,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "ac1b3d3fea8e3795",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478192,
+        "stop" : 1595280478193,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "1e620f478f5a363a",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478192,
+        "stop" : 1595280478193,
+        "duration" : 1
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithSuccessDeletesBlob" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "4e58d0ec57a922bc",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478321,
+        "stop" : 1595280478326,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "53af763f37e62f0d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478321,
+        "stop" : 1595280478326,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "8a180d43f618b5b3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478321,
+        "stop" : 1595280478326,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests.WithAnotherUserIdDoesNotReturnSummaries" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "582e48b7d11f0d45",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478394,
+        "stop" : 1595280478396,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "7134bb6fac4c55e5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478394,
+        "stop" : 1595280478396,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "3ce853fd0bcccdb1",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478394,
+        "stop" : 1595280478396,
+        "duration" : 2
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithNullPayloadRequestReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "3f5a2518c61b86c1",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478271,
+        "stop" : 1595280478274,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "dc6c2ef880d2135f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478271,
+        "stop" : 1595280478274,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "ee81735112c3c1ed",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478271,
+        "stop" : 1595280478274,
+        "duration" : 3
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithThrownExceptionThrowsException" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "448da388b6a375f0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478352,
+        "stop" : 1595280478359,
+        "duration" : 7
+      }
+    }, {
+      "uid" : "51d0cd6e3f6694b0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478352,
+        "stop" : 1595280478359,
+        "duration" : 7
+      }
+    }, {
+      "uid" : "116ea1f6adb28f5d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478352,
+        "stop" : 1595280478359,
+        "duration" : 7
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithInvalidAudioIdReturnsAudioNotFound" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "927628b4d1497427",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478452,
+        "stop" : 1595280478456,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "e081649bfc960946",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478452,
+        "stop" : 1595280478456,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "c0134b1d7331e449",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478452,
+        "stop" : 1595280478456,
+        "duration" : 4
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithSuccessReturnsNoContentResult" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "16b46365b329e3db",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478177,
+        "stop" : 1595280478192,
+        "duration" : 15
+      }
+    }, {
+      "uid" : "34f553eea19c3682",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478177,
+        "stop" : 1595280478192,
+        "duration" : 15
+      }
+    }, {
+      "uid" : "22c2a84922bb8d8d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478177,
+        "stop" : 1595280478192,
+        "duration" : 15
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithNoTranscriptReturnsNotFound" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "fedd96d6cfb12377",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478465,
+        "stop" : 1595280478468,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "34495f5adf869bee",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478465,
+        "stop" : 1595280478468,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "ea67b51b44cbdeee",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478465,
+        "stop" : 1595280478468,
+        "duration" : 3
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithThrownExceptionThrowsException" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "a19009ec89fbc38b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478384,
+        "stop" : 1595280478389,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "db80300874493ac",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478384,
+        "stop" : 1595280478389,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "5f43dd2906ef8373",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478384,
+        "stop" : 1595280478389,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithMissingAudioFileReturnsAudioNotUploaded" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "f72225b0abeea5fe",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478198,
+        "stop" : 1595280478208,
+        "duration" : 10
+      }
+    }, {
+      "uid" : "16eed4b706974b65",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478198,
+        "stop" : 1595280478208,
+        "duration" : 10
+      }
+    }, {
+      "uid" : "f707661eadf82d4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478198,
+        "stop" : 1595280478208,
+        "duration" : 10
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithMissingUserIdReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "d90c5bbbdaaaebd4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478400,
+        "stop" : 1595280478406,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "a0674faca45f28ae",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478400,
+        "stop" : 1595280478406,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "75402d46f0c72fb0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478400,
+        "stop" : 1595280478406,
+        "duration" : 6
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithIncorrectUserIdReturnsAudioNotFound" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "2f789ca16aa209ce",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478337,
+        "stop" : 1595280478341,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "52a25b884d94f1f9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478337,
+        "stop" : 1595280478341,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "b5610309db28c91b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478337,
+        "stop" : 1595280478341,
+        "duration" : 4
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithSuccessPublishesAudioCreatedEventToEventGrid" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "951a76136f2e5952",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478193,
+        "stop" : 1595280478198,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "5f662c32ac804d59",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478193,
+        "stop" : 1595280478198,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "a3b923ad6ef2f1b5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478193,
+        "stop" : 1595280478198,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithThrownExceptionThrowsException" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "ca2e7ba54e6f8241",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478406,
+        "stop" : 1595280478411,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "a1e5a249407bc4d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478406,
+        "stop" : 1595280478411,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "70cb868eef9e5cc2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478406,
+        "stop" : 1595280478411,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithThrownExceptionThrowsException" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "40b8035c5c5a1126",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478262,
+        "stop" : 1595280478266,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "cb6bcd6f46646053",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478262,
+        "stop" : 1595280478266,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "50c93ddf2c623089",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478262,
+        "stop" : 1595280478266,
+        "duration" : 4
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithInvalidJsonRequestReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "3818308d4a6032f0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478266,
+        "stop" : 1595280478271,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "69bf482a7f06b599",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478266,
+        "stop" : 1595280478271,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "7e3678d273a8c9b5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478266,
+        "stop" : 1595280478271,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests.WithThrownExceptionThrowsException" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "954371a4b594b93b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478161,
+        "stop" : 1595280478177,
+        "duration" : 16
+      }
+    }, {
+      "uid" : "5bec1d96811a03e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478161,
+        "stop" : 1595280478177,
+        "duration" : 16
+      }
+    }, {
+      "uid" : "56e8df446cac0595",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478161,
+        "stop" : 1595280478177,
+        "duration" : 16
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithIncorrectUserIdReturnsAudioNotUploaded" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "76030e1756ec1f07",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478211,
+        "stop" : 1595280478213,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "400e1ab9cbde52ce",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478211,
+        "stop" : 1595280478213,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "a363d1fc9a52a0a8",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478211,
+        "stop" : 1595280478213,
+        "duration" : 2
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithBlobStorageFailing" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "4d5a4d1ec5eedfe6",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478396,
+        "stop" : 1595280478400,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "80f9d813bb99905d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478396,
+        "stop" : 1595280478400,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "86493f8ae1541269",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478396,
+        "stop" : 1595280478400,
+        "duration" : 4
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithTranscriptMissingReturnsAudioNote" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "fa319693498b8835",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478372,
+        "stop" : 1595280478374,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "252aea5c81ab62b7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478372,
+        "stop" : 1595280478374,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "1105d28238716bab",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478372,
+        "stop" : 1595280478374,
+        "duration" : 2
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "83edd5c92d2aa0cd",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478442,
+        "stop" : 1595280478452,
+        "duration" : 10
+      }
+    }, {
+      "uid" : "4c77d93d27302840",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478442,
+        "stop" : 1595280478452,
+        "duration" : 10
+      }
+    }, {
+      "uid" : "634c04d009059c64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478442,
+        "stop" : 1595280478452,
+        "duration" : 10
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithThrownExceptionThrowsException" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "247dc3338a6e7752",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478474,
+        "stop" : 1595280478478,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "a154d46e9f29509f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478474,
+        "stop" : 1595280478478,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "394fa08571f24326",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478474,
+        "stop" : 1595280478478,
+        "duration" : 4
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithMissingUserIdReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "84b616a122d0fe9b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478342,
+        "stop" : 1595280478352,
+        "duration" : 10
+      }
+    }, {
+      "uid" : "22e6fb87acfb9115",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478342,
+        "stop" : 1595280478352,
+        "duration" : 10
+      }
+    }, {
+      "uid" : "c70efbe0fc060b0a",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478342,
+        "stop" : 1595280478352,
+        "duration" : 10
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests.CreateAudioTranscriptRequestReturnsExpectedRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "8f0da3663582e743",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478277,
+        "stop" : 1595280478288,
+        "duration" : 11
+      }
+    }, {
+      "uid" : "ff105be4cb846bdd",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478277,
+        "stop" : 1595280478288,
+        "duration" : 11
+      }
+    }, {
+      "uid" : "76bacb4828720553",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478277,
+        "stop" : 1595280478288,
+        "duration" : 11
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithIncorrectUserIdReturnsNull" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "2839814b5618d22d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478375,
+        "stop" : 1595280478377,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "30caf436b3ce972c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478375,
+        "stop" : 1595280478377,
+        "duration" : 2
+      }
+    }, {
+      "uid" : "8149a2500908620e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478375,
+        "stop" : 1595280478377,
+        "duration" : 2
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithInvalidAudioIdReturnsAudioNotFound" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "18cde073442763bc",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478334,
+        "stop" : 1595280478337,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "eee696472cfdf46",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478334,
+        "stop" : 1595280478337,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "d82384aac7a47f5d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478334,
+        "stop" : 1595280478337,
+        "duration" : 3
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests.ProcessAudioTranscriptResponseReturnsExpectedResponse" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "f262fe4b845e316d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478288,
+        "stop" : 1595280478321,
+        "duration" : 33
+      }
+    }, {
+      "uid" : "e055794ab630f69f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478288,
+        "stop" : 1595280478321,
+        "duration" : 33
+      }
+    }, {
+      "uid" : "2360fc03d8267d35",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478288,
+        "stop" : 1595280478321,
+        "duration" : 33
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithIncorrectUserIdReturnsNotFound" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "b872591ddca99f24",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478460,
+        "stop" : 1595280478465,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "7140a3494a64419f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478460,
+        "stop" : 1595280478465,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "2c63f5971b832362",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478460,
+        "stop" : 1595280478465,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithSuccessReturnsAudio" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "8b1805c71c3bc9b0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478359,
+        "stop" : 1595280478372,
+        "duration" : 13
+      }
+    }, {
+      "uid" : "42538f833b11bea9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478359,
+        "stop" : 1595280478372,
+        "duration" : 13
+      }
+    }, {
+      "uid" : "5fa449756a8e7f5f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478359,
+        "stop" : 1595280478372,
+        "duration" : 13
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithMissingUserIdReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "a6435367f51e7499",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478377,
+        "stop" : 1595280478383,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "2e27baffb9b1d4c4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478377,
+        "stop" : 1595280478383,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "dc55b6d2635dd0c4",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478377,
+        "stop" : 1595280478383,
+        "duration" : 6
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithSuccessPublishesAudioDeletedEventToEventGrid" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "b8c8b5f1059b55a2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478326,
+        "stop" : 1595280478330,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "3fe25829a758d1c9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478326,
+        "stop" : 1595280478330,
+        "duration" : 4
+      }
+    }, {
+      "uid" : "f0d8c3b919164a72",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478326,
+        "stop" : 1595280478330,
+        "duration" : 4
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSuccessUpdatesBlobTranscriptInMetadata" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "f536c5ae9290071d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478411,
+        "stop" : 1595280478442,
+        "duration" : 31
+      }
+    }, {
+      "uid" : "8d562b1d7178cc0e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478411,
+        "stop" : 1595280478442,
+        "duration" : 31
+      }
+    }, {
+      "uid" : "bf7ab377d3ed6b17",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478411,
+        "stop" : 1595280478442,
+        "duration" : 31
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "33197eb4a7e0df7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478208,
+        "stop" : 1595280478211,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "2e8e674ef3e3d97b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478208,
+        "stop" : 1595280478211,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "7407203ad031b40d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478208,
+        "stop" : 1595280478211,
+        "duration" : 3
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests.WithSuccessReturnsIdAndUrl" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "5796089bd335bb10",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280477863,
+        "stop" : 1595280478094,
+        "duration" : 231
+      }
+    }, {
+      "uid" : "4d02275160eea310",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280477863,
+        "stop" : 1595280478094,
+        "duration" : 231
+      }
+    }, {
+      "uid" : "579c3b502767e8d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280477863,
+        "stop" : 1595280478094,
+        "duration" : 231
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests.WithMissingUserIdReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "99685722cf38c621",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478101,
+        "stop" : 1595280478161,
+        "duration" : 60
+      }
+    }, {
+      "uid" : "4e14660b09585e0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478101,
+        "stop" : 1595280478161,
+        "duration" : 60
+      }
+    }, {
+      "uid" : "98bc78854633273d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478101,
+        "stop" : 1595280478161,
+        "duration" : 60
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests.WithInvalidAudioIdReturnsNull" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "a523315caf5a1a86",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478374,
+        "stop" : 1595280478375,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "13f8f93157487079",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478374,
+        "stop" : 1595280478375,
+        "duration" : 1
+      }
+    }, {
+      "uid" : "98bccf6c78255711",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478374,
+        "stop" : 1595280478375,
+        "duration" : 1
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithMissingUserIdReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "5b6ddca1f18cee48",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478256,
+        "stop" : 1595280478262,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "12c8cfd6217570ed",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478256,
+        "stop" : 1595280478262,
+        "duration" : 6
+      }
+    }, {
+      "uid" : "5711fe4927ec2b73",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478256,
+        "stop" : 1595280478262,
+        "duration" : 6
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithMissingCategoryIdReturnsBadRequest" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "3b4b5361bf197d2d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478274,
+        "stop" : 1595280478277,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "b3e6ce4a256cf8e8",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478274,
+        "stop" : 1595280478277,
+        "duration" : 3
+      }
+    }, {
+      "uid" : "f0a239a002c6e3e6",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478274,
+        "stop" : 1595280478277,
+        "duration" : 3
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSubscriptionValidationEventReturnsActionResult" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "fd6b0b22ff2d3452",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478469,
+        "stop" : 1595280478474,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "ca41ce908d811303",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478469,
+        "stop" : 1595280478474,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "300380d753e865ab",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478469,
+        "stop" : 1595280478474,
+        "duration" : 5
+      }
+    } ]
+  },
+  "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests.WithSuccessReturnsSummaries" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    },
+    "items" : [ {
+      "uid" : "d5279b4d41d42a37",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478389,
+        "stop" : 1595280478394,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "5ed12628a952d40b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478389,
+        "stop" : 1595280478394,
+        "duration" : 5
+      }
+    }, {
+      "uid" : "c943af46a8e98437",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478389,
+        "stop" : 1595280478394,
+        "duration" : 5
+      }
+    } ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "uid" : "fd6b0b22ff2d3452",
+  "name" : "WithSubscriptionValidationEventReturnsActionResult",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSubscriptionValidationEventReturnsActionResult",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSubscriptionValidationEventReturnsActionResult",
+  "time" : {
+    "start" : 1595280478469,
+    "stop" : 1595280478474,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "ca41ce908d811303",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478469,
+          "stop" : 1595280478474,
+          "duration" : 5
+        }
+      }, {
+        "uid" : "300380d753e865ab",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478469,
+          "stop" : 1595280478474,
+          "duration" : 5
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "fd6b0b22ff2d3452.json",
+  "parameterValues" : [ ]
+}

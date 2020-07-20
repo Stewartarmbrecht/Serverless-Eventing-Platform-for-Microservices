@@ -1,0 +1,557 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests",
+    "children" : [ {
+      "name" : "WithSuccessReturnsIdAndUrl",
+      "uid" : "5796089bd335bb10",
+      "parentUid" : "60ddabe196bfb54528e75f59389ff65f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280477863,
+        "stop" : 1595280478094,
+        "duration" : 231
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingUserIdReturnsBadRequest",
+      "uid" : "99685722cf38c621",
+      "parentUid" : "60ddabe196bfb54528e75f59389ff65f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478101,
+        "stop" : 1595280478161,
+        "duration" : 60
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithThrownExceptionThrowsException",
+      "uid" : "954371a4b594b93b",
+      "parentUid" : "60ddabe196bfb54528e75f59389ff65f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478161,
+        "stop" : 1595280478177,
+        "duration" : 16
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "60ddabe196bfb54528e75f59389ff65f"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests",
+    "children" : [ {
+      "name" : "WithSuccessReturnsNoContentResult",
+      "uid" : "16b46365b329e3db",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478177,
+        "stop" : 1595280478192,
+        "duration" : 15
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithSuccessUpdatesBlobMetadata",
+      "uid" : "d090a55560be3ab",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478192,
+        "stop" : 1595280478193,
+        "duration" : 1
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithSuccessPublishesAudioCreatedEventToEventGrid",
+      "uid" : "951a76136f2e5952",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478193,
+        "stop" : 1595280478198,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingAudioFileReturnsAudioNotUploaded",
+      "uid" : "f72225b0abeea5fe",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478198,
+        "stop" : 1595280478208,
+        "duration" : 10
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated",
+      "uid" : "33197eb4a7e0df7",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478208,
+        "stop" : 1595280478211,
+        "duration" : 3
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithIncorrectUserIdReturnsAudioNotUploaded",
+      "uid" : "76030e1756ec1f07",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478211,
+        "stop" : 1595280478213,
+        "duration" : 2
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingUserIdReturnsBadRequest",
+      "uid" : "5b6ddca1f18cee48",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478256,
+        "stop" : 1595280478262,
+        "duration" : 6
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithThrownExceptionThrowsException",
+      "uid" : "40b8035c5c5a1126",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478262,
+        "stop" : 1595280478266,
+        "duration" : 4
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithInvalidJsonRequestReturnsBadRequest",
+      "uid" : "3818308d4a6032f0",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478266,
+        "stop" : 1595280478271,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithNullPayloadRequestReturnsBadRequest",
+      "uid" : "3f5a2518c61b86c1",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478271,
+        "stop" : 1595280478274,
+        "duration" : 3
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingCategoryIdReturnsBadRequest",
+      "uid" : "3b4b5361bf197d2d",
+      "parentUid" : "2b95507ab59a7246734c9edc9c03a153",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478274,
+        "stop" : 1595280478277,
+        "duration" : 3
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "2b95507ab59a7246734c9edc9c03a153"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests",
+    "children" : [ {
+      "name" : "CreateAudioTranscriptRequestReturnsExpectedRequest",
+      "uid" : "8f0da3663582e743",
+      "parentUid" : "2274294065530fdd0dc0a870e4c0a664",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478277,
+        "stop" : 1595280478288,
+        "duration" : 11
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "ProcessAudioTranscriptResponseReturnsExpectedResponse",
+      "uid" : "f262fe4b845e316d",
+      "parentUid" : "2274294065530fdd0dc0a870e4c0a664",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478288,
+        "stop" : 1595280478321,
+        "duration" : 33
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "2274294065530fdd0dc0a870e4c0a664"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests",
+    "children" : [ {
+      "name" : "WithSuccessDeletesBlob",
+      "uid" : "4e58d0ec57a922bc",
+      "parentUid" : "c29877d879089d498cf476949ea64b64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478321,
+        "stop" : 1595280478326,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithSuccessPublishesAudioDeletedEventToEventGrid",
+      "uid" : "b8c8b5f1059b55a2",
+      "parentUid" : "c29877d879089d498cf476949ea64b64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478326,
+        "stop" : 1595280478330,
+        "duration" : 4
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithInvalidAudioIdReturnsAudioNotFound",
+      "uid" : "18cde073442763bc",
+      "parentUid" : "c29877d879089d498cf476949ea64b64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478334,
+        "stop" : 1595280478337,
+        "duration" : 3
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithIncorrectUserIdReturnsAudioNotFound",
+      "uid" : "2f789ca16aa209ce",
+      "parentUid" : "c29877d879089d498cf476949ea64b64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478337,
+        "stop" : 1595280478341,
+        "duration" : 4
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingUserIdReturnsBadRequest",
+      "uid" : "84b616a122d0fe9b",
+      "parentUid" : "c29877d879089d498cf476949ea64b64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478342,
+        "stop" : 1595280478352,
+        "duration" : 10
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithThrownExceptionThrowsException",
+      "uid" : "448da388b6a375f0",
+      "parentUid" : "c29877d879089d498cf476949ea64b64",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478352,
+        "stop" : 1595280478359,
+        "duration" : 7
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "c29877d879089d498cf476949ea64b64"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.GetFunctionTests",
+    "children" : [ {
+      "name" : "WithSuccessReturnsAudio",
+      "uid" : "8b1805c71c3bc9b0",
+      "parentUid" : "29eed4523a77178a549600965a2775e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478359,
+        "stop" : 1595280478372,
+        "duration" : 13
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithTranscriptMissingReturnsAudioNote",
+      "uid" : "fa319693498b8835",
+      "parentUid" : "29eed4523a77178a549600965a2775e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478372,
+        "stop" : 1595280478374,
+        "duration" : 2
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithInvalidAudioIdReturnsNull",
+      "uid" : "a523315caf5a1a86",
+      "parentUid" : "29eed4523a77178a549600965a2775e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478374,
+        "stop" : 1595280478375,
+        "duration" : 1
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithIncorrectUserIdReturnsNull",
+      "uid" : "2839814b5618d22d",
+      "parentUid" : "29eed4523a77178a549600965a2775e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478375,
+        "stop" : 1595280478377,
+        "duration" : 2
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingUserIdReturnsBadRequest",
+      "uid" : "a6435367f51e7499",
+      "parentUid" : "29eed4523a77178a549600965a2775e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478377,
+        "stop" : 1595280478383,
+        "duration" : 6
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithThrownExceptionThrowsException",
+      "uid" : "a19009ec89fbc38b",
+      "parentUid" : "29eed4523a77178a549600965a2775e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478384,
+        "stop" : 1595280478389,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "29eed4523a77178a549600965a2775e2"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests",
+    "children" : [ {
+      "name" : "WithSuccessReturnsSummaries",
+      "uid" : "d5279b4d41d42a37",
+      "parentUid" : "0c1c02f67e2fe34044cec2143e72b7c6",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478389,
+        "stop" : 1595280478394,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithAnotherUserIdDoesNotReturnSummaries",
+      "uid" : "582e48b7d11f0d45",
+      "parentUid" : "0c1c02f67e2fe34044cec2143e72b7c6",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478394,
+        "stop" : 1595280478396,
+        "duration" : 2
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "0c1c02f67e2fe34044cec2143e72b7c6"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests",
+    "children" : [ {
+      "name" : "WithBlobStorageFailing",
+      "uid" : "4d5a4d1ec5eedfe6",
+      "parentUid" : "102fb2ea737390e2c65e03a2e75dacf1",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478396,
+        "stop" : 1595280478400,
+        "duration" : 4
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithMissingUserIdReturnsBadRequest",
+      "uid" : "d90c5bbbdaaaebd4",
+      "parentUid" : "102fb2ea737390e2c65e03a2e75dacf1",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478400,
+        "stop" : 1595280478406,
+        "duration" : 6
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithThrownExceptionThrowsException",
+      "uid" : "ca2e7ba54e6f8241",
+      "parentUid" : "102fb2ea737390e2c65e03a2e75dacf1",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478406,
+        "stop" : 1595280478411,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "102fb2ea737390e2c65e03a2e75dacf1"
+  }, {
+    "name" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests",
+    "children" : [ {
+      "name" : "WithSuccessUpdatesBlobTranscriptInMetadata",
+      "uid" : "f536c5ae9290071d",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478411,
+        "stop" : 1595280478442,
+        "duration" : 31
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid",
+      "uid" : "83edd5c92d2aa0cd",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478442,
+        "stop" : 1595280478452,
+        "duration" : 10
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithInvalidAudioIdReturnsAudioNotFound",
+      "uid" : "927628b4d1497427",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478452,
+        "stop" : 1595280478456,
+        "duration" : 4
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithIncorrectUserIdReturnsNotFound",
+      "uid" : "b872591ddca99f24",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478460,
+        "stop" : 1595280478465,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithNoTranscriptReturnsNotFound",
+      "uid" : "fedd96d6cfb12377",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478465,
+        "stop" : 1595280478468,
+        "duration" : 3
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithSubscriptionValidationEventReturnsActionResult",
+      "uid" : "fd6b0b22ff2d3452",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478469,
+        "stop" : 1595280478474,
+        "duration" : 5
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "WithThrownExceptionThrowsException",
+      "uid" : "247dc3338a6e7752",
+      "parentUid" : "a075e751e1415ec25ba003ef2f0936ca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1595280478474,
+        "stop" : 1595280478478,
+        "duration" : 4
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "a075e751e1415ec25ba003ef2f0936ca"
+  } ]
+}

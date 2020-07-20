@@ -1,0 +1,68 @@
+{
+  "uid" : "d90c5bbbdaaaebd4",
+  "name" : "WithMissingUserIdReturnsBadRequest",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithMissingUserIdReturnsBadRequest",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithMissingUserIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595280478400,
+    "stop" : 1595280478406,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "a0674faca45f28ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478400,
+          "stop" : 1595280478406,
+          "duration" : 6
+        }
+      }, {
+        "uid" : "75402d46f0c72fb0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478400,
+          "stop" : 1595280478406,
+          "duration" : 6
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "d90c5bbbdaaaebd4.json",
+  "parameterValues" : [ ]
+}

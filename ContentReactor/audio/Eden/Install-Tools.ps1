@@ -49,6 +49,19 @@ try {
         npm install unzipper@0.10.7
         node .\lib\install.js
         Set-Location $PSScriptRoot
+
+        Write-EdenBuildInfo "Installing Report Generator globally for generating coverage reports." $LoggingPrefix
+        dotnet tool install --global dotnet-reportgenerator-globaltool
+
+        Write-EdenBuildInfo "Installing scoop so that we can install Allure." $LoggingPrefix
+        Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+
+        Write-EdenBuildInfo "Installing Allure to generate test results html reports." $LoggingPrefix
+        scoop install allure
+
+        Write-EdenBuildInfo "Install the Java Runtime Environment for Allure." $LoggingPrefix
+        scoop bucket add java
+        scoop install openjdk
     }
 } catch {
     $message = $_.Exception.Message

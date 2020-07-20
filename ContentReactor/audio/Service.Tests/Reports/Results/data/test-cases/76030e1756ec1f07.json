@@ -1,0 +1,68 @@
+{
+  "uid" : "76030e1756ec1f07",
+  "name" : "WithIncorrectUserIdReturnsAudioNotUploaded",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithIncorrectUserIdReturnsAudioNotUploaded",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithIncorrectUserIdReturnsAudioNotUploaded",
+  "time" : {
+    "start" : 1595280478211,
+    "stop" : 1595280478213,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 3,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "400e1ab9cbde52ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478211,
+          "stop" : 1595280478213,
+          "duration" : 2
+        }
+      }, {
+        "uid" : "a363d1fc9a52a0a8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1595280478211,
+          "stop" : 1595280478213,
+          "duration" : 2
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "76030e1756ec1f07.json",
+  "parameterValues" : [ ]
+}
