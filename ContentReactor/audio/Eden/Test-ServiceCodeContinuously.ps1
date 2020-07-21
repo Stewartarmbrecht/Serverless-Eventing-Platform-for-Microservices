@@ -6,7 +6,7 @@ param(
 
     Write-EdenBuildInfo "Testing the ContentReactor.Audio.sln Solution continuously using the 'Service.Tests/ContentReactor.Audio.Service.Tests'." $LoggingPrefix
     dotnet watch --project ./Service.Tests/ContentReactor.Audio.Service.Tests.csproj test `
-        --filter TestCategory!=Automated `
+        --filter TestCategory!=Features `
         /p:CollectCoverage=true `
         /p:CoverletOutput=TestResults/ `
         /p:CoverletOutputFormat=lcov `

@@ -1,4 +1,4 @@
-﻿namespace ContentReactor.Audio.Service.Tests.Automated
+﻿namespace ContentReactor.Audio.Service.Tests.Features
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -12,11 +12,11 @@
     /// Contains end to end tests for the Audio API.
     /// </summary>
     [TestClass]
-    [TestCategory("Automated")]
+    [TestCategory("Features")]
     public class AudioApiTests
     {
         private static readonly HttpClient HttpClientInstance = new HttpClient();
-        private readonly string baseUrl = Environment.GetEnvironmentVariable("AutomatedUrl");
+        private readonly string baseUrl = Environment.GetEnvironmentVariable("FeaturesUrl");
         private readonly string defaultUserId = "developer@edentest.com";
 
         /// <summary>
