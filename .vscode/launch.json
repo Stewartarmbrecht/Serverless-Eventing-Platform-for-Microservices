@@ -5,6 +5,20 @@
    "version": "0.2.0",
    "configurations": [
    {
+       "name": "PowerShell Launch Script",
+       "type": "PowerShell",
+       "request": "launch",
+       "script": "${workspaceFolder}/ContentReactor/Audio/Eden/Test.ps1",
+       "cwd": "${workspaceFolder}/ContentReactor/Audio"
+   },
+       {
+           "name": "PowerShell Launch Current File",
+           "type": "PowerShell",
+           "request": "launch",
+           "script": "${file}",
+           "cwd": "${file}"
+       },
+   {
        "name": "Test Audio Build",
        "type": "PowerShell",
        "request": "launch",
