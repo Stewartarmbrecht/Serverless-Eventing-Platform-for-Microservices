@@ -17,9 +17,11 @@ param(
         /p:ThresholdStat=total 
     Write-EdenBuildInfo "Finished testing the ContentReactor.Audio.sln Solution using the 'Service.Tests/ContentReactor.Audio.Service.Tests'." $LoggingPrefix
 
-    Write-EdenBuildInfo "Copying test results Allure history." $LoggingPrefix
-    Copy-Item -Path "./Service.Tests/TestResults/Allure/history" -Destination "./Service.Tests/TestResults/history" -Recurse -Force
-    Write-EdenBuildInfo "Finished copying test results Allure history." $LoggingPrefix
+    if (Test-Path "./Service.Tests/TestResults/Allure/history") {
+        Write-EdenBuildInfo "Copying test results Allure history." $LoggingPrefix
+        Copy-Item -Path "./Service.Tests/TestResults/Allure/history" -Destination "./Service.Tests/TestResults/history" -Recurse -Force
+        Write-EdenBuildInfo "Finished copying test results Allure history." $LoggingPrefix
+    }
 
     Write-EdenBuildInfo "Generating test results report to './Service.Tests/TestResults/allure'" $LoggingPrefix
     allure generate ./Service.Tests/TestResults/ -o ./Service.Tests/TestResults/Allure --clean
