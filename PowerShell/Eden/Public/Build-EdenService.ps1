@@ -24,6 +24,5 @@ function Build-EdenService
     catch
     {
         Write-EdenBuildError "Error building the service. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }
 }

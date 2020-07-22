@@ -4,7 +4,7 @@ function Install-EdenServiceTools {
     )
     
     try {
-        $edenEnvConfig = Get-EdenEnvConfig -Check
+        $edenEnvConfig = Get-EdenEnvConfig
     
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Publish"
 
@@ -16,6 +16,5 @@ function Install-EdenServiceTools {
     }
     catch {
         Write-EdenBuildError "Error installing the service tools. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

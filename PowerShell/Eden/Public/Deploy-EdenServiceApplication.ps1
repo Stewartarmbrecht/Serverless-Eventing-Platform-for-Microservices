@@ -32,6 +32,5 @@ function Deploy-EdenServiceApplication {
     catch 
     {
         Write-EdenBuildError "Error deploying the service application. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

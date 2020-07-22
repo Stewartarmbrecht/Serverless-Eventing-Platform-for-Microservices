@@ -17,6 +17,5 @@ function Get-EdenServiceLocalHealth
     {
         Write-EdenBuildError "Error getting the local service health. Message: '$($_.Exception.Message)'" $loggingPrefix
         # throw $_
-        exit 1
     }
 }

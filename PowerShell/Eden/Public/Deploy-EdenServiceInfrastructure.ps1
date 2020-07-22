@@ -16,6 +16,5 @@ function Deploy-EdenServiceInfrastructure {
     }
     catch {
         Write-EdenBuildError "Error deploying the service infrastructure. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

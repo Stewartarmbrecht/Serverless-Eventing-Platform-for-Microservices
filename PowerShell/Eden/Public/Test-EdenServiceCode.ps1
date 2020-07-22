@@ -24,7 +24,5 @@ function Test-EdenServiceCode
     catch
     {
         Write-EdenBuildError "Error testing the service code. Message: '$($_.Exception.Message)'" $loggingPrefix
-        # throw $_
-        exit 1
     }
 }

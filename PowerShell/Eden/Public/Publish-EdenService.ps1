@@ -16,6 +16,5 @@ function Publish-EdenService {
     }
     catch {
         Write-EdenBuildError "Error publishing the service. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

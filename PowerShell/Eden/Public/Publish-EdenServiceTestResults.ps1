@@ -16,6 +16,5 @@ function Publish-EdenServiceTestResults {
     }
     catch {
         Write-EdenBuildError "Error publishing the service test results. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

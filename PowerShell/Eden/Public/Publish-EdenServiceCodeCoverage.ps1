@@ -16,6 +16,5 @@ function Publish-EdenServiceCodeCoverage {
     }
     catch {
         Write-EdenBuildError "Error publishing the service code coverage results. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

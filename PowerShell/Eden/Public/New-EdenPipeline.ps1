@@ -41,6 +41,5 @@ function New-EdenPipeline {
     }
     catch {
         Set-Location $currentDirectory
-        exit 1
     }
 }

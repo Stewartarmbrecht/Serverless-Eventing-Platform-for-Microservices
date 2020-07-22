@@ -16,6 +16,5 @@ function Deploy-EdenServiceSubscriptions {
     }
     catch {
         Write-EdenBuildError "Error deploying the service subscriptions. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

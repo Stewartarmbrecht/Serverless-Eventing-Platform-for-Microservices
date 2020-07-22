@@ -16,6 +16,5 @@ function Initialize-EdenServiceEnvironment {
     }
     catch {
         Write-EdenBuildError "Error initializing the environment. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

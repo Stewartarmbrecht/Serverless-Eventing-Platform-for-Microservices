@@ -21,6 +21,5 @@ function Show-EdenServiceTestResults {
     }
     catch {
         Write-EdenBuildError "Error launching the service test results report. Message: '$($_.Exception.Message)'" $loggingPrefix
-        exit 1
     }    
 }

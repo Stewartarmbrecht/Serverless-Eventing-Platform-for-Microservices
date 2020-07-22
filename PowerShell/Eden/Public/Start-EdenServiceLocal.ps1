@@ -164,6 +164,5 @@ function Start-EdenServiceLocal
             $testingJob | Remove-Job -Force
         }
         Write-EdenBuildError "Stopped." $loggingPrefix
-        exit 1
     }
 }
