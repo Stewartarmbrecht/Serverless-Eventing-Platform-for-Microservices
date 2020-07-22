@@ -6,6 +6,7 @@
       "eamodio.gitlens",
       "ms-vscode.powershell",
       "formulahendry.dotnet-test-explorer",
-      "ryanluker.vscode-coverage-gutters"
+      "ryanluker.vscode-coverage-gutters",
+      "ritwickdey.liveserver"
     ]
   }
