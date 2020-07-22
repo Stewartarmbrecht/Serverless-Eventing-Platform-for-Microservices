@@ -1,0 +1,41 @@
+{
+  "uid" : "7ae24b1387fc5c33",
+  "name" : "WithThrownExceptionThrowsException",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests.WithThrownExceptionThrowsException",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests.WithThrownExceptionThrowsException",
+  "time" : {
+    "start" : 1595381379518,
+    "stop" : 1595381379532,
+    "duration" : 14
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddBeginFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "7ae24b1387fc5c33.json",
+  "parameterValues" : [ ]
+}

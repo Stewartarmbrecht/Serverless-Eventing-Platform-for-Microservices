@@ -1,0 +1,41 @@
+{
+  "uid" : "9a7088f8155d3f8e",
+  "name" : "WithAnotherUserIdDoesNotReturnSummaries",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests.WithAnotherUserIdDoesNotReturnSummaries",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests.WithAnotherUserIdDoesNotReturnSummaries",
+  "time" : {
+    "start" : 1595381379693,
+    "stop" : 1595381379695,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.GetListFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "9a7088f8155d3f8e.json",
+  "parameterValues" : [ ]
+}

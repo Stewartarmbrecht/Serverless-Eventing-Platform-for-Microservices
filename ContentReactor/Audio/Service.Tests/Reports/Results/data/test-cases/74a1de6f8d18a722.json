@@ -1,0 +1,41 @@
+{
+  "uid" : "74a1de6f8d18a722",
+  "name" : "WithMissingUserIdReturnsBadRequest",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithMissingUserIdReturnsBadRequest",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithMissingUserIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379699,
+    "stop" : 1595381379704,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "74a1de6f8d18a722.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,41 @@
+{
+  "uid" : "64664c056d09d7a8",
+  "name" : "ProcessAudioTranscriptResponseReturnsExpectedResponse",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests.ProcessAudioTranscriptResponseReturnsExpectedResponse",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests.ProcessAudioTranscriptResponseReturnsExpectedResponse",
+  "time" : {
+    "start" : 1595381379626,
+    "stop" : 1595381379648,
+    "duration" : 22
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AudioTranscriptionServiceTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "64664c056d09d7a8.json",
+  "parameterValues" : [ ]
+}

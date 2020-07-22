@@ -1,0 +1,41 @@
+{
+  "uid" : "18cfb8dd97c500f3",
+  "name" : "WithBlobStorageFailing",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithBlobStorageFailing",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests.WithBlobStorageFailing",
+  "time" : {
+    "start" : 1595381379695,
+    "stop" : 1595381379699,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.HealthCheckFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "18cfb8dd97c500f3.json",
+  "parameterValues" : [ ]
+}

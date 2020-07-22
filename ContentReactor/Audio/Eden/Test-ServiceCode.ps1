@@ -28,7 +28,7 @@ param(
     Write-EdenBuildInfo "Finished generating test results report to './Service.Tests/TestResults/allure'" $LoggingPrefix
 
     Write-EdenBuildInfo "Generating code coverage reports to './Service.Tests/TestResults/coveragereport'" $LoggingPrefix
-    reportgenerator "-reports:./Service.Tests/TestResults/Coverage.info" "-targetdir:Service.Tests/TestResults/coveragereport" -reporttypes:Html
+    reportgenerator "-reports:./Service.Tests/TestResults/coverage.info" "-targetdir:Service.Tests/TestResults/coveragereport" -reporttypes:Html
     Write-EdenBuildInfo "Finished generating code coverage reports to './Service.Tests/TestResults/coveragereport'" $LoggingPrefix
 
     

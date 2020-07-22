@@ -1,400 +1,400 @@
 [ {
-  "uid" : "99685722cf38c621",
-  "name" : "WithMissingUserIdReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478101,
-    "stop" : 1595280478161,
-    "duration" : 60
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "18cde073442763bc",
-  "name" : "WithInvalidAudioIdReturnsAudioNotFound",
-  "time" : {
-    "start" : 1595280478334,
-    "stop" : 1595280478337,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d90c5bbbdaaaebd4",
-  "name" : "WithMissingUserIdReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478400,
-    "stop" : 1595280478406,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2839814b5618d22d",
-  "name" : "WithIncorrectUserIdReturnsNull",
-  "time" : {
-    "start" : 1595280478375,
-    "stop" : 1595280478377,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "8b1805c71c3bc9b0",
-  "name" : "WithSuccessReturnsAudio",
-  "time" : {
-    "start" : 1595280478359,
-    "stop" : 1595280478372,
-    "duration" : 13
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "fedd96d6cfb12377",
-  "name" : "WithNoTranscriptReturnsNotFound",
-  "time" : {
-    "start" : 1595280478465,
-    "stop" : 1595280478468,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "582e48b7d11f0d45",
-  "name" : "WithAnotherUserIdDoesNotReturnSummaries",
-  "time" : {
-    "start" : 1595280478394,
-    "stop" : 1595280478396,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "f262fe4b845e316d",
-  "name" : "ProcessAudioTranscriptResponseReturnsExpectedResponse",
-  "time" : {
-    "start" : 1595280478288,
-    "stop" : 1595280478321,
-    "duration" : 33
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a6435367f51e7499",
-  "name" : "WithMissingUserIdReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478377,
-    "stop" : 1595280478383,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "f536c5ae9290071d",
-  "name" : "WithSuccessUpdatesBlobTranscriptInMetadata",
-  "time" : {
-    "start" : 1595280478411,
-    "stop" : 1595280478442,
-    "duration" : 31
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "8f0da3663582e743",
+  "uid" : "51966aa5a02147d9",
   "name" : "CreateAudioTranscriptRequestReturnsExpectedRequest",
   "time" : {
-    "start" : 1595280478277,
-    "stop" : 1595280478288,
-    "duration" : 11
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "5b6ddca1f18cee48",
-  "name" : "WithMissingUserIdReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478256,
-    "stop" : 1595280478262,
-    "duration" : 6
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "3818308d4a6032f0",
-  "name" : "WithInvalidJsonRequestReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478266,
-    "stop" : 1595280478271,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "b872591ddca99f24",
-  "name" : "WithIncorrectUserIdReturnsNotFound",
-  "time" : {
-    "start" : 1595280478460,
-    "stop" : 1595280478465,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "84b616a122d0fe9b",
-  "name" : "WithMissingUserIdReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478342,
-    "stop" : 1595280478352,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "d5279b4d41d42a37",
-  "name" : "WithSuccessReturnsSummaries",
-  "time" : {
-    "start" : 1595280478389,
-    "stop" : 1595280478394,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "247dc3338a6e7752",
-  "name" : "WithThrownExceptionThrowsException",
-  "time" : {
-    "start" : 1595280478474,
-    "stop" : 1595280478478,
+    "start" : 1595381379622,
+    "stop" : 1595381379626,
     "duration" : 4
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "a523315caf5a1a86",
-  "name" : "WithInvalidAudioIdReturnsNull",
+  "uid" : "8610cda7c26ab52c",
+  "name" : "WithMissingAudioFileReturnsAudioNotUploaded",
   "time" : {
-    "start" : 1595280478374,
-    "stop" : 1595280478375,
+    "start" : 1595381379552,
+    "stop" : 1595381379560,
+    "duration" : 8
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "18cfb8dd97c500f3",
+  "name" : "WithBlobStorageFailing",
+  "time" : {
+    "start" : 1595381379695,
+    "stop" : 1595381379699,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d8eb920ce895d5f9",
+  "name" : "WithSuccessReturnsNoContentResult",
+  "time" : {
+    "start" : 1595381379532,
+    "stop" : 1595381379546,
+    "duration" : 14
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "aa276c34a591ad79",
+  "name" : "WithIncorrectUserIdReturnsNotFound",
+  "time" : {
+    "start" : 1595381379732,
+    "stop" : 1595381379734,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7ae24b1387fc5c33",
+  "name" : "WithThrownExceptionThrowsException",
+  "time" : {
+    "start" : 1595381379518,
+    "stop" : 1595381379532,
+    "duration" : 14
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "1cb9bd56044de90a",
+  "name" : "WithSubscriptionValidationEventReturnsActionResult",
+  "time" : {
+    "start" : 1595381379736,
+    "stop" : 1595381379740,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "dd8756fe28612aa9",
+  "name" : "WithTranscriptMissingReturnsAudioNote",
+  "time" : {
+    "start" : 1595381379674,
+    "stop" : 1595381379675,
     "duration" : 1
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "4e58d0ec57a922bc",
-  "name" : "WithSuccessDeletesBlob",
+  "uid" : "bb62c1bb89762e9a",
+  "name" : "WithInvalidAudioIdReturnsNull",
   "time" : {
-    "start" : 1595280478321,
-    "stop" : 1595280478326,
+    "start" : 1595381379675,
+    "stop" : 1595381379676,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "74a1de6f8d18a722",
+  "name" : "WithMissingUserIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379699,
+    "stop" : 1595381379704,
     "duration" : 5
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "3f5a2518c61b86c1",
-  "name" : "WithNullPayloadRequestReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478271,
-    "stop" : 1595280478274,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "83edd5c92d2aa0cd",
-  "name" : "WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid",
-  "time" : {
-    "start" : 1595280478442,
-    "stop" : 1595280478452,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "76030e1756ec1f07",
-  "name" : "WithIncorrectUserIdReturnsAudioNotUploaded",
-  "time" : {
-    "start" : 1595280478211,
-    "stop" : 1595280478213,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "fd6b0b22ff2d3452",
-  "name" : "WithSubscriptionValidationEventReturnsActionResult",
-  "time" : {
-    "start" : 1595280478469,
-    "stop" : 1595280478474,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "5796089bd335bb10",
-  "name" : "WithSuccessReturnsIdAndUrl",
-  "time" : {
-    "start" : 1595280477863,
-    "stop" : 1595280478094,
-    "duration" : 231
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "40b8035c5c5a1126",
+  "uid" : "22a14b5ff8fd560b",
   "name" : "WithThrownExceptionThrowsException",
   "time" : {
-    "start" : 1595280478262,
-    "stop" : 1595280478266,
+    "start" : 1595381379609,
+    "stop" : 1595381379613,
     "duration" : 4
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "951a76136f2e5952",
-  "name" : "WithSuccessPublishesAudioCreatedEventToEventGrid",
+  "uid" : "835006ca514de6ac",
+  "name" : "WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid",
   "time" : {
-    "start" : 1595280478193,
-    "stop" : 1595280478198,
+    "start" : 1595381379724,
+    "stop" : 1595381379728,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "98ac3dcec526c8a3",
+  "name" : "WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated",
+  "time" : {
+    "start" : 1595381379560,
+    "stop" : 1595381379562,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "5f392ada62388027",
+  "name" : "WithSuccessReturnsIdAndUrl",
+  "time" : {
+    "start" : 1595381379299,
+    "stop" : 1595381379464,
+    "duration" : 165
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9a7088f8155d3f8e",
+  "name" : "WithAnotherUserIdDoesNotReturnSummaries",
+  "time" : {
+    "start" : 1595381379693,
+    "stop" : 1595381379695,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "fefa8238fa01aa25",
+  "name" : "WithSuccessReturnsSummaries",
+  "time" : {
+    "start" : 1595381379688,
+    "stop" : 1595381379693,
     "duration" : 5
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "954371a4b594b93b",
+  "uid" : "a9bd669e1f9d4165",
+  "name" : "WithNoTranscriptReturnsNotFound",
+  "time" : {
+    "start" : 1595381379734,
+    "stop" : 1595381379736,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9f883143b775d581",
+  "name" : "WithSuccessDeletesBlob",
+  "time" : {
+    "start" : 1595381379648,
+    "stop" : 1595381379651,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "68fec3fad605f10b",
+  "name" : "WithInvalidJsonRequestReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379613,
+    "stop" : 1595381379617,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "78f6dd6cf12df348",
+  "name" : "WithIncorrectUserIdReturnsNull",
+  "time" : {
+    "start" : 1595381379676,
+    "stop" : 1595381379678,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3ab02f1969103ac1",
+  "name" : "WithMissingUserIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379678,
+    "stop" : 1595381379683,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a7e6a3faad89ec6b",
   "name" : "WithThrownExceptionThrowsException",
   "time" : {
-    "start" : 1595280478161,
-    "stop" : 1595280478177,
+    "start" : 1595381379667,
+    "stop" : 1595381379671,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b4197ca8e66f8773",
+  "name" : "WithSuccessUpdatesBlobTranscriptInMetadata",
+  "time" : {
+    "start" : 1595381379708,
+    "stop" : 1595381379724,
     "duration" : 16
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "ca2e7ba54e6f8241",
-  "name" : "WithThrownExceptionThrowsException",
+  "uid" : "94d4a9b91b5f6e73",
+  "name" : "WithMissingUserIdReturnsBadRequest",
   "time" : {
-    "start" : 1595280478406,
-    "stop" : 1595280478411,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "f72225b0abeea5fe",
-  "name" : "WithMissingAudioFileReturnsAudioNotUploaded",
-  "time" : {
-    "start" : 1595280478198,
-    "stop" : 1595280478208,
-    "duration" : 10
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "16b46365b329e3db",
-  "name" : "WithSuccessReturnsNoContentResult",
-  "time" : {
-    "start" : 1595280478177,
-    "stop" : 1595280478192,
-    "duration" : 15
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "3b4b5361bf197d2d",
-  "name" : "WithMissingCategoryIdReturnsBadRequest",
-  "time" : {
-    "start" : 1595280478274,
-    "stop" : 1595280478277,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "b8c8b5f1059b55a2",
-  "name" : "WithSuccessPublishesAudioDeletedEventToEventGrid",
-  "time" : {
-    "start" : 1595280478326,
-    "stop" : 1595280478330,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "a19009ec89fbc38b",
-  "name" : "WithThrownExceptionThrowsException",
-  "time" : {
-    "start" : 1595280478384,
-    "stop" : 1595280478389,
-    "duration" : 5
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "927628b4d1497427",
-  "name" : "WithInvalidAudioIdReturnsAudioNotFound",
-  "time" : {
-    "start" : 1595280478452,
-    "stop" : 1595280478456,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "2f789ca16aa209ce",
-  "name" : "WithIncorrectUserIdReturnsAudioNotFound",
-  "time" : {
-    "start" : 1595280478337,
-    "stop" : 1595280478341,
-    "duration" : 4
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "448da388b6a375f0",
-  "name" : "WithThrownExceptionThrowsException",
-  "time" : {
-    "start" : 1595280478352,
-    "stop" : 1595280478359,
+    "start" : 1595381379660,
+    "stop" : 1595381379667,
     "duration" : 7
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "fa319693498b8835",
-  "name" : "WithTranscriptMissingReturnsAudioNote",
+  "uid" : "1f0dc93d50f51e96",
+  "name" : "WithThrownExceptionThrowsException",
   "time" : {
-    "start" : 1595280478372,
-    "stop" : 1595280478374,
-    "duration" : 2
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "33197eb4a7e0df7",
-  "name" : "WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated",
-  "time" : {
-    "start" : 1595280478208,
-    "stop" : 1595280478211,
-    "duration" : 3
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "4d5a4d1ec5eedfe6",
-  "name" : "WithBlobStorageFailing",
-  "time" : {
-    "start" : 1595280478396,
-    "stop" : 1595280478400,
+    "start" : 1595381379704,
+    "stop" : 1595381379708,
     "duration" : 4
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "d090a55560be3ab",
+  "uid" : "3698ff5d49d3fbab",
+  "name" : "WithSuccessReturnsAudio",
+  "time" : {
+    "start" : 1595381379671,
+    "stop" : 1595381379674,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d04056cfc115bd70",
+  "name" : "WithMissingUserIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379604,
+    "stop" : 1595381379609,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "64664c056d09d7a8",
+  "name" : "ProcessAudioTranscriptResponseReturnsExpectedResponse",
+  "time" : {
+    "start" : 1595381379626,
+    "stop" : 1595381379648,
+    "duration" : 22
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b9ddc5d33c9dacd3",
+  "name" : "WithThrownExceptionThrowsException",
+  "time" : {
+    "start" : 1595381379740,
+    "stop" : 1595381379743,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "24abb4e61fd46cfc",
+  "name" : "WithIncorrectUserIdReturnsAudioNotUploaded",
+  "time" : {
+    "start" : 1595381379562,
+    "stop" : 1595381379564,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e09d66b0c62396ff",
+  "name" : "WithIncorrectUserIdReturnsAudioNotFound",
+  "time" : {
+    "start" : 1595381379659,
+    "stop" : 1595381379660,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8a344efcb3dfdffa",
+  "name" : "WithMissingCategoryIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379619,
+    "stop" : 1595381379622,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7ffd4d2e6654cb0f",
+  "name" : "WithInvalidAudioIdReturnsAudioNotFound",
+  "time" : {
+    "start" : 1595381379657,
+    "stop" : 1595381379659,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9e41422ff0c2168",
+  "name" : "WithSuccessPublishesAudioDeletedEventToEventGrid",
+  "time" : {
+    "start" : 1595381379651,
+    "stop" : 1595381379654,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "364b449842dd24de",
+  "name" : "WithNullPayloadRequestReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379617,
+    "stop" : 1595381379619,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3c070011301ae14f",
+  "name" : "WithThrownExceptionThrowsException",
+  "time" : {
+    "start" : 1595381379684,
+    "stop" : 1595381379688,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "4455a3e2554d8dac",
   "name" : "WithSuccessUpdatesBlobMetadata",
   "time" : {
-    "start" : 1595280478192,
-    "stop" : 1595280478193,
+    "start" : 1595381379546,
+    "stop" : 1595381379547,
     "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "32ab1443208ea349",
+  "name" : "WithMissingUserIdReturnsBadRequest",
+  "time" : {
+    "start" : 1595381379470,
+    "stop" : 1595381379518,
+    "duration" : 48
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9803e132bf90e1cc",
+  "name" : "WithSuccessPublishesAudioCreatedEventToEventGrid",
+  "time" : {
+    "start" : 1595381379547,
+    "stop" : 1595381379552,
+    "duration" : 5
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a6f40b3713f6a0b3",
+  "name" : "WithInvalidAudioIdReturnsAudioNotFound",
+  "time" : {
+    "start" : 1595381379728,
+    "stop" : 1595381379730,
+    "duration" : 2
   },
   "status" : "passed",
   "severity" : "normal"

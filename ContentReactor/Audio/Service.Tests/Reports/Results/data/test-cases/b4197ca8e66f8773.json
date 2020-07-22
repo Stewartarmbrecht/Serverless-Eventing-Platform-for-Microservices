@@ -1,0 +1,41 @@
+{
+  "uid" : "b4197ca8e66f8773",
+  "name" : "WithSuccessUpdatesBlobTranscriptInMetadata",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSuccessUpdatesBlobTranscriptInMetadata",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSuccessUpdatesBlobTranscriptInMetadata",
+  "time" : {
+    "start" : 1595381379708,
+    "stop" : 1595381379724,
+    "duration" : 16
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "b4197ca8e66f8773.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,41 @@
+{
+  "uid" : "835006ca514de6ac",
+  "name" : "WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests.WithSuccessPublishesAudioTranscriptUpdatedEventToEventGrid",
+  "time" : {
+    "start" : 1595381379724,
+    "stop" : 1595381379728,
+    "duration" : 4
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.UpdateTranscriptFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "835006ca514de6ac.json",
+  "parameterValues" : [ ]
+}

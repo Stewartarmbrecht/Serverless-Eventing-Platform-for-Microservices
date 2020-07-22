@@ -1,0 +1,41 @@
+{
+  "uid" : "98ac3dcec526c8a3",
+  "name" : "WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests.WithAudioFileAlreadyCreatedReturnsAudioAlreadyCreated",
+  "time" : {
+    "start" : 1595381379560,
+    "stop" : 1595381379562,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.AddCompleteFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "98ac3dcec526c8a3.json",
+  "parameterValues" : [ ]
+}

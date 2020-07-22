@@ -28,7 +28,7 @@ try {
         Write-EdenBuildInfo "Installing Azure Release Management (ARM) Module." $LoggingPrefix
         Install-Module -Name AzureRm -AllowClobber -Scope CurrentUser
         
-        Write-EdenBuildInfo "Installing Asure CLI." $LoggingPrefix
+        Write-EdenBuildInfo "Installing Azure CLI." $LoggingPrefix
         Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; Remove-Item .\AzureCLI.msi
         
         Write-EdenBuildInfo "Installing Node.js." $LoggingPrefix
@@ -62,6 +62,28 @@ try {
         Write-EdenBuildInfo "Install the Java Runtime Environment for Allure." $LoggingPrefix
         scoop bucket add java
         scoop install openjdk
+    }
+    if($IsLinux) {
+
+        Write-EdenBuildInfo "Installing Homebrew to help with installations." $LoggingPrefix
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        sudo apt-get install build-essential
+        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.profile
+        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.bashrc
+        
+        Write-EdenBuildInfo "Installing Allure to generate test results html reports." $LoggingPrefix
+        brew install allure@2.13.5
+        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/Cellar/allure/2.13.5/bin:$PATH"' >> ~/.profile
+        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/Cellar/allure/2.13.5/bin:$PATH"' >> ~/.bashrc
+
+        Write-EdenBuildInfo "Installing Report Generator globally for generating coverage reports." $LoggingPrefix
+        dotnet tool install --global dotnet-reportgenerator-globaltool
+
+        Write-EdenBuildInfo "Installing Azure Functions Core Tools." $LoggingPrefix
+        npm install -g azure-functions-core-tools@3
+
+        Write-EdenBuildInfo "Installing Azure Powershell Module." $LoggingPrefix
+        Install-Module -Name Az -AllowClobber -Scope CurrentUser
     }
 } catch {
     $message = $_.Exception.Message

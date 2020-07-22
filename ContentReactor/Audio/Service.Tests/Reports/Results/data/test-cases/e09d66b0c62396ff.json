@@ -1,0 +1,41 @@
+{
+  "uid" : "e09d66b0c62396ff",
+  "name" : "WithIncorrectUserIdReturnsAudioNotFound",
+  "fullName" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithIncorrectUserIdReturnsAudioNotFound",
+  "historyId" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests.WithIncorrectUserIdReturnsAudioNotFound",
+  "time" : {
+    "start" : 1595381379659,
+    "stop" : 1595381379660,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests"
+  }, {
+    "name" : "testClass",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests"
+  }, {
+    "name" : "package",
+    "value" : "ContentReactor.Audio.Service.Tests.Unit.DeleteFunctionTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "trx"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "e09d66b0c62396ff.json",
+  "parameterValues" : [ ]
+}

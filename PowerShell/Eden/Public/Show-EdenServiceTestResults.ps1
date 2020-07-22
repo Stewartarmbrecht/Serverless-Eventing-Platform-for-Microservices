@@ -5,7 +5,7 @@ function Show-EdenServiceTestResults {
     )
     
     try {
-        $edenEnvConfig = Get-EdenEnvConfig -Check
+        $edenEnvConfig = Get-EdenEnvConfig
     
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Show Results"
 

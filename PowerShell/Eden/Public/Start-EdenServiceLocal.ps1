@@ -88,10 +88,15 @@ function Start-EdenServiceLocal
                     Invoke-EdenCommand "Test-ServiceFeaturesLocal" $edenEnvConfig $loggingPrefix
                     Write-EdenBuildInfo "Finished testing the service features." $loggingPrefix
                     Write-EdenBuildInfo "Stopping and removing jobs." $loggingPrefix
-                    $serviceJob.StopJob()
-                    # Remove-Job -Id $serviceJob.Id -Force
-                    $tunnelJob.StopJob()
-                    # Remove-Job -Id $tunnelJob.Id -Force
+                    Write-EdenBuildInfo "Stopping service job." $loggingPrefix
+                    Stop-Job -Id $serviceJob.Id
+                    Write-EdenBuildInfo "Removeing service job." $loggingPrefix
+                    Remove-Job -Id $serviceJob.Id -Force
+                    Write-EdenBuildInfo "Stopping tunnel job." $loggingPrefix
+                    Stop-Job -Id $tunnelJob.Id
+                    Write-EdenBuildInfo "Removing tunnel job." $loggingPrefix
+                    Remove-Job -Id $tunnelJob.Id -Force
+                    return
                 }
             }
 
@@ -164,5 +169,18 @@ function Start-EdenServiceLocal
             $testingJob | Remove-Job -Force
         }
         Write-EdenBuildError "Stopped." $loggingPrefix
+    }
+    finally 
+    {
+        $serviceJob.StopJob()
+        $serviceJob | Remove-Job -Force
+        $tunnelJob.StopJob()
+        $tunnelJob | Remove-Job -Force
+        if ($testingJob) {
+            $testingJob.StopJob()
+            $testingJob | Remove-Job -Force
+        }
+        Write-EdenBuildError "Stopped." $loggingPrefix
+
     }
 }

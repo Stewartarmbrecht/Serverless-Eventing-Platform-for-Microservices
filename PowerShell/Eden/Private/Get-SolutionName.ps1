@@ -2,5 +2,5 @@ function Get-SolutionName {
     [CmdletBinding()]
     param(
     ) 
-    return ((Get-Location) -split '\\')[-2]
+    return ((Get-Location) -split '/')[-2]
 }

@@ -5,7 +5,7 @@ function Show-EdenServiceCodeCoverage {
     )
     
     try {
-        $edenEnvConfig = Get-EdenEnvConfig -Check
+        $edenEnvConfig = Get-EdenEnvConfig
     
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Show Coverage"
 

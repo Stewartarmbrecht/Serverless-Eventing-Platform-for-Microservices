@@ -8,10 +8,16 @@ param(
 
     $location = Get-Location
     try {
-        Set-Location $PSScriptRoot
         if ($IsWindows) {
+            Set-Location $PSScriptRoot/Windows
             ./ngrok.exe http http://localhost:7071 -host-header=rewrite | Write-Verbose
-        } else {
+        } 
+        if ($IsMacOS) {
+            Set-Location $PSScriptRoot/Mac
+            ./ngrok http http://localhost:7071 -host-header=rewrite | Write-Verbose
+        }
+        if ($IsLinux) {
+            Set-Location $PSScriptRoot/Linux
             ./ngrok http http://localhost:7071 -host-header=rewrite | Write-Verbose
         }
     } catch {
