@@ -88,14 +88,16 @@ function Start-EdenServiceLocal
                     Invoke-EdenCommand "Test-ServiceFeaturesLocal" $edenEnvConfig $loggingPrefix
                     Write-EdenBuildInfo "Finished testing the service features." $loggingPrefix
                     Write-EdenBuildInfo "Stopping and removing jobs." $loggingPrefix
-                    Write-EdenBuildInfo "Stopping service job." $loggingPrefix
-                    Stop-Job -Id $serviceJob.Id
-                    Write-EdenBuildInfo "Removeing service job." $loggingPrefix
-                    Remove-Job -Id $serviceJob.Id -Force
                     Write-EdenBuildInfo "Stopping tunnel job." $loggingPrefix
+                    $serviceJob | Receive-Job | Write-Verbose
+                    $tunnelJob | Receive-Job | Write-Verbose
                     Stop-Job -Id $tunnelJob.Id
                     Write-EdenBuildInfo "Removing tunnel job." $loggingPrefix
                     Remove-Job -Id $tunnelJob.Id -Force
+                    Write-EdenBuildInfo "Stopping service job." $loggingPrefix
+                    Stop-Job -Id $serviceJob.Id
+                    Write-EdenBuildInfo "Removing service job." $loggingPrefix
+                    Remove-Job -Id $serviceJob.Id -Force
                     return
                 }
             }
@@ -124,19 +126,19 @@ function Start-EdenServiceLocal
 
         if ($serviceJob.State -eq "Failed") 
         {
-            #TODO: Figure out how to ensure StatusMessage has the message from a thrown error in the job.
+            #TODO: Update to print out stacktrack or script and line number.
             throw "Local service failed to run. Status Message: '$($serviceJob.JobStateInfo.Reason.Message)'"
         }
     
         if ($tunnelJob.State -eq "Failed") 
         {
-            #TODO: Figure out how to ensure StatusMessage has the message from a thrown error in the job.
+            #TODO: Update to print out stacktrack or script and line number.
             throw "Local tunnel failed to run. Status Message: '$($tunnelJob.JobStateInfo.Reason.Message)'"
         }
     
         if ($testingJob.State -eq "Failed") 
         {
-            #TODO: Figure out how to ensure StatusMessage has the message from a thrown error in the job.
+            #TODO: Update to print out stacktrack or script and line number.
             throw "Continuous feature testing failed to run. Status Message: '$($testingJob.JobStateInfo.Reason.Message)'"
         }
     
@@ -159,6 +161,7 @@ function Start-EdenServiceLocal
     } 
     catch 
     {
+        Write-EdenBuildError "$($_ | Out-String)"
         Write-EdenBuildError "Stopping and removing jobs due to exception. Message: '$($_.Exception.Message)'" $loggingPrefix
         $serviceJob.StopJob()
         $serviceJob | Remove-Job -Force
@@ -169,18 +172,5 @@ function Start-EdenServiceLocal
             $testingJob | Remove-Job -Force
         }
         Write-EdenBuildError "Stopped." $loggingPrefix
-    }
-    finally 
-    {
-        $serviceJob.StopJob()
-        $serviceJob | Remove-Job -Force
-        $tunnelJob.StopJob()
-        $tunnelJob | Remove-Job -Force
-        if ($testingJob) {
-            $testingJob.StopJob()
-            $testingJob | Remove-Job -Force
-        }
-        Write-EdenBuildError "Stopped." $loggingPrefix
-
     }
 }

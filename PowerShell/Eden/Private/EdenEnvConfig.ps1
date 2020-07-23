@@ -4,7 +4,7 @@ Class EdenEnvConfig {
     [String] $EnvironmentName = $null
     [String] $Region = $null
     [String] $ServicePrincipalId = $null
-    [SecureString] $ServicePrincipalPassword = $null
+    [String] $ServicePrincipalPassword = $null
     [String] $TenantId = $null
     [String] $DeveloperId = $null
     [String] $PublicUrlToLocalWebServer = $null

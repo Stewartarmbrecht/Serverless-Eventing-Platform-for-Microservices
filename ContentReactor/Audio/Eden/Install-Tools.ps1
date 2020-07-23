@@ -65,17 +65,6 @@ try {
     }
     if($IsLinux) {
 
-        Write-EdenBuildInfo "Installing Homebrew to help with installations." $LoggingPrefix
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        sudo apt-get install build-essential
-        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.profile
-        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.bashrc
-        
-        Write-EdenBuildInfo "Installing Allure to generate test results html reports." $LoggingPrefix
-        brew install allure@2.13.5
-        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/Cellar/allure/2.13.5/bin:$PATH"' >> ~/.profile
-        Write-Output 'PATH="$HOME/../linuxbrew/.linuxbrew/Cellar/allure/2.13.5/bin:$PATH"' >> ~/.bashrc
-
         Write-EdenBuildInfo "Installing Report Generator globally for generating coverage reports." $LoggingPrefix
         dotnet tool install --global dotnet-reportgenerator-globaltool
 
@@ -84,6 +73,10 @@ try {
 
         Write-EdenBuildInfo "Installing Azure Powershell Module." $LoggingPrefix
         Install-Module -Name Az -AllowClobber -Scope CurrentUser
+
+        Write-EdenBuildInfo "Installing Allure to generate test results html reports." $LoggingPrefix
+        npm install -g allure-commandline
+
     }
 } catch {
     $message = $_.Exception.Message

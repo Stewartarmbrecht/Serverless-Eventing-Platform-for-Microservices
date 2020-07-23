@@ -25,10 +25,11 @@ function Get-EdenEnvConfig
     $config.Region = Get-EnvironmentVariable "$SolutionName.$ServiceName.Region"
     $config.ServicePrincipalId = Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalId"
     $config.PublicUrlToLocalWebServer = ""
-    $pwdSS = Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalPassword"
-    if ($pwdSS) {
-        $config.ServicePrincipalPassword = ConvertTo-SecureString $pwdSS
-    }
+    # $pwdSS = Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalPassword"
+    # if ($pwdSS) {
+    #     $config.ServicePrincipalPassword = ConvertTo-SecureString $pwdSS
+    # }
+    $config.ServicePrincipalPassword = Get-EnvironmentVariable "$SolutionName.$ServiceName.ServicePrincipalPassword"
     $config.TenantId = Get-EnvironmentVariable "$SolutionName.$ServiceName.TenantId"
     $config.DeveloperId = Get-EnvironmentVariable "$SolutionName.$ServiceName.DeveloperId"
 

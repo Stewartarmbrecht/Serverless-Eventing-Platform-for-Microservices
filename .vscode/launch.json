@@ -5,10 +5,16 @@
    "version": "0.2.0",
    "configurations": [
    {
+       "name": "PowerShell Attach Interactive Session Runspace",
+       "type": "PowerShell",
+       "request": "attach",
+       "processId": "current"
+   },
+   {
        "name": "PowerShell Launch Script",
        "type": "PowerShell",
        "request": "launch",
-       "script": "${workspaceFolder}/ContentReactor/Audio/Eden/Test.ps1",
+       "script": "${workspaceFolder}/ContentReactor/Audio/Test.ps1",
        "cwd": "${workspaceFolder}/ContentReactor/Audio"
    },
        {
