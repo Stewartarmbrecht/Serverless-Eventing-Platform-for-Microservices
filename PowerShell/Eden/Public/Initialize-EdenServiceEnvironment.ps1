@@ -18,3 +18,6 @@ function Initialize-EdenServiceEnvironment {
         Write-EdenBuildError "Error initializing the environment. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-ei `
+    -Value Initialize-EdenServiceEnvironment

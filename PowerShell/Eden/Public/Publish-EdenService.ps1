@@ -18,3 +18,6 @@ function Publish-EdenService {
         Write-EdenBuildError "Error publishing the service. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-dp `
+    -Value Publish-EdenService

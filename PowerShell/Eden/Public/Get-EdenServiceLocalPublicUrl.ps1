@@ -1,4 +1,4 @@
-function Get-EdenServiceLocalHealth
+function Get-EdenServicePublicUrl
 {
     [CmdletBinding()]
     param()
@@ -19,3 +19,6 @@ function Get-EdenServiceLocalHealth
         # throw $_
     }
 }
+New-Alias `
+    -Name e-hurll `
+    -Value Get-EdenServicePublicUrl

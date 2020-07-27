@@ -19,3 +19,6 @@ function Get-EdenServiceLocalHealth
         # throw $_
     }
 }
+New-Alias `
+    -Name e-ds `
+    -Value Deploy-EdenServiceSubscriptions

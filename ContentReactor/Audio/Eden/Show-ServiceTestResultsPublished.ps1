@@ -4,5 +4,9 @@ param(
     [String] $LoggingPrefix
 )
 
-    Write-EdenBuildInfo "Useing Allure Framework to open the published test results report at './Service.Tests/Reports/Results'." $LoggingPrefix
-    allure open ./Service.Tests/Reports/Results
+Write-EdenBuildInfo "Using Allure Framework to open the test results report at './Service.Tests/TestResults/Allure'." $LoggingPrefix
+Write-Host "" -ForegroundColor Blue
+Write-Host "Click: http://localhost:9091/" -ForegroundColor Blue
+Write-Host "" -ForegroundColor Blue
+
+allure open ./Service.Tests/Reports/Results -p 9091

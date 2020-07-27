@@ -3,6 +3,7 @@ function Start-EdenServiceLocal
     [CmdletBinding()]
     param(
         [Parameter()]
+        [Alias("c")]
         [Switch]$Continuous,
         [Parameter()]
         [switch]$RunFeatureTests,
@@ -19,9 +20,9 @@ function Start-EdenServiceLocal
         Write-EdenBuildInfo "Starting the local service." $loggingPrefix
 
         if ($Continuous) {
-            $startCommand = "Start-LocalServiceContinuous"
+            $startCommand = "Start-ServiceLocalContinuous"
         } else {
-            $startCommand = "Start-LocalService"
+            $startCommand = "Start-ServiceLocal"
         }
         
         Write-EdenBuildInfo "Starting the local service job." $loggingPrefix
@@ -32,7 +33,7 @@ function Start-EdenServiceLocal
 
         Write-EdenBuildInfo "Starting the public tunnel job." $loggingPrefix
         $tunnelJob = Start-EdenCommand `
-            -EdenCommand "Start-LocalTunnel" `
+            -EdenCommand "Start-ServiceLocalTunnel" `
             -EdenEnvConfig $edenEnvConfig `
             -LoggingPrefix $loggingPrefix
 
@@ -53,7 +54,7 @@ function Start-EdenServiceLocal
         {
             if (!$serviceReady) {
                 Write-EdenBuildInfo "Checking whether the local service is ready." $loggingPrefix
-                $serviceReady = Invoke-EdenCommand "Get-LocalServiceHealth" $edenEnvConfig $loggingPrefix
+                $serviceReady = Invoke-EdenCommand "Get-ServiceHealthLocal" $edenEnvConfig $loggingPrefix
                 if ($serviceReady) {
                     Write-EdenBuildInfo "The local service passed the health check." $loggingPrefix    
                 } else {
@@ -62,7 +63,7 @@ function Start-EdenServiceLocal
             } 
             if ($serviceReady -and [string]::IsNullOrEmpty($publicUrl)) {
                 Write-EdenBuildInfo "Getting the local service public url." $loggingPrefix
-                $publicUrl = Invoke-EdenCommand "Get-LocalServicePublicUrl" $edenEnvConfig $loggingPrefix
+                $publicUrl = Invoke-EdenCommand "Get-ServiceUrlPublicLocal" $edenEnvConfig $loggingPrefix
                 if ($publicUrl) {
                     $edenEnvConfig.PublicUrlToLocalWebServer = $publicUrl
                     Write-EdenBuildInfo "The local service has a public url: '$publicUrl'." $loggingPrefix    
@@ -72,7 +73,7 @@ function Start-EdenServiceLocal
             }
             if ($serviceReady -and !$subscriptionsDeployed -and ![string]::IsNullOrEmpty($publicUrl)) {
                 Write-EdenBuildInfo "Deploying the event subscrpitions for the local service." $loggingPrefix
-                Invoke-EdenCommand "Deploy-ServiceLocalSubscriptions" $edenEnvConfig $loggingPrefix
+                Invoke-EdenCommand "Deploy-ServiceSubscriptionsLocal" $edenEnvConfig $loggingPrefix
                 Write-EdenBuildInfo "Finished deploying the event subscrpitions for the local service." $loggingPrefix
                 $subscriptionsDeployed = $true
             }
@@ -80,7 +81,7 @@ function Start-EdenServiceLocal
                 if ($RunFeatureTestsContinuously) {
                     Write-EdenBuildInfo "Testing the service features continuously." $loggingPrefix
                     $testingJob = Start-EdenCommand  `
-                        -EdenCommand "Test-ServiceFeaturesContinuously" `
+                        -EdenCommand "Test-ServiceFeaturesContinuous" `
                         -EdenEnvConfig $edenEnvConfig `
                         -LoggingPrefix $loggingPrefix
                 } else { 
@@ -174,3 +175,6 @@ function Start-EdenServiceLocal
         Write-EdenBuildError "Stopped." $loggingPrefix
     }
 }
+New-Alias `
+    -Name e-hs `
+    -Value Start-EdenServiceLocal

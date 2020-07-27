@@ -2,6 +2,7 @@ function Test-EdenServiceCode
 {
     [CmdletBinding()]
     param(
+        [Alias("c")]
         [switch]$Continuous
     )
     
@@ -26,3 +27,6 @@ function Test-EdenServiceCode
         Write-EdenBuildError "Error testing the service code. Message: '$($_.Exception.Message)'" $loggingPrefix
     }
 }
+New-Alias `
+    -Name e-tc `
+    -Value Test-EdenServiceCode

@@ -8,3 +8,6 @@ function Invoke-EdenServicePipeline {
     Publish-EdenService
     Deploy-EdenService
 }
+New-Alias `
+    -Name e-p `
+    -Value Invoke-EdenServicePipeline

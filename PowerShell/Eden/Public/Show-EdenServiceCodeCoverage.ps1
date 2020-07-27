@@ -23,3 +23,6 @@ function Show-EdenServiceCodeCoverage {
         Write-EdenBuildError "Error launching the service code coverage report. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-tccc `
+    -Value Show-EdenServiceCodeCoverage

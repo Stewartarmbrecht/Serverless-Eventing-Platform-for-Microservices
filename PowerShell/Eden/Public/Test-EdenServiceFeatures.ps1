@@ -3,10 +3,13 @@ function Test-EdenServiceFeatures
     [CmdletBinding()]
     param(
         [Parameter()]
+        [Alias("c")]
         [Switch]$Continuous,
         [Parameter()]
+        [Alias("bo")]
         [Switch]$BuildOnce,
         [Parameter()]
+        [Alias("s")]
         [Switch]$Staging
     )
 
@@ -20,3 +23,6 @@ function Test-EdenServiceFeatures
         Start-EdenServiceLocal -Continuous:($Continuous -and !$BuildOnce) -RunFeatureTests:(!$Continuous) -RunFeatureTestsContinuously:($Continuous)
     }
 }
+New-Alias `
+    -Name e-tf `
+    -Value Test-EdenServiceFeatures

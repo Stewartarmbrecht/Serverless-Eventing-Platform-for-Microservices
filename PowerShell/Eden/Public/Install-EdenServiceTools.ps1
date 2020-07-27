@@ -18,3 +18,6 @@ function Install-EdenServiceTools {
         Write-EdenBuildError "Error installing the service tools. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-eit `
+    -Value Install-EdenServiceTools

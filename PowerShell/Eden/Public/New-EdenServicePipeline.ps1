@@ -1,4 +1,4 @@
-function New-EdenPipeline {
+function New-EdenServicePipeline {
     [CmdletBinding()]
     param(
         [String]$AccountName,
@@ -43,3 +43,6 @@ function New-EdenPipeline {
         Set-Location $currentDirectory
     }
 }
+New-Alias `
+    -Name e-ep `
+    -Value New-EdenServicePipeline

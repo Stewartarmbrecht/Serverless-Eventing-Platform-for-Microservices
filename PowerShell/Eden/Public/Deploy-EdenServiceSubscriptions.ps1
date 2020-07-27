@@ -18,3 +18,6 @@ function Deploy-EdenServiceSubscriptions {
         Write-EdenBuildError "Error deploying the service subscriptions. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-ds `
+    -Value Deploy-EdenServiceSubscriptions

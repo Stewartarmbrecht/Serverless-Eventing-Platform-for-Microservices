@@ -34,3 +34,6 @@ function Deploy-EdenServiceApplication {
         Write-EdenBuildError "Error deploying the service application. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-da `
+    -Value Deploy-EdenServiceApplication

@@ -67,3 +67,6 @@ function Get-EdenEnvConfig
     return $config
 
 }
+New-Alias `
+    -Name e-ds `
+    -Value Deploy-EdenServiceSubscriptions

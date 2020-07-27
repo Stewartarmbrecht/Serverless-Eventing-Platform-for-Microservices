@@ -1,9 +1,13 @@
 function Watch-EdenFolder {
     [CmdletBinding()]
     param(
+        [Alias("fo")]
         [String] $Folder,
+        [Alias("fi")]
         [String] $Filter,
+        [Alias("a")]
         [ScriptBlock] $Action,
+        [Alias("lp")]
         [String] $LoggingPrefix
     ) 
     Write-EdenBuildInfo "Watching folder '$Folder' with filter '$Filter'" $LoggingPrefix
@@ -72,3 +76,6 @@ function Watch-EdenFolder {
         Write-EndBuildInfo "Event Handler disabled." $LoggingPrefix
     }
 }
+New-Alias `
+    -Name e-uwf `
+    -Value Deploy-EdenServiceSubscriptions

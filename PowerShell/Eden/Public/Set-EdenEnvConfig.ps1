@@ -124,3 +124,6 @@ function Set-EdenEnvConfig
         $json | Out-File "./Eden/$($edenEnvConfig.EnvironmentName).json" -Force
     }
 }
+New-Alias `
+    -Name e-ecgs `
+    -Value Set-EdenEnvConfig

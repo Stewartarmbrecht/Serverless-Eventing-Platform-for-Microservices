@@ -18,3 +18,6 @@ function Deploy-EdenServiceInfrastructure {
         Write-EdenBuildError "Error deploying the service infrastructure. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-di `
+    -Value Deploy-EdenServiceInfrastructure

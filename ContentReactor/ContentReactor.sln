@@ -9,13 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BD822973-5C0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContentReactor.Audio", "ContentReactor.Audio", "{F460AE54-66C1-44AD-9CC6-934BCAC0B99C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Api", "audio\src\ContentReactor.Audio\ContentReactor.Audio.Api\ContentReactor.Audio.Api.csproj", "{19AE336A-509E-4765-ACD7-9D1786907845}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Service", "Audio/Service/ContentReactor.Audio.Service.csproj", "{19AE336A-509E-4765-ACD7-9D1786907845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Services", "audio\src\ContentReactor.Audio\ContentReactor.Audio.Services\ContentReactor.Audio.Services.csproj", "{93D0A530-5365-43BC-9BD6-309D2FE4DBD9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Tests", "audio\src\ContentReactor.Audio\ContentReactor.Audio.Tests\ContentReactor.Audio.Tests.csproj", "{5EBFB39D-D691-4D32-B69E-9059EA25B0FE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.WorkerApi", "audio\src\ContentReactor.Audio\ContentReactor.Audio.WorkerApi\ContentReactor.Audio.WorkerApi.csproj", "{7FC87B7D-700B-4B79-A02B-A24C76307A57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Service.Tests", "Audio/Service.Tests/ContentReactor.Audio.Service.Tests.csproj", "{93D0A530-5365-43BC-9BD6-309D2FE4DBD9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "categories", "categories", "{4B8C357F-72E4-40D1-A886-36D75E358155}"
 EndProject

@@ -18,3 +18,6 @@ function Publish-EdenServiceCodeCoverage {
         Write-EdenBuildError "Error publishing the service code coverage results. Message: '$($_.Exception.Message)'" $loggingPrefix
     }    
 }
+New-Alias `
+    -Name e-tcccp `
+    -Value Publish-EdenServiceCodeCoverage

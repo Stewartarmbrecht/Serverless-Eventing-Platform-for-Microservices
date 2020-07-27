@@ -6,3 +6,6 @@ function Deploy-EdenService {
     Deploy-EdenServiceApplication
     Deploy-EdenServiceSubscriptions    
 }
+New-Alias `
+    -Name e-d `
+    -Value Deploy-EdenService

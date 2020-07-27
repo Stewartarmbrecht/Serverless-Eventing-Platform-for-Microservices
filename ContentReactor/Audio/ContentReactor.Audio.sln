@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Service", "Service\ContentReactor.Audio.Service.csproj", "{35E0FA10-02DC-425E-A50E-0ECE83F53A16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Service", "Service/ContentReactor.Audio.Service.csproj", "{35E0FA10-02DC-425E-A50E-0ECE83F53A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Service.Tests", "Service.Tests\ContentReactor.Audio.Service.Tests.csproj", "{9F0767EA-FE55-4ABB-9C2B-A12E1BBEB7AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentReactor.Audio.Service.Tests", "Service.Tests/ContentReactor.Audio.Service.Tests.csproj", "{9F0767EA-FE55-4ABB-9C2B-A12E1BBEB7AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@ function Build-EdenService
 {
     [CmdletBinding()]
     param(
+        [Alias("c")]
         [switch]$Continuous
     )
     
@@ -26,3 +27,7 @@ function Build-EdenService
         Write-EdenBuildError "Error building the service. Message: '$($_.Exception.Message)'" $loggingPrefix
     }
 }
+New-Alias `
+    -Name e-b `
+    -Value Build-EdenService `
+    -Description "Shows the list of Eden commands and highlights the ones supported by the service."

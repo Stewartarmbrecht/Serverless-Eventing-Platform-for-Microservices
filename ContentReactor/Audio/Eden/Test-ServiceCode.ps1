@@ -24,11 +24,11 @@ param(
     }
 
     Write-EdenBuildInfo "Generating test results report to './Service.Tests/TestResults/allure'" $LoggingPrefix
-    allure generate ./Service.Tests/TestResults/ -o ./Service.Tests/TestResults/Allure --clean
+    allure generate ./Service.Tests/TestResults/ -o ./Service.Tests/TestResults/Results --clean
     Write-EdenBuildInfo "Finished generating test results report to './Service.Tests/TestResults/allure'" $LoggingPrefix
 
     Write-EdenBuildInfo "Generating code coverage reports to './Service.Tests/TestResults/coveragereport'" $LoggingPrefix
-    reportgenerator "-reports:./Service.Tests/TestResults/coverage.info" "-targetdir:Service.Tests/TestResults/coveragereport" -reporttypes:Html
+    reportgenerator "-reports:./Service.Tests/TestResults/coverage.info" "-targetdir:Service.Tests/TestResults/Coverage" -reporttypes:Html
     Write-EdenBuildInfo "Finished generating code coverage reports to './Service.Tests/TestResults/coveragereport'" $LoggingPrefix
 
     
