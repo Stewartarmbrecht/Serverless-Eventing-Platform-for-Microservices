@@ -10,7 +10,7 @@ function Initialize-EdenServiceEnvironment {
 
         Write-EdenBuildInfo "Initializing the environment." $loggingPrefix
 
-        Invoke-EdenCommand "Initialize-Environment" $edenEnvConfig $loggingPrefix
+        Invoke-EdenCommand "Initialize-ServiceEnvironment" $edenEnvConfig $loggingPrefix
         
         Write-EdenBuildInfo "Finished initializing the environment." $loggingPrefix
     }

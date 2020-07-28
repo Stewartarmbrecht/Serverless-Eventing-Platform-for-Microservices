@@ -1,4 +1,4 @@
-function Get-EdenServicePublicUrl
+function Get-EdenServiceUrlPublicLocal
 {
     [CmdletBinding()]
     param()
@@ -10,7 +10,7 @@ function Get-EdenServicePublicUrl
         $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Test Unit"
         
         Write-EdenBuildInfo "Getting the local service health." $loggingPrefix
-        $result = Invoke-EdenCommand "Get-LocalServicePublicUrl" $edenEnvConfig $loggingPrefix
+        $result = Invoke-EdenCommand "Get-ServiceUrlPublicLocal" $edenEnvConfig $loggingPrefix
         return $result
     }
     catch
@@ -20,5 +20,5 @@ function Get-EdenServicePublicUrl
     }
 }
 New-Alias `
-    -Name e-hurll `
-    -Value Get-EdenServicePublicUrl
+    -Name e-hupl `
+    -Value Get-EdenServiceUrlPublicLocal

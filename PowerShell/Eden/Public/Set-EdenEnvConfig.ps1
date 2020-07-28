@@ -125,5 +125,5 @@ function Set-EdenEnvConfig
     }
 }
 New-Alias `
-    -Name e-ecgs `
+    -Name e-es `
     -Value Set-EdenEnvConfig

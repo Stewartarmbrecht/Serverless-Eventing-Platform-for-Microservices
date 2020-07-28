@@ -8,7 +8,7 @@ function Show-EdenServiceCodeTestResults {
     try {
         $edenEnvConfig = Get-EdenEnvConfig
     
-        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Show Results"
+        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Test Code"
 
         if ($Published) {
             Write-EdenBuildInfo "Launching the published service code test results report." $loggingPrefix

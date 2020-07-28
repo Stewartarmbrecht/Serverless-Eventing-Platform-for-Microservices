@@ -68,5 +68,5 @@ function Get-EdenEnvConfig
 
 }
 New-Alias `
-    -Name e-ds `
-    -Value Deploy-EdenServiceSubscriptions
+    -Name e-es `
+    -Value Get-EdenEnvConfig

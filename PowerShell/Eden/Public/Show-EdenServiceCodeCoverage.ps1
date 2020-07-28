@@ -1,13 +1,14 @@
 function Show-EdenServiceCodeCoverage {
     [CmdletBinding()]
     param(
+        [Alias("p")]
         [Switch] $Published
     )
     
     try {
         $edenEnvConfig = Get-EdenEnvConfig
     
-        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Show Coverage"
+        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Test Code"
 
         if ($Published) {
             Write-EdenBuildInfo "Launching the published service code coverage report." $loggingPrefix

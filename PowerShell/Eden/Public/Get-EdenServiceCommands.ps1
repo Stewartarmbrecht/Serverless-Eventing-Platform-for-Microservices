@@ -31,18 +31,18 @@ function Get-EdenServiceCommands {
         
     @{Command="-----HOSTING-----"},
         
-        @{Command="Start-EdenServiceLocal";                     Alias="e-hs";           Files = @("./Eden/Start-ServiceLoca.ps1",
+        @{Command="Start-EdenServiceLocal";                     Alias="e-hs";           Files = @("./Eden/Start-ServiceLocal.ps1",
                                                                                                 "./Eden/Start-ServiceTunnelLocal.ps1",
                                                                                                 "./Eden/Get-ServiceHealthLocal.ps1",
-                                                                                                "./Eden/Get-ServicePublicUrlLocal.ps1",
-                                                                                                "./Eden/Deploy-ServiceLocalSubscriptions.ps1")},
+                                                                                                "./Eden/Get-ServiceUrlPublicLocal.ps1",
+                                                                                                "./Eden/Deploy-ServiceSubscriptionsLocal.ps1")},
         @{Command="Start-EdenServiceLocal -Continuous";         Alias="e-hs -c";        Files = @("./Eden/Start-ServiceLocalContinuous.ps1",
                                                                                                 "./Eden/Start-ServiceTunnelLocal.ps1",
                                                                                                 "./Eden/Get-ServiceHealthLocal.ps1",
-                                                                                                "./Eden/Get-ServicePublicUrlLocal.ps1",
-                                                                                                "./Eden/Deploy-ServiceLocalSubscriptions.ps1")},
-    
-        @{Command="Get-EdenServiceLocalPublicUrl";              Alias="e-hlpurl";       Files = @("./Eden/Test-ServiceCode.ps1")},
+                                                                                                "./Eden/Get-ServiceUrlPublicLocal.ps1",
+                                                                                                "./Eden/Deploy-ServiceSubscriptionsLocal.ps1")},
+
+        @{Command="Get-EdenServiceUrlPublicLocal";              Alias="e-hupl";         Files = @("./Eden/Test-ServiceCode.ps1")},
     @{Command="-----TESTING CODE-----"},
         @{Command="Test-EdenServiceCode";                       Alias="e-tc";           Files = @("./Eden/Test-ServiceCode.ps1")},
         @{Command="Test-EdenServiceCode -Continuous";           Alias="e-tc -c";        Files = @("./Eden/Test-ServiceCodeContinuous.ps1")}
@@ -54,19 +54,18 @@ function Get-EdenServiceCommands {
         @{Command="Show-EdenServiceCodeTestResults -Published"; Alias="e-tctr -p";      Files = @("./Eden/Show-ServiceCodeTestResultsPublished.ps1")},
     
     @{Command="-----TESTING FEATURES-----"},
-        @{Command="Test-EdenServiceFeatures";                   Alias="e-tf";           Files = @("./Eden/Start-LocalService.ps1",
-                                                                                                "./Eden/Start-LocalTunnel.ps1",
-                                                                                                "./Eden/Get-LocalServiceHealth.ps1",
-                                                                                                "./Eden/Get-LocalServicePublicUrl.ps1",
-                                                                                                "./Eden/Deploy-ServiceLocalSubscriptions.ps1",
+        @{Command="Test-EdenServiceFeatures";                   Alias="e-tf";           Files = @("./Eden/Start-ServiceLocal.ps1",
+                                                                                                "./Eden/Start-ServiceTunnelLocal.ps1",
+                                                                                                "./Eden/Get-ServiceHealthLocal.ps1",
+                                                                                                "./Eden/Get-ServiceUrlPublicLocal.ps1",
+                                                                                                "./Eden/Deploy-ServiceSubscriptionsLocal.ps1",
                                                                                                 "./Eden/Test-ServiceFeaturesLocal.ps1")},
-        @{Command="Test-EdenServiceFeatures -Continuous";       Alias="e-tf -c";        Files = @("./Eden/Start-LocalService.ps1",
-                                                                                                "./Eden/Start-LocalTunnel.ps1",
-                                                                                                "./Eden/Get-LocalServiceHealth.ps1",
-                                                                                                "./Eden/Get-LocalServicePublicUrl.ps1",
-                                                                                                "./Eden/Deploy-ServiceLocalSubscriptions.ps1",
+        @{Command="Test-EdenServiceFeatures -Continuous";       Alias="e-tf -c";        Files = @("./Eden/Start-ServiceLocal.ps1",
+                                                                                                "./Eden/Start-ServiceTunnelLocal.ps1",
+                                                                                                "./Eden/Get-ServiceHealthLocal.ps1",
+                                                                                                "./Eden/Get-ServiceUrlPublicLocal.ps1",
+                                                                                                "./Eden/Deploy-ServiceSubscriptionsLocal.ps1",
                                                                                                 "./Eden/Test-ServiceFeaturesLocalContinuous.ps1")},
-    
         @{Command="Show-EdenServiceFeaturesTestResults";        Alias="e-tftr";         Files = @("./Eden/Show-ServiceFeaturesTestResults.ps1")},
         @{Command="Publish-EdenServiceFeaturesTestResults";     Alias="e-tftrp";        Files = @("./Eden/Publish-ServiceFeaturesTestResults.ps1")},
         @{Command="Show-EdenServiceFeaturesTestResults -Published";Alias="e-tftr -p";   Files = @("./Eden/Show-ServiceFeaturesTestResultsPublished.ps1")},
@@ -87,6 +86,7 @@ function Get-EdenServiceCommands {
         @{Command="Deploy-EdenService";                         Alias="e-d";            Commands = @("Deploy-EdenServiceInfrastructure",
                                                                                                     "Deploy-EdenServiceApplication",
                                                                                                     "Deploy-EdenServiceSubscriptions")},
+        @{Command="Show-EdenServiceDeploymentsList";            Alias="e-dl";           Files = @("./Eden/Show-ServiceDeploymentsList.ps1")},
     
     @{Command="-----PIPELINE-----"},
         @{Command="Invoke-EdenServicePipeline";                 Alias="e-p";            Commands = @("Build-EdenService",
@@ -99,7 +99,6 @@ function Get-EdenServiceCommands {
     
     @{Command="-----OPERATIONS-----"},
         @{Command="Show-EdenServiceInfrastructure";             Alias="e-oi";           Files = @("./Eden/Show-ServiceInfrastructure.ps1")},
-        @{Command="Show-EdenServiceDeployments";                Alias="e-od";           Files = @("./Eden/Show-ServiceMonitor.ps1")},
         @{Command="Show-EdenServiceMonitor";                    Alias="e-om";           Files = @("./Eden/Show-ServiceMonitor.ps1")},
         @{Command="Get-EdenServiceStatus";                      Alias="e-os";           Files = @("./Eden/Get-ServiceStatusLocal.ps1")},
         @{Command="Get-EdenServiceStatus -Staging";             Alias="e-os -s";        Files = @("./Eden/Get-ServiceStatusStaging.ps1")},
@@ -114,8 +113,8 @@ function Get-EdenServiceCommands {
         @{Command="Sync-EdenServiceCommits";                    Alias="e-scoms";        Files = @("./Eden/Show-ServiceChangesLocal.ps1")},
 
     @{Command="-----PRODUCT-----"},
-        @{Command="Show-EdenServiceProductRoadmap";             Alias="e-prm";         Files = @("./Eden/Show-ServiceWorkItemAssignments.ps1")},
-        @{Command="Show-EdenServiceProductFeatures";            Alias="e-pf";         Files = @("./Eden/Show-ServiceWorkItemList.ps1")},
+        @{Command="Show-EdenServiceProductRoadMap";             Alias="e-prm";         Files = @("./Eden/Show-ServiceProductRoadMap.ps1")},
+        @{Command="Show-EdenServiceProductFeatures";            Alias="e-pf";         Files = @("./Eden/Show-ServiceProductFeatures.ps1")},
 
     @{Command="-----WORK ITEMS-----"},
         @{Command="Show-EdenServiceWorkItemAssignments";        Alias="e-wia";         Files = @("./Eden/Show-ServiceWorkItemAssignments.ps1")},
@@ -139,8 +138,8 @@ function Get-EdenServiceCommands {
 
     @{Command="-----UTILITIES-----"},
         @{Command="Watch-EdenFolder";                          Alias="e-uwf";           Files = @()},
-        @{Command="Write-EdenBuildInfo";                       Alias="e-ubi";           Files = @()},
-        @{Command="Write-EdenBuildError";                      Alias="e-ube";           Files = @()}
+        @{Command="Write-EdenBuildInfo";                       Alias="e-uwi";           Files = @()},
+        @{Command="Write-EdenBuildError";                      Alias="e-uwe";           Files = @()}
     )
 
     Write-Host "Supported | Alias      | Command" -ForegroundColor Blue

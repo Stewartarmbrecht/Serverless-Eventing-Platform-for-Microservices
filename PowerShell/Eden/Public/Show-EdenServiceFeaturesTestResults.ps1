@@ -1,4 +1,4 @@
-function Show-EdenServiceFeatureTestResults {
+function Show-EdenServiceFeaturesTestResults {
     [CmdletBinding()]
     param(
         [Alias("p")]
@@ -13,11 +13,11 @@ function Show-EdenServiceFeatureTestResults {
         if ($Published) {
             Write-EdenBuildInfo "Launching the published service features test results report." $loggingPrefix
 
-            Invoke-EdenCommand "Show-ServiceFeatureTestResultsPublished" $edenEnvConfig $loggingPrefix
+            Invoke-EdenCommand "Show-ServiceFeaturesTestResultsPublished" $edenEnvConfig $loggingPrefix
         } else {
             Write-EdenBuildInfo "Launching the service features test results report." $loggingPrefix
 
-            Invoke-EdenCommand "Show-ServiceFeatureTestResults" $edenEnvConfig $loggingPrefix
+            Invoke-EdenCommand "Show-ServiceFeaturesTestResults" $edenEnvConfig $loggingPrefix
         }
     }
     catch {
@@ -26,4 +26,4 @@ function Show-EdenServiceFeatureTestResults {
 }
 New-Alias `
     -Name e-tftr `
-    -Value Show-EdenServiceFeatureTestResults
+    -Value Show-EdenServiceFeaturesTestResults

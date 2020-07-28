@@ -78,4 +78,4 @@ function Watch-EdenFolder {
 }
 New-Alias `
     -Name e-uwf `
-    -Value Deploy-EdenServiceSubscriptions
+    -Value Watch-EdenFolder

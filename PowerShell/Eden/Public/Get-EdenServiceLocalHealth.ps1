@@ -1,16 +1,23 @@
-function Get-EdenServiceLocalHealth
+function Get-EdenServiceHealth
 {
     [CmdletBinding()]
-    param()
+    param(
+        [Alias("l")]
+        [Switch] $Local,
+        [Alias("s")]
+        [Switch] $Staging,
+        [Alias("p")]
+        [Switch] $Production
+    )
     
     try {
         
         $edenEnvConfig = Get-EdenEnvConfig
 
-        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Test Unit"
+        $loggingPrefix = "$($edenEnvConfig.SolutionName) $($edenEnvConfig.ServiceName) Operations"
         
         Write-EdenBuildInfo "Getting the local service health." $loggingPrefix
-        $result = Invoke-EdenCommand "Get-LocalServiceHealth" $edenEnvConfig $loggingPrefix
+        $result = Invoke-EdenCommand "Get-ServiceHealthLocal" $edenEnvConfig $loggingPrefix
         return $result
     }
     catch

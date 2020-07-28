@@ -29,5 +29,4 @@ function Build-EdenService
 }
 New-Alias `
     -Name e-b `
-    -Value Build-EdenService `
-    -Description "Shows the list of Eden commands and highlights the ones supported by the service."
+    -Value Build-EdenService

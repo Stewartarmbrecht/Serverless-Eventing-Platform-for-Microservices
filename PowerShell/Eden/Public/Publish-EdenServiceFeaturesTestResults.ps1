@@ -1,4 +1,4 @@
-function Publish-EdenServiceFeatureTestResults {
+function Publish-EdenServiceFeaturesTestResults {
     [CmdletBinding()]
     param(  
     )
@@ -10,7 +10,7 @@ function Publish-EdenServiceFeatureTestResults {
 
         Write-EdenBuildInfo "Publishing the service feature test results." $loggingPrefix
 
-        Invoke-EdenCommand "Publish-ServiceFeatureTestResults" $edenEnvConfig $loggingPrefix
+        Invoke-EdenCommand "Publish-ServiceFeaturesTestResults" $edenEnvConfig $loggingPrefix
         
         Write-EdenBuildInfo "Finished publishing the service feature test results." $loggingPrefix
     }
@@ -20,4 +20,4 @@ function Publish-EdenServiceFeatureTestResults {
 }
 New-Alias `
     -Name e-tftrp `
-    -Value Publish-EdenServiceFeatureTestResults
+    -Value Publish-EdenServiceFeaturesTestResults
