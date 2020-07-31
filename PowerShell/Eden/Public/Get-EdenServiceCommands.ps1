@@ -8,9 +8,9 @@ function Get-EdenServiceCommands {
 
     @{Command="-----ENVIRONMENTS-----"},
 
+        @{Command="Set-EdenEnvConfig";                          Alias="e-es";           Files = @()},
         @{Command="Install-EdenServiceTools";                   Alias="e-eit";          Files = @("./Eden/Install-ServiceTools.ps1")},
         @{Command="Initialize-EdenServiceEnvironment";          Alias="e-ei";           Files = @("./Eden/Initialize-ServiceEnvironment.ps1")},
-        @{Command="Set-EdenEnvConfig";                          Alias="e-es";           Files = @()},
         @{Command="Get-EdenEnvConfig";                          Alias="e-eg";           Files = @()},
         @{Command="Get-EdenEnvConfig -All";                     Alias="e-eg -a";        Files = @()},
         @{Command="Get-EdenServiceCommands";                    Alias="e-esc";          Files = @()},
@@ -56,13 +56,13 @@ function Get-EdenServiceCommands {
     @{Command="-----TESTING FEATURES-----"},
         @{Command="Test-EdenServiceFeatures";                   Alias="e-tf";           Files = @("./Eden/Start-ServiceLocal.ps1",
                                                                                                 "./Eden/Start-ServiceTunnelLocal.ps1",
-                                                                                                "./Eden/Get-ServiceHealthLocal.ps1",
+                                                                                                "./Eden/Get-ServiceStatusLocal.ps1",
                                                                                                 "./Eden/Get-ServiceUrlPublicLocal.ps1",
                                                                                                 "./Eden/Deploy-ServiceSubscriptionsLocal.ps1",
                                                                                                 "./Eden/Test-ServiceFeaturesLocal.ps1")},
         @{Command="Test-EdenServiceFeatures -Continuous";       Alias="e-tf -c";        Files = @("./Eden/Start-ServiceLocal.ps1",
                                                                                                 "./Eden/Start-ServiceTunnelLocal.ps1",
-                                                                                                "./Eden/Get-ServiceHealthLocal.ps1",
+                                                                                                "./Eden/Get-ServiceStatusLocal.ps1",
                                                                                                 "./Eden/Get-ServiceUrlPublicLocal.ps1",
                                                                                                 "./Eden/Deploy-ServiceSubscriptionsLocal.ps1",
                                                                                                 "./Eden/Test-ServiceFeaturesLocalContinuous.ps1")},
@@ -100,9 +100,10 @@ function Get-EdenServiceCommands {
     @{Command="-----OPERATIONS-----"},
         @{Command="Show-EdenServiceInfrastructure";             Alias="e-oi";           Files = @("./Eden/Show-ServiceInfrastructure.ps1")},
         @{Command="Show-EdenServiceMonitor";                    Alias="e-om";           Files = @("./Eden/Show-ServiceMonitor.ps1")},
+        @{Command="Get-EdenServiceHealth";                      Alias="e-oh";           Files = @("./Eden/Get-ServiceHealthLocal.ps1")},
+        @{Command="Get-EdenServiceHealth -Staging";             Alias="e-oh -s";        Files = @("./Eden/Get-ServiceHealthStaging.ps1")},
+        @{Command="Get-EdenServiceHealth -Production";          Alias="e-oh -p";        Files = @("./Eden/Get-ServiceHealthProduction.ps1")},
         @{Command="Get-EdenServiceStatus";                      Alias="e-os";           Files = @("./Eden/Get-ServiceStatusLocal.ps1")},
-        @{Command="Get-EdenServiceStatus -Staging";             Alias="e-os -s";        Files = @("./Eden/Get-ServiceStatusStaging.ps1")},
-        @{Command="Get-EdenServiceStatus -Production";          Alias="e-os -p";        Files = @("./Eden/Get-ServiceStatusProduction.ps1")},
         
     
     @{Command="-----SOURCE CONROL-----"},
@@ -152,20 +153,24 @@ function Get-EdenServiceCommands {
         if ($command.Command.ToString().StartsWith("-----")) {
             Write-Host $command.Command -ForegroundColor Blue
         } else {
-            foreach ($file in $command.Files) {
-                $fileFound = (Test-Path $file)
-                $supported = ($supported -and $fileFound)
-                if ($CommandMissing -and !$fileFound) { $missing += "              v        | Missing File: $file" }
-            }
-            foreach ($commandDependency in $command.Commands) {
-                $supported = $supported -and ($commandsAndFiles | where {$_.Command -eq $commandDependency}).Count -gt 0
-            }
-            $command.Supported = $supported
-            $color = if ($supported) { "Green" } else { "Red" };
-            $supportedCommand = if ($supported) { "Yes" } else { "No " }
-            Write-Host "$supportedCommand       | $($command.Alias.PadRight(10," ")) | $($command.Command)" -ForegroundColor $color
-            foreach($missingFile in $missing) {
-                Write-Host $missingFile -ForegroundColor Red
+            if (Get-Command $command.Command.Split()[0] -errorAction SilentlyContinue) {
+                foreach ($file in $command.Files) {
+                    $fileFound = (Test-Path $file)
+                    $supported = ($supported -and $fileFound)
+                    if ($CommandMissing -and !$fileFound) { $missing += "              v        | Missing File: $file" }
+                }
+                foreach ($commandDependency in $command.Commands) {
+                    $supported = $supported -and ($commandsAndFiles | where {$_.Command -eq $commandDependency}).Count -gt 0
+                }
+                $command.Supported = $supported
+                $color = if ($supported) { "Green" } else { "Red" };
+                $supportedCommand = if ($supported) { "Yes" } else { "No " }
+                Write-Host "$supportedCommand       | $($command.Alias.PadRight(10," ")) | $($command.Command)" -ForegroundColor $color
+                foreach($missingFile in $missing) {
+                    Write-Host $missingFile -ForegroundColor Red
+                }    
+            } else {
+                Write-Host "Future    | $($command.Alias.PadRight(10," ")) | $($command.Command)" -ForegroundColor Gray
             }
         }
     }

@@ -68,5 +68,5 @@ function Get-EdenEnvConfig
 
 }
 New-Alias `
-    -Name e-es `
+    -Name e-eg `
     -Value Get-EdenEnvConfig

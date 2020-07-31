@@ -10,7 +10,7 @@ function Install-EdenServiceTools {
 
         Write-EdenBuildInfo "Installing the service tools." $loggingPrefix
 
-        Invoke-EdenCommand "Install-Tools" $edenEnvConfig $loggingPrefix
+        Invoke-EdenCommand "Install-ServiceTools" $edenEnvConfig $loggingPrefix
         
         Write-EdenBuildInfo "Finished installing the service tools." $loggingPrefix
     }
